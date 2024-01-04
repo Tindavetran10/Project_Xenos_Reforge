@@ -1,7 +1,7 @@
 ﻿using Script.Player.Data;
 using UnityEngine;
 
-namespace _Scripts.CoreSystem.CoreComponents
+namespace Script.CoreSystem.CoreComponents
 {
     // This class will take care of all functions that changing the velocity of different characters 
     public class Movement : CoreComponent

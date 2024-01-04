@@ -1,4 +1,4 @@
-namespace _Scripts.CoreSystem.CoreComponents
+namespace Script.CoreSystem.CoreComponents
 {
     public class Death : CoreComponent
     {
@@ -9,8 +9,8 @@ namespace _Scripts.CoreSystem.CoreComponents
     
         private ParticleManager particleManager;*/
         
-        private Stats Stats => _stats ? _stats : Core.GetCoreComponent(ref _stats);
-        private Stats _stats;
+        private CharacterStats CharacterStats => _characterStats ? _characterStats : Core.GetCoreComponent(ref _characterStats);
+        private CharacterStats _characterStats;
     
         public void Die()
         {
@@ -22,7 +22,7 @@ namespace _Scripts.CoreSystem.CoreComponents
             Core.transform.parent.gameObject.SetActive(false);
         }
 
-        private void OnEnable() => Stats.Health.OnCurrentValueZero += Die;
-        private void OnDisable() => Stats.Health.OnCurrentValueZero -= Die;
+        private void OnEnable() => CharacterStats.Health.OnCurrentValueZero += Die;
+        private void OnDisable() => CharacterStats.Health.OnCurrentValueZero -= Die;
     }
 }

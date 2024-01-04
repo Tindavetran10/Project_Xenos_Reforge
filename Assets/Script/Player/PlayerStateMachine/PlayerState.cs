@@ -12,9 +12,10 @@ namespace Script.Player.PlayerStateMachine
           protected readonly PlayerData PlayerData;
      
           protected bool IsAnimationFinished;
+          protected bool IsAnimationCancel;
           protected bool IsExitingState;
           protected float StartTime;
-     
+          
           private readonly string _animBoolName;
 
           // Create a constructor for player so we can access all the function like Update, Exit,... 
@@ -40,6 +41,7 @@ namespace Script.Player.PlayerStateMachine
                // Save the time when the player enter a state 
                StartTime = Time.time;
                IsAnimationFinished = false;
+               IsAnimationCancel = false;
                IsExitingState = false;
           }
      
@@ -57,6 +59,6 @@ namespace Script.Player.PlayerStateMachine
      
           public virtual void AnimationTrigger() {}
           public virtual void AnimationFinishTrigger() => IsAnimationFinished = true;
-
+          public virtual void AnimationCancelTrigger() {}
      }
 }

@@ -1,4 +1,4 @@
-﻿using _Scripts.CoreSystem.CoreComponents;
+﻿using Script.CoreSystem.CoreComponents;
 using Script.Player.Data;
 using Script.Player.PlayerStateMachine;
 

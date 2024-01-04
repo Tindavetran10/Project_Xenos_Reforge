@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using _Scripts.CoreSystem;
+using UnityEngine;
 
-namespace _Scripts.CoreSystem.CoreComponents
+namespace Script.CoreSystem.CoreComponents
 {
     public class CoreComponent : MonoBehaviour
     {

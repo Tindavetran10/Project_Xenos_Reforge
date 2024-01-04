@@ -1,4 +1,4 @@
-﻿using _Scripts.CoreSystem.CoreComponents;
+﻿using Script.CoreSystem.CoreComponents;
 using Script.Player.Data;
 using Script.Player.PlayerStateMachine;
 
@@ -25,6 +25,8 @@ namespace Script.Player.PlayerStates.SuperStates
         private bool _isTouchingWall;
         private bool _isTouchingLedge;
         private bool _dashInput;
+
+        private bool _normalAttackInput;
 
         
         protected PlayerGroundedState(PlayerStateMachine.Player player, PlayerStateMachine.PlayerStateMachine stateMachine, 
@@ -66,8 +68,13 @@ namespace Script.Player.PlayerStates.SuperStates
             _grabInput = Player.InputHandler.GrabInput;
             _dashInput = Player.InputHandler.DashInput;
             
+            _normalAttackInput = Player.InputHandler.AttackInputs[(int)CombatInputs.Normal];
+            
+            if(_normalAttackInput && !IsTouchingCeiling)
+                StateMachine.ChangeState(Player.PrimaryAttackState);
+            
             // Change to Jump State if there is a jumpInput, the number of jumps is > 0 and he isn't touch the ceiling 
-            if(_jumpInput && Player.JumpState.CanJump() && !IsTouchingCeiling)
+            else if(_jumpInput && Player.JumpState.CanJump() && !IsTouchingCeiling)
                 StateMachine.ChangeState(Player.JumpState);
             // Change to InAirState if the player isn't standing on the ground
             else if (!_isGrounded)

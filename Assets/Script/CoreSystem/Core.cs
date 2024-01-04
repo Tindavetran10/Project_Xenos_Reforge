@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using _Scripts.CoreSystem.CoreComponents;
 using System.Linq;
+using Script.CoreSystem.CoreComponents;
 using UnityEngine;
 
 namespace _Scripts.CoreSystem

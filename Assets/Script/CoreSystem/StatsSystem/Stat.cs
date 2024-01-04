@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 // A base system for lots of stat in game like Health, Magic, Stamina,...
-namespace _Scripts.CoreSystem.StatsSystem
+namespace Script.CoreSystem.StatsSystem
 {
     [Serializable]
     public class Stat

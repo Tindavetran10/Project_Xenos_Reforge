@@ -1,7 +1,7 @@
-﻿using _Scripts.Generics;
+﻿using Script.Generics;
 using UnityEngine;
 
-namespace _Scripts.CoreSystem.CoreComponents
+namespace Script.CoreSystem.CoreComponents
 {
     public class CollisionSenses : CoreComponent
     {

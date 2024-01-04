@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Script.Player.PlayerStateMachine
 {
-    public class Player : MonoBehaviour
+    public class Player : Entity.Entity
     {
         #region State Variables
         // By declaring the state machine, we can access all the function
@@ -26,25 +26,26 @@ namespace Script.Player.PlayerStateMachine
         public PlayerDashState DashState { get; private set; }
         public PlayerCrouchIdleState CrouchIdleState { get; private set; }
         public PlayerCrouchMoveState CrouchMoveState { get; private set; }
+        public PlayerPrimaryAttackState PrimaryAttackState { get; private set; }
+        
+        
         [SerializeField] private PlayerData playerData;
         #endregion
 
         #region Components
-        public _Scripts.CoreSystem.Core Core { get; private set; }
-        public Animator Anim { get; private set; }
         public PlayerInputHandler InputHandler { get; private set; }
-        public Rigidbody2D Rb { get; private set; }
         public Transform DashDirectionIndicator { get; private set; }
         private CapsuleCollider2D MovementCollider2D { get; set; }
         #endregion
-    
+        
         #region Other Variables
         private Vector2 _workspace;
         #endregion
 
         #region Unity Callback Functions
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             Core = GetComponentInChildren<_Scripts.CoreSystem.Core>();
             
             StateMachine = new PlayerStateMachine();
@@ -63,26 +64,31 @@ namespace Script.Player.PlayerStateMachine
             DashState = new PlayerDashState(this, StateMachine, playerData, "dash");
             CrouchIdleState = new PlayerCrouchIdleState(this, StateMachine, playerData, "crouchIdle");
             CrouchMoveState = new PlayerCrouchMoveState(this, StateMachine, playerData, "crouchMove");
+
+            PrimaryAttackState = new PlayerPrimaryAttackState(this, StateMachine, playerData, "attack");
         }
 
-        private void Start()
+        protected override void Start()
         {
-            Anim = GetComponentInChildren<Animator>();
+            base.Start();
             InputHandler = GetComponent<PlayerInputHandler>();
-            Rb = GetComponent<Rigidbody2D>();
             DashDirectionIndicator = transform.Find("DashDirectionIndicator");
             MovementCollider2D = GetComponent<CapsuleCollider2D>();
-
             StateMachine.Initialize(IdleState);
         }
 
-        private void Update()
+        protected override void Update()
         {
+            base.Update();
             Core.LogicUpdate();
             StateMachine.CurrentState.LogicUpdate();
         }
-    
-        private void FixedUpdate() => StateMachine.CurrentState.PhysicsUpdate();
+        protected override void FixedUpdate()
+        {
+            base.FixedUpdate();
+            StateMachine.CurrentState.PhysicsUpdate();
+        }
+
         #endregion
 
         #region Other Functions
@@ -102,6 +108,8 @@ namespace Script.Player.PlayerStateMachine
         }
         private void AnimationTrigger() => StateMachine.CurrentState.AnimationTrigger();
         private void AnimationFinishTrigger() => StateMachine.CurrentState.AnimationFinishTrigger();
+        private void AnimationCancelTrigger() => StateMachine.CurrentState.AnimationCancelTrigger();
+
         #endregion
     }
 }

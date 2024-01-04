@@ -1,16 +1,16 @@
+using Script.CoreSystem.StatsSystem;
 using UnityEngine;
 
-namespace _Scripts.CoreSystem.CoreComponents
+namespace Script.CoreSystem.CoreComponents
 {
-    
-    public class Stats : CoreComponent
+    public class CharacterStats : CoreComponent
     {
         // Create to stat base on the stat system
-        [field: SerializeField] public StatsSystem.Stat Health { get; private set; }
+        [field: SerializeField] public Stat Health { get; private set; }
         
         // Poise is a stat to decide when a character will be stunned 
         // after taking a certain amount of damage
-        [field: SerializeField] public StatsSystem.Stat Poise { get; private set; }
+        [field: SerializeField] public Stat Poise { get; private set; }
 
         [SerializeField] private float poiseRecoveryRate;
         
