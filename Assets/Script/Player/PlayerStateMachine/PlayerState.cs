@@ -60,5 +60,8 @@ namespace Script.Player.PlayerStateMachine
           public virtual void AnimationTrigger() {}
           public virtual void AnimationFinishTrigger() => IsAnimationFinished = true;
           public virtual void AnimationCancelTrigger() {}
+          
+          public virtual void StartMovementTrigger(){}
+          public virtual void StopMovementTrigger(){}
      }
 }

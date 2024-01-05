@@ -109,7 +109,8 @@ namespace Script.Player.PlayerStateMachine
         private void AnimationTrigger() => StateMachine.CurrentState.AnimationTrigger();
         private void AnimationFinishTrigger() => StateMachine.CurrentState.AnimationFinishTrigger();
         private void AnimationCancelTrigger() => StateMachine.CurrentState.AnimationCancelTrigger();
-
+        private void StartMovementTrigger() => StateMachine.CurrentState.StartMovementTrigger();
+        private void StopMovementTrigger() => StateMachine.CurrentState.StopMovementTrigger();
         #endregion
     }
 }

@@ -18,8 +18,7 @@ namespace Script.Player
         public event Action OnStartMovement;
         public event Action OnStopMovement;
         public event Action OnAttackAction;
-        public event Action OnCancel;
-        
+
         public event Action<bool> OnFlipSetActive; 
 
         private void Start() => _playerInputHandler = GetComponentInParent<PlayerInputHandler>();
@@ -33,9 +32,8 @@ namespace Script.Player
                 IsAnimationCancel = true;
 
         }
-        private void AnimationFinishedTrigger() => OnFinish?.Invoke();
-        private void StartMovementTrigger() => OnStartMovement?.Invoke();
-        private void StopMovementTrigger() => OnStopMovement?.Invoke();
+
+        
         private void AttackActionTrigger() => OnAttackAction?.Invoke();
         
         private void SetFlipActive() => OnFlipSetActive?.Invoke(true);
