@@ -1,4 +1,5 @@
-using _Scripts.Player.Input;
+using System;
+using System.Linq;
 using Script.CoreSystem.CoreComponents;
 using Script.Player.Data;
 using Script.Player.PlayerStateMachine;
@@ -8,18 +9,16 @@ namespace Script.Player.PlayerStates.SubStates
 {
     public class PlayerPrimaryAttackState : PlayerState
     {
+        #region Combo variables
         private int _comboCounter;
 
         private float _lastTimeAttacked;
-        private const float comboWindow = 2;
-        
+        private static readonly int ComboCounter = Animator.StringToHash("comboCounter");
+        #endregion
+
         private Movement _movement;
-        protected Movement Movement => _movement ? _movement : Core.GetCoreComponent(ref _movement);
-
-        private CollisionSenses _collisionSenses;
-        private CollisionSenses CollisionSenses => _collisionSenses ? _collisionSenses 
-            : Core.GetCoreComponent(ref _collisionSenses);
-
+        private Movement Movement => _movement ? _movement : Core.GetCoreComponent(ref _movement);
+        
         public PlayerPrimaryAttackState(PlayerStateMachine.Player player, PlayerStateMachine.PlayerStateMachine stateMachine, 
             PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName) {}
         
@@ -27,12 +26,12 @@ namespace Script.Player.PlayerStates.SubStates
         {
             base.Enter();
 
-            if (_comboCounter > Player.InputHandler.AttackInputs.Length || Time.time >= _lastTimeAttacked + comboWindow)
+            if (_comboCounter >= PlayerData.numberOfAttacks || Time.time >= _lastTimeAttacked + PlayerData.comboWindow)
                 _comboCounter = 0;
             
-            Player.Anim.SetInteger("comboCounter", _comboCounter);
+            Debug.Log(_comboCounter);
             
-            
+            Player.Anim.SetInteger(ComboCounter, _comboCounter);
         }
 
         public override void Exit()
@@ -51,31 +50,29 @@ namespace Script.Player.PlayerStates.SubStates
                 StateMachine.ChangeState(Player.IdleState);
             
         }
-
-        public override void PhysicsUpdate()
-        {
-            base.PhysicsUpdate();
-        }
-
-        protected override void DoChecks()
-        {
-            base.DoChecks();
-        }
-
+        
         public override void AnimationCancelTrigger()
         {
             base.AnimationCancelTrigger();
-            if (Player.InputHandler.AttackInputs.Length > _comboCounter && Player.InputHandler.AttackInputs[_comboCounter] ||
-                Player.InputHandler.NormInputX == 1 || Player.InputHandler.NormInputX == -1 ||
-                Player.InputHandler.JumpInput ||
-                Player.InputHandler.DashInput)
-                IsAnimationCancel = true;
+
+            foreach (var combatInput in Enum.GetValues(typeof(CombatInputs)).Cast<CombatInputs>())
+            {
+                if (Player.InputHandler.AttackInputs[(int)combatInput] ||
+                    Player.InputHandler.NormInputX == 1 || Player.InputHandler.NormInputX == -1 ||
+                    Player.InputHandler.JumpInput ||
+                    Player.InputHandler.DashInput)
+                {
+                    IsAnimationCancel = true;
+                    break; // Exit the loop if any condition is met
+                }
+            }
         }
+
 
         public override void StartMovementTrigger()
         {
             base.StartMovementTrigger();
-            Movement.SetVelocity(PlayerData.movementVelocity, new Vector2(1,0) ,Movement.FacingDirection);
+            Movement.SetVelocity(PlayerData.attackVelocity[_comboCounter], PlayerData.direction[_comboCounter], Movement.FacingDirection);
         }
 
         public override void StopMovementTrigger()
@@ -83,5 +80,7 @@ namespace Script.Player.PlayerStates.SubStates
             base.StopMovementTrigger();
             Movement.SetVelocityZero();
         }
+        
+        
     }
 }
