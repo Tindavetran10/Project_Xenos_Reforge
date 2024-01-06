@@ -9,23 +9,14 @@ namespace Script.Enemy.EnemyState.SubState
     {
         private float _moveTime;
         protected bool IsMoveTimeOver;
-        protected bool IsDetectingWall;
-        protected bool IsDetectingLedge;
-
+        
+        
         private readonly D_MoveState _stateData;
-
         
         protected MoveState(EnemyStateMachine.Enemy enemyBase, EnemyStateMachine.EnemyStateMachine stateMachine, 
             string animBoolName, D_MoveState stateData) : base(enemyBase, stateMachine, animBoolName) =>
             _stateData = stateData;
-
-        protected override void DoChecks()
-        {
-            base.DoChecks();
-            IsDetectingLedge = CollisionSenses.LedgeVertical;
-            IsDetectingWall = CollisionSenses.WallFront;
-        }
-
+        
         public override void Enter()
         {
             base.Enter();

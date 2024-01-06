@@ -11,14 +11,7 @@ namespace Script.Player.PlayerStates.SuperStates
         protected int XInput;
         protected int YInput;
         protected bool IsTouchingCeiling;
-    
-        private Movement _movement;
-        protected Movement Movement => _movement ? _movement : Core.GetCoreComponent(ref _movement);
-
-        private CollisionSenses _collisionSenses;
-        private CollisionSenses CollisionSenses => _collisionSenses ? _collisionSenses 
-            : Core.GetCoreComponent(ref _collisionSenses);
-
+        
         private bool _jumpInput;
         private bool _grabInput;
         private bool _isGrounded;
@@ -28,7 +21,14 @@ namespace Script.Player.PlayerStates.SuperStates
 
         private bool _normalAttackInput;
 
-        
+        protected Movement Movement => _movement ? _movement : Core.GetCoreComponent(ref _movement);
+        private Movement _movement;
+
+        private CollisionSenses CollisionSenses => _collisionSenses ? _collisionSenses 
+            : Core.GetCoreComponent(ref _collisionSenses);
+        private CollisionSenses _collisionSenses;
+
+
         protected PlayerGroundedState(PlayerStateMachine.Player player, PlayerStateMachine.PlayerStateMachine stateMachine, 
             PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName){}
 

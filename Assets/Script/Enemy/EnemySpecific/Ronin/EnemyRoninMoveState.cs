@@ -15,7 +15,9 @@ namespace Script.Enemy.EnemySpecific.Ronin
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-            if (!IsDetectingLedge || IsDetectingWall || IsMoveTimeOver)
+            if(IsPlayerInAgroRange)
+                StateMachine.ChangeState(_enemyRonin.PlayerDetectedState);
+            else if (!IsDetectingLedge || IsDetectingWall || IsMoveTimeOver)
             {
                 _enemyRonin.IdleState.SetFlipAfterIdle(true);
                 StateMachine.ChangeState(_enemyRonin.IdleState);

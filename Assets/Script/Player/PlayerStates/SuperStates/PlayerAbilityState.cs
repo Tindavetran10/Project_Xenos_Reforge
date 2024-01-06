@@ -5,16 +5,16 @@ using Script.Player.PlayerStateMachine;
 namespace Script.Player.PlayerStates.SuperStates
 {
     public class PlayerAbilityState : PlayerState {
-        protected bool IsAbilityDone;
         
+        private bool _isGrounded;
+        protected bool IsAbilityDone;
+
         protected Movement Movement => _movement ? _movement : Core.GetCoreComponent(ref _movement);
+        private Movement _movement;
+
         private CollisionSenses CollisionSenses => _collisionSenses ? _collisionSenses 
             : Core.GetCoreComponent(ref _collisionSenses);
-
-        private Movement _movement;
         private CollisionSenses _collisionSenses;
-
-        private bool _isGrounded;
         
         protected PlayerAbilityState(PlayerStateMachine.Player player, PlayerStateMachine.PlayerStateMachine stateMachine, 
             PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName){}

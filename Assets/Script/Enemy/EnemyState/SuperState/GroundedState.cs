@@ -1,11 +1,14 @@
 using Script.CoreSystem.CoreComponents;
-using UnityEngine;
 
 namespace Script.Enemy.EnemyState.SuperState
 {
     public class GroundedState : EnemyStateMachine.EnemyState
     {
         protected bool IsPlayerInAgroRange;
+        protected bool IsDetectingLedge;
+        protected bool IsDetectingWall;
+
+        protected bool PerformCloseRangeAction;
         
         protected Movement Movement => _movement ? _movement : Core.GetCoreComponent(ref _movement);
         protected CollisionSenses CollisionSenses => _collisionSenses ? _collisionSenses 
@@ -23,6 +26,10 @@ namespace Script.Enemy.EnemyState.SuperState
         {
             base.DoChecks();
             IsPlayerInAgroRange = EnemyBase.CheckPlayerInAgroRange();
+            IsDetectingLedge = CollisionSenses.LedgeVertical;
+            IsDetectingWall = CollisionSenses.WallFront;
+            
+            PerformCloseRangeAction = EnemyBase.CheckPlayerInCloseRangeAction();
         }
 
         public override void Enter()
