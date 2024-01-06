@@ -1,26 +1,19 @@
 using _Scripts.Enemies.EnemyState.StateData;
-using Script.CoreSystem.CoreComponents;
+using Script.Enemy.EnemyState.SuperState;
 using UnityEngine;
 
 
 namespace Script.Enemy.EnemyState.SubState
 {
-    public class MoveState : EnemyStateMachine.EnemyState
+    public class MoveState : GroundedState
     {
         private float _moveTime;
+        protected bool IsMoveTimeOver;
         protected bool IsDetectingWall;
         protected bool IsDetectingLedge;
-        protected bool IsMoveTimeOver;
-        protected bool IsPlayerInAgroRange;
 
         private readonly D_MoveState _stateData;
 
-        private Movement Movement => _movement ? _movement : Core.GetCoreComponent(ref _movement);
-        private CollisionSenses CollisionSenses => _collisionSenses ? _collisionSenses 
-            : Core.GetCoreComponent(ref _collisionSenses);
-
-        private Movement _movement;
-        private CollisionSenses _collisionSenses;
         
         protected MoveState(EnemyStateMachine.Enemy enemyBase, EnemyStateMachine.EnemyStateMachine stateMachine, 
             string animBoolName, D_MoveState stateData) : base(enemyBase, stateMachine, animBoolName) =>
@@ -29,10 +22,8 @@ namespace Script.Enemy.EnemyState.SubState
         protected override void DoChecks()
         {
             base.DoChecks();
-            
             IsDetectingLedge = CollisionSenses.LedgeVertical;
             IsDetectingWall = CollisionSenses.WallFront;
-            IsPlayerInAgroRange = EnemyBase.CheckPlayerInAgroRange();
         }
 
         public override void Enter()
@@ -41,6 +32,7 @@ namespace Script.Enemy.EnemyState.SubState
             Movement?.SetVelocityX(_stateData.movementSpeed * Movement.FacingDirection);
             IsMoveTimeOver = false;
             SetRandomMoveTime();
+            
         }
 
         public override void LogicUpdate()

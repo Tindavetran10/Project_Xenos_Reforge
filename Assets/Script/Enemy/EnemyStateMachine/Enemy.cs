@@ -1,3 +1,4 @@
+using System;
 using Script.CoreSystem;
 using Script.CoreSystem.CoreComponents;
 using Script.Enemy.Data;
@@ -32,6 +33,7 @@ namespace Script.Enemy.EnemyStateMachine
             StateMachine.CurrentState.LogicUpdate();
 
             Anim.SetFloat(YVelocity, Movement.Rb.velocity.y);
+            Debug.Log(CheckPlayerInAgroRange());
         }
 
         protected override void FixedUpdate()
@@ -48,6 +50,17 @@ namespace Script.Enemy.EnemyStateMachine
         
         public bool CheckPlayerInCloseRangeAction() => 
             Physics2D.Raycast(playerCheck.position, transform.right, enemyData.closeRangeActionDistance, enemyData.whatIsPlayer);
+
+        public void OnDrawGizmos()
+        {
+            if (Core != null)
+            {
+                var playerCheckPosition = playerCheck.position;
+                
+                Gizmos.DrawWireSphere(playerCheckPosition + (Vector3)(Vector2.right * enemyData.closeRangeActionDistance), 0.2f);
+                Gizmos.DrawWireSphere(playerCheckPosition + (Vector3)(Vector2.right * enemyData.agroDistance), 0.2f);
+            }
+        }
         #endregion
     }
 }

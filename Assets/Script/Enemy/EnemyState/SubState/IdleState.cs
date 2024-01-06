@@ -1,36 +1,22 @@
 using _Scripts.Enemies.EnemyState.StateData;
-using Script.CoreSystem.CoreComponents;
+using Script.Enemy.EnemyState.SuperState;
 using UnityEngine;
 
 namespace Script.Enemy.EnemyState.SubState
 {
-    public class IdleState : EnemyStateMachine.EnemyState
+    public class IdleState : GroundedState
     {
         private float _idleTime;
         private bool _flipAfterIdle;
         protected bool IsIdleTimeOver;
-
-        protected bool IsPlayerInAgroRange;
-
-        private readonly D_IdleState StateData;
-
-        private Movement Movement => _movement ? _movement : Core.GetCoreComponent(ref _movement);
-        private Movement _movement;
-
-        private CollisionSenses CollisionSenses => _collisionSenses ? _collisionSenses 
-            : Core.GetCoreComponent(ref _collisionSenses);
-        private CollisionSenses _collisionSenses;
+        
+        private readonly D_IdleState _stateData;
+        
         
         protected IdleState(EnemyStateMachine.Enemy enemyBase, EnemyStateMachine.EnemyStateMachine stateMachine, 
             string animBoolName, D_IdleState stateData) : base(enemyBase, stateMachine, animBoolName) =>
-            StateData = stateData;
-
-        protected override void DoChecks()
-        {
-            base.DoChecks();
-            IsPlayerInAgroRange = EnemyBase.CheckPlayerInAgroRange();
-        }
-
+            _stateData = stateData;
+        
         public override void Enter()
         {
             base.Enter();
@@ -57,6 +43,6 @@ namespace Script.Enemy.EnemyState.SubState
             _flipAfterIdle = flip;
 
         private void SetRandomIdleTime() => 
-            _idleTime = Random.Range(StateData.minIdleTime, StateData.maxIdleTime);
+            _idleTime = Random.Range(_stateData.minIdleTime, _stateData.maxIdleTime);
     }
 }
