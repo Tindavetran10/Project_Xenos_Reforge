@@ -1,12 +1,14 @@
+using Script.CoreSystem;
 using UnityEngine;
 
 namespace Script.Entity
 {
     public class Entity : MonoBehaviour
     {
-        public _Scripts.CoreSystem.Core Core { get; protected set; }
+        public Core Core { get; protected set; }
         public Animator Anim { get; private set; }
         public Rigidbody2D Rb { get; private set; }
+        
         
         protected virtual void Awake() {}
 

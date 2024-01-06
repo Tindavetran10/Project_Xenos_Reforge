@@ -1,5 +1,6 @@
 using _Scripts.Player.Input;
 using _Scripts.Player.PlayerStates.SubStates;
+using Script.CoreSystem;
 using Script.Player.Data;
 using Script.Player.PlayerStates.SubStates;
 using UnityEngine;
@@ -46,7 +47,7 @@ namespace Script.Player.PlayerStateMachine
         protected override void Awake()
         {
             base.Awake();
-            Core = GetComponentInChildren<_Scripts.CoreSystem.Core>();
+            Core = GetComponentInChildren<Core>();
             
             StateMachine = new PlayerStateMachine();
         
@@ -88,7 +89,6 @@ namespace Script.Player.PlayerStateMachine
             base.FixedUpdate();
             StateMachine.CurrentState.PhysicsUpdate();
         }
-
         #endregion
 
         #region Other Functions
@@ -111,6 +111,9 @@ namespace Script.Player.PlayerStateMachine
         private void AnimationCancelTrigger() => StateMachine.CurrentState.AnimationCancelTrigger();
         private void StartMovementTrigger() => StateMachine.CurrentState.StartMovementTrigger();
         private void StopMovementTrigger() => StateMachine.CurrentState.StopMovementTrigger();
+        protected void SetFlipActive() => StateMachine.CurrentState.SetFlipActive();
+        private void SetFlipInactive() => StateMachine.CurrentState.SetFlipInactive();
+
         #endregion
     }
 }

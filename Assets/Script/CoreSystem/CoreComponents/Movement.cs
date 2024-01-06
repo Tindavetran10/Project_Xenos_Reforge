@@ -1,4 +1,5 @@
-﻿using Script.Player.Data;
+﻿using Script.Enemy.Data;
+using Script.Player.Data;
 using UnityEngine;
 
 namespace Script.CoreSystem.CoreComponents
@@ -14,6 +15,7 @@ namespace Script.CoreSystem.CoreComponents
         private Vector2 _workspace;
     
         [SerializeField] private PlayerData playerData;
+        [SerializeField] private EnemyData enemyData;
     
         protected override void Awake()
         {

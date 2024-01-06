@@ -3,7 +3,7 @@ using System.Linq;
 using Script.CoreSystem.CoreComponents;
 using UnityEngine;
 
-namespace _Scripts.CoreSystem
+namespace Script.CoreSystem
 {
     public class Core : MonoBehaviour
     {

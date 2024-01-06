@@ -1,4 +1,5 @@
-﻿using Script.CoreSystem.CoreComponents;
+﻿using Script.CoreSystem;
+using Script.CoreSystem.CoreComponents;
 using UnityEngine;
 
 namespace _Scripts.CoreSystem

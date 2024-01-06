@@ -110,6 +110,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 0.05
+    functionName: SetFlipInactive
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.1
     functionName: StartMovementTrigger
     data: 
@@ -126,6 +133,13 @@ AnimationClip:
     messageOptions: 0
   - time: 0.25
     functionName: AnimationCancelTrigger
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.25
+    functionName: SetFlipActive
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

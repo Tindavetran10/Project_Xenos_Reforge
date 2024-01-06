@@ -1,13 +1,12 @@
 using System;
 using System.Linq;
-using Script.CoreSystem.CoreComponents;
 using Script.Player.Data;
-using Script.Player.PlayerStateMachine;
+using Script.Player.PlayerStates.SuperStates;
 using UnityEngine;
 
 namespace Script.Player.PlayerStates.SubStates
 {
-    public class PlayerPrimaryAttackState : PlayerState
+    public class PlayerPrimaryAttackState : PlayerAbilityState
     {
         #region Combo variables
         private int _comboCounter;
@@ -15,9 +14,6 @@ namespace Script.Player.PlayerStates.SubStates
         private float _lastTimeAttacked;
         private static readonly int ComboCounter = Animator.StringToHash("comboCounter");
         #endregion
-
-        private Movement _movement;
-        private Movement Movement => _movement ? _movement : Core.GetCoreComponent(ref _movement);
         
         public PlayerPrimaryAttackState(PlayerStateMachine.Player player, PlayerStateMachine.PlayerStateMachine stateMachine, 
             PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName) {}
@@ -45,10 +41,10 @@ namespace Script.Player.PlayerStates.SubStates
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-            
-            if(IsAnimationFinished || IsAnimationCancel)
-                StateMachine.ChangeState(Player.IdleState);
-            
+
+            if (IsAnimationFinished || IsAnimationCancel)
+                IsAbilityDone = true;
+
         }
         
         public override void AnimationCancelTrigger()
@@ -80,7 +76,17 @@ namespace Script.Player.PlayerStates.SubStates
             base.StopMovementTrigger();
             Movement.SetVelocityZero();
         }
-        
-        
+
+        public override void SetFlipActive()
+        {
+            base.SetFlipActive();
+            Movement.CheckIfShouldFlip(Player.InputHandler.NormInputX);
+        }
+
+        public override void SetFlipInactive()
+        {
+            base.SetFlipInactive();
+            Movement.CheckIfShouldFlip(0);
+        }
     }
 }

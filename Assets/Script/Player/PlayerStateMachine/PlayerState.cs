@@ -1,3 +1,4 @@
+using Script.CoreSystem;
 using Script.Player.Data;
 using UnityEngine;
 
@@ -5,7 +6,7 @@ namespace Script.Player.PlayerStateMachine
 {
      public class PlayerState
      {
-          protected readonly _Scripts.CoreSystem.Core Core;
+          protected readonly Core Core;
 
           protected readonly Player Player;
           protected readonly PlayerStateMachine StateMachine;
@@ -52,16 +53,19 @@ namespace Script.Player.PlayerStateMachine
                IsExitingState = true;
           }
 
-          public virtual void LogicUpdate() {}
+          public virtual void LogicUpdate(){}
      
           public virtual void PhysicsUpdate() => DoChecks();
-          protected virtual void DoChecks() {}
+          protected virtual void DoChecks(){}
      
           public virtual void AnimationTrigger() {}
           public virtual void AnimationFinishTrigger() => IsAnimationFinished = true;
-          public virtual void AnimationCancelTrigger() {}
+          public virtual void AnimationCancelTrigger(){}
           
           public virtual void StartMovementTrigger(){}
           public virtual void StopMovementTrigger(){}
+
+          public virtual void SetFlipActive(){}
+          public virtual void SetFlipInactive(){}
      }
 }

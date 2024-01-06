@@ -41,5 +41,7 @@ namespace Script.Player.PlayerStates.SuperStates
                 else StateMachine.ChangeState(Player.InAirState);
             }
         }
+        
+        
     }
 }
