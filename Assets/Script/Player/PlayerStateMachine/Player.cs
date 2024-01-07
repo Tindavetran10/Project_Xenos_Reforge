@@ -90,6 +90,17 @@ namespace Script.Player.PlayerStateMachine
         }
         #endregion
 
+        #region Animation Functions
+        private void AnimationTrigger() => StateMachine.CurrentState.AnimationTrigger();
+        private void AnimationFinishTrigger() => StateMachine.CurrentState.AnimationFinishTrigger();
+        private void AnimationCancelTrigger() => StateMachine.CurrentState.AnimationCancelTrigger();
+        private void StartMovementTrigger() => StateMachine.CurrentState.StartMovementTrigger();
+        private void StopMovementTrigger() => StateMachine.CurrentState.StopMovementTrigger();
+        protected void SetFlipActive() => StateMachine.CurrentState.SetFlipActive();
+        private void SetFlipInactive() => StateMachine.CurrentState.SetFlipInactive();
+        private void AttackTrigger() => StateMachine.CurrentState.AttackTrigger();
+        #endregion
+
         #region Other Functions
         // Change the height of the collider when the player is crouching
         public void SetColliderHeight(float height)
@@ -105,21 +116,12 @@ namespace Script.Player.PlayerStateMachine
             //Change the center point of the Collider
             MovementCollider2D.offset = center;
         }
-        private void AnimationTrigger() => StateMachine.CurrentState.AnimationTrigger();
-        private void AnimationFinishTrigger() => StateMachine.CurrentState.AnimationFinishTrigger();
-        private void AnimationCancelTrigger() => StateMachine.CurrentState.AnimationCancelTrigger();
-        private void StartMovementTrigger() => StateMachine.CurrentState.StartMovementTrigger();
-        private void StopMovementTrigger() => StateMachine.CurrentState.StopMovementTrigger();
-        protected void SetFlipActive() => StateMachine.CurrentState.SetFlipActive();
-        private void SetFlipInactive() => StateMachine.CurrentState.SetFlipInactive();
-        private void AttackTrigger() => StateMachine.CurrentState.AttackTrigger();
-
+        
         private void OnDrawGizmos()
         {
             foreach (var item in playerData.hitBox) 
-                Gizmos.DrawWireSphere(attackPosition.transform.position + (Vector3)item.center, item.size.x);
+                Gizmos.DrawWireCube(attackPosition.transform.position + (Vector3)item.center , item.size);
         }
-
         #endregion
     }
 }

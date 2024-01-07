@@ -17,9 +17,9 @@ MonoBehaviour:
   wallCheckDistance: 1
   ledgeCheckDistance: 0.4
   groundCheckRadius: 0.3
-  agroDistance: 2
   stunResistance: 3
   stunRecoveryTime: 2
+  agroDistance: 2
   closeRangeActionDistance: 0.34
   hitParticle: {fileID: 0}
   whatIsGround:
@@ -30,17 +30,17 @@ MonoBehaviour:
     m_Bits: 128
   hitBox:
   - serializedVersion: 2
-    x: 0.24
-    y: 0
-    width: 0.3
-    height: -0.2
+    x: 0.04
+    y: -0.35
+    width: 0.64
+    height: 0.5
   - serializedVersion: 2
-    x: 0.2
-    y: 0
-    width: 0.3
-    height: -0.2
+    x: 0.02
+    y: -0.35
+    width: 0.64
+    height: 0.5
   - serializedVersion: 2
-    x: 0.34
-    y: -0.02
-    width: 0.3
-    height: -0.11
+    x: 0.04
+    y: -0.35
+    width: 0.64
+    height: 0.5

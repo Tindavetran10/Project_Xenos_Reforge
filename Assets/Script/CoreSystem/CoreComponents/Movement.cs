@@ -13,6 +13,8 @@ namespace Script.CoreSystem.CoreComponents
     
         public Vector2 CurrentVelocity { get; private set; }
         private Vector2 _workspace;
+
+        private Entity.Entity _entity;
     
         [SerializeField] private PlayerData playerData;
         [SerializeField] private EnemyData enemyData;
@@ -27,6 +29,8 @@ namespace Script.CoreSystem.CoreComponents
             FacingDirection = 1;
             // Allow to set a new velocity
             CanSetVelocity = true;
+
+            _entity = gameObject.AddComponent<Entity.Entity>();
         }
 
         // Update the new velocity to the current velocity of player

@@ -22,7 +22,7 @@ namespace Script.Enemy.EnemySpecific.Ronin
         [SerializeField] private D_LookForPlayerState lookForPlayerStateData;
         [SerializeField] private D_MeleeAttackState meleeAttackStateData;
         #endregion
-         
+        
         protected override void Awake()
         {
             base.Awake();
@@ -46,7 +46,7 @@ namespace Script.Enemy.EnemySpecific.Ronin
         public override void OnDrawGizmos()
         {
             foreach (var item in enemyData.hitBox) 
-                Gizmos.DrawWireSphere(attackPosition.transform.position + (Vector3)item.center, item.size.x);
+                Gizmos.DrawWireCube(attackPosition.transform.position + (Vector3)item.center, item.size);
         }
     }
 }

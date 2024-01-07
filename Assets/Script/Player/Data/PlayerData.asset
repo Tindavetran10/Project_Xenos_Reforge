@@ -36,29 +36,32 @@ MonoBehaviour:
   crouchMovementVelocity: 1
   crouchColliderHeight: 0.31
   standColliderHeight: 0.63
+  whatIsEnemy:
+    serializedVersion: 2
+    m_Bits: 64
   comboWindow: 2
   numberOfAttacks: 3
   attackVelocity:
-  - 2
   - 1
-  - 1.5
+  - 0.5
+  - 0.75
   direction:
   - {x: 1, y: 0}
   - {x: 1, y: 0}
   - {x: 1, y: 0}
   hitBox:
   - serializedVersion: 2
-    x: 0.56
-    y: 0
-    width: 0.31
-    height: 0
+    x: 0.02
+    y: -0.34
+    width: 1
+    height: 0.72
   - serializedVersion: 2
-    x: 0.34
-    y: 0
-    width: 0.31
-    height: 0
+    x: 0.06
+    y: -0.34
+    width: 0.8
+    height: 0.66
   - serializedVersion: 2
-    x: 0.38
-    y: 0
-    width: 0.31
-    height: 0
+    x: 0.02
+    y: -0.34
+    width: 1
+    height: 0.72

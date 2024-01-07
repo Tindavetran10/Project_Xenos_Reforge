@@ -6,16 +6,16 @@ namespace Script.Enemy.EnemyState.SubState
 {
     public class MeleeAttackState : BattleState
     {
-        protected readonly D_MeleeAttackState StateData;
+        private readonly D_MeleeAttackState _stateData;
         
         protected MeleeAttackState(EnemyStateMachine.Enemy enemyBase, EnemyStateMachine.EnemyStateMachine stateMachine, 
             string animBoolName, D_MeleeAttackState stateData) : base(enemyBase, stateMachine, animBoolName) =>
-            StateData = stateData;
+            _stateData = stateData;
 
         public override void Enter()
         {
             base.Enter();
-            ComboWindow = StateData.comboTotal;
+            ComboWindow = _stateData.comboTotal;
         }
     }
 }

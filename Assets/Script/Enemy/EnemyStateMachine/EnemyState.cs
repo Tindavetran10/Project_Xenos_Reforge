@@ -1,4 +1,5 @@
 using Script.CoreSystem;
+using Script.CoreSystem.CoreComponents;
 using UnityEngine;
 
 namespace Script.Enemy.EnemyStateMachine
@@ -10,6 +11,14 @@ namespace Script.Enemy.EnemyStateMachine
         protected readonly EnemyStateMachine StateMachine;
         
         protected float StartTime { get; private set; }
+        
+        protected Movement Movement => _movement ? _movement : Core.GetCoreComponent(ref _movement);
+        private Movement _movement;
+
+        protected CollisionSenses CollisionSenses => _collisionSenses ? _collisionSenses 
+            : Core.GetCoreComponent(ref _collisionSenses);
+        private CollisionSenses _collisionSenses;
+
         
         private readonly string _animBoolName;
         protected EnemyState(Enemy enemyBase, EnemyStateMachine stateMachine, string animBoolName)
@@ -26,7 +35,6 @@ namespace Script.Enemy.EnemyStateMachine
             EnemyBase.Anim.SetBool(_animBoolName, true);
             StartTime = Time.time;
         }
-
         
         public virtual void Exit() => 
             EnemyBase.Anim.SetBool(_animBoolName, false);
@@ -34,6 +42,6 @@ namespace Script.Enemy.EnemyStateMachine
         public virtual void LogicUpdate(){}
         public void PhysicsUpdate() => DoChecks();
 
-        protected virtual void DoChecks() {}
+        protected virtual void DoChecks(){}
     }
 }

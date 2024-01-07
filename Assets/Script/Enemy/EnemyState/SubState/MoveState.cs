@@ -19,6 +19,7 @@ namespace Script.Enemy.EnemyState.SubState
         public override void Enter()
         {
             base.Enter();
+            
             Movement?.SetVelocityX(_stateData.movementSpeed * Movement.FacingDirection);
             IsMoveTimeOver = false;
             SetRandomMoveTime();
@@ -29,6 +30,7 @@ namespace Script.Enemy.EnemyState.SubState
             base.LogicUpdate();
             if (Time.time >= StartTime + _moveTime) 
                 IsMoveTimeOver = true;
+            
             Movement?.SetVelocityX(_stateData.movementSpeed * Movement.FacingDirection);
         }
         

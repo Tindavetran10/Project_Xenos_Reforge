@@ -1,5 +1,4 @@
 using Script.CoreSystem;
-using Script.CoreSystem.CoreComponents;
 using Script.Enemy.Data;
 using UnityEngine;
 
@@ -10,15 +9,11 @@ namespace Script.Enemy.EnemyStateMachine
         #region Components
         public EnemyData enemyData;
         protected EnemyStateMachine StateMachine;
-        
-        private Movement Movement => _movement ? _movement : Core.GetCoreComponent(ref _movement);
-        private Movement _movement;
         #endregion
 
         private Vector2 _velocityWorkspace;
         private static readonly int YVelocity = Animator.StringToHash("yVelocity");
-
-
+        
         protected override void Awake() {
             base.Awake();
             Core = GetComponentInChildren<Core>();
@@ -29,7 +24,7 @@ namespace Script.Enemy.EnemyStateMachine
             base.Update();
             Core.LogicUpdate();
             StateMachine.CurrentState.LogicUpdate();
-
+            
             Anim.SetFloat(YVelocity, Movement.Rb.velocity.y);
         }
 
@@ -39,14 +34,14 @@ namespace Script.Enemy.EnemyStateMachine
             StateMachine.CurrentState.PhysicsUpdate();
         }
         
-
         #region CheckFunctions and Draw Gizmos
         public bool CheckPlayerInAgroRange() => 
             Physics2D.Raycast(attackPosition.position, transform.right, enemyData.agroDistance, 
                 enemyData.whatIsPlayer);
         
         public bool CheckPlayerInCloseRangeAction() => 
-            Physics2D.Raycast(attackPosition.position, transform.right, enemyData.closeRangeActionDistance, enemyData.whatIsPlayer);
+            Physics2D.Raycast(attackPosition.position, transform.right, 
+                enemyData.closeRangeActionDistance, enemyData.whatIsPlayer);
 
         public virtual void OnDrawGizmos()
         {

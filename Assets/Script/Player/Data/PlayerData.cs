@@ -48,6 +48,7 @@ namespace Script.Player.Data
         public float standColliderHeight;
 
         [Header("Primary Attack State")] 
+        public LayerMask whatIsEnemy;
         public float comboWindow;
         public int numberOfAttacks;
 

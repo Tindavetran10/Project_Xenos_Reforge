@@ -1705,6 +1705,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackPosition: {fileID: 270551711}
+  knockBackDirection: {x: 0, y: 0}
+  knockBackDuration: 0
   playerData: {fileID: 11400000, guid: 1a10f74d2848e0e4cbebbd5868cfd22c, type: 2}
 --- !u!95 &507769244
 Animator:
@@ -2201,7 +2203,7 @@ Transform:
   m_GameObject: {fileID: 944476906}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.05, y: 0.2, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2709,6 +2711,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackPosition: {fileID: 944476907}
+  knockBackDirection: {x: 1.5, y: 0.5}
+  knockBackDuration: 0.07
   enemyData: {fileID: 11400000, guid: 87c16f2acc53e1f4883de0f1a2fa07af, type: 2}
   idleStateData: {fileID: 11400000, guid: 86814309784c77248bfaca19aa1c0336, type: 2}
   moveStateData: {fileID: 11400000, guid: 2d21c5f8f05484a4da30ec71099f6f43, type: 2}

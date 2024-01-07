@@ -14,6 +14,8 @@ namespace Script.Player.PlayerStates.SubStates
         private float _lastTimeAttacked;
         private static readonly int ComboCounter = Animator.StringToHash("comboCounter");
         #endregion
+
+        private Vector2 _offset;
         
         public PlayerPrimaryAttackState(PlayerStateMachine.Player player, PlayerStateMachine.PlayerStateMachine stateMachine, 
             PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName) {}
@@ -91,7 +93,14 @@ namespace Script.Player.PlayerStates.SubStates
         public override void AttackTrigger()
         {
             base.AttackTrigger();
-            Collider2D[] collider2Ds = Physics2D.OverlapCircleAll(Player.attackPosition.position, PlayerData.hitBox.Length);
+
+            var playerTransform = Player.attackPosition.transform;
+            var playerPosition = playerTransform.position;
+
+            _offset.Set(playerPosition.x + PlayerData.hitBox[_comboCounter].center.x * Movement.FacingDirection,
+                playerPosition.y + PlayerData.hitBox[_comboCounter].center.y);
+            
+            Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(_offset, PlayerData.hitBox[_comboCounter].size, 0f, PlayerData.whatIsEnemy);
 
             foreach (var hit in collider2Ds)
             {
