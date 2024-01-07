@@ -1,4 +1,4 @@
-using Script.Enemy.EnemyState.State_Data;
+using Script.Enemy.EnemyState.StateData;
 using Script.Enemy.EnemyState.SubState;
 
 namespace Script.Enemy.EnemySpecific.Ronin

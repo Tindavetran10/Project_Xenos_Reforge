@@ -1,4 +1,4 @@
-using Script.Enemy.EnemyState.State_Data;
+using Script.Enemy.EnemyState.StateData;
 using UnityEngine;
 
 namespace Script.Enemy.EnemySpecific.Ronin
@@ -12,6 +12,7 @@ namespace Script.Enemy.EnemySpecific.Ronin
         public EnemyRoninChargeState ChargeState { get; private set; }
         public EnemyRoninLookForPlayerState LookForPlayerState { get; private set; }
         public EnemyRoninMeleeAttackState MeleeAttackState { get; private set; }
+        public EnemyRoninStunState StunState { get; private set; }
         #endregion
         
         #region Enemy Data
@@ -21,6 +22,7 @@ namespace Script.Enemy.EnemySpecific.Ronin
         [SerializeField] private D_ChargeState chargeStateData;
         [SerializeField] private D_LookForPlayerState lookForPlayerStateData;
         [SerializeField] private D_MeleeAttackState meleeAttackStateData;
+        [SerializeField] private D_StunState stunStateData;
         #endregion
         
         protected override void Awake()
@@ -34,6 +36,7 @@ namespace Script.Enemy.EnemySpecific.Ronin
                 new EnemyRoninLookForPlayerState(this, StateMachine, "lookForPlayer", lookForPlayerStateData, this);
             MeleeAttackState =
                 new EnemyRoninMeleeAttackState(this, StateMachine, "meleeAttack", meleeAttackStateData, this);
+            StunState = new EnemyRoninStunState(this, StateMachine, "stun", stunStateData, this);
         }
         
 

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Script.Enemy.EnemyState.State_Data
+namespace Script.Enemy.EnemyState.StateData
 {
     [CreateAssetMenu(fileName = "newDodgeStateData", menuName = "Data/State Data/Dodge State")]
     public class D_DodgeState : ScriptableObject

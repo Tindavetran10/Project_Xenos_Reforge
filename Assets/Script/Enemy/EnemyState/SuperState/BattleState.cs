@@ -1,5 +1,3 @@
-using Script.CoreSystem.CoreComponents;
-using Script.Enemy.Data;
 using UnityEngine;
 
 namespace Script.Enemy.EnemyState.SuperState
@@ -19,13 +17,6 @@ namespace Script.Enemy.EnemyState.SuperState
         private int _comboCounter;
         protected int ComboWindow;
         private static readonly int ComboCounter = Animator.StringToHash("comboCounter");
-
-        protected Movement Movement => _movement ? _movement : Core.GetCoreComponent(ref _movement);
-        private Movement _movement;
-
-        private CollisionSenses CollisionSenses => _collisionSenses ? _collisionSenses 
-            : Core.GetCoreComponent(ref _collisionSenses);
-        private CollisionSenses _collisionSenses;
         
         protected BattleState(EnemyStateMachine.Enemy enemyBase, EnemyStateMachine.EnemyStateMachine stateMachine, 
             string animBoolName) : base(enemyBase, stateMachine, animBoolName) {}

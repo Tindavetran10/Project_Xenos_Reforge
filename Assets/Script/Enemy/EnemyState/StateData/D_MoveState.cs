@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Script.Enemy.EnemyState.State_Data
+namespace Script.Enemy.EnemyState.StateData
 {
     [CreateAssetMenu(fileName = "newMoveStateData", menuName = "Data/State Data/Move State")]
     public class D_MoveState : ScriptableObject

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Script.Enemy.EnemyState.State_Data
+namespace Script.Enemy.EnemyState.StateData
 {
     [CreateAssetMenu(fileName = "newChargeStateData", menuName = "Data/State Data/Charge State")]
     public class D_ChargeState : ScriptableObject

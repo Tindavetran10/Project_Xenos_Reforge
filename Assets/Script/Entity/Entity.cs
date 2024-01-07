@@ -10,12 +10,12 @@ namespace Script.Entity
     {
         #region Base Components
         public Transform attackPosition;
-        public Core Core { get; protected set; }
+        public Core Core { get; private set; }
         public Animator Anim { get; private set; }
         public Rigidbody2D Rb { get; private set; }
         private EntityFX FX { get; set; }
         
-        protected Movement Movement => _movement ? _movement : Core.GetCoreComponent(ref _movement);
+        public Movement Movement => _movement ? _movement : Core.GetCoreComponent(ref _movement);
         private Movement _movement;
 
         protected CollisionSenses CollisionSenses => _collisionSenses ? _collisionSenses 
@@ -30,8 +30,8 @@ namespace Script.Entity
         #endregion
         
         public AnimationToStateMachine Atsm { get; private set; }
-        
-        protected virtual void Awake() {}
+
+        protected virtual void Awake() => Core = GetComponentInChildren<Core>();
 
         protected virtual void Start()
         {

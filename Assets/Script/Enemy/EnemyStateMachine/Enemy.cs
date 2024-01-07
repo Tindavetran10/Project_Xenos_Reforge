@@ -1,4 +1,3 @@
-using Script.CoreSystem;
 using Script.Enemy.Data;
 using UnityEngine;
 
@@ -16,7 +15,6 @@ namespace Script.Enemy.EnemyStateMachine
         
         protected override void Awake() {
             base.Awake();
-            Core = GetComponentInChildren<Core>();
             StateMachine = new EnemyStateMachine();
         }
 

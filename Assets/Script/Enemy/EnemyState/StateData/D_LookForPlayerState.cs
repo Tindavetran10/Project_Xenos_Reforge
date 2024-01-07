@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Script.Enemy.EnemyState.State_Data
+namespace Script.Enemy.EnemyState.StateData
 {
     [CreateAssetMenu(fileName = "newLookForPlayerStateData", menuName = "Data/State Data/Look For Player State")]
     public class D_LookForPlayerState : ScriptableObject

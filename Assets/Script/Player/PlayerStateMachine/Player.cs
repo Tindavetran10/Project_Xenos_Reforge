@@ -1,5 +1,4 @@
 using _Scripts.Player.Input;
-using Script.CoreSystem;
 using Script.Player.Data;
 using Script.Player.PlayerStates.SubStates;
 using UnityEngine;
@@ -46,7 +45,6 @@ namespace Script.Player.PlayerStateMachine
         protected override void Awake()
         {
             base.Awake();
-            Core = GetComponentInChildren<Core>();
             
             StateMachine = new PlayerStateMachine();
         
@@ -120,7 +118,8 @@ namespace Script.Player.PlayerStateMachine
         private void OnDrawGizmos()
         {
             foreach (var item in playerData.hitBox) 
-                Gizmos.DrawWireCube(attackPosition.transform.position + (Vector3)item.center , item.size);
+                Gizmos.DrawWireCube(attackPosition.transform.position + 
+                                    (Vector3)item.center, item.size);
         }
         #endregion
     }
