@@ -7,12 +7,6 @@ namespace Script.Player.PlayerStates.SubStates
 {
     public class PlayerLedgeClimbState: PlayerState
     {
-        private Movement _movement;
-        private Movement Movement => _movement ? _movement : Core.GetCoreComponent(ref _movement);
-        
-        private CollisionSenses _collisionSenses;
-        private CollisionSenses CollisionSenses => _collisionSenses ? _collisionSenses : Core.GetCoreComponent(ref _collisionSenses);
-        
         private Vector2 _detectedPos;
         private Vector2 _cornerPos;
         private Vector2 _startPos;

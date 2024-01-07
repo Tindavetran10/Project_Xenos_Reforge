@@ -1,4 +1,5 @@
 using Script.CoreSystem;
+using Script.CoreSystem.CoreComponents;
 using Script.Player.Data;
 using UnityEngine;
 
@@ -18,6 +19,14 @@ namespace Script.Player.PlayerStateMachine
           protected float StartTime;
           
           private readonly string _animBoolName;
+          
+          protected Movement Movement => _movement ? _movement : Core.GetCoreComponent(ref _movement);
+          private Movement _movement;
+
+          protected CollisionSenses CollisionSenses => _collisionSenses ? _collisionSenses 
+               : Core.GetCoreComponent(ref _collisionSenses);
+          private CollisionSenses _collisionSenses;
+          
 
           // Create a constructor for player so we can access all the function like Update, Exit,... 
           // in different State class that inherited from PlayerState
@@ -58,6 +67,8 @@ namespace Script.Player.PlayerStateMachine
           public virtual void PhysicsUpdate() => DoChecks();
           protected virtual void DoChecks(){}
      
+          
+          #region Animation Function
           public virtual void AnimationTrigger() {}
           public virtual void AnimationFinishTrigger() => IsAnimationFinished = true;
           public virtual void AnimationCancelTrigger(){}
@@ -68,5 +79,7 @@ namespace Script.Player.PlayerStateMachine
           public virtual void SetFlipActive(){}
           public virtual void SetFlipInactive(){}
           public virtual void AttackTrigger(){}
+          #endregion"
+          
      }
 }

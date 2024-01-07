@@ -1,4 +1,3 @@
-using Script.CoreSystem.CoreComponents;
 using Script.Player.Data;
 using Script.Player.PlayerStateMachine;
 
@@ -6,11 +5,6 @@ namespace Script.Player.PlayerStates.SuperStates
 {
     public class PlayerTouchingWallState : PlayerState
     {
-        protected Movement Movement => _movement ? _movement : Core.GetCoreComponent(ref _movement);
-        private CollisionSenses CollisionSenses => _collisionSenses ? _collisionSenses : Core.GetCoreComponent(ref _collisionSenses);
-
-        private Movement _movement;
-        private CollisionSenses _collisionSenses;
 
         #region Checks
 
@@ -26,6 +20,21 @@ namespace Script.Player.PlayerStates.SuperStates
         protected PlayerTouchingWallState(PlayerStateMachine.Player player, PlayerStateMachine.PlayerStateMachine stateMachine, 
             PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName) {}
 
+
+        protected override void DoChecks()
+        {
+            base.DoChecks();
+            
+            if (CollisionSenses)
+            {
+                _isGrounded = CollisionSenses.Ground;
+                _isTouchingWall = CollisionSenses.WallFront;
+                _isTouchingLedge = CollisionSenses.LedgeHorizontal;
+            }
+            
+            if (_isTouchingWall && !_isTouchingLedge) 
+                Player.LedgeClimbState.SetDetectedPosition(Player.transform.position);
+        }
 
         public override void LogicUpdate()
         {
@@ -47,22 +56,6 @@ namespace Script.Player.PlayerStates.SuperStates
                 StateMachine.ChangeState(Player.InAirState);
             else if (_isTouchingWall && !_isTouchingLedge)
                 StateMachine.ChangeState(Player.LedgeClimbState);
-        }
-
-        protected override void DoChecks()
-        {
-            base.DoChecks();
-
-            
-            if (CollisionSenses)
-            {
-                _isGrounded = CollisionSenses.Ground;
-                _isTouchingWall = CollisionSenses.WallFront;
-                _isTouchingLedge = CollisionSenses.LedgeHorizontal;
-            }
-            
-            if (_isTouchingWall && !_isTouchingLedge) 
-                Player.LedgeClimbState.SetDetectedPosition(Player.transform.position);
         }
     }
 }

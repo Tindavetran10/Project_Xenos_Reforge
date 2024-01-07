@@ -1,5 +1,4 @@
-﻿using Script.CoreSystem.CoreComponents;
-using Script.Player.Data;
+﻿using Script.Player.Data;
 using Script.Player.PlayerStateMachine;
 
 namespace Script.Player.PlayerStates.SuperStates
@@ -8,13 +7,6 @@ namespace Script.Player.PlayerStates.SuperStates
         
         private bool _isGrounded;
         protected bool IsAbilityDone;
-
-        protected Movement Movement => _movement ? _movement : Core.GetCoreComponent(ref _movement);
-        private Movement _movement;
-
-        private CollisionSenses CollisionSenses => _collisionSenses ? _collisionSenses 
-            : Core.GetCoreComponent(ref _collisionSenses);
-        private CollisionSenses _collisionSenses;
         
         protected PlayerAbilityState(PlayerStateMachine.Player player, PlayerStateMachine.PlayerStateMachine stateMachine, 
             PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName){}
@@ -41,7 +33,5 @@ namespace Script.Player.PlayerStates.SuperStates
                 else StateMachine.ChangeState(Player.InAirState);
             }
         }
-        
-        
     }
 }

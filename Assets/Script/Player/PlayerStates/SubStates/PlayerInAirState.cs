@@ -1,5 +1,4 @@
-﻿using Script.CoreSystem.CoreComponents;
-using Script.Player.Data;
+﻿using Script.Player.Data;
 using Script.Player.PlayerStateMachine;
 using UnityEngine;
 
@@ -7,12 +6,6 @@ namespace Script.Player.PlayerStates.SubStates
 {
     public class PlayerInAirState : PlayerState
     {
-        private Movement _movement;
-        private Movement Movement => _movement ? _movement : Core.GetCoreComponent(ref _movement);
-
-        private CollisionSenses _collisionSenses;
-        private CollisionSenses CollisionSenses => _collisionSenses ? _collisionSenses : Core.GetCoreComponent(ref _collisionSenses);
-
         #region Input
         private int _xInput;
         private bool _jumpInput;
@@ -29,8 +22,7 @@ namespace Script.Player.PlayerStates.SubStates
         private bool _oldIsTouchingWall;
         private bool _oldIsTouchingWallBack;
         private bool _isTouchingLedge;
-        private bool _isTouchingCeiling;
-        
+
         private bool _coyoteTimer;
         private bool _wallJumpCoyoteTimer;
 
@@ -53,7 +45,6 @@ namespace Script.Player.PlayerStates.SubStates
                 _isTouchingWall = CollisionSenses.WallFront;
                 _isTouchingWallBack = CollisionSenses.WallBack;
                 _isTouchingLedge = CollisionSenses.LedgeHorizontal;
-                _isTouchingCeiling = CollisionSenses.Ceiling;
             }
             
             // Save the X and Y axis of Player when we detect a ledge 
