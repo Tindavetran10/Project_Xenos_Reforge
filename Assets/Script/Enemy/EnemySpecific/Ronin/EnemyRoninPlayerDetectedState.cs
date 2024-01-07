@@ -1,5 +1,6 @@
 using _Scripts.Enemies.EnemyState.StateData;
 using Script.Enemy.EnemyState.SubState;
+using UnityEngine;
 
 namespace Script.Enemy.EnemySpecific.Ronin
 {
@@ -15,7 +16,14 @@ namespace Script.Enemy.EnemySpecific.Ronin
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-            if(PerformLongRangeAction)
+            if(PerformCloseRangeAction)
+                StateMachine.ChangeState(_enemyRonin.MeleeAttackState);
+            else if (PerformLongRangeAction && IsDetectingWall)
+            {
+                _enemyRonin.IdleState.SetFlipAfterIdle(true);
+                StateMachine.ChangeState(_enemyRonin.IdleState);
+            }
+            else if(PerformLongRangeAction)
                 StateMachine.ChangeState(_enemyRonin.ChargeState);
             else if (!IsPlayerInAgroRange)
                 StateMachine.ChangeState(_enemyRonin.LookForPlayerState);
@@ -25,5 +33,7 @@ namespace Script.Enemy.EnemySpecific.Ronin
                 StateMachine.ChangeState(_enemyRonin.MoveState);
             }
         }
+
+        
     }
 }

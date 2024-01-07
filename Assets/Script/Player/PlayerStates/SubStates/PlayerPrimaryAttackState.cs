@@ -63,8 +63,7 @@ namespace Script.Player.PlayerStates.SubStates
                 }
             }
         }
-
-
+        
         public override void StartMovementTrigger()
         {
             base.StartMovementTrigger();

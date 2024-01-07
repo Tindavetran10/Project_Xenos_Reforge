@@ -33,8 +33,7 @@ namespace Script.Enemy.EnemyStateMachine
 
         public virtual void LogicUpdate(){}
         public virtual void PhysicsUpdate() => DoChecks();
-        protected virtual void DoChecks(){}
 
-        
+        protected virtual void DoChecks() {}
     }
 }

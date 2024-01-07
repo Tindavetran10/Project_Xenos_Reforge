@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99857a64ce084d97a7526c50915473f5, type: 3}
   m_Name: RoninChargeState
   m_EditorClassIdentifier: 
-  chargeSpeed: 6
-  chargeTime: 2
+  chargeSpeed: 5
+  chargeTime: 0.35

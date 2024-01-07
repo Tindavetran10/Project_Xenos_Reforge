@@ -1,5 +1,5 @@
 using _Scripts.Enemies.EnemyState.StateData;
-using Script.Enemy.EnemyState.SubState;
+using Script.Enemy.EnemyState.State_Data;
 using UnityEngine;
 
 namespace Script.Enemy.EnemySpecific.Ronin
@@ -12,6 +12,7 @@ namespace Script.Enemy.EnemySpecific.Ronin
         public EnemyRoninPlayerDetectedState PlayerDetectedState { get; private set; }
         public EnemyRoninChargeState ChargeState { get; private set; }
         public EnemyRoninLookForPlayerState LookForPlayerState { get; private set; }
+        public EnemyRoninMeleeAttackState MeleeAttackState { get; private set; }
         #endregion
         
         #region Enemy Data
@@ -20,6 +21,7 @@ namespace Script.Enemy.EnemySpecific.Ronin
         [SerializeField] private D_PlayerDetectedState playerDetectedStateData;
         [SerializeField] private D_ChargeState chargeStateData;
         [SerializeField] private D_LookForPlayerState lookForPlayerStateData;
+        [SerializeField] private D_MeleeAttackState meleeAttackStateData;
         #endregion
          
         protected override void Awake()
@@ -31,6 +33,8 @@ namespace Script.Enemy.EnemySpecific.Ronin
             ChargeState = new EnemyRoninChargeState(this, StateMachine, "charge", chargeStateData, this);
             LookForPlayerState =
                 new EnemyRoninLookForPlayerState(this, StateMachine, "lookForPlayer", lookForPlayerStateData, this);
+            MeleeAttackState =
+                new EnemyRoninMeleeAttackState(this, StateMachine, "meleeAttack", meleeAttackStateData, this);
         }
         
 
@@ -39,7 +43,11 @@ namespace Script.Enemy.EnemySpecific.Ronin
             base.Start();
             StateMachine.Initialize(IdleState);
         }
-        
-        
+
+        public override void OnDrawGizmos()
+        {
+            foreach (var item in enemyData.hitBox) 
+                Gizmos.DrawWireCube(attackPosition.transform.position + (Vector3)item.center, item.size);
+        }
     }
 }

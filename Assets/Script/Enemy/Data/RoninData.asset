@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 30
   damageHopSpeed: 3
-  wallCheckDistance: 0.2
+  wallCheckDistance: 1
   ledgeCheckDistance: 0.4
   groundCheckRadius: 0.3
-  agroDistance: 3
+  agroDistance: 2
   stunResistance: 3
   stunRecoveryTime: 2
   closeRangeActionDistance: 0.34
@@ -28,3 +28,19 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 128
+  hitBox:
+  - serializedVersion: 2
+    x: 0.12
+    y: -0.4
+    width: 0.58
+    height: 0.68
+  - serializedVersion: 2
+    x: -0.26
+    y: -0.4
+    width: 0.9
+    height: 0.56
+  - serializedVersion: 2
+    x: 0
+    y: -0.32
+    width: 0.82
+    height: 0.48

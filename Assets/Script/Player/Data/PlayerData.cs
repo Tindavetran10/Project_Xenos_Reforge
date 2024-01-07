@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Script.Player.Data
 {
@@ -54,6 +53,9 @@ namespace Script.Player.Data
 
         public float[] attackVelocity;
         public Vector2[] direction;
+
+        [Header("Primary Attack Radius")] 
+        public Rect[] hitBox;
     }
 }
 

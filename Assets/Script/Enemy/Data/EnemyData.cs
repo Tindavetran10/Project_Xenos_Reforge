@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Script.Enemy.Data
 {
@@ -25,5 +24,7 @@ namespace Script.Enemy.Data
 
         public LayerMask whatIsGround;
         public LayerMask whatIsPlayer;
+        
+        public Rect[] hitBox;
     }
 }

@@ -10,7 +10,6 @@ namespace Script.Enemy.EnemyState.SubState
         private float _moveTime;
         protected bool IsMoveTimeOver;
         
-        
         private readonly D_MoveState _stateData;
         
         protected MoveState(EnemyStateMachine.Enemy enemyBase, EnemyStateMachine.EnemyStateMachine stateMachine, 
@@ -23,7 +22,6 @@ namespace Script.Enemy.EnemyState.SubState
             Movement?.SetVelocityX(_stateData.movementSpeed * Movement.FacingDirection);
             IsMoveTimeOver = false;
             SetRandomMoveTime();
-            
         }
 
         public override void LogicUpdate()

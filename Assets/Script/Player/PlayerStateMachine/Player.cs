@@ -114,6 +114,12 @@ namespace Script.Player.PlayerStateMachine
         protected void SetFlipActive() => StateMachine.CurrentState.SetFlipActive();
         private void SetFlipInactive() => StateMachine.CurrentState.SetFlipInactive();
 
+        private void OnDrawGizmos()
+        {
+            foreach (var item in playerData.hitBox) 
+                Gizmos.DrawWireCube(attackPosition.transform.position + (Vector3)item.center, item.size);
+        }
+
         #endregion
     }
 }

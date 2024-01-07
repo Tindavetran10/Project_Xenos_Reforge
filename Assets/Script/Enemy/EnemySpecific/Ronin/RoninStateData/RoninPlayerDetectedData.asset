@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41db8dae0e2743129c20526b816ac283, type: 3}
   m_Name: RoninPlayerDetectedData
   m_EditorClassIdentifier: 
-  longRangeActionTime: 1
+  longRangeActionTime: 0.75

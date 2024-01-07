@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Script.Enemy.EnemyState.SubState
 {
-    public class ChargeState : GroundedState
+    public class ChargeState : BattleState
     {
         protected bool IsChargeTimeOver;
         
