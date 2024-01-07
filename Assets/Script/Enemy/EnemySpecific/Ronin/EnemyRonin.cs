@@ -1,4 +1,3 @@
-using _Scripts.Enemies.EnemyState.StateData;
 using Script.Enemy.EnemyState.State_Data;
 using UnityEngine;
 
@@ -47,7 +46,7 @@ namespace Script.Enemy.EnemySpecific.Ronin
         public override void OnDrawGizmos()
         {
             foreach (var item in enemyData.hitBox) 
-                Gizmos.DrawWireCube(attackPosition.transform.position + (Vector3)item.center, item.size);
+                Gizmos.DrawWireSphere(attackPosition.transform.position + (Vector3)item.center, item.size.x);
         }
     }
 }

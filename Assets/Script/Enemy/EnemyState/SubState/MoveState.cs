@@ -1,4 +1,4 @@
-using _Scripts.Enemies.EnemyState.StateData;
+using Script.Enemy.EnemyState.State_Data;
 using Script.Enemy.EnemyState.SuperState;
 using UnityEngine;
 

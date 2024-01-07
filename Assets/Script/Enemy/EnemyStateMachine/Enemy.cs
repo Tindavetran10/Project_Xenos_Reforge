@@ -11,18 +11,13 @@ namespace Script.Enemy.EnemyStateMachine
         public EnemyData enemyData;
         protected EnemyStateMachine StateMachine;
         
-        //  Use to activate trigger in enemy attack
-        
-
         private Movement Movement => _movement ? _movement : Core.GetCoreComponent(ref _movement);
         private Movement _movement;
-
         #endregion
 
         private Vector2 _velocityWorkspace;
         private static readonly int YVelocity = Animator.StringToHash("yVelocity");
 
-        /*[SerializeField] private Transform playerCheck;*/
 
         protected override void Awake() {
             base.Awake();
@@ -45,7 +40,7 @@ namespace Script.Enemy.EnemyStateMachine
         }
         
 
-        #region CheckFunctions
+        #region CheckFunctions and Draw Gizmos
         public bool CheckPlayerInAgroRange() => 
             Physics2D.Raycast(attackPosition.position, transform.right, enemyData.agroDistance, 
                 enemyData.whatIsPlayer);

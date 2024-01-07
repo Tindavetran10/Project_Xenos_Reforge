@@ -87,5 +87,17 @@ namespace Script.Player.PlayerStates.SubStates
             base.SetFlipInactive();
             Movement.CheckIfShouldFlip(0);
         }
+
+        public override void AttackTrigger()
+        {
+            base.AttackTrigger();
+            Collider2D[] collider2Ds = Physics2D.OverlapCircleAll(Player.attackPosition.position, PlayerData.hitBox.Length);
+
+            foreach (var hit in collider2Ds)
+            {
+                if (hit.GetComponent<Enemy.EnemyStateMachine.Enemy>() != null)
+                    hit.GetComponent<Enemy.EnemyStateMachine.Enemy>().Damage();
+            }
+        }
     }
 }

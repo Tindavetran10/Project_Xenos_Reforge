@@ -30,17 +30,17 @@ MonoBehaviour:
     m_Bits: 128
   hitBox:
   - serializedVersion: 2
-    x: 0.12
-    y: -0.4
-    width: 0.58
-    height: 0.68
+    x: 0.24
+    y: 0
+    width: 0.3
+    height: -0.2
   - serializedVersion: 2
-    x: -0.26
-    y: -0.4
-    width: 0.9
-    height: 0.56
+    x: 0.2
+    y: 0
+    width: 0.3
+    height: -0.2
   - serializedVersion: 2
-    x: 0
-    y: -0.32
-    width: 0.82
-    height: 0.48
+    x: 0.34
+    y: -0.02
+    width: 0.3
+    height: -0.11

@@ -8,5 +8,6 @@ namespace Script.Enemy.Intermediaries
         public BattleState BattleState;
         
         private void FinishAttack() => BattleState.FinishAttack();
+        private void AttackTrigger() => BattleState.AttackTrigger();
     }
 }

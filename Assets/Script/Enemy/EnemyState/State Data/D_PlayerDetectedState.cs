@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace _Scripts.Enemies.EnemyState.StateData
+namespace Script.Enemy.EnemyState.State_Data
 {
     [CreateAssetMenu(fileName = "newPlayerDetectedStateData", menuName = "Data/State Data/Player Detected State")]
     public class D_PlayerDetectedState : ScriptableObject

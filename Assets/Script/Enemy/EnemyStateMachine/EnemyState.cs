@@ -32,7 +32,7 @@ namespace Script.Enemy.EnemyStateMachine
             EnemyBase.Anim.SetBool(_animBoolName, false);
 
         public virtual void LogicUpdate(){}
-        public virtual void PhysicsUpdate() => DoChecks();
+        public void PhysicsUpdate() => DoChecks();
 
         protected virtual void DoChecks() {}
     }

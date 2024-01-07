@@ -11,8 +11,8 @@ namespace Script.CoreSystem.CoreComponents
         
         private CharacterStats CharacterStats => _characterStats ? _characterStats : Core.GetCoreComponent(ref _characterStats);
         private CharacterStats _characterStats;
-    
-        public void Die()
+
+        private void Die()
         {
             /*foreach (var particle in deathParticles)
             {

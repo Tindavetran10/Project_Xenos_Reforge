@@ -1,4 +1,5 @@
 using Script.CoreSystem.CoreComponents;
+using Script.Enemy.Data;
 using UnityEngine;
 
 namespace Script.Enemy.EnemyState.SuperState
@@ -61,6 +62,17 @@ namespace Script.Enemy.EnemyState.SuperState
             _comboCounter++;
         }
 
-        public virtual void FinishAttack() => IsAnimationFinished = true;
+        public void FinishAttack() => IsAnimationFinished = true;
+
+        public void AttackTrigger()
+        {
+            Collider2D[] collider2Ds = Physics2D.OverlapCircleAll(EnemyBase.attackPosition.position, EnemyBase.enemyData.hitBox.Length);
+
+            foreach (var hit in collider2Ds)
+            {
+                if(hit.GetComponent<Player.PlayerStateMachine.Player>() != null)
+                    hit.GetComponent<Player.PlayerStateMachine.Player>().Damage();
+            }
+        }
     }
 }

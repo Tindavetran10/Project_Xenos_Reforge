@@ -27,9 +27,9 @@ namespace Script.Entity
 
         protected virtual void FixedUpdate() {}
 
-        protected virtual void Damage()
+        public virtual void Damage()
         {
-            Debug.Log(gameObject.name + "was damaged");
+            Debug.Log(gameObject.name + " was damaged");
         }
     }
 }

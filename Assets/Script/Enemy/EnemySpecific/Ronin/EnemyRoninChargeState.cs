@@ -1,6 +1,5 @@
-using _Scripts.Enemies.EnemyState.StateData;
+using Script.Enemy.EnemyState.State_Data;
 using Script.Enemy.EnemyState.SubState;
-using UnityEngine;
 
 namespace Script.Enemy.EnemySpecific.Ronin
 {

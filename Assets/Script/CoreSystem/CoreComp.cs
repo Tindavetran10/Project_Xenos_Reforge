@@ -1,8 +1,7 @@
-﻿using Script.CoreSystem;
-using Script.CoreSystem.CoreComponents;
+﻿using Script.CoreSystem.CoreComponents;
 using UnityEngine;
 
-namespace _Scripts.CoreSystem
+namespace Script.CoreSystem
 {
     public class CoreComp<T> where T : CoreComponent
     {

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace _Scripts.Enemies.EnemyState.StateData
+namespace Script.Enemy.EnemyState.State_Data
 {
     [CreateAssetMenu(fileName = "newStunStateData", menuName = "Data/State Data/Stun State")]
     public class D_StunState : ScriptableObject

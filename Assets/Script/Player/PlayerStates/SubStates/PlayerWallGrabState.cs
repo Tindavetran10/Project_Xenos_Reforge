@@ -1,14 +1,13 @@
 using Script.Player.Data;
-using Script.Player.PlayerStateMachine;
 using Script.Player.PlayerStates.SuperStates;
 using UnityEngine;
 
-namespace _Scripts.Player.PlayerStates.SubStates
+namespace Script.Player.PlayerStates.SubStates
 {
     public class PlayerWallGrabState : PlayerTouchingWallState
     {
         private Vector2 _holdPosition;
-        public PlayerWallGrabState(Script.Player.PlayerStateMachine.Player player, PlayerStateMachine stateMachine, 
+        public PlayerWallGrabState(Script.Player.PlayerStateMachine.Player player, PlayerStateMachine.PlayerStateMachine stateMachine, 
             PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName) {}
 
 
@@ -18,9 +17,7 @@ namespace _Scripts.Player.PlayerStates.SubStates
             HoldPosition();
         }
 
-        public override void Exit()
-        {
-        }
+        public override void Exit() {}
 
         public override void LogicUpdate()
         {
@@ -44,21 +41,10 @@ namespace _Scripts.Player.PlayerStates.SubStates
             Movement?.SetVelocityY(0f);
         }
 
-        public override void PhysicsUpdate()
-        {
-        }
+        public override void PhysicsUpdate() {}
+        
+        public override void AnimationTrigger() {}
 
-        protected override void DoChecks()
-        {
-            base.DoChecks();
-        }
-
-        public override void AnimationTrigger()
-        {
-        }
-
-        public override void AnimationFinishTrigger()
-        {
-        }
+        public override void AnimationFinishTrigger() {}
     }
 }

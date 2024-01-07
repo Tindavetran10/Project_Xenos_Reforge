@@ -1,5 +1,4 @@
 using _Scripts.Player.Input;
-using _Scripts.Player.PlayerStates.SubStates;
 using Script.CoreSystem;
 using Script.Player.Data;
 using Script.Player.PlayerStates.SubStates;
@@ -113,11 +112,12 @@ namespace Script.Player.PlayerStateMachine
         private void StopMovementTrigger() => StateMachine.CurrentState.StopMovementTrigger();
         protected void SetFlipActive() => StateMachine.CurrentState.SetFlipActive();
         private void SetFlipInactive() => StateMachine.CurrentState.SetFlipInactive();
+        private void AttackTrigger() => StateMachine.CurrentState.AttackTrigger();
 
         private void OnDrawGizmos()
         {
             foreach (var item in playerData.hitBox) 
-                Gizmos.DrawWireCube(attackPosition.transform.position + (Vector3)item.center, item.size);
+                Gizmos.DrawWireSphere(attackPosition.transform.position + (Vector3)item.center, item.size.x);
         }
 
         #endregion
