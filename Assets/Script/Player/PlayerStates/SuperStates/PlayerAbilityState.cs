@@ -12,6 +12,8 @@ namespace Script.Player.PlayerStates.SuperStates
         private bool _isGrounded;
         protected bool IsAbilityDone;
         
+        protected bool IsHolding;
+        
         protected PlayerAbilityState(PlayerStateMachine.Player player, PlayerStateMachine.PlayerStateMachine stateMachine, 
             PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName){}
 

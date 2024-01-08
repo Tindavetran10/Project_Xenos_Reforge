@@ -53,7 +53,11 @@ namespace Script.Enemy.EnemyState.SuperState
             _comboCounter++;
         }
 
-        public void FinishAttack() => IsAnimationFinished = true;
+        public void FinishAttack()
+        {
+            IsAnimationFinished = true;
+            EnemyBase.CloseCounterAttackWindow();
+        }
 
         public void AttackTrigger()
         {

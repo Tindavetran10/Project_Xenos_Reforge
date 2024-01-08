@@ -3,6 +3,7 @@ using Script.CoreSystem;
 using Script.CoreSystem.CoreComponents;
 using Script.Enemy.Intermediaries;
 using UnityEngine;
+using CharacterStats = Script.StatSystem.CharacterStats;
 
 namespace Script.Entity
 {
@@ -13,9 +14,10 @@ namespace Script.Entity
         public Core Core { get; private set; }
         public Animator Anim { get; private set; }
         public Rigidbody2D Rb { get; private set; }
-        public EntityFX FX { get; set; }
-        
-        public Movement Movement => _movement ? _movement : Core.GetCoreComponent(ref _movement);
+        public EntityFX FX { get; private set; }
+        public CharacterStats Stats { get; private set; }
+
+        protected Movement Movement => _movement ? _movement : Core.GetCoreComponent(ref _movement);
         private Movement _movement;
 
         protected CollisionSenses CollisionSenses => _collisionSenses ? _collisionSenses 
@@ -39,6 +41,7 @@ namespace Script.Entity
             Rb = GetComponent<Rigidbody2D>();
             Atsm = GetComponent<AnimationToStateMachine>();
             FX = GetComponent<EntityFX>();
+            Stats = GetComponentInChildren<CharacterStats>();
         }
 
         protected virtual void Update() {}

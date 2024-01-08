@@ -6,7 +6,6 @@ namespace Script.Player.PlayerStates.SubStates
 {
     public class PlayerCounterAttackState : PlayerAbilityState
     {
-        private bool _isHolding;
         private bool _counterInputStop;
         
         private static readonly int SuccessfulCounterAttack = Animator.StringToHash("successfulCounterAttack");
@@ -18,7 +17,7 @@ namespace Script.Player.PlayerStates.SubStates
         public override void Enter()
         {
             base.Enter();
-            _isHolding = true;
+            IsHolding = true;
             StartTime = Time.time;
             Player.InputHandler.UseCounterInput();
             
@@ -30,7 +29,7 @@ namespace Script.Player.PlayerStates.SubStates
         {
             base.LogicUpdate();
 
-            if (_isHolding)
+            if (IsHolding)
             {
                 var playerTransform = Player.attackPosition.transform;
                 var playerPosition = playerTransform.position;
@@ -38,7 +37,8 @@ namespace Script.Player.PlayerStates.SubStates
                 Offset.Set(playerPosition.x + PlayerData.hitBox[ComboCounter].center.x * Movement.FacingDirection,
                     playerPosition.y + PlayerData.hitBox[ComboCounter].center.y);
             
-                Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(Offset, PlayerData.hitBox[ComboCounter].size, 0f, PlayerData.whatIsEnemy);
+                Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(Offset, PlayerData.hitBox[ComboCounter].size, 
+                    0f, PlayerData.whatIsEnemy);
 
                 foreach (var hit in collider2Ds)
                 {
@@ -49,8 +49,8 @@ namespace Script.Player.PlayerStates.SubStates
                     }
                 }
             
-                if(_counterInputStop|| Time.time >= StartTime + PlayerData.counterAttackDuration) 
-                    _isHolding = false;
+                if(_counterInputStop || Time.time >= StartTime + PlayerData.counterAttackDuration) 
+                    IsHolding = false;
             }
             else StateMachine.ChangeState(Player.IdleState);
         }

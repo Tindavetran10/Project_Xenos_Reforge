@@ -7,7 +7,6 @@ namespace Script.Player.PlayerStates.SubStates
     public class PlayerDashState : PlayerAbilityState
     {
         private bool CanDash { get; set; }
-        private bool _isHolding;
         private bool _dashInputStop;
 
         private float _lastDashTime;
@@ -31,7 +30,7 @@ namespace Script.Player.PlayerStates.SubStates
             Player.InputHandler.UseDashInput();
 
             // Check the player whether holding the dash input or not
-            _isHolding = true;
+            IsHolding = true;
             _dashDirection = Vector2.right * Movement.FacingDirection;
 
             // Set the amount of time that allow the player to hold the dash input in REAL-TIME
@@ -48,9 +47,8 @@ namespace Script.Player.PlayerStates.SubStates
             base.Exit();
 
             // Adjust the y velocity if the player exiting the dash state
-            if (Movement?.CurrentVelocity.y > 0) {
+            if (Movement?.CurrentVelocity.y > 0) 
                 Movement?.SetVelocityY(Movement.CurrentVelocity.y * PlayerData.dashEndYMultiplier);
-            }
         }
 
         public override void LogicUpdate()
@@ -64,7 +62,7 @@ namespace Script.Player.PlayerStates.SubStates
                 Player.Anim.SetFloat(XVelocity, Mathf.Abs(Movement.CurrentVelocity.x));
 
                 // If the player hold the dash button (he want to dash into a specific direction)
-                if (_isHolding) {
+                if (IsHolding) {
                     _dashDirectionInput = Player.InputHandler.DashDirectionInput;
                     _dashInputStop = Player.InputHandler.DashInputStop;
 
@@ -83,7 +81,7 @@ namespace Script.Player.PlayerStates.SubStates
                     // If a certain amount of real-time (from the start time point to the maxHoldTime point)
                     if (_dashInputStop || Time.unscaledTime >= StartTime + PlayerData.maxHoldTime)
                     {
-                        _isHolding = false;
+                        IsHolding = false;
                         Time.timeScale = 1f;
                         StartTime = Time.time;
                         Movement?.CheckIfShouldFlip(Mathf.RoundToInt(_dashDirection.x));

@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using Script.Player.Data;
 using Script.Player.PlayerStates.SuperStates;
+using Script.StatSystem;
 using UnityEngine;
 
 namespace Script.Player.PlayerStates.SubStates
@@ -11,7 +12,6 @@ namespace Script.Player.PlayerStates.SubStates
         #region Combo variables
         private float _lastTimeAttacked;
         private static readonly int Counter = Animator.StringToHash("comboCounter");
-
         #endregion
         
         public PlayerPrimaryAttackState(PlayerStateMachine.Player player, PlayerStateMachine.PlayerStateMachine stateMachine, 
@@ -43,7 +43,6 @@ namespace Script.Player.PlayerStates.SubStates
 
             if (IsAnimationFinished || IsAnimationCancel)
                 IsAbilityDone = true;
-
         }
         
         #region Animation Functions
@@ -104,7 +103,10 @@ namespace Script.Player.PlayerStates.SubStates
             foreach (var hit in collider2Ds)
             {
                 if (hit.GetComponent<Enemy.EnemyStateMachine.Enemy>() != null)
+                {
                     hit.GetComponent<Enemy.EnemyStateMachine.Enemy>().Damage();
+                    hit.GetComponentInChildren<CharacterStats>().TakeDamage(Player.Stats.damage.GetValue());
+                }
             }
         }
     }
