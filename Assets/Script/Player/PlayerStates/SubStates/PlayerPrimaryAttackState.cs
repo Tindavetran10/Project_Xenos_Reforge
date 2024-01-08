@@ -9,13 +9,10 @@ namespace Script.Player.PlayerStates.SubStates
     public class PlayerPrimaryAttackState : PlayerAbilityState
     {
         #region Combo variables
-        private int _comboCounter;
-
         private float _lastTimeAttacked;
-        private static readonly int ComboCounter = Animator.StringToHash("comboCounter");
         #endregion
 
-        private Vector2 _offset;
+        
         
         public PlayerPrimaryAttackState(PlayerStateMachine.Player player, PlayerStateMachine.PlayerStateMachine stateMachine, 
             PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName) {}
@@ -24,19 +21,19 @@ namespace Script.Player.PlayerStates.SubStates
         {
             base.Enter();
 
-            if (_comboCounter >= PlayerData.numberOfAttacks || Time.time >= _lastTimeAttacked + PlayerData.comboWindow)
-                _comboCounter = 0;
+            if (ComboCounter >= PlayerData.numberOfAttacks || Time.time >= _lastTimeAttacked + PlayerData.comboWindow)
+                ComboCounter = 0;
             
-            Debug.Log(_comboCounter);
+            Debug.Log(ComboCounter);
             
-            Player.Anim.SetInteger(ComboCounter, _comboCounter);
+            Player.Anim.SetInteger(ComboCounter, ComboCounter);
         }
 
         public override void Exit()
         {
             base.Exit();
 
-            _comboCounter++;
+            ComboCounter++;
             _lastTimeAttacked = Time.time;
         }
 
@@ -49,6 +46,7 @@ namespace Script.Player.PlayerStates.SubStates
 
         }
         
+        #region Animation Functions
         public override void AnimationCancelTrigger()
         {
             base.AnimationCancelTrigger();
@@ -69,7 +67,7 @@ namespace Script.Player.PlayerStates.SubStates
         public override void StartMovementTrigger()
         {
             base.StartMovementTrigger();
-            Movement.SetVelocity(PlayerData.attackVelocity[_comboCounter], PlayerData.direction[_comboCounter], Movement.FacingDirection);
+            Movement.SetVelocity(PlayerData.attackVelocity[ComboCounter], PlayerData.direction[ComboCounter], Movement.FacingDirection);
         }
 
         public override void StopMovementTrigger()
@@ -89,7 +87,8 @@ namespace Script.Player.PlayerStates.SubStates
             base.SetFlipInactive();
             Movement.CheckIfShouldFlip(0);
         }
-
+        #endregion
+        
         public override void AttackTrigger()
         {
             base.AttackTrigger();
@@ -97,10 +96,10 @@ namespace Script.Player.PlayerStates.SubStates
             var playerTransform = Player.attackPosition.transform;
             var playerPosition = playerTransform.position;
 
-            _offset.Set(playerPosition.x + PlayerData.hitBox[_comboCounter].center.x * Movement.FacingDirection,
-                playerPosition.y + PlayerData.hitBox[_comboCounter].center.y);
+            Offset.Set(playerPosition.x + PlayerData.hitBox[ComboCounter].center.x * Movement.FacingDirection,
+                playerPosition.y + PlayerData.hitBox[ComboCounter].center.y);
             
-            Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(_offset, PlayerData.hitBox[_comboCounter].size, 0f, PlayerData.whatIsEnemy);
+            Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(Offset, PlayerData.hitBox[ComboCounter].size, 0f, PlayerData.whatIsEnemy);
 
             foreach (var hit in collider2Ds)
             {

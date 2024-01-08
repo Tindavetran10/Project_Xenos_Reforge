@@ -46,6 +46,23 @@ namespace Script.Enemy.EnemySpecific.Ronin
             StateMachine.Initialize(IdleState);
         }
 
+        protected override void Update()
+        {
+            base.Update();
+            if(Input.GetKeyDown(KeyCode.U))
+                StateMachine.ChangeState(StunState);
+        }
+
+        protected override bool CanBeStunned()
+        {
+            if (base.CanBeStunned())
+            {
+                StateMachine.ChangeState(StunState);
+                return true;
+            }
+            return false;
+        }
+
         public override void OnDrawGizmos()
         {
             foreach (var item in enemyData.hitBox) 

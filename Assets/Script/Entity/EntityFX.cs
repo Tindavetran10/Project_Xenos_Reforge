@@ -25,5 +25,18 @@ namespace Script.Entity
             yield return new WaitForSeconds(.2f);
             _spriteRenderer.material = _originalMat;
         }
+
+        private void RedColorBlink()
+        {
+            if(_spriteRenderer.color != Color.white)
+                _spriteRenderer.color = Color.white;
+            else _spriteRenderer.color = Color.red;
+        }
+
+        private void CancelRedBlink()
+        {
+            CancelInvoke();
+            _spriteRenderer.color = Color.white;
+        }
     }
 }

@@ -1,9 +1,13 @@
 ﻿using Script.Player.Data;
 using Script.Player.PlayerStateMachine;
+using UnityEngine;
 
 namespace Script.Player.PlayerStates.SuperStates
 {
     public class PlayerAbilityState : PlayerState {
+        
+        protected Vector2 Offset;
+        protected int ComboCounter;
         
         private bool _isGrounded;
         protected bool IsAbilityDone;

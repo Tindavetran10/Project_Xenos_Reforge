@@ -9,7 +9,10 @@ namespace Script.Enemy.EnemyStateMachine
         public EnemyData enemyData;
         protected EnemyStateMachine StateMachine;
         #endregion
-
+        
+        public bool canBeStunned;
+        [SerializeField] public GameObject counterImage;        
+        
         private Vector2 _velocityWorkspace;
         private static readonly int YVelocity = Animator.StringToHash("yVelocity");
         
@@ -32,7 +35,29 @@ namespace Script.Enemy.EnemyStateMachine
             StateMachine.CurrentState.PhysicsUpdate();
         }
         
-        #region CheckFunctions and Draw Gizmos
+        public virtual void OpenCounterAttackWindow()
+        {
+            canBeStunned = true;
+            counterImage.SetActive(true);
+        }
+
+        public virtual void CloseCounterAttackWindow()
+        {
+            canBeStunned = false;
+            counterImage.SetActive(false);
+        }
+
+        protected virtual bool CanBeStunned()
+        {
+            if (canBeStunned)
+            {
+                CloseCounterAttackWindow();
+                return true;
+            }
+            return false;
+        }
+        
+        #region Check Functions, Draw Gizmos
         public bool CheckPlayerInAgroRange() => 
             Physics2D.Raycast(attackPosition.position, transform.right, enemyData.agroDistance, 
                 enemyData.whatIsPlayer);

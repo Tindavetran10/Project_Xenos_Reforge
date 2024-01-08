@@ -54,9 +54,10 @@ namespace Script.Player.Data
 
         public float[] attackVelocity;
         public Vector2[] direction;
-
-        [Header("Primary Attack Radius")] 
         public Rect[] hitBox;
+        
+        [Header("Counter Attack State")]
+        public float counterAttackDuration;
     }
 }
 

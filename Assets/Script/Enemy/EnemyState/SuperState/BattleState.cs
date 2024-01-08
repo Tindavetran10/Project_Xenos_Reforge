@@ -13,7 +13,7 @@ namespace Script.Enemy.EnemyState.SuperState
         protected bool PerformCloseRangeAction;
 
         private float _lastTimeAttacked;
-
+        
         private int _comboCounter;
         protected int ComboWindow;
         private static readonly int ComboCounter = Animator.StringToHash("comboCounter");

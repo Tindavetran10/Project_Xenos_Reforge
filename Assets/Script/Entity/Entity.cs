@@ -13,7 +13,7 @@ namespace Script.Entity
         public Core Core { get; private set; }
         public Animator Anim { get; private set; }
         public Rigidbody2D Rb { get; private set; }
-        private EntityFX FX { get; set; }
+        public EntityFX FX { get; set; }
         
         public Movement Movement => _movement ? _movement : Core.GetCoreComponent(ref _movement);
         private Movement _movement;
@@ -45,14 +45,14 @@ namespace Script.Entity
 
         protected virtual void FixedUpdate() {}
 
-        public virtual void Damage()
+        public void Damage()
         {
             FX.StartCoroutine("FlashFX");
             StartCoroutine(nameof(HitKnockBack));
             Debug.Log(gameObject.name + " was damaged");
         }
 
-        protected virtual IEnumerator HitKnockBack()
+        protected IEnumerator HitKnockBack()
         {
             _isKnocked = true;
             Movement.CanSetVelocity = false;
