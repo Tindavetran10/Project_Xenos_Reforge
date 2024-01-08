@@ -98,6 +98,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CounterAttack"",
+                    ""type"": ""Button"",
+                    ""id"": ""a3dfcdad-6dda-4118-812b-e2c871e5c3c6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -270,7 +279,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""6e8d5dcb-25af-4e64-95e4-131dced047b9"",
                     ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press(pressPoint=1.5,behavior=2)"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""NormalAttack"",
@@ -285,6 +294,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""HeavyAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bba8104a-909b-4450-94f3-381c0879994e"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CounterAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -331,6 +351,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Gameplay_Grab = m_Gameplay.FindAction("Grab", throwIfNotFound: true);
         m_Gameplay_NormalAttack = m_Gameplay.FindAction("NormalAttack", throwIfNotFound: true);
         m_Gameplay_HeavyAttack = m_Gameplay.FindAction("HeavyAttack", throwIfNotFound: true);
+        m_Gameplay_CounterAttack = m_Gameplay.FindAction("CounterAttack", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Resume = m_UI.FindAction("Resume", throwIfNotFound: true);
@@ -403,6 +424,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Grab;
     private readonly InputAction m_Gameplay_NormalAttack;
     private readonly InputAction m_Gameplay_HeavyAttack;
+    private readonly InputAction m_Gameplay_CounterAttack;
     public struct GameplayActions
     {
         private @PlayerInput m_Wrapper;
@@ -415,6 +437,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @Grab => m_Wrapper.m_Gameplay_Grab;
         public InputAction @NormalAttack => m_Wrapper.m_Gameplay_NormalAttack;
         public InputAction @HeavyAttack => m_Wrapper.m_Gameplay_HeavyAttack;
+        public InputAction @CounterAttack => m_Wrapper.m_Gameplay_CounterAttack;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -448,6 +471,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @HeavyAttack.started += instance.OnHeavyAttack;
             @HeavyAttack.performed += instance.OnHeavyAttack;
             @HeavyAttack.canceled += instance.OnHeavyAttack;
+            @CounterAttack.started += instance.OnCounterAttack;
+            @CounterAttack.performed += instance.OnCounterAttack;
+            @CounterAttack.canceled += instance.OnCounterAttack;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -476,6 +502,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @HeavyAttack.started -= instance.OnHeavyAttack;
             @HeavyAttack.performed -= instance.OnHeavyAttack;
             @HeavyAttack.canceled -= instance.OnHeavyAttack;
+            @CounterAttack.started -= instance.OnCounterAttack;
+            @CounterAttack.performed -= instance.OnCounterAttack;
+            @CounterAttack.canceled -= instance.OnCounterAttack;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -549,6 +578,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnGrab(InputAction.CallbackContext context);
         void OnNormalAttack(InputAction.CallbackContext context);
         void OnHeavyAttack(InputAction.CallbackContext context);
+        void OnCounterAttack(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

@@ -53,7 +53,7 @@ namespace Script.Enemy.EnemySpecific.Ronin
                 StateMachine.ChangeState(StunState);
         }
 
-        protected override bool CanBeStunned()
+        public override bool CanBeStunned()
         {
             if (base.CanBeStunned())
             {

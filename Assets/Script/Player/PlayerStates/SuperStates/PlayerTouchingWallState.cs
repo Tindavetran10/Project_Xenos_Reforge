@@ -7,7 +7,6 @@ namespace Script.Player.PlayerStates.SuperStates
     {
 
         #region Checks
-
         private bool _isGrounded;
         private bool _isTouchingWall;
         private bool _isTouchingLedge;

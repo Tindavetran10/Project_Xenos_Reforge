@@ -6,46 +6,53 @@ namespace Script.Player.PlayerStates.SubStates
 {
     public class PlayerCounterAttackState : PlayerAbilityState
     {
+        private bool _isHolding;
+        private bool _counterInputStop;
+        
         private static readonly int SuccessfulCounterAttack = Animator.StringToHash("successfulCounterAttack");
 
-        protected PlayerCounterAttackState(PlayerStateMachine.Player player, 
+        public PlayerCounterAttackState(PlayerStateMachine.Player player, 
             PlayerStateMachine.PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) 
             : base(player, stateMachine, playerData, animBoolName) {}
-
-        protected override void DoChecks()
-        {
-            base.DoChecks();
-        }
 
         public override void Enter()
         {
             base.Enter();
-            Player.Anim.SetBool(SuccessfulCounterAttack, false);
+            _isHolding = true;
+            StartTime = Time.time;
+            Player.InputHandler.UseCounterInput();
             
+            Player.Anim.SetBool(SuccessfulCounterAttack, false);
+            Movement?.SetVelocityX(0f);
         }
 
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-            
-            var playerTransform = Player.attackPosition.transform;
-            var playerPosition = playerTransform.position;
 
-            Offset.Set(playerPosition.x + PlayerData.hitBox[ComboCounter].center.x * Movement.FacingDirection,
-                playerPosition.y + PlayerData.hitBox[ComboCounter].center.y);
-            
-            Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(Offset, PlayerData.hitBox[ComboCounter].size, 0f, PlayerData.whatIsEnemy);
-
-            foreach (var hit in collider2Ds)
+            if (_isHolding)
             {
-                if (hit.GetComponent<Enemy.EnemyStateMachine.Enemy>() != null)
-                    hit.GetComponent<Enemy.EnemyStateMachine.Enemy>().Damage();
-            }
-        }
+                var playerTransform = Player.attackPosition.transform;
+                var playerPosition = playerTransform.position;
 
-        public override void Exit()
-        {
-            base.Exit();
+                Offset.Set(playerPosition.x + PlayerData.hitBox[ComboCounter].center.x * Movement.FacingDirection,
+                    playerPosition.y + PlayerData.hitBox[ComboCounter].center.y);
+            
+                Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(Offset, PlayerData.hitBox[ComboCounter].size, 0f, PlayerData.whatIsEnemy);
+
+                foreach (var hit in collider2Ds)
+                {
+                    if (hit.GetComponent<Enemy.EnemyStateMachine.Enemy>() != null)
+                    {
+                        if(hit.GetComponent<Enemy.EnemyStateMachine.Enemy>().CanBeStunned())
+                            Player.Anim.SetBool(SuccessfulCounterAttack, true); 
+                    }
+                }
+            
+                if(_counterInputStop|| Time.time >= StartTime + PlayerData.counterAttackDuration) 
+                    _isHolding = false;
+            }
+            else StateMachine.ChangeState(Player.IdleState);
         }
     }
 }

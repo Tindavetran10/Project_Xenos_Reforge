@@ -30,10 +30,14 @@ namespace _Scripts.Player.Input
         
         public bool[]  AttackInputs { get; private set; }
         
+        public bool CounterInput { get; private set; }
+        public bool CounterInputStop { get; private set; }
+        
         
         [SerializeField] private float inputHoldTime;
         private float _jumpInputStartTime;
         private float _dashInputStartTime;
+        private float _counterInputStartTime;
         
         private void Start()
         {
@@ -48,6 +52,7 @@ namespace _Scripts.Player.Input
             // Check and update jump and dash input hold times
             CheckJumpInputHoldTime();
             CheckDashInputHoldTime();
+            CheckCounterInputHoldTime();
         }
 
         // Check if the jump input has been held for a certain duration
@@ -62,6 +67,12 @@ namespace _Scripts.Player.Input
         {
             if (Time.time >= _dashInputStartTime + inputHoldTime)
                 DashInput = false;
+        }
+
+        private void CheckCounterInputHoldTime()
+        {
+            if (Time.time >= _counterInputStartTime + inputHoldTime)
+                CounterInput = false;
         }
         
         // Enable input actions when the script is enabled
@@ -151,6 +162,17 @@ namespace _Scripts.Player.Input
                 AttackInputs[(int)CombatInputs.Heavy] = false;
         }
 
+        public void OnCounterAttack(InputAction.CallbackContext context)
+        {
+            if (context.started)
+            {
+                CounterInput = true;
+                CounterInputStop = false;
+                _counterInputStartTime = Time.time;
+            }
+            else if (context.canceled) CounterInputStop = true;
+        }
+
         // Callback for dash direction input
         public void OnDashDirection(InputAction.CallbackContext context)
         {
@@ -180,6 +202,7 @@ namespace _Scripts.Player.Input
 
         // Utility method to consume dash input
         public void UseDashInput() => DashInput = false;
+        public void UseCounterInput() => CounterInput = false;
     }
 }
 

@@ -10,9 +10,9 @@ namespace Script.Player.PlayerStates.SubStates
     {
         #region Combo variables
         private float _lastTimeAttacked;
-        #endregion
+        private static readonly int Counter = Animator.StringToHash("comboCounter");
 
-        
+        #endregion
         
         public PlayerPrimaryAttackState(PlayerStateMachine.Player player, PlayerStateMachine.PlayerStateMachine stateMachine, 
             PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName) {}
@@ -26,7 +26,7 @@ namespace Script.Player.PlayerStates.SubStates
             
             Debug.Log(ComboCounter);
             
-            Player.Anim.SetInteger(ComboCounter, ComboCounter);
+            Player.Anim.SetInteger(Counter, ComboCounter);
         }
 
         public override void Exit()

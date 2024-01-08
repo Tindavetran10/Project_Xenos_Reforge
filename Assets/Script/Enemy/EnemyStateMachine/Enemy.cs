@@ -47,7 +47,7 @@ namespace Script.Enemy.EnemyStateMachine
             counterImage.SetActive(false);
         }
 
-        protected virtual bool CanBeStunned()
+        public virtual bool CanBeStunned()
         {
             if (canBeStunned)
             {

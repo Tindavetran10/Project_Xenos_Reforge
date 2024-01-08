@@ -26,6 +26,7 @@ namespace Script.Player.PlayerStateMachine
         public PlayerCrouchIdleState CrouchIdleState { get; private set; }
         public PlayerCrouchMoveState CrouchMoveState { get; private set; }
         public PlayerPrimaryAttackState PrimaryAttackState { get; private set; }
+        public PlayerCounterAttackState CounterAttackState { get; private set; }
         
         
         [SerializeField] private PlayerData playerData;
@@ -64,6 +65,7 @@ namespace Script.Player.PlayerStateMachine
             CrouchMoveState = new PlayerCrouchMoveState(this, StateMachine, playerData, "crouchMove");
 
             PrimaryAttackState = new PlayerPrimaryAttackState(this, StateMachine, playerData, "attack");
+            CounterAttackState = new PlayerCounterAttackState(this, StateMachine, playerData, "counterAttack");
         }
 
         protected override void Start()

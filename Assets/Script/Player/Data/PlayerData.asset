@@ -51,17 +51,18 @@ MonoBehaviour:
   - {x: 1, y: 0}
   hitBox:
   - serializedVersion: 2
-    x: 0.02
+    x: -0.14
     y: -0.34
-    width: 1
+    width: 1.16
     height: 0.72
   - serializedVersion: 2
-    x: 0.06
+    x: -0.14
     y: -0.34
-    width: 0.8
+    width: 0.98
     height: 0.66
   - serializedVersion: 2
-    x: 0.02
+    x: -0.14
     y: -0.34
-    width: 1
+    width: 1.16
     height: 0.72
+  counterAttackDuration: 0.08

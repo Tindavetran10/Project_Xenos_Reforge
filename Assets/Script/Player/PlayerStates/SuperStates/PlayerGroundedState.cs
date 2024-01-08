@@ -19,6 +19,7 @@ namespace Script.Player.PlayerStates.SuperStates
         private bool _dashInput;
 
         private bool _normalAttackInput;
+        private bool _counterAttackInput;
         
         protected PlayerGroundedState(PlayerStateMachine.Player player, PlayerStateMachine.PlayerStateMachine stateMachine, 
             PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName){}
@@ -60,8 +61,13 @@ namespace Script.Player.PlayerStates.SuperStates
             _dashInput = Player.InputHandler.DashInput;
             
             _normalAttackInput = Player.InputHandler.AttackInputs[(int)CombatInputs.Normal];
+
+            _counterAttackInput = Player.InputHandler.CounterInput;
             
-            if(_normalAttackInput && !IsTouchingCeiling)
+            
+            if(_counterAttackInput && !IsTouchingCeiling)
+                StateMachine.ChangeState(Player.CounterAttackState);
+            else if(_normalAttackInput && !IsTouchingCeiling)
                 StateMachine.ChangeState(Player.PrimaryAttackState);
             
             // Change to Jump State if there is a jumpInput, the number of jumps is > 0 and he isn't touch the ceiling 
