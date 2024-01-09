@@ -6,17 +6,17 @@ namespace Script.Enemy.EnemyStateMachine
 {
     public class EnemyState
     {
-        protected readonly Core Core;
+        private readonly Core _core;
         protected readonly Enemy EnemyBase;
         protected readonly EnemyStateMachine StateMachine;
         
         protected float StartTime { get; private set; }
         
-        protected Movement Movement => _movement ? _movement : Core.GetCoreComponent(ref _movement);
+        protected Movement Movement => _movement ? _movement : _core.GetCoreComponent(ref _movement);
         private Movement _movement;
 
         protected CollisionSenses CollisionSenses => _collisionSenses ? _collisionSenses 
-            : Core.GetCoreComponent(ref _collisionSenses);
+            : _core.GetCoreComponent(ref _collisionSenses);
         private CollisionSenses _collisionSenses;
 
         
@@ -26,7 +26,7 @@ namespace Script.Enemy.EnemyStateMachine
             EnemyBase = enemyBase;
             StateMachine = stateMachine;
             _animBoolName = animBoolName;
-            Core = enemyBase.Core;
+            _core = enemyBase.Core;
         }
 
         public virtual void Enter()

@@ -10,7 +10,7 @@ namespace Script.Enemy.EnemyStateMachine
         protected EnemyStateMachine StateMachine;
         #endregion
         
-        public bool canBeStunned;
+        [HideInInspector] public bool canBeStunned;
         [SerializeField] public GameObject counterImage;        
         
         private Vector2 _velocityWorkspace;
@@ -35,13 +35,13 @@ namespace Script.Enemy.EnemyStateMachine
             StateMachine.CurrentState.PhysicsUpdate();
         }
         
-        public virtual void OpenCounterAttackWindow()
+        public void OpenCounterAttackWindow()
         {
             canBeStunned = true;
             counterImage.SetActive(true);
         }
 
-        public virtual void CloseCounterAttackWindow()
+        public void CloseCounterAttackWindow()
         {
             canBeStunned = false;
             counterImage.SetActive(false);

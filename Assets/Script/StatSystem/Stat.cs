@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Script.StatSystem
@@ -6,6 +8,13 @@ namespace Script.StatSystem
     public class Stat
     {
         [SerializeField] private int baseValue;
-        public int GetValue() => baseValue;
+
+        public List<int> modifiers;
+        
+        public int GetValue() => 
+            baseValue + modifiers.Sum();
+
+        public void AddModifier(int modifier) => modifiers.Add(modifier);
+        public void RemoveModifier(int modifier) => modifiers.Remove(modifier);
     }
 }

@@ -6,18 +6,5 @@ namespace Script.Enemy.EnemyState.StateData
     public class D_MeleeAttackState : ScriptableObject
     {
         public int comboTotal;
-
-        public float attackDistance;
-        
-        public float attackDamage;
-
-        public Vector2 knockbackAngle;
-        public float knockbackStrength;
-
-        public float poiseDamage;
-
-        public float attackCooldown;
-
-        public LayerMask whatIsPlayer;
     }
 }

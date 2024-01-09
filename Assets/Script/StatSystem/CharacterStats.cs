@@ -9,10 +9,8 @@ namespace Script.StatSystem
 
         [SerializeField] private int currentHealth;
         // Start is called before the first frame update
-        private void Start()
-        {
+        private void Start() => 
             currentHealth = maxHealth.GetValue();
-        }
 
         // Update is called once per frame
         public void TakeDamage(int damageAmount)

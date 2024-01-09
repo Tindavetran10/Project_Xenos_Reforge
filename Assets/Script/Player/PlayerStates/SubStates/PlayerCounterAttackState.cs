@@ -20,7 +20,8 @@ namespace Script.Player.PlayerStates.SubStates
             IsHolding = true;
             StartTime = Time.time;
             Player.InputHandler.UseCounterInput();
-            
+
+            _counterInputStop = Player.InputHandler.CounterInputStop;
             Player.Anim.SetBool(SuccessfulCounterAttack, false);
             Movement?.SetVelocityX(0f);
         }
@@ -38,7 +39,7 @@ namespace Script.Player.PlayerStates.SubStates
                     playerPosition.y + PlayerData.hitBox[ComboCounter].center.y);
             
                 Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(Offset, PlayerData.hitBox[ComboCounter].size, 
-                    0f, PlayerData.whatIsEnemy);
+                     0f, PlayerData.whatIsEnemy);
 
                 foreach (var hit in collider2Ds)
                 {
