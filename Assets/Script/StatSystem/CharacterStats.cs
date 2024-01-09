@@ -46,7 +46,7 @@ namespace Script.StatSystem
 
         // Update is called once per frame
 
-        protected virtual void TakeDamage(int damageAmount)
+        public virtual void TakeDamage(int damageAmount)
         {
             currentHealth -= damageAmount;
             Debug.Log(damageAmount);

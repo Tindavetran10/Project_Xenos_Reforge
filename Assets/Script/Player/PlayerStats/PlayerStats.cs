@@ -12,7 +12,7 @@ namespace Script.Player.PlayerStats
             _player = GetComponentInParent<PlayerStateMachine.Player>();
         }
 
-        protected override void TakeDamage(int damageAmount)
+        public override void TakeDamage(int damageAmount)
         {
             base.TakeDamage(damageAmount);
             _player.DamageEffect();

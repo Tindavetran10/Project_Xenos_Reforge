@@ -72,7 +72,7 @@ MonoBehaviour:
     baseValue: 0
     modifiers: 
   evasion:
-    baseValue: 70
+    baseValue: 0
     modifiers: 
   currentHealth: 0
 --- !u!1 &2599975792703084807
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 7116232360363766878}
   m_Layer: 7
   m_Name: DashDirectionIndicator
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -460,7 +460,7 @@ GameObject:
   - component: {fileID: 6830498241270001590}
   m_Layer: 7
   m_Name: AttackPosition
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

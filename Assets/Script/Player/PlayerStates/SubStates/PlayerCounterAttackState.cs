@@ -1,5 +1,6 @@
 using Script.Player.Data;
 using Script.Player.PlayerStates.SuperStates;
+using Script.Projectile;
 using UnityEngine;
 
 namespace Script.Player.PlayerStates.SubStates
@@ -7,9 +8,8 @@ namespace Script.Player.PlayerStates.SubStates
     public class PlayerCounterAttackState : PlayerAbilityState
     {
         private bool _counterInputStop;
+        private static readonly int CounterAttack = Animator.StringToHash("successfulCounterAttack");
         
-        private static readonly int SuccessfulCounterAttack = Animator.StringToHash("successfulCounterAttack");
-
         public PlayerCounterAttackState(PlayerStateMachine.Player player, 
             PlayerStateMachine.PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) 
             : base(player, stateMachine, playerData, animBoolName) {}
@@ -22,7 +22,7 @@ namespace Script.Player.PlayerStates.SubStates
             Player.InputHandler.UseCounterInput();
 
             _counterInputStop = Player.InputHandler.CounterInputStop;
-            Player.Anim.SetBool(SuccessfulCounterAttack, false);
+            Player.Anim.SetBool(CounterAttack, false);
             Movement?.SetVelocityX(0f);
         }
 
@@ -38,15 +38,20 @@ namespace Script.Player.PlayerStates.SubStates
                 Offset.Set(playerPosition.x + PlayerData.hitBox[ComboCounter].center.x * Movement.FacingDirection,
                     playerPosition.y + PlayerData.hitBox[ComboCounter].center.y);
             
-                Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(Offset, PlayerData.hitBox[ComboCounter].size, 
-                     0f, PlayerData.whatIsEnemy);
+                Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(Offset, PlayerData.hitBox[ComboCounter].size, 0f);
 
                 foreach (var hit in collider2Ds)
                 {
+                    if (hit.GetComponent<ProjectileController>() != null)
+                    {
+                        hit.GetComponent<ProjectileController>().FlipArrow();
+                        SuccessfulCounterAttack();
+                    }
+                    
                     if (hit.GetComponent<Enemy.EnemyStateMachine.Enemy>() != null)
                     {
                         if(hit.GetComponent<Enemy.EnemyStateMachine.Enemy>().CanBeStunned())
-                            Player.Anim.SetBool(SuccessfulCounterAttack, true); 
+                            SuccessfulCounterAttack(); 
                     }
                 }
                 if(_counterInputStop || Time.time >= StartTime + PlayerData.counterAttackDuration) 
@@ -54,5 +59,7 @@ namespace Script.Player.PlayerStates.SubStates
             }
             else StateMachine.ChangeState(Player.IdleState);
         }
+
+        private void SuccessfulCounterAttack() => Player.Anim.SetBool(CounterAttack, true);
     }
 }
