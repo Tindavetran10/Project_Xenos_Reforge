@@ -49,7 +49,6 @@ namespace Script.Player.PlayerStates.SubStates
                             Player.Anim.SetBool(SuccessfulCounterAttack, true); 
                     }
                 }
-            
                 if(_counterInputStop || Time.time >= StartTime + PlayerData.counterAttackDuration) 
                     IsHolding = false;
             }

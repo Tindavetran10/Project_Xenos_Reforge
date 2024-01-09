@@ -13,6 +13,7 @@ namespace Script.Enemy.EnemySpecific.Ronin
         public EnemyRoninLookForPlayerState LookForPlayerState { get; private set; }
         public EnemyRoninMeleeAttackState MeleeAttackState { get; private set; }
         public EnemyRoninStunState StunState { get; private set; }
+        public EnemyRoninDeathState DeathState { get; private set; }
         #endregion
         
         #region Enemy Data
@@ -37,6 +38,7 @@ namespace Script.Enemy.EnemySpecific.Ronin
             MeleeAttackState =
                 new EnemyRoninMeleeAttackState(this, StateMachine, "meleeAttack", meleeAttackStateData, this);
             StunState = new EnemyRoninStunState(this, StateMachine, "stun", stunStateData, this);
+            DeathState = new EnemyRoninDeathState(this, StateMachine, "die", this);
         }
         
 
@@ -61,6 +63,12 @@ namespace Script.Enemy.EnemySpecific.Ronin
                 return true;
             }
             return false;
+        }
+
+        public override void Die()
+        {
+            base.Die();
+            StateMachine.ChangeState(DeathState);
         }
 
         public override void OnDrawGizmos()

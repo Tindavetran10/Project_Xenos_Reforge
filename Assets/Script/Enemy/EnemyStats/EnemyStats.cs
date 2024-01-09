@@ -12,10 +12,16 @@ namespace Script.Enemy.EnemyStats
             _enemy = GetComponentInParent<EnemyStateMachine.Enemy>();
         }
 
-        public override void TakeDamage(int damageAmount)
+        protected override void TakeDamage(int damageAmount)
         {
             base.TakeDamage(damageAmount);
             _enemy.DamageEffect();
+        }
+
+        protected override void Die()
+        {
+            base.Die();
+            _enemy.Die();
         }
     }
 }

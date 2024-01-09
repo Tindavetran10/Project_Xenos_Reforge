@@ -10,7 +10,7 @@ namespace Script.Player.PlayerStateMachine
         #region State Variables
         // By declaring the state machine, we can access all the function
         // including changing or initializing different states
-        private PlayerStateMachine StateMachine { get; set; }
+        public PlayerStateMachine StateMachine { get; private set; }
         
         public PlayerIdleState IdleState { get; private set; }
         public PlayerMoveState MoveState { get; private set; }
@@ -28,6 +28,8 @@ namespace Script.Player.PlayerStateMachine
         public PlayerPrimaryAttackState PrimaryAttackState { get; private set; }
         public PlayerCounterAttackState CounterAttackState { get; private set; }
         
+        public PlayerDeathState DeathState { get; private set; }
+        
         
         [SerializeField] private PlayerData playerData;
         #endregion
@@ -35,7 +37,7 @@ namespace Script.Player.PlayerStateMachine
         #region Components
         public PlayerInputHandler InputHandler { get; private set; }
         public Transform DashDirectionIndicator { get; private set; }
-        private CapsuleCollider2D MovementCollider2D { get; set; }
+        
         #endregion
         
         #region Other Variables
@@ -66,6 +68,8 @@ namespace Script.Player.PlayerStateMachine
 
             PrimaryAttackState = new PlayerPrimaryAttackState(this, StateMachine, playerData, "attack");
             CounterAttackState = new PlayerCounterAttackState(this, StateMachine, playerData, "counterAttack");
+
+            DeathState = new PlayerDeathState(this, StateMachine, playerData, "die");
         }
 
         protected override void Start()
@@ -124,5 +128,11 @@ namespace Script.Player.PlayerStateMachine
                                     (Vector3)item.center, item.size);
         }
         #endregion
+
+        public override void Die()
+        {
+            base.Die();
+            StateMachine.ChangeState(DeathState);
+        }
     }
 }

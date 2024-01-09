@@ -11,7 +11,9 @@ namespace Script.Enemy.EnemyStateMachine
         #endregion
         
         [HideInInspector] public bool canBeStunned;
-        [SerializeField] public GameObject counterImage;        
+        [SerializeField] public GameObject counterImage;
+
+        public string LastAnimBoolName { get; private set; }
         
         private Vector2 _velocityWorkspace;
         private static readonly int YVelocity = Animator.StringToHash("yVelocity");
@@ -27,6 +29,11 @@ namespace Script.Enemy.EnemyStateMachine
             StateMachine.CurrentState.LogicUpdate();
             
             Anim.SetFloat(YVelocity, Movement.Rb.velocity.y);
+        }
+
+        public virtual void AssignLastAnimName(string animBoolName)
+        {
+            LastAnimBoolName = animBoolName;
         }
 
         protected override void FixedUpdate()

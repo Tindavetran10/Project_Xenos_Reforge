@@ -36,8 +36,11 @@ namespace Script.Enemy.EnemyStateMachine
             StartTime = Time.time;
         }
         
-        public virtual void Exit() => 
+        public virtual void Exit()
+        {
             EnemyBase.Anim.SetBool(_animBoolName, false);
+            EnemyBase.AssignLastAnimName(_animBoolName);
+        }
 
         public virtual void LogicUpdate(){}
         public void PhysicsUpdate() => DoChecks();

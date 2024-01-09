@@ -17,6 +17,8 @@ namespace Script.Entity
         public EntityFX FX { get; private set; }
         public CharacterStats Stats { get; private set; }
 
+        protected CapsuleCollider2D MovementCollider2D { get; set; }
+
         protected Movement Movement => _movement ? _movement : Core.GetCoreComponent(ref _movement);
         private Movement _movement;
 
@@ -28,7 +30,6 @@ namespace Script.Entity
         #region Knockback Components
         [SerializeField] protected Vector2 knockBackDirection;
         [SerializeField] protected float knockBackDuration;
-        //private bool _isKnocked;
         #endregion
         
         public AnimationToStateMachine Atsm { get; private set; }
@@ -42,6 +43,7 @@ namespace Script.Entity
             Atsm = GetComponent<AnimationToStateMachine>();
             FX = GetComponent<EntityFX>();
             Stats = GetComponentInChildren<CharacterStats>();
+            MovementCollider2D = GetComponent<CapsuleCollider2D>();
         }
 
         protected virtual void Update() {}
@@ -57,12 +59,13 @@ namespace Script.Entity
 
         protected IEnumerator HitKnockBack()
         {
-            //_isKnocked = true;
             Movement.CanSetVelocity = false;
             Rb.velocity = new Vector2(knockBackDirection.x * -Movement.FacingDirection, knockBackDirection.y);
             yield return new WaitForSeconds(knockBackDuration);
             Movement.CanSetVelocity = true;
-            //_isKnocked = false;
         }
+
+        public virtual void Die() => Invoke(nameof(DestroyCharacter), 1f);
+        private void DestroyCharacter() => Destroy(gameObject);
     }
 }

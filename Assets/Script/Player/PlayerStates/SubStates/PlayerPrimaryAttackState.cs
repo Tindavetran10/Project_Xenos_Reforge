@@ -3,7 +3,6 @@ using System.Linq;
 using Script.Enemy.EnemyStats;
 using Script.Player.Data;
 using Script.Player.PlayerStates.SuperStates;
-using Script.StatSystem;
 using UnityEngine;
 
 namespace Script.Player.PlayerStates.SubStates
@@ -11,6 +10,7 @@ namespace Script.Player.PlayerStates.SubStates
     public class PlayerPrimaryAttackState : PlayerAbilityState
     {
         #region Combo variables
+        private bool _attackInputStop;
         private float _lastTimeAttacked;
         private static readonly int Counter = Animator.StringToHash("comboCounter");
         #endregion
@@ -21,11 +21,12 @@ namespace Script.Player.PlayerStates.SubStates
         public override void Enter()
         {
             base.Enter();
-
+            IsHolding = false;
+            StartTime = Time.time;
+            Player.InputHandler.UseAttackInput();
+            
             if (ComboCounter >= PlayerData.numberOfAttacks || Time.time >= _lastTimeAttacked + PlayerData.comboWindow)
                 ComboCounter = 0;
-            
-            Debug.Log(ComboCounter);
             
             Player.Anim.SetInteger(Counter, ComboCounter);
         }
@@ -41,6 +42,9 @@ namespace Script.Player.PlayerStates.SubStates
         public override void LogicUpdate()
         {
             base.LogicUpdate();
+
+            if (_attackInputStop || Time.time >= StartTime + PlayerData.maxHoldTime)
+                IsHolding = false;
 
             if (IsAnimationFinished || IsAnimationCancel)
                 IsAbilityDone = true;
@@ -108,7 +112,6 @@ namespace Script.Player.PlayerStates.SubStates
                     EnemyStats target = hit.GetComponentInChildren<EnemyStats>();
                     Player.Stats.DoDamage(target);
                     //hit.GetComponent<Enemy.EnemyStateMachine.Enemy>().Damage();
-                    
                 }
             }
         }

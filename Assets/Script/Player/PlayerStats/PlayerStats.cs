@@ -12,10 +12,16 @@ namespace Script.Player.PlayerStats
             _player = GetComponentInParent<PlayerStateMachine.Player>();
         }
 
-        public override void TakeDamage(int damageAmount)
+        protected override void TakeDamage(int damageAmount)
         {
             base.TakeDamage(damageAmount);
             _player.DamageEffect();
+        }
+
+        protected override void Die()
+        {
+            base.Die();
+            _player.Die();
         }
     }
 }

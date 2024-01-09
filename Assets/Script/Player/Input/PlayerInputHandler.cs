@@ -28,7 +28,8 @@ namespace _Scripts.Player.Input
         public bool DashInput { get; private set; }
         public bool DashInputStop { get; private set; }
         
-        public bool[]  AttackInputs { get; private set; }
+        public bool[] AttackInputs { get; private set; }
+        public bool[] AttackInputsStop { get; private set; }
         
         public bool CounterInput { get; private set; }
         public bool CounterInputStop { get; private set; }
@@ -38,11 +39,13 @@ namespace _Scripts.Player.Input
         private float _jumpInputStartTime;
         private float _dashInputStartTime;
         private float _counterInputStartTime;
+        private float _attackInputsStartTime;
         
         private void Start()
         {
             var count = Enum.GetValues(typeof(CombatInputs)).Length;
             AttackInputs = new bool[count];
+            AttackInputsStop = new bool[count];
             
             _cam = Camera.main;
         }
@@ -52,6 +55,7 @@ namespace _Scripts.Player.Input
             // Check and update jump and dash input hold times
             CheckJumpInputHoldTime();
             CheckDashInputHoldTime();
+            CheckAttackInputsHoldTime();
             CheckCounterInputHoldTime();
         }
 
@@ -69,6 +73,12 @@ namespace _Scripts.Player.Input
                 DashInput = false;
         }
 
+        private void CheckAttackInputsHoldTime()
+        {
+            if (Time.time >= _attackInputsStartTime + inputHoldTime)
+                AttackInputs[(int)CombatInputs.Normal] = false;
+        }
+        
         private void CheckCounterInputHoldTime()
         {
             if (Time.time >= _counterInputStartTime + inputHoldTime)
@@ -149,9 +159,12 @@ namespace _Scripts.Player.Input
         public void OnNormalAttack(InputAction.CallbackContext context)
         {
             if (context.started)
+            {
                 AttackInputs[(int)CombatInputs.Normal] = true;
-            if (context.canceled)
-                AttackInputs[(int)CombatInputs.Normal] = false;
+                AttackInputsStop[(int)CombatInputs.Normal] = false;
+                _attackInputsStartTime = Time.time;
+            }
+            else if (context.canceled) AttackInputsStop[(int)CombatInputs.Normal] = true;
         }
 
         public void OnHeavyAttack(InputAction.CallbackContext context)
@@ -202,6 +215,7 @@ namespace _Scripts.Player.Input
 
         // Utility method to consume dash input
         public void UseDashInput() => DashInput = false;
+        public void UseAttackInput() => AttackInputs[(int)CombatInputs.Normal] = false;
         public void UseCounterInput() => CounterInput = false;
     }
 }
