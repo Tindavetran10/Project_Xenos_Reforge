@@ -28,7 +28,7 @@ namespace Script.Entity
         #region Knockback Components
         [SerializeField] protected Vector2 knockBackDirection;
         [SerializeField] protected float knockBackDuration;
-        private bool _isKnocked;
+        //private bool _isKnocked;
         #endregion
         
         public AnimationToStateMachine Atsm { get; private set; }
@@ -48,7 +48,7 @@ namespace Script.Entity
 
         protected virtual void FixedUpdate() {}
 
-        public void Damage()
+        public void DamageEffect()
         {
             FX.StartCoroutine("FlashFX");
             StartCoroutine(nameof(HitKnockBack));
@@ -57,12 +57,12 @@ namespace Script.Entity
 
         protected IEnumerator HitKnockBack()
         {
-            _isKnocked = true;
+            //_isKnocked = true;
             Movement.CanSetVelocity = false;
             Rb.velocity = new Vector2(knockBackDirection.x * -Movement.FacingDirection, knockBackDirection.y);
             yield return new WaitForSeconds(knockBackDuration);
             Movement.CanSetVelocity = true;
-            _isKnocked = false;
+            //_isKnocked = false;
         }
     }
 }

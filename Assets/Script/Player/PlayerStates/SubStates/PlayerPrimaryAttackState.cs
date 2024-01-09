@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using Script.Enemy.EnemyStats;
 using Script.Player.Data;
 using Script.Player.PlayerStates.SuperStates;
 using Script.StatSystem;
@@ -104,8 +105,10 @@ namespace Script.Player.PlayerStates.SubStates
             {
                 if (hit.GetComponent<Enemy.EnemyStateMachine.Enemy>() != null)
                 {
-                    hit.GetComponent<Enemy.EnemyStateMachine.Enemy>().Damage();
-                    hit.GetComponentInChildren<CharacterStats>().TakeDamage(Player.Stats.damage.GetValue());
+                    EnemyStats target = hit.GetComponentInChildren<EnemyStats>();
+                    Player.Stats.DoDamage(target);
+                    //hit.GetComponent<Enemy.EnemyStateMachine.Enemy>().Damage();
+                    
                 }
             }
         }

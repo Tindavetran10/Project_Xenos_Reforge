@@ -1,3 +1,4 @@
+using Script.Player.PlayerStats;
 using UnityEngine;
 
 namespace Script.Enemy.EnemyState.SuperState
@@ -66,7 +67,11 @@ namespace Script.Enemy.EnemyState.SuperState
             foreach (var hit in collider2Ds)
             {
                 if(hit.GetComponent<Player.PlayerStateMachine.Player>() != null)
-                    hit.GetComponent<Player.PlayerStateMachine.Player>().Damage();
+                {
+                    PlayerStats target = hit.GetComponentInChildren<PlayerStats>();
+                    EnemyBase.Stats.DoDamage(target);
+                    //hit.GetComponent<Player.PlayerStateMachine.Player>().Damage();
+                }
             }
         }
     }
