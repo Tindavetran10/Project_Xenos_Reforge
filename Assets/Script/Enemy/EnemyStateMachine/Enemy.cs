@@ -1,4 +1,5 @@
 using Script.Enemy.Data;
+using Script.Enemy.EnemyState.StateData;
 using UnityEngine;
 
 namespace Script.Enemy.EnemyStateMachine
@@ -9,6 +10,17 @@ namespace Script.Enemy.EnemyStateMachine
         public EnemyData enemyData;
         protected EnemyStateMachine StateMachine;
         #endregion
+        
+        #region Enemy Data
+        [SerializeField] protected D_IdleState idleStateData;
+        [SerializeField] protected D_MoveState moveStateData;
+        [SerializeField] protected D_PlayerDetectedState playerDetectedStateData;
+        [SerializeField] protected D_ChargeState chargeStateData;
+        [SerializeField] protected D_LookForPlayerState lookForPlayerStateData;
+        [SerializeField] protected D_MeleeAttackState meleeAttackStateData;
+        [SerializeField] protected D_StunState stunStateData;
+        #endregion
+        
         
         [HideInInspector] public bool canBeStunned;
         [SerializeField] public GameObject counterImage;
@@ -31,10 +43,7 @@ namespace Script.Enemy.EnemyStateMachine
             Anim.SetFloat(YVelocity, Movement.Rb.velocity.y);
         }
 
-        public virtual void AssignLastAnimName(string animBoolName)
-        {
-            LastAnimBoolName = animBoolName;
-        }
+        public virtual void AssignLastAnimName(string animBoolName) => LastAnimBoolName = animBoolName;
 
         protected override void FixedUpdate()
         {

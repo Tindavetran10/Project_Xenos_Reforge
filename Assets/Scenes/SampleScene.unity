@@ -1997,6 +1997,8 @@ GameObject:
   - component: {fileID: 1701996126}
   - component: {fileID: 1701996125}
   - component: {fileID: 1701996127}
+  - component: {fileID: 1701996129}
+  - component: {fileID: 1701996128}
   m_Layer: 0
   m_Name: EnemyRanger
   m_TagString: Untagged
@@ -2157,6 +2159,44 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1701996128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1701996122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a38fb38737045dd84a0cded3a6001b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitMat: {fileID: 0}
+--- !u!114 &1701996129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1701996122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e62adc6ee773b7447a3e6fb533ce61fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackPosition: {fileID: 0}
+  knockBackDirection: {x: 0, y: 0}
+  knockBackDuration: 0
+  enemyData: {fileID: 0}
+  idleStateData: {fileID: 0}
+  moveStateData: {fileID: 0}
+  playerDetectedStateData: {fileID: 0}
+  chargeStateData: {fileID: 0}
+  lookForPlayerStateData: {fileID: 0}
+  meleeAttackStateData: {fileID: 0}
+  stunStateData: {fileID: 0}
+  canBeStunned: 0
+  counterImage: {fileID: 0}
 --- !u!1 &1999961495
 GameObject:
   m_ObjectHideFlags: 0
