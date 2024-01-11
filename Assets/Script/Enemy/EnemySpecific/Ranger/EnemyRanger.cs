@@ -1,7 +1,65 @@
+using Script.Enemy.EnemyState.StateData;
+using UnityEngine;
+
 namespace Script.Enemy.EnemySpecific.Ranger
 {
     public class EnemyRanger : EnemyStateMachine.Enemy
     {
+        #region State Variables
+        public EnemyRangerIdleState IdleState { get; private set; }
+        public EnemyRangerMoveState MoveState { get; private set; }
+        public EnemyRangerPlayerDetectedState PlayerDetectedState { get; private set; }
+        public EnemyRangerLookForPlayerState LookForPlayerState { get; private set; }
+        public EnemyRangerStunState StunState { get; private set; }
+        public EnemyRangerDeathState DeathState { get; private set; }
+        #endregion
+        
+        #region Enemy Data
+        [SerializeField] protected D_IdleState idleStateData;
+        [SerializeField] protected D_MoveState moveStateData;
+        [SerializeField] protected D_PlayerDetectedState playerDetectedStateData;
+        [SerializeField] protected D_LookForPlayerState lookForPlayerStateData;
+        [SerializeField] protected D_StunState stunStateData;
+        #endregion
+        
+        protected override void Awake()
+        {
+            base.Awake();
+            IdleState = new EnemyRangerIdleState(this, StateMachine, "idle", idleStateData, this);
+            MoveState = new EnemyRangerMoveState(this, StateMachine, "move", moveStateData, this);
+            PlayerDetectedState = new EnemyRangerPlayerDetectedState(this, StateMachine, "playerDetected", playerDetectedStateData, this);
+            LookForPlayerState =
+                new EnemyRangerLookForPlayerState(this, StateMachine, "lookForPlayer", lookForPlayerStateData, this);
+            StunState = new EnemyRangerStunState(this, StateMachine, "stun", stunStateData, this);
+            DeathState = new EnemyRangerDeathState(this, StateMachine, "die", this);
+        }
+        
+        protected override void Start()
+        {
+            base.Start();
+            StateMachine.Initialize(IdleState);
+        }
+        
+        public override bool CanBeStunned()
+        {
+            if (base.CanBeStunned())
+            {
+                StateMachine.ChangeState(StunState);
+                return true;
+            }
+            return false;
+        }
+        public override void Die()
+        {
+            base.Die();
+            StateMachine.ChangeState(DeathState);
+        }
+
+        public override void OnDrawGizmos()
+        {
+            foreach (var item in enemyData.hitBox) 
+                Gizmos.DrawWireCube(attackPosition.transform.position + (Vector3)item.center, item.size);
+        }
         
     }
 }

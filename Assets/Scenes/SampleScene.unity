@@ -1673,6 +1673,37 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3c59ee5e474a7d41b505da6b5ae51bf, type: 3}
+--- !u!1 &640958385
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 640958386}
+  m_Layer: 6
+  m_Name: CounterImage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &640958386
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 640958385}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1701996124}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &868268283
 GameObject:
   m_ObjectHideFlags: 0
@@ -1726,6 +1757,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1701996124}
     m_Modifications:
+    - target: {fileID: 773475574859252540, guid: e840fc1814d350a4a8e2f451e11ee5d3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1641835213515862818, guid: e840fc1814d350a4a8e2f451e11ee5d3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.197
+      objectReference: {fileID: 0}
+    - target: {fileID: 1947750285693054308, guid: e840fc1814d350a4a8e2f451e11ee5d3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2176257986260443268, guid: e840fc1814d350a4a8e2f451e11ee5d3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1766,9 +1809,57 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2338316492348811932, guid: e840fc1814d350a4a8e2f451e11ee5d3, type: 3}
+      propertyPath: enemyData
+      value: 
+      objectReference: {fileID: 11400000, guid: 87c16f2acc53e1f4883de0f1a2fa07af, type: 2}
     - target: {fileID: 2824240721515698610, guid: e840fc1814d350a4a8e2f451e11ee5d3, type: 3}
       propertyPath: m_Name
       value: Core
+      objectReference: {fileID: 0}
+    - target: {fileID: 2824240721515698610, guid: e840fc1814d350a4a8e2f451e11ee5d3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3876653766446940541, guid: e840fc1814d350a4a8e2f451e11ee5d3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3998923513445122573, guid: e840fc1814d350a4a8e2f451e11ee5d3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5001400462174798780, guid: e840fc1814d350a4a8e2f451e11ee5d3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5192214896888914383, guid: e840fc1814d350a4a8e2f451e11ee5d3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.076
+      objectReference: {fileID: 0}
+    - target: {fileID: 5192214896888914383, guid: e840fc1814d350a4a8e2f451e11ee5d3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.202
+      objectReference: {fileID: 0}
+    - target: {fileID: 5336364256778686402, guid: e840fc1814d350a4a8e2f451e11ee5d3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6969482608254076553, guid: e840fc1814d350a4a8e2f451e11ee5d3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7639760610464101684, guid: e840fc1814d350a4a8e2f451e11ee5d3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.197
+      objectReference: {fileID: 0}
+    - target: {fileID: 8406233778597308641, guid: e840fc1814d350a4a8e2f451e11ee5d3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.201
+      objectReference: {fileID: 0}
+    - target: {fileID: 8427398308007830979, guid: e840fc1814d350a4a8e2f451e11ee5d3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.20100002
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1999,9 +2090,9 @@ GameObject:
   - component: {fileID: 1701996127}
   - component: {fileID: 1701996129}
   - component: {fileID: 1701996128}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: EnemyRanger
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2044,8 +2135,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1364924271
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -471872889, guid: e87527302c5519742a63249bc1ea12d5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2072,6 +2163,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 905762348}
+  - {fileID: 640958386}
   - {fileID: 909335084}
   - {fileID: 1999961496}
   m_Father: {fileID: 0}
@@ -2102,7 +2194,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!70 &1701996126
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -2184,19 +2276,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e62adc6ee773b7447a3e6fb533ce61fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackPosition: {fileID: 0}
-  knockBackDirection: {x: 0, y: 0}
-  knockBackDuration: 0
-  enemyData: {fileID: 0}
-  idleStateData: {fileID: 0}
-  moveStateData: {fileID: 0}
-  playerDetectedStateData: {fileID: 0}
-  chargeStateData: {fileID: 0}
-  lookForPlayerStateData: {fileID: 0}
-  meleeAttackStateData: {fileID: 0}
-  stunStateData: {fileID: 0}
+  attackPosition: {fileID: 909335084}
+  knockBackDirection: {x: 1.5, y: 0.5}
+  knockBackDuration: 0.07
+  enemyData: {fileID: 11400000, guid: 18cea04d101bb3f4b86ce161143ec357, type: 2}
   canBeStunned: 0
-  counterImage: {fileID: 0}
+  counterImage: {fileID: 640958385}
+  idleStateData: {fileID: 11400000, guid: f20999f20ce604e408dbc543ec58bb20, type: 2}
+  moveStateData: {fileID: 11400000, guid: ff6b728042ca0c04f839e98d3d02c531, type: 2}
+  playerDetectedStateData: {fileID: 11400000, guid: 77ad649b8a387bd438de526c8ff3db9e, type: 2}
+  lookForPlayerStateData: {fileID: 11400000, guid: ddf4469d690fb5d4291f102139fac057, type: 2}
+  stunStateData: {fileID: 11400000, guid: 7ef4aed535fd7394c980aa7775c6136b, type: 2}
 --- !u!1 &1999961495
 GameObject:
   m_ObjectHideFlags: 0

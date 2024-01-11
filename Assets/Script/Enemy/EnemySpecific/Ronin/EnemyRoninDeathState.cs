@@ -15,6 +15,7 @@ namespace Script.Enemy.EnemySpecific.Ronin
         public override void Enter()
         {
             base.Enter();
+            Movement?.SetVelocityZero();
             _enemyRonin.Anim.SetBool(Die, true);
         }
     }

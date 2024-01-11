@@ -16,6 +16,16 @@ namespace Script.Enemy.EnemySpecific.Ronin
         public EnemyRoninDeathState DeathState { get; private set; }
         #endregion
         
+        #region Enemy Data
+        [SerializeField] protected D_IdleState idleStateData;
+        [SerializeField] protected D_MoveState moveStateData;
+        [SerializeField] protected D_PlayerDetectedState playerDetectedStateData;
+        [SerializeField] protected D_ChargeState chargeStateData;
+        [SerializeField] protected D_LookForPlayerState lookForPlayerStateData;
+        [SerializeField] protected D_MeleeAttackState meleeAttackStateData;
+        [SerializeField] protected D_StunState stunStateData;
+        #endregion
+        
         protected override void Awake()
         {
             base.Awake();
