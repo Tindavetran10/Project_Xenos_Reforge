@@ -16,7 +16,6 @@ namespace Script.Enemy.EnemySpecific.Ranger
         public override void Enter()
         {
             base.Enter();
-            Movement?.SetVelocityZero();
             _enemyRanger.Anim.SetBool(Die, true);
         }
     }

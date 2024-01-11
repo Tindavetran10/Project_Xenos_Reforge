@@ -15,7 +15,9 @@ namespace Script.Enemy.EnemySpecific.Ranger
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-            if(IsIdleTimeOver)
+            if(IsPlayerInAgroRange)
+                StateMachine.ChangeState(_enemyRanger.PlayerDetectedState);
+            else if(IsIdleTimeOver)
                 StateMachine.ChangeState(_enemyRanger.MoveState);
         }
     }

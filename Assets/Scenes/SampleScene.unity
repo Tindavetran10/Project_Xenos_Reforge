@@ -1668,6 +1668,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 6276674830848355542, guid: d3c59ee5e474a7d41b505da6b5ae51bf, type: 3}
+      propertyPath: evasion.baseValue
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2090,6 +2094,7 @@ GameObject:
   - component: {fileID: 1701996127}
   - component: {fileID: 1701996129}
   - component: {fileID: 1701996128}
+  - component: {fileID: 1701996130}
   m_Layer: 6
   m_Name: EnemyRanger
   m_TagString: Enemy
@@ -2191,9 +2196,9 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!70 &1701996126
 CapsuleCollider2D:
@@ -2263,7 +2268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a38fb38737045dd84a0cded3a6001b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitMat: {fileID: 0}
+  hitMat: {fileID: 2100000, guid: 6ce42991d0ed2b346bef88913ab1434e, type: 2}
 --- !u!114 &1701996129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2280,6 +2285,8 @@ MonoBehaviour:
   knockBackDirection: {x: 1.5, y: 0.5}
   knockBackDuration: 0.07
   enemyData: {fileID: 11400000, guid: 18cea04d101bb3f4b86ce161143ec357, type: 2}
+  enemyProjectile: {fileID: 1847536841587570730, guid: d92138e9a08efbd45a23e0c84ffda344, type: 3}
+  projectileSpeed: 7
   canBeStunned: 0
   counterImage: {fileID: 640958385}
   idleStateData: {fileID: 11400000, guid: f20999f20ce604e408dbc543ec58bb20, type: 2}
@@ -2287,6 +2294,21 @@ MonoBehaviour:
   playerDetectedStateData: {fileID: 11400000, guid: 77ad649b8a387bd438de526c8ff3db9e, type: 2}
   lookForPlayerStateData: {fileID: 11400000, guid: ddf4469d690fb5d4291f102139fac057, type: 2}
   stunStateData: {fileID: 11400000, guid: 7ef4aed535fd7394c980aa7775c6136b, type: 2}
+  rangedAttackStateData: {fileID: 11400000, guid: 62c2a5a659037da49accfc6cf39b8162, type: 2}
+  dodgeStateData: {fileID: 11400000, guid: 4d55837419595f74f905c6877b268c2c, type: 2}
+--- !u!114 &1701996130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1701996122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69d5bf5b8c7749539b3ed071b61b9699, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 1701996129}
 --- !u!1 &1999961495
 GameObject:
   m_ObjectHideFlags: 0

@@ -32,7 +32,7 @@ namespace Script.Entity
         [SerializeField] protected float knockBackDuration;
         #endregion
         
-        public AnimationToStateMachine Atsm { get; private set; }
+        public AnimationToStateMachine Atsm { get; protected set; }
 
         protected virtual void Awake() => Core = GetComponentInChildren<Core>();
 

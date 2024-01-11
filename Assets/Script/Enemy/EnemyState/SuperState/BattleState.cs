@@ -9,6 +9,7 @@ namespace Script.Enemy.EnemyState.SuperState
         protected bool IsPlayerInAgroRange;
         protected bool IsDetectingLedge;
         protected bool IsDetectingWall;
+        protected bool IsGrounded;
         
         protected bool PerformLongRangeAction;
         protected bool PerformCloseRangeAction;
@@ -28,6 +29,7 @@ namespace Script.Enemy.EnemyState.SuperState
             IsPlayerInAgroRange = EnemyBase.CheckPlayerInAgroRange();
             IsDetectingLedge = CollisionSenses.LedgeVertical;
             IsDetectingWall = CollisionSenses.WallFront;
+            IsGrounded = CollisionSenses.Ground;
             
             PerformCloseRangeAction = EnemyBase.CheckPlayerInCloseRangeAction();
         }
@@ -70,7 +72,6 @@ namespace Script.Enemy.EnemyState.SuperState
                 {
                     PlayerStats target = hit.GetComponentInChildren<PlayerStats>();
                     EnemyBase.Stats.DoDamage(target);
-                    //hit.GetComponent<Player.PlayerStateMachine.Player>().Damage();
                 }
             }
         }

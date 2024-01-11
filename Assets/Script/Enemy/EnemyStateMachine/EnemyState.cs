@@ -9,8 +9,8 @@ namespace Script.Enemy.EnemyStateMachine
         private readonly Core _core;
         protected readonly Enemy EnemyBase;
         protected readonly EnemyStateMachine StateMachine;
-        
-        protected float StartTime { get; private set; }
+
+        public float StartTime { get; private set; }
         
         protected Movement Movement => _movement ? _movement : _core.GetCoreComponent(ref _movement);
         private Movement _movement;
@@ -39,7 +39,6 @@ namespace Script.Enemy.EnemyStateMachine
         public virtual void Exit()
         {
             EnemyBase.Anim.SetBool(_animBoolName, false);
-            EnemyBase.AssignLastAnimName(_animBoolName);
         }
 
         public virtual void LogicUpdate(){}

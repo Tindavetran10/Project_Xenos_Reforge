@@ -13,6 +13,8 @@ namespace Script.Projectile
 
         [SerializeField] private bool canMove;
         [SerializeField] private bool flipped;
+
+        private CharacterStats _characterStats;
         
         private void Update()
         {
@@ -20,11 +22,18 @@ namespace Script.Projectile
                 rb.velocity = new Vector2(xVelocity, rb.velocity.y);
         }
 
+        public void SetUpProjectile(float speed, CharacterStats characterStats)
+        {
+            xVelocity = speed;
+            _characterStats = characterStats;
+        }
+
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.gameObject.layer == LayerMask.NameToLayer(targetLayerName))
             {
-                collision.GetComponentInChildren<CharacterStats>().TakeDamage(damage);
+                /*collision.GetComponentInChildren<CharacterStats>().TakeDamage(damage);*/
+                _characterStats.DoDamage(collision.GetComponentInChildren<CharacterStats>());
                 ProjectileInteraction(collision);
             }
             else if(collision.gameObject.layer == LayerMask.NameToLayer("Ground"))

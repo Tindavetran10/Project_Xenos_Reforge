@@ -1,4 +1,5 @@
 using Script.Enemy.EnemyState.StateData;
+using Script.Enemy.Intermediaries;
 using UnityEngine;
 
 namespace Script.Enemy.EnemySpecific.Ronin
@@ -12,8 +13,8 @@ namespace Script.Enemy.EnemySpecific.Ronin
         public EnemyRoninChargeState ChargeState { get; private set; }
         public EnemyRoninLookForPlayerState LookForPlayerState { get; private set; }
         public EnemyRoninMeleeAttackState MeleeAttackState { get; private set; }
-        public EnemyRoninStunState StunState { get; private set; }
-        public EnemyRoninDeathState DeathState { get; private set; }
+        private EnemyRoninStunState StunState { get; set; }
+        private EnemyRoninDeathState DeathState { get; set; }
         #endregion
         
         #region Enemy Data
@@ -45,6 +46,7 @@ namespace Script.Enemy.EnemySpecific.Ronin
         protected override void Start()
         {
             base.Start();
+            Atsm = GetComponent<AnimationToStateMachine>();
             StateMachine.Initialize(IdleState);
         }
 
@@ -73,6 +75,14 @@ namespace Script.Enemy.EnemySpecific.Ronin
 
         public override void OnDrawGizmos()
         {
+            if (Core != null)
+            {
+                var playerCheckPosition = attackPosition.position;
+
+                Gizmos.DrawWireSphere(playerCheckPosition + (Vector3)(Vector2.right * enemyData.agroDistance * Movement.FacingDirection), 0.2f);
+                Gizmos.DrawWireSphere(playerCheckPosition + (Vector3)(Vector2.right * enemyData.closeRangeActionDistance * Movement.FacingDirection), 0.2f);
+            }
+            
             foreach (var item in enemyData.hitBox) 
                 Gizmos.DrawWireCube(attackPosition.transform.position + (Vector3)item.center, item.size);
         }

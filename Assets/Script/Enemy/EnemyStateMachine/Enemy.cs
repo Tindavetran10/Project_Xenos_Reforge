@@ -1,4 +1,5 @@
 using Script.Enemy.Data;
+using Script.Projectile;
 using UnityEngine;
 
 namespace Script.Enemy.EnemyStateMachine
@@ -10,10 +11,13 @@ namespace Script.Enemy.EnemyStateMachine
         protected EnemyStateMachine StateMachine;
         #endregion
         
+        #region Ranged Attack Properties
+        [SerializeField] private GameObject enemyProjectile;
+        [SerializeField] private float projectileSpeed;
+        #endregion
+        
         [HideInInspector] public bool canBeStunned;
         [SerializeField] public GameObject counterImage;
-
-        public string LastAnimBoolName { get; private set; }
         
         private Vector2 _velocityWorkspace;
         private static readonly int YVelocity = Animator.StringToHash("yVelocity");
@@ -30,15 +34,20 @@ namespace Script.Enemy.EnemyStateMachine
             
             Anim.SetFloat(YVelocity, Movement.Rb.velocity.y);
         }
-
-        public virtual void AssignLastAnimName(string animBoolName) => LastAnimBoolName = animBoolName;
-
+        
         protected override void FixedUpdate()
         {
             base.FixedUpdate();
             StateMachine.CurrentState.PhysicsUpdate();
         }
         
+        public void SpecialAttackTrigger()
+        {
+            GameObject newProjectile = Instantiate(enemyProjectile, attackPosition.position, Quaternion.identity);
+            newProjectile.GetComponent<ProjectileController>().SetUpProjectile(projectileSpeed, Stats);
+        }
+
+        #region CounterAttack Window
         public void OpenCounterAttackWindow()
         {
             canBeStunned = true;
@@ -60,6 +69,7 @@ namespace Script.Enemy.EnemyStateMachine
             }
             return false;
         }
+        #endregion
         
         #region Check Functions, Draw Gizmos
         public bool CheckPlayerInAgroRange() => 
@@ -70,16 +80,7 @@ namespace Script.Enemy.EnemyStateMachine
             Physics2D.Raycast(attackPosition.position, transform.right, 
                 enemyData.closeRangeActionDistance, enemyData.whatIsPlayer);
 
-        public virtual void OnDrawGizmos()
-        {
-            if (Core != null)
-            {
-                var playerCheckPosition = attackPosition.position;
-                
-                Gizmos.DrawWireSphere(playerCheckPosition + (Vector3)(Vector2.right * enemyData.closeRangeActionDistance), 0.2f);
-                Gizmos.DrawWireSphere(playerCheckPosition + (Vector3)(Vector2.right * enemyData.agroDistance), 0.2f);
-            }
-        }
+        public virtual void OnDrawGizmos() {}
         #endregion
     }
 }

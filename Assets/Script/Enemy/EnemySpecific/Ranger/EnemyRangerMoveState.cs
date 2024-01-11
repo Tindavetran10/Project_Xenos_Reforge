@@ -15,7 +15,10 @@ namespace Script.Enemy.EnemySpecific.Ranger
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-            if (!IsDetectingLedge || IsDetectingWall || IsMoveTimeOver)
+
+            if (IsPlayerInAgroRange)
+                StateMachine.ChangeState(_enemyRanger.PlayerDetectedState);
+            else if (!IsDetectingLedge || IsDetectingWall || IsMoveTimeOver)
             {
                 _enemyRanger.IdleState.SetFlipAfterIdle(true);
                 StateMachine.ChangeState(_enemyRanger.IdleState);

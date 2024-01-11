@@ -10,8 +10,10 @@ namespace Script.Enemy.EnemySpecific.Ranger
         public EnemyRangerMoveState MoveState { get; private set; }
         public EnemyRangerPlayerDetectedState PlayerDetectedState { get; private set; }
         public EnemyRangerLookForPlayerState LookForPlayerState { get; private set; }
-        public EnemyRangerStunState StunState { get; private set; }
-        public EnemyRangerDeathState DeathState { get; private set; }
+        private EnemyRangerStunState StunState { get; set; }
+        private EnemyRangerDeathState DeathState { get; set; }
+        public EnemyRangerRangedAttackState RangedAttackState { get; private set; }
+        public EnemyRangerDodgeState DodgeState { get; private set; }
         #endregion
         
         #region Enemy Data
@@ -20,7 +22,10 @@ namespace Script.Enemy.EnemySpecific.Ranger
         [SerializeField] protected D_PlayerDetectedState playerDetectedStateData;
         [SerializeField] protected D_LookForPlayerState lookForPlayerStateData;
         [SerializeField] protected D_StunState stunStateData;
+        [SerializeField] protected D_RangedAttackState rangedAttackStateData;
+        [SerializeField] public D_DodgeState dodgeStateData;
         #endregion
+        
         
         protected override void Awake()
         {
@@ -32,6 +37,8 @@ namespace Script.Enemy.EnemySpecific.Ranger
                 new EnemyRangerLookForPlayerState(this, StateMachine, "lookForPlayer", lookForPlayerStateData, this);
             StunState = new EnemyRangerStunState(this, StateMachine, "stun", stunStateData, this);
             DeathState = new EnemyRangerDeathState(this, StateMachine, "die", this);
+            RangedAttackState = new EnemyRangerRangedAttackState(this, StateMachine, "shoot", rangedAttackStateData, this);
+            DodgeState = new EnemyRangerDodgeState(this, StateMachine, "dodge", dodgeStateData, this);
         }
         
         protected override void Start()
@@ -54,12 +61,21 @@ namespace Script.Enemy.EnemySpecific.Ranger
             base.Die();
             StateMachine.ChangeState(DeathState);
         }
-
+        
+        
+        
         public override void OnDrawGizmos()
         {
+            if (Core != null)
+            {
+                var playerCheckPosition = attackPosition.position;
+
+                Gizmos.DrawWireSphere(playerCheckPosition + (Vector3)(Vector2.right * enemyData.agroDistance * Movement.FacingDirection), 0.2f);
+                Gizmos.DrawWireSphere(playerCheckPosition + (Vector3)(Vector2.right * enemyData.closeRangeActionDistance * Movement.FacingDirection), 0.2f);
+            }
+            
             foreach (var item in enemyData.hitBox) 
                 Gizmos.DrawWireCube(attackPosition.transform.position + (Vector3)item.center, item.size);
         }
-        
     }
 }

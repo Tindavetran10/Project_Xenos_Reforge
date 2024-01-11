@@ -1,4 +1,5 @@
-﻿using Script.Enemy.EnemyState.SuperState;
+﻿using Script.Enemy.EnemySpecific.Ranger;
+using Script.Enemy.EnemyState.SuperState;
 using UnityEngine;
 
 namespace Script.Enemy.Intermediaries
@@ -10,6 +11,7 @@ namespace Script.Enemy.Intermediaries
         
         private void FinishAttack() => BattleState.FinishAttack();
         private void AttackTrigger() => BattleState.AttackTrigger();
+        private void SpecialAttackTrigger() => enemy.SpecialAttackTrigger();
 
         private void OpenCounterWindow() => enemy.OpenCounterAttackWindow();
         private void CloseCounterWindow() => enemy.CloseCounterAttackWindow();

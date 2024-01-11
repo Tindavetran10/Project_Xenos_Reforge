@@ -1,5 +1,6 @@
 using Script.Enemy.EnemyState.StateData;
 using Script.Enemy.EnemyState.SubState;
+using UnityEngine;
 
 namespace Script.Enemy.EnemySpecific.Ranger
 {
@@ -15,13 +16,15 @@ namespace Script.Enemy.EnemySpecific.Ranger
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-            if (!IsPlayerInAgroRange)
-                StateMachine.ChangeState(_enemyRanger.LookForPlayerState);
-            else if (!IsDetectingLedge)
+            if(PerformCloseRangeAction)
             {
-                Movement?.Flip();
-                StateMachine.ChangeState(_enemyRanger.MoveState);
+                if(Time.time >= _enemyRanger.DodgeState.StartTime + _enemyRanger.dodgeStateData.dodgeCooldown)
+                    StateMachine.ChangeState(_enemyRanger.DodgeState);
+                else StateMachine.ChangeState(_enemyRanger.RangedAttackState);
             }
+            else if(PerformLongRangeAction)
+                StateMachine.ChangeState(_enemyRanger.RangedAttackState);
+            else if (!IsPlayerInAgroRange) StateMachine.ChangeState(_enemyRanger.LookForPlayerState);
         }
     }
 }
