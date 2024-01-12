@@ -9,23 +9,29 @@ namespace Script.Player.Skills.SkillController
 {
     public class CloneSkillController : MonoBehaviour
     {
+        #region Core Component
         private Core Core { get; set; }
 
         private Movement Movement => _movement ? _movement : Core.GetCoreComponent(ref _movement);
         private Movement _movement;
-        
+        #endregion
+
+        #region AttackTrigger and Detect Enemy
         private Vector2 _offset;
         private CharacterStats _stats;
         [SerializeField] private Transform attackPosition;
         [SerializeField] private PlayerData playerData;
 
         private Transform _closetEnemy;
+        #endregion
         
+        #region Animation and SpriteRenderer
         private Animator _anim;
         private SpriteRenderer _spriteRenderer;
 
         private int _comboCounter;
         private static readonly int AttackCounter = Animator.StringToHash("AttackCounter");
+        #endregion
         
         [SerializeField] private float colorTransparentSpeed;
         private float _cloneTimer;
@@ -66,6 +72,8 @@ namespace Script.Player.Skills.SkillController
 
         private void AnimationTrigger() => _cloneTimer = -.1f;
 
+        private void AnimationFinishTrigger() {}
+
         private void AttackTrigger()
         {
             var playerTransform = attackPosition.transform;
@@ -74,7 +82,7 @@ namespace Script.Player.Skills.SkillController
             _offset.Set(playerPosition.x + playerData.hitBox[_comboCounter].center.x * Movement.FacingDirection,
                 playerPosition.y + playerData.hitBox[_comboCounter].center.y);
             
-            Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(_offset, playerData.hitBox[_comboCounter].size, 0f, playerData.whatIsEnemy);
+            var collider2Ds = Physics2D.OverlapBoxAll(_offset, playerData.hitBox[_comboCounter].size, 0f, playerData.whatIsEnemy);
 
             foreach (var hit in collider2Ds)
             {
@@ -85,8 +93,6 @@ namespace Script.Player.Skills.SkillController
                 }
             }
         }
-
-        private void AnimationFinishTrigger() {}
 
         private void FaceClosetObject()
         {

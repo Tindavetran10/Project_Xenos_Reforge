@@ -20,7 +20,7 @@ namespace Script.StatSystem
         public Stat armor;
         public Stat evasion;
         
-        
+        public bool IsInvincible { get; private set; }
         
         [SerializeField] private int currentHealth;
         // Start is called before the first frame update
@@ -30,7 +30,7 @@ namespace Script.StatSystem
             currentHealth = maxHealth.GetValue();
         }
 
-        public virtual void DoDamage(CharacterStats targetStats)
+        public void DoDamage(CharacterStats targetStats)
         {
             if(TargetCanAvoidAttack(targetStats))
                 return;
@@ -48,6 +48,9 @@ namespace Script.StatSystem
 
         public virtual void TakeDamage(int damageAmount)
         {
+            if(IsInvincible) 
+                return;
+            
             currentHealth -= damageAmount;
             Debug.Log(damageAmount);
             
@@ -68,7 +71,7 @@ namespace Script.StatSystem
         }
         private bool CanCrit()
         {
-            int totalCriticalChance = critChance.GetValue() + agility.GetValue();
+            var totalCriticalChance = critChance.GetValue() + agility.GetValue();
             return Random.Range(0, 100) <= totalCriticalChance;
         }
         private int CalculateCriticalDamage(int damageAmount)
@@ -78,5 +81,7 @@ namespace Script.StatSystem
 
             return Mathf.RoundToInt(critDamage);
         }
+
+        public void MakeInvincible(bool invincible) => IsInvincible = invincible;
     }
 }

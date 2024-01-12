@@ -1,4 +1,3 @@
-using Script.Manager;
 using Script.Player.Data;
 using Script.Player.PlayerStates.SuperStates;
 using UnityEngine;
@@ -21,7 +20,7 @@ namespace Script.Player.PlayerStates.SubStates
         {
             base.Enter();
             
-            
+            Player.Stats.MakeInvincible(true);
             
             // Identify the dash Input
             Player.InputHandler.UseDashInput();
@@ -43,6 +42,8 @@ namespace Script.Player.PlayerStates.SubStates
         {
             base.Exit();
 
+            Player.Stats.MakeInvincible(false);
+            
             // Adjust the y velocity if the player exiting the dash state
             if (Movement?.CurrentVelocity.y > 0) 
                 Movement?.SetVelocityY(Movement.CurrentVelocity.y * PlayerData.dashEndYMultiplier);
@@ -86,6 +87,8 @@ namespace Script.Player.PlayerStates.SubStates
                         Movement?.SetVelocity(PlayerData.dashVelocity, _dashDirection);
                         Player.DashDirectionIndicator.gameObject.SetActive(false);
                         Player.Skill.Clone.CreateClone(Player.transform);
+                        
+                        Player.Stats.MakeInvincible(true);
                     }
                 }
                 else
@@ -97,6 +100,8 @@ namespace Script.Player.PlayerStates.SubStates
                     if (!(Time.time >= StartTime + PlayerData.dashTime)) return;
                     Player.Rb.drag = 0f;
                     IsAbilityDone = true;
+                    
+                    Player.Stats.MakeInvincible(true);
                 }
             }
         }

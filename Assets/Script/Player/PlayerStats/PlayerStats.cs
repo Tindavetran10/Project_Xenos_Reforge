@@ -15,6 +15,9 @@ namespace Script.Player.PlayerStats
         public override void TakeDamage(int damageAmount)
         {
             base.TakeDamage(damageAmount);
+            if(IsInvincible)
+                return;
+            
             _player.DamageEffect();
         }
 

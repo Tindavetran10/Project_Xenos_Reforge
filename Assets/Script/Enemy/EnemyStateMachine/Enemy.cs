@@ -52,7 +52,7 @@ namespace Script.Enemy.EnemyStateMachine
         public void FinishAttack()
         {
             isAnimationFinished = true;
-            CloseCounterAttackWindow();
+            counterImage.SetActive(false);
         }
 
         public void AttackTrigger()
