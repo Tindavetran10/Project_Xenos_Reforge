@@ -85,7 +85,7 @@ namespace Script.Player.PlayerStates.SubStates
                         Player.Rb.drag = PlayerData.drag;
                         Movement?.SetVelocity(PlayerData.dashVelocity, _dashDirection);
                         Player.DashDirectionIndicator.gameObject.SetActive(false);
-                        SkillManager.Instance.Clone.CreateClone(Player.transform);
+                        Player.Skill.Clone.CreateClone(Player.transform);
                     }
                 }
                 else

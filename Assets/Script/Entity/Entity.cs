@@ -21,10 +21,6 @@ namespace Script.Entity
 
         protected Movement Movement => _movement ? _movement : Core.GetCoreComponent(ref _movement);
         private Movement _movement;
-
-        protected CollisionSenses CollisionSenses => _collisionSenses ? _collisionSenses 
-            : Core.GetCoreComponent(ref _collisionSenses);
-        private CollisionSenses _collisionSenses;
         #endregion
 
         #region Knockback Components

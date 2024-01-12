@@ -194,8 +194,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cdf3369ee8942499882415162844ddb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coolDown: 0
+  coolDown: 1
   clonePrefab: {fileID: 261502437388042669, guid: 44ee630f0bb6d3f4d8e993dc6799f1ee, type: 3}
+  cloneDuration: 1.5
+  canAttack: 1
 --- !u!1 &181979506
 GameObject:
   m_ObjectHideFlags: 0
@@ -1689,13 +1691,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3262067625762065064, guid: d3c59ee5e474a7d41b505da6b5ae51bf, type: 3}
+      propertyPath: hitMat
+      value: 
+      objectReference: {fileID: 2100000, guid: 6ce42991d0ed2b346bef88913ab1434e, type: 2}
+    - target: {fileID: 3262067625762065064, guid: d3c59ee5e474a7d41b505da6b5ae51bf, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4545475452289149625, guid: d3c59ee5e474a7d41b505da6b5ae51bf, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 5633667458840895649, guid: d3c59ee5e474a7d41b505da6b5ae51bf, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5633667458840895649, guid: d3c59ee5e474a7d41b505da6b5ae51bf, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1737,13 +1743,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6147669848160230884, guid: d3c59ee5e474a7d41b505da6b5ae51bf, type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 519420031}
     - target: {fileID: 6276674830848355542, guid: d3c59ee5e474a7d41b505da6b5ae51bf, type: 3}
-      propertyPath: evasion.baseValue
-      value: 10
+      propertyPath: maxHealth.baseValue
+      value: 10000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2073,10 +2075,6 @@ PrefabInstance:
     - target: {fileID: 4278006547242274560, guid: 72d76bd6fe11d484989b5e0c7f67b212, type: 3}
       propertyPath: m_Name
       value: EnemyRonin
-      objectReference: {fileID: 0}
-    - target: {fileID: 6797114104800770406, guid: 72d76bd6fe11d484989b5e0c7f67b212, type: 3}
-      propertyPath: maxHealth.baseValue
-      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 8023768704517463784, guid: 72d76bd6fe11d484989b5e0c7f67b212, type: 3}
       propertyPath: m_LocalPosition.x

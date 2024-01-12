@@ -6,11 +6,8 @@ namespace Script.Player.Skills
     {
         [SerializeField] protected float coolDown;
         protected float CoolDownTimer;
-
-        protected void Update()
-        {
-            CoolDownTimer -= Time.deltaTime;
-        }
+        
+        protected void Update() => CoolDownTimer -= Time.deltaTime;
 
         public virtual bool CanUseSkill()
         {

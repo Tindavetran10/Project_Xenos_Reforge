@@ -66,7 +66,7 @@ MonoBehaviour:
     baseValue: 0
     modifiers: 
   maxHealth:
-    baseValue: 1
+    baseValue: 50
     modifiers: 
   armor:
     baseValue: 0
@@ -268,8 +268,11 @@ MonoBehaviour:
   knockBackDirection: {x: 1.5, y: 0.5}
   knockBackDuration: 0.07
   enemyData: {fileID: 11400000, guid: 87c16f2acc53e1f4883de0f1a2fa07af, type: 2}
+  enemyProjectile: {fileID: 0}
+  projectileSpeed: 0
   canBeStunned: 0
   counterImage: {fileID: 8501139046309401062}
+  isAnimationFinished: 0
   idleStateData: {fileID: 11400000, guid: 86814309784c77248bfaca19aa1c0336, type: 2}
   moveStateData: {fileID: 11400000, guid: 2d21c5f8f05484a4da30ec71099f6f43, type: 2}
   playerDetectedStateData: {fileID: 11400000, guid: 77ad649b8a387bd438de526c8ff3db9e, type: 2}

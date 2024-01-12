@@ -111,7 +111,6 @@ namespace Script.Player.PlayerStates.SubStates
                 {
                     EnemyStats target = hit.GetComponentInChildren<EnemyStats>();
                     Player.Stats.DoDamage(target);
-                    //hit.GetComponent<Enemy.EnemyStateMachine.Enemy>().Damage();
                 }
             }
         }

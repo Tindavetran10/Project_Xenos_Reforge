@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f540fbfb54724975a39fbc054410be54, type: 3}
-  m_Name: PlayerData
+  m_Name: CloneData
   m_EditorClassIdentifier: 
   movementVelocity: 2.5
   smoothInputSpeed: 0.05
@@ -50,17 +50,17 @@ MonoBehaviour:
   - {x: 1, y: 0}
   hitBox:
   - serializedVersion: 2
-    x: -0.14
+    x: -0.54
     y: -0.34
     width: 1.16
     height: 0.72
   - serializedVersion: 2
-    x: -0.14
+    x: -0.54
     y: -0.34
     width: 0.98
     height: 0.66
   - serializedVersion: 2
-    x: -0.14
+    x: -0.54
     y: -0.34
     width: 1.16
     height: 0.72

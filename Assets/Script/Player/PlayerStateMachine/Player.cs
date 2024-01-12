@@ -1,4 +1,5 @@
 using _Scripts.Player.Input;
+using Script.Manager;
 using Script.Player.Data;
 using Script.Player.PlayerStates.SubStates;
 using UnityEngine;
@@ -36,11 +37,11 @@ namespace Script.Player.PlayerStateMachine
         #region Components
         public PlayerInputHandler InputHandler { get; private set; }
         public Transform DashDirectionIndicator { get; private set; }
-        
         #endregion
         
         #region Other Variables
         private Vector2 _workspace;
+        public SkillManager Skill { get; private set; }
         #endregion
 
         #region Unity Callback Functions
@@ -74,6 +75,8 @@ namespace Script.Player.PlayerStateMachine
         protected override void Start()
         {
             base.Start();
+            Skill = SkillManager.Instance;
+            
             InputHandler = GetComponent<PlayerInputHandler>();
             DashDirectionIndicator = transform.Find("DashDirectionIndicator");
             MovementCollider2D = GetComponent<CapsuleCollider2D>();

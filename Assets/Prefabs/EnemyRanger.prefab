@@ -348,7 +348,7 @@ GameObject:
   - component: {fileID: 1633015842967844354}
   m_Layer: 6
   m_Name: CounterImage
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -439,6 +439,10 @@ PrefabInstance:
     - target: {fileID: 2824240721515698610, guid: e840fc1814d350a4a8e2f451e11ee5d3, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2824240721515698610, guid: e840fc1814d350a4a8e2f451e11ee5d3, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 3876653766446940541, guid: e840fc1814d350a4a8e2f451e11ee5d3, type: 3}
       propertyPath: m_Layer
