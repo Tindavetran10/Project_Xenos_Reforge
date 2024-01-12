@@ -10,7 +10,5 @@ namespace Script.Enemy.EnemyState.SubState
         protected RangedAttackState(EnemyStateMachine.Enemy enemyBase, EnemyStateMachine.EnemyStateMachine stateMachine, 
             string animBoolName, D_RangedAttackState stateData) : base(enemyBase, stateMachine, animBoolName) =>
             _stateData = stateData;
-        
-        
     }
 }

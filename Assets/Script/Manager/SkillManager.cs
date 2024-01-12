@@ -9,6 +9,7 @@ namespace Script.Manager
         public static SkillManager Instance;
 
         public DashSkill Dash { get; private set; }
+        public CloneSkill Clone { get; private set; }
 
         private void Awake()
         {
@@ -20,6 +21,7 @@ namespace Script.Manager
         private void Start()
         {
             Dash = GetComponent<DashSkill>();
+            Clone = GetComponent<CloneSkill>();
         }
     }
 }

@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 55957625}
   - component: {fileID: 55957626}
   - component: {fileID: 55957627}
+  - component: {fileID: 55957628}
   m_Layer: 0
   m_Name: SkillManager
   m_TagString: Untagged
@@ -150,7 +151,7 @@ Transform:
   m_GameObject: {fileID: 55957624}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.1192493, y: -0.35073495, z: -0.09022177}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -181,6 +182,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coolDown: 1
+--- !u!114 &55957628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 55957624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cdf3369ee8942499882415162844ddb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coolDown: 0
+  clonePrefab: {fileID: 261502437388042669, guid: 44ee630f0bb6d3f4d8e993dc6799f1ee, type: 3}
 --- !u!1 &181979506
 GameObject:
   m_ObjectHideFlags: 0
@@ -2118,11 +2133,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1953629075662701394, guid: d1cbc3c17c5ef0a4282b51ba830fce88, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.08
+      value: 2.82
       objectReference: {fileID: 0}
     - target: {fileID: 1953629075662701394, guid: d1cbc3c17c5ef0a4282b51ba830fce88, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.8
+      value: -0.811
       objectReference: {fileID: 0}
     - target: {fileID: 1953629075662701394, guid: d1cbc3c17c5ef0a4282b51ba830fce88, type: 3}
       propertyPath: m_LocalPosition.z

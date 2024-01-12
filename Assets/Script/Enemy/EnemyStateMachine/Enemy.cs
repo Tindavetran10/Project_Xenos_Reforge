@@ -71,8 +71,9 @@ namespace Script.Enemy.EnemyStateMachine
         
         public void SpecialAttackTrigger()
         {
-            GameObject newProjectile = Instantiate(enemyProjectile, attackPosition.position, Quaternion.identity);
-            newProjectile.GetComponent<ProjectileController>().SetUpProjectile(projectileSpeed, Stats);
+            GameObject newProjectile = Instantiate(enemyProjectile, 
+                attackPosition.position, Quaternion.identity);
+            newProjectile.GetComponent<ProjectileController>().SetUpProjectile(projectileSpeed * Movement.FacingDirection, Stats);
         }
 
         #region CounterAttack Window

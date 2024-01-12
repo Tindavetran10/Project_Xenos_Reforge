@@ -1,3 +1,4 @@
+using Script.Manager;
 using Script.Player.Data;
 using Script.Player.PlayerStates.SuperStates;
 using UnityEngine;
@@ -19,6 +20,8 @@ namespace Script.Player.PlayerStates.SubStates
         public override void Enter()
         {
             base.Enter();
+            
+            
             
             // Identify the dash Input
             Player.InputHandler.UseDashInput();
@@ -82,6 +85,7 @@ namespace Script.Player.PlayerStates.SubStates
                         Player.Rb.drag = PlayerData.drag;
                         Movement?.SetVelocity(PlayerData.dashVelocity, _dashDirection);
                         Player.DashDirectionIndicator.gameObject.SetActive(false);
+                        SkillManager.Instance.Clone.CreateClone(Player.transform);
                     }
                 }
                 else
