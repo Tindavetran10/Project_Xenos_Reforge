@@ -6,15 +6,10 @@ namespace Script.Player.PlayerStates.SubStates
 {
     public class PlayerDashState : PlayerAbilityState
     {
-        private bool CanDash { get; set; }
         private bool _dashInputStop;
-
-        private float _lastDashTime;
-        
         private Vector2 _dashDirection;
         private Vector2 _dashDirectionInput;
-        //private Vector2 _lastAIPos;
-        
+
         private static readonly int XVelocity = Animator.StringToHash("xVelocity");
         private static readonly int YVelocity = Animator.StringToHash("yVelocity");
         
@@ -25,7 +20,6 @@ namespace Script.Player.PlayerStates.SubStates
         {
             base.Enter();
             
-            CanDash = false;
             // Identify the dash Input
             Player.InputHandler.UseDashInput();
 
@@ -99,15 +93,8 @@ namespace Script.Player.PlayerStates.SubStates
                     if (!(Time.time >= StartTime + PlayerData.dashTime)) return;
                     Player.Rb.drag = 0f;
                     IsAbilityDone = true;
-                    _lastDashTime = Time.time;
                 }
             }
         }
-
-        // Check if the Dash has cooled down or not
-        public bool CheckIfCanDash() => 
-            CanDash && Time.time >= _lastDashTime + PlayerData.dashCooldown;
-
-        public void ResetCanDash() => CanDash = true;
     }
 }

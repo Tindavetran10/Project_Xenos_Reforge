@@ -1,4 +1,5 @@
-﻿using Script.Player.Data;
+﻿using Script.Manager;
+using Script.Player.Data;
 using Script.Player.PlayerStateMachine;
 using UnityEngine;
 
@@ -55,12 +56,6 @@ namespace Script.Player.PlayerStates.SubStates
                 (_oldIsTouchingWall || _oldIsTouchingWallBack)) 
                 StartWallJumpCoyoteTimer();
             
-        }
-
-        public override void Enter()
-        {
-            base.Enter();
-            Player.DashState.ResetCanDash();
         }
 
         public override void Exit()
@@ -124,7 +119,7 @@ namespace Script.Player.PlayerStates.SubStates
                 StateMachine.ChangeState(Player.WallSlideState);
             
             // Change to Dash State if the dash has been cooled down
-            else if (_dashInput && Player.DashState.CheckIfCanDash())
+            else if (_dashInput && /*Player.DashState.CheckIfCanDash()*/ SkillManager.Instance.Dash.CanUseSkill() )
                 StateMachine.ChangeState(Player.DashState);
             else
             {

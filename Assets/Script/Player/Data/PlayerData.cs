@@ -33,7 +33,6 @@ namespace Script.Player.Data
         public Vector2 stopOffset;
 
         [Header("Dash State")]
-        public float dashCooldown;
         public float maxHoldTime;
         public float holdTimeScale;
         public float dashTime;

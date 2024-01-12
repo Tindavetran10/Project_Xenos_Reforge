@@ -27,10 +27,9 @@ namespace Script.Player.PlayerStateMachine
         public PlayerCrouchMoveState CrouchMoveState { get; private set; }
         public PlayerPrimaryAttackState PrimaryAttackState { get; private set; }
         public PlayerCounterAttackState CounterAttackState { get; private set; }
-        
         public PlayerDeathState DeathState { get; private set; }
         
-        
+        [Header("Player Data")]
         [SerializeField] private PlayerData playerData;
         #endregion
 

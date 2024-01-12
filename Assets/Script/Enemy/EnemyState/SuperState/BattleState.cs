@@ -1,11 +1,10 @@
-using Script.Player.PlayerStats;
 using UnityEngine;
 
 namespace Script.Enemy.EnemyState.SuperState
 {
     public class BattleState : EnemyStateMachine.EnemyState
     {
-        protected bool IsAnimationFinished;
+        //protected bool IsAnimationFinished;
         protected bool IsPlayerInAgroRange;
         protected bool IsDetectingLedge;
         protected bool IsDetectingWall;
@@ -45,7 +44,7 @@ namespace Script.Enemy.EnemyState.SuperState
 
             EnemyBase.Anim.SetInteger(ComboCounter, _comboCounter);
             EnemyBase.Atsm.BattleState = this;
-            IsAnimationFinished = false;
+            EnemyBase.isAnimationFinished = false;
             
             Movement?.SetVelocityX(0f);
         }
@@ -54,26 +53,6 @@ namespace Script.Enemy.EnemyState.SuperState
         {
             base.Exit();
             _comboCounter++;
-        }
-
-        public void FinishAttack()
-        {
-            IsAnimationFinished = true;
-            EnemyBase.CloseCounterAttackWindow();
-        }
-
-        public void AttackTrigger()
-        {
-            Collider2D[] collider2Ds = Physics2D.OverlapCircleAll(EnemyBase.attackPosition.position, EnemyBase.enemyData.hitBox.Length);
-
-            foreach (var hit in collider2Ds)
-            {
-                if(hit.GetComponent<Player.PlayerStateMachine.Player>() != null)
-                {
-                    PlayerStats target = hit.GetComponentInChildren<PlayerStats>();
-                    EnemyBase.Stats.DoDamage(target);
-                }
-            }
         }
     }
 }

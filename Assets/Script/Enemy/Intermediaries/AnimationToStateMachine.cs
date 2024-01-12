@@ -9,8 +9,8 @@ namespace Script.Enemy.Intermediaries
         public BattleState BattleState;
         public EnemyStateMachine.Enemy enemy;
         
-        private void FinishAttack() => BattleState.FinishAttack();
-        private void AttackTrigger() => BattleState.AttackTrigger();
+        private void FinishAttack() => enemy.FinishAttack();
+        private void AttackTrigger() => enemy.AttackTrigger();
         private void SpecialAttackTrigger() => enemy.SpecialAttackTrigger();
 
         private void OpenCounterWindow() => enemy.OpenCounterAttackWindow();

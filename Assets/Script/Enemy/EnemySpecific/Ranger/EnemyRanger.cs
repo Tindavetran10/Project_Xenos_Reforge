@@ -17,6 +17,7 @@ namespace Script.Enemy.EnemySpecific.Ranger
         #endregion
         
         #region Enemy Data
+        [Header("State Data")]
         [SerializeField] protected D_IdleState idleStateData;
         [SerializeField] protected D_MoveState moveStateData;
         [SerializeField] protected D_PlayerDetectedState playerDetectedStateData;
@@ -62,8 +63,6 @@ namespace Script.Enemy.EnemySpecific.Ranger
             StateMachine.ChangeState(DeathState);
         }
         
-        
-        
         public override void OnDrawGizmos()
         {
             if (Core != null)
@@ -73,9 +72,6 @@ namespace Script.Enemy.EnemySpecific.Ranger
                 Gizmos.DrawWireSphere(playerCheckPosition + (Vector3)(Vector2.right * enemyData.agroDistance * Movement.FacingDirection), 0.2f);
                 Gizmos.DrawWireSphere(playerCheckPosition + (Vector3)(Vector2.right * enemyData.closeRangeActionDistance * Movement.FacingDirection), 0.2f);
             }
-            
-            foreach (var item in enemyData.hitBox) 
-                Gizmos.DrawWireCube(attackPosition.transform.position + (Vector3)item.center, item.size);
         }
     }
 }

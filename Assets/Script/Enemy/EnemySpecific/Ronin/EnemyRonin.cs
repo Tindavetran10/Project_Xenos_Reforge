@@ -18,6 +18,7 @@ namespace Script.Enemy.EnemySpecific.Ronin
         #endregion
         
         #region Enemy Data
+        [Header("State Data")]
         [SerializeField] protected D_IdleState idleStateData;
         [SerializeField] protected D_MoveState moveStateData;
         [SerializeField] protected D_PlayerDetectedState playerDetectedStateData;

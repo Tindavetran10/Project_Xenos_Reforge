@@ -16,7 +16,7 @@ namespace Script.Enemy.EnemySpecific.Ronin
         {
             base.LogicUpdate();
 
-            if (IsAnimationFinished)
+            if (_enemyRonin.isAnimationFinished)
             {
                 if(IsPlayerInAgroRange)
                     StateMachine.ChangeState(_enemyRonin.PlayerDetectedState);

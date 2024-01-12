@@ -15,7 +15,7 @@ namespace Script.Enemy.EnemySpecific.Ranger
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-            if (IsAnimationFinished)
+            if (_enemyRanger.isAnimationFinished)
             {
                 if(IsPlayerInAgroRange)
                     StateMachine.ChangeState(_enemyRanger.PlayerDetectedState);

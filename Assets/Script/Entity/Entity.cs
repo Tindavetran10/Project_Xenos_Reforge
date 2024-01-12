@@ -28,6 +28,7 @@ namespace Script.Entity
         #endregion
 
         #region Knockback Components
+        [Header("KnockBack Mechanics")]
         [SerializeField] protected Vector2 knockBackDirection;
         [SerializeField] protected float knockBackDuration;
         #endregion

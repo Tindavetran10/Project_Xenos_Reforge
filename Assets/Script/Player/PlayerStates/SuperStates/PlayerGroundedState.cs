@@ -1,4 +1,5 @@
-﻿using Script.Player.Data;
+﻿using Script.Manager;
+using Script.Player.Data;
 using Script.Player.PlayerStateMachine;
 
 namespace Script.Player.PlayerStates.SuperStates
@@ -46,7 +47,6 @@ namespace Script.Player.PlayerStates.SuperStates
             // When the player standing on the ground,
             // reset the number of jumps and dashes that he can make
             Player.JumpState.ResetAmountOfJumpsLeft();
-            Player.DashState.ResetCanDash();
         }
 
         public override void LogicUpdate()
@@ -84,7 +84,7 @@ namespace Script.Player.PlayerStates.SuperStates
             else if (_isTouchingWall && _grabInput && _isTouchingLedge)
                 StateMachine.ChangeState(Player.WallGrabState);
             // Change to Dash State if there is dashInput and the dash has been cooled down
-            else if (_dashInput && Player.DashState.CheckIfCanDash() && !IsTouchingCeiling)
+            else if (_dashInput && SkillManager.Instance.Dash.CanUseSkill() && !IsTouchingCeiling)
                 StateMachine.ChangeState(Player.DashState);
         }
     }
