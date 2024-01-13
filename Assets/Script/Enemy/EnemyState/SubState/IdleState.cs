@@ -35,7 +35,12 @@ namespace Script.Enemy.EnemyState.SubState
         public override void Exit()
         {
             base.Exit();
-            if(_flipAfterIdle) Movement?.Flip();
+            if(_flipAfterIdle)
+            {
+                if (EnemyBase.OnFlipped != null)
+                    EnemyBase.OnFlipped();
+                Movement?.Flip();
+            }
         }
 
         public void SetFlipAfterIdle(bool flip) => 

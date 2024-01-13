@@ -11,7 +11,7 @@ namespace Script.Player.PlayerStates.SubStates
     
         public override void LogicUpdate() {
             base.LogicUpdate();
-
+            
             // Check if we should flip the player or not, base on the xInput
             Movement?.CheckIfShouldFlip(XInput);
             // Apply a new velocity to player 

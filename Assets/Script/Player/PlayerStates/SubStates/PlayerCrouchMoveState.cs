@@ -26,6 +26,9 @@ namespace Script.Player.PlayerStates.SubStates
             if (!IsExitingState)
             {
                 Movement?.SetVelocityX(PlayerData.crouchMovementVelocity * Movement.FacingDirection);
+                
+                
+                
                 Movement?.CheckIfShouldFlip(XInput);
                 if (XInput == 0)
                     StateMachine.ChangeState(Player.CrouchIdleState);

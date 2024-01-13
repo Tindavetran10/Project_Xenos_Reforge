@@ -124,7 +124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackPosition: {fileID: 7593786210277708843}
   playerData: {fileID: 11400000, guid: 8f56df016842269478363ab5e6f968d3, type: 2}
-  colorTransparentSpeed: 1.5
+  colorTransparentSpeed: 5
 --- !u!1 &5184817883939212725
 GameObject:
   m_ObjectHideFlags: 0

@@ -54,7 +54,7 @@ MonoBehaviour:
     baseValue: 0
     modifiers: 
   vitality:
-    baseValue: 0
+    baseValue: 10
     modifiers: 
   damage:
     baseValue: 10

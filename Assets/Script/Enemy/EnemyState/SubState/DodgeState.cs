@@ -7,24 +7,24 @@ namespace Script.Enemy.EnemyState.SubState
     public class DodgeState : BattleState
     {
         protected bool IsDodgeOver;
-        
-        protected readonly D_DodgeState _stateData;
+
+        private readonly D_DodgeState StateData;
         
         protected DodgeState(EnemyStateMachine.Enemy enemyBase, EnemyStateMachine.EnemyStateMachine stateMachine, 
             string animBoolName, D_DodgeState stateData) : base(enemyBase, stateMachine, animBoolName) =>
-            _stateData = stateData;
+            StateData = stateData;
 
         public override void Enter()
         {
             base.Enter();
             IsDodgeOver = false;
-            Movement?.SetVelocity(_stateData.dodgeSpeed, _stateData.dodgeAngle, -Movement.FacingDirection);
+            Movement?.SetVelocity(StateData.dodgeSpeed, StateData.dodgeAngle, -Movement.FacingDirection);
         }
 
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-            if (Time.time >= StartTime + _stateData.dodgeTime && IsGrounded)
+            if (Time.time >= StartTime + StateData.dodgeTime && IsGrounded)
                 IsDodgeOver = true;
         }
     }

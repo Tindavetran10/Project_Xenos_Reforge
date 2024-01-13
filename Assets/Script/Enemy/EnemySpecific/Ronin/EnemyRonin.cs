@@ -58,13 +58,11 @@ namespace Script.Enemy.EnemySpecific.Ronin
                 StateMachine.ChangeState(StunState);
         }
 
-        public override void FreezeTime(bool timeFrozen)
+        protected override void FreezeTime(bool timeFrozen)
         {
             base.FreezeTime(timeFrozen);
             if (timeFrozen)
-            {
                 Movement.SetVelocityZero();
-            }
             else Movement.SetVelocityX(moveStateData.movementSpeed);
         }
 

@@ -58,7 +58,7 @@ namespace Script.Enemy.EnemyStateMachine
 
         public void AttackTrigger()
         {
-            Collider2D[] collider2Ds = Physics2D.OverlapCircleAll(attackPosition.position, enemyData.hitBox.Length);
+            var collider2Ds = Physics2D.OverlapCircleAll(attackPosition.position, enemyData.hitBox.Length);
 
             foreach (var hit in collider2Ds)
             {
@@ -102,7 +102,7 @@ namespace Script.Enemy.EnemyStateMachine
 
         #endregion
 
-        public virtual void FreezeTime(bool timeFrozen){}
+        protected virtual void FreezeTime(bool timeFrozen){}
 
         protected virtual IEnumerator FreezeTimerFor(float seconds)
         {

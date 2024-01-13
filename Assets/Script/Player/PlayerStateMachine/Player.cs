@@ -11,7 +11,7 @@ namespace Script.Player.PlayerStateMachine
         #region State Variables
         // By declaring the state machine, we can access all the function
         // including changing or initializing different states
-        public PlayerStateMachine StateMachine { get; private set; }
+        private PlayerStateMachine StateMachine { get; set; }
         
         public PlayerIdleState IdleState { get; private set; }
         public PlayerMoveState MoveState { get; private set; }
@@ -28,7 +28,7 @@ namespace Script.Player.PlayerStateMachine
         public PlayerCrouchMoveState CrouchMoveState { get; private set; }
         public PlayerPrimaryAttackState PrimaryAttackState { get; private set; }
         public PlayerCounterAttackState CounterAttackState { get; private set; }
-        public PlayerDeathState DeathState { get; private set; }
+        private PlayerDeathState DeathState { get; set; }
         
         public PlayerAimSwordState AimSwordState { get; private set; }
         

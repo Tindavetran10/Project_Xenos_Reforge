@@ -47,8 +47,8 @@ namespace Script.Enemy.EnemySpecific.Ranger
             base.Start();
             StateMachine.Initialize(IdleState);
         }
-        
-        public override void FreezeTime(bool timeFrozen)
+
+        protected override void FreezeTime(bool timeFrozen)
         {
             base.FreezeTime(timeFrozen);
             if (timeFrozen)

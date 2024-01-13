@@ -20,14 +20,17 @@ namespace Script.StatSystem
         public Stat armor;
         public Stat evasion;
         
-        public bool IsInvincible { get; private set; }
+        public System.Action OnHealthChanged;
+        private bool IsDead { get; set; }
+
+        protected bool IsInvincible { get; private set; }
         
-        [SerializeField] private int currentHealth;
+        [SerializeField] public int currentHealth;
         // Start is called before the first frame update
         protected virtual void Start()
         {
             critPower.SetDefaultValue(150);
-            currentHealth = maxHealth.GetValue();
+            currentHealth = GetMaxHealthValue();
         }
 
         public void DoDamage(CharacterStats targetStats)
@@ -46,18 +49,30 @@ namespace Script.StatSystem
 
         // Update is called once per frame
 
-        public virtual void TakeDamage(int damageAmount)
+        protected virtual void TakeDamage(int damageAmount)
         {
-            if(IsInvincible) 
-                return;
+            DecreaseHealthBy(damageAmount);
             
-            currentHealth -= damageAmount;
-            Debug.Log(damageAmount);
-            
-            if (currentHealth <= 0) Die();
+            if (currentHealth <= 0 && !IsDead) 
+                Die();
         }
 
-        protected virtual void Die() {}
+        private void DecreaseHealthBy(int damageAmount)
+        {
+
+            if (IsInvincible)
+                damageAmount = Mathf.RoundToInt( damageAmount * 1.1f);
+
+            currentHealth -= damageAmount;
+
+            if (OnHealthChanged != null)
+                OnHealthChanged();
+        }
+
+        protected virtual void Die() => IsDead = true;
+
+
+        #region Stat Calculations
         private static int CheckTargetArmor(CharacterStats targetStats, int totalDamage)
         {
             totalDamage -= targetStats.armor.GetValue();
@@ -81,7 +96,11 @@ namespace Script.StatSystem
 
             return Mathf.RoundToInt(critDamage);
         }
+        
+        public int GetMaxHealthValue() => 
+            maxHealth.GetValue() + vitality.GetValue() * 5;
 
         public void MakeInvincible(bool invincible) => IsInvincible = invincible;
+        #endregion
     }
 }

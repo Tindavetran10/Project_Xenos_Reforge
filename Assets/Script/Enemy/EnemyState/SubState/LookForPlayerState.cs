@@ -40,6 +40,8 @@ namespace Script.Enemy.EnemyState.SubState
 
             if (_turnImmediately)
             {
+                if (EnemyBase.OnFlipped != null)
+                    EnemyBase.OnFlipped();
                 Movement?.Flip();
                 _lastTurnTime = Time.time;
                 _amountOfTurnsDone++;
@@ -47,6 +49,8 @@ namespace Script.Enemy.EnemyState.SubState
             } 
             else if (Time.time >= _lastTurnTime + _stateData.timeBetweenTurns && !_isAllTurnsDone)
             {
+                if (EnemyBase.OnFlipped != null)
+                    EnemyBase.OnFlipped();
                 Movement?.Flip();
                 _lastTurnTime = Time.time;
                 _amountOfTurnsDone++;

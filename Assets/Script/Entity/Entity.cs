@@ -28,6 +28,8 @@ namespace Script.Entity
         [SerializeField] protected Vector2 knockBackDirection;
         [SerializeField] protected float knockBackDuration;
         #endregion
+
+        public System.Action OnFlipped;
         
         public AnimationToStateMachine Atsm { get; protected set; }
 
@@ -51,7 +53,7 @@ namespace Script.Entity
         {
             FX.StartCoroutine("FlashFX");
             StartCoroutine(nameof(HitKnockBack));
-            Debug.Log(gameObject.name + " was damaged");
+            //Debug.Log(gameObject.name + " was damaged");
         }
 
         protected IEnumerator HitKnockBack()

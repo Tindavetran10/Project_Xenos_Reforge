@@ -12,7 +12,7 @@ namespace Script.Player.PlayerStats
             _player = GetComponentInParent<PlayerStateMachine.Player>();
         }
 
-        public override void TakeDamage(int damageAmount)
+        protected override void TakeDamage(int damageAmount)
         {
             base.TakeDamage(damageAmount);
             if(IsInvincible)
