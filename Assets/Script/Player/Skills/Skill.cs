@@ -22,8 +22,6 @@ namespace Script.Player.Skills
                 _coolDownTimer = coolDown;
                 return true;
             }
-
-            Debug.Log("Skill is on cool down");
             return false;
         }
 

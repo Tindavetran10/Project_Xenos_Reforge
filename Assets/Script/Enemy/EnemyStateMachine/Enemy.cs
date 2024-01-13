@@ -1,3 +1,4 @@
+using System.Collections;
 using Script.Enemy.Data;
 using Script.Player.PlayerStats;
 using Script.Projectile;
@@ -23,13 +24,13 @@ namespace Script.Enemy.EnemyStateMachine
         [HideInInspector] public bool canBeStunned;
         [SerializeField] public GameObject counterImage;
         #endregion
-
+        
         #region Animation
         [HideInInspector] public bool isAnimationFinished;
         private Vector2 _velocityWorkspace;
         private static readonly int YVelocity = Animator.StringToHash("yVelocity");
         #endregion
-
+        
         protected override void Awake() {
             base.Awake();
             StateMachine = new EnemyStateMachine();
@@ -98,8 +99,18 @@ namespace Script.Enemy.EnemyStateMachine
             }
             return false;
         }
+
         #endregion
-        
+
+        public virtual void FreezeTime(bool timeFrozen){}
+
+        protected virtual IEnumerator FreezeTimerFor(float seconds)
+        {
+            FreezeTime(true);
+            yield return new WaitForSeconds(seconds);
+            FreezeTime(false);
+        }
+
         #region Check Functions, Draw Gizmos
         public bool CheckPlayerInAgroRange() => 
             Physics2D.Raycast(attackPosition.position, transform.right, enemyData.agroDistance, 

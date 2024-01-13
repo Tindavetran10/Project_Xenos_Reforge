@@ -584,6 +584,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5278562400695383614, guid: e840fc1814d350a4a8e2f451e11ee5d3, type: 3}
+      propertyPath: groundCheckRadius
+      value: 0.015
+      objectReference: {fileID: 0}
     - target: {fileID: 5336364256778686402, guid: e840fc1814d350a4a8e2f451e11ee5d3, type: 3}
       propertyPath: m_Layer
       value: 7

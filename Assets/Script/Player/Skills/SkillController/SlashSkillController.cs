@@ -10,7 +10,8 @@ namespace Script.Player.Skills.SkillController
         private CharacterStats _stats;
         private PlayerStateMachine.Player _player;
         [SerializeField] private float radius = 10f;
-
+        
+        
         private void Awake()
         {
             GetComponent<Animator>();
@@ -33,8 +34,10 @@ namespace Script.Player.Skills.SkillController
             {
                 if (hit.GetComponent<Enemy.EnemyStateMachine.Enemy>() != null)
                 {
-                    EnemyStats target = hit.GetComponentInChildren<EnemyStats>();
+                    var enemy = collision.GetComponent<Enemy.EnemyStateMachine.Enemy>();
+                    var target = hit.GetComponentInChildren<EnemyStats>();
                     _stats.DoDamage(target);
+                    enemy.StartCoroutine("FreezeTimerFor", 10f);
                 }
             }
         }

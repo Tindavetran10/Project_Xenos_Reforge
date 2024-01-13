@@ -38,7 +38,7 @@ namespace Script.Player.PlayerStates.SubStates
                 Offset.Set(playerPosition.x + PlayerData.hitBox[ComboCounter].center.x * Movement.FacingDirection,
                     playerPosition.y + PlayerData.hitBox[ComboCounter].center.y);
             
-                Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(Offset, PlayerData.hitBox[ComboCounter].size, 0f);
+                var collider2Ds = Physics2D.OverlapBoxAll(Offset, PlayerData.hitBox[ComboCounter].size, 0f);
 
                 foreach (var hit in collider2Ds)
                 {

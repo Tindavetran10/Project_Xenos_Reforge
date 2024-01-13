@@ -48,6 +48,21 @@ namespace Script.Enemy.EnemySpecific.Ranger
             StateMachine.Initialize(IdleState);
         }
         
+        public override void FreezeTime(bool timeFrozen)
+        {
+            base.FreezeTime(timeFrozen);
+            if (timeFrozen)
+            {
+                Movement.SetVelocityZero();
+                StateMachine.ChangeState(IdleState);
+            }
+            else
+            {
+                Movement.SetVelocityX(moveStateData.movementSpeed);
+                StateMachine.ChangeState(MoveState);
+            }
+        }
+        
         public override bool CanBeStunned()
         {
             if (base.CanBeStunned())

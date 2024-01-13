@@ -62,8 +62,7 @@ namespace Script.Player.Skills.SkillController
         public void SetupClone(Transform newTransform, float cloneDuration, bool canAttack)
         {
             if(canAttack) _anim.SetInteger(AttackCounter, _comboCounter + 1);
-
-            Debug.Log(AttackCounter);
+            
             transform.position = newTransform.position;
             _cloneTimer = cloneDuration;
             

@@ -17,8 +17,11 @@ namespace Script.Player.PlayerStates.SubStates
             base.Enter();
             IsHolding = false;
             StartTime = Time.time;
+
             Player.InputHandler.UseAimSwordInput();
-            Movement.SetVelocityZero();
+            _aimSwordInputStop = Player.InputHandler.AimSwordInputStop;
+            
+            Movement?.SetVelocityZero();
         }
 
         public override void LogicUpdate()
