@@ -107,6 +107,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AimSword"",
+                    ""type"": ""Button"",
+                    ""id"": ""c5f9e136-0c10-4ed9-8983-2837bd32d328"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -307,6 +316,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""CounterAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a028b6d7-ee0e-4864-98bd-60de0d209c3e"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AimSword"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -352,6 +372,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Gameplay_NormalAttack = m_Gameplay.FindAction("NormalAttack", throwIfNotFound: true);
         m_Gameplay_HeavyAttack = m_Gameplay.FindAction("HeavyAttack", throwIfNotFound: true);
         m_Gameplay_CounterAttack = m_Gameplay.FindAction("CounterAttack", throwIfNotFound: true);
+        m_Gameplay_AimSword = m_Gameplay.FindAction("AimSword", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Resume = m_UI.FindAction("Resume", throwIfNotFound: true);
@@ -425,6 +446,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_NormalAttack;
     private readonly InputAction m_Gameplay_HeavyAttack;
     private readonly InputAction m_Gameplay_CounterAttack;
+    private readonly InputAction m_Gameplay_AimSword;
     public struct GameplayActions
     {
         private @PlayerInput m_Wrapper;
@@ -438,6 +460,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @NormalAttack => m_Wrapper.m_Gameplay_NormalAttack;
         public InputAction @HeavyAttack => m_Wrapper.m_Gameplay_HeavyAttack;
         public InputAction @CounterAttack => m_Wrapper.m_Gameplay_CounterAttack;
+        public InputAction @AimSword => m_Wrapper.m_Gameplay_AimSword;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -474,6 +497,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @CounterAttack.started += instance.OnCounterAttack;
             @CounterAttack.performed += instance.OnCounterAttack;
             @CounterAttack.canceled += instance.OnCounterAttack;
+            @AimSword.started += instance.OnAimSword;
+            @AimSword.performed += instance.OnAimSword;
+            @AimSword.canceled += instance.OnAimSword;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -505,6 +531,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @CounterAttack.started -= instance.OnCounterAttack;
             @CounterAttack.performed -= instance.OnCounterAttack;
             @CounterAttack.canceled -= instance.OnCounterAttack;
+            @AimSword.started -= instance.OnAimSword;
+            @AimSword.performed -= instance.OnAimSword;
+            @AimSword.canceled -= instance.OnAimSword;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -579,6 +608,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnNormalAttack(InputAction.CallbackContext context);
         void OnHeavyAttack(InputAction.CallbackContext context);
         void OnCounterAttack(InputAction.CallbackContext context);
+        void OnAimSword(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

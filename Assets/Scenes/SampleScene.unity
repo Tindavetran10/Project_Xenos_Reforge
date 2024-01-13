@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 55957626}
   - component: {fileID: 55957627}
   - component: {fileID: 55957628}
+  - component: {fileID: 55957629}
   m_Layer: 0
   m_Name: SkillManager
   m_TagString: Untagged
@@ -194,10 +195,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cdf3369ee8942499882415162844ddb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coolDown: 1
+  coolDown: 1.5
   clonePrefab: {fileID: 261502437388042669, guid: 44ee630f0bb6d3f4d8e993dc6799f1ee, type: 3}
   cloneDuration: 1.5
   canAttack: 1
+--- !u!114 &55957629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 55957624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4536121dbc8a4d4eb5a5559920aaa2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coolDown: 2
+  slashPrefab: {fileID: 491958086211432660, guid: 279542ba3e610004987b5f7fb4b97566, type: 3}
+  launchDir: {x: 15, y: 0}
+  slashGravity: 0
+  destroyDelay: 1
 --- !u!1 &181979506
 GameObject:
   m_ObjectHideFlags: 0
@@ -1734,10 +1752,6 @@ PrefabInstance:
     - target: {fileID: 5633667458840895649, guid: d3c59ee5e474a7d41b505da6b5ae51bf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6276674830848355542, guid: d3c59ee5e474a7d41b505da6b5ae51bf, type: 3}
-      propertyPath: maxHealth.baseValue
-      value: 10000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

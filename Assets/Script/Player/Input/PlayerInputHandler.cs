@@ -31,6 +31,9 @@ namespace _Scripts.Player.Input
         public bool[] AttackInputs { get; private set; }
         public bool[] AttackInputsStop { get; private set; }
         
+        public bool AimSwordInput { get; private set; }
+        public bool AimSwordInputStop { get; private set; }
+        
         public bool CounterInput { get; private set; }
         public bool CounterInputStop { get; private set; }
         
@@ -40,6 +43,7 @@ namespace _Scripts.Player.Input
         private float _dashInputStartTime;
         private float _counterInputStartTime;
         private float _attackInputsStartTime;
+        private float _aimSwordInputStartTime;
         
         private void Start()
         {
@@ -56,6 +60,7 @@ namespace _Scripts.Player.Input
             CheckJumpInputHoldTime();
             CheckDashInputHoldTime();
             CheckAttackInputsHoldTime();
+            CheckAimSwordInputHoldTime();
             CheckCounterInputHoldTime();
         }
 
@@ -77,6 +82,12 @@ namespace _Scripts.Player.Input
         {
             if (Time.time >= _attackInputsStartTime + inputHoldTime)
                 AttackInputs[(int)CombatInputs.Normal] = false;
+        }
+
+        private void CheckAimSwordInputHoldTime()
+        {
+            if (Time.time >= _aimSwordInputStartTime + inputHoldTime)
+                AimSwordInput = false;
         }
         
         private void CheckCounterInputHoldTime()
@@ -186,6 +197,18 @@ namespace _Scripts.Player.Input
             else if (context.canceled) CounterInputStop = true;
         }
 
+        public void OnAimSword(InputAction.CallbackContext context)
+        {
+            if (context.started)
+            {
+                AimSwordInput = true;
+                AimSwordInputStop = false;
+                _aimSwordInputStartTime = Time.time;
+            }
+
+            if (context.canceled) AimSwordInputStop = true;
+        }
+
         // Callback for dash direction input
         public void OnDashDirection(InputAction.CallbackContext context)
         {
@@ -216,6 +239,7 @@ namespace _Scripts.Player.Input
         // Utility method to consume dash input
         public void UseDashInput() => DashInput = false;
         public void UseAttackInput() => AttackInputs[(int)CombatInputs.Normal] = false;
+        public void UseAimSwordInput() => AimSwordInput = false;
         public void UseCounterInput() => CounterInput = false;
     }
 }

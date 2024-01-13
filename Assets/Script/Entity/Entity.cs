@@ -57,7 +57,7 @@ namespace Script.Entity
         protected IEnumerator HitKnockBack()
         {
             Movement.CanSetVelocity = false;
-            Rb.velocity = new Vector2(knockBackDirection.x * -Movement.FacingDirection, knockBackDirection.y);
+            Rb.velocity = new Vector2(knockBackDirection.x * - Movement.FacingDirection, knockBackDirection.y);
             yield return new WaitForSeconds(knockBackDuration);
             Movement.CanSetVelocity = true;
         }

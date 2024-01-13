@@ -7,7 +7,7 @@ namespace Script.Player.PlayerStateMachine
 {
      public class PlayerState
      {
-          protected readonly Core Core;
+          private readonly Core Core;
 
           protected readonly Player Player;
           protected readonly PlayerStateMachine StateMachine;
@@ -79,6 +79,8 @@ namespace Script.Player.PlayerStateMachine
           public virtual void SetFlipActive(){}
           public virtual void SetFlipInactive(){}
           public virtual void AttackTrigger(){}
+          
+          public virtual void ThrowSlash(){}
           #endregion
      }
 }

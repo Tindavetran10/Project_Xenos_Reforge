@@ -1,3 +1,4 @@
+using Script.Manager;
 using UnityEngine;
 
 namespace Script.Player.Skills
@@ -5,16 +6,20 @@ namespace Script.Player.Skills
     public class Skill : MonoBehaviour
     {
         [SerializeField] protected float coolDown;
-        protected float CoolDownTimer;
-        
-        protected void Update() => CoolDownTimer -= Time.deltaTime;
+        private float _coolDownTimer;
+
+        protected PlayerStateMachine.Player Player;
+
+        protected virtual void Start() => Player = PlayerManager.Instance.player;
+
+        protected void Update() => _coolDownTimer -= Time.deltaTime;
 
         public virtual bool CanUseSkill()
         {
-            if (CoolDownTimer < 0)
+            if (_coolDownTimer < 0)
             {
                 UseSkill();
-                CoolDownTimer = coolDown;
+                _coolDownTimer = coolDown;
                 return true;
             }
 
@@ -22,9 +27,6 @@ namespace Script.Player.Skills
             return false;
         }
 
-        public virtual void UseSkill()
-        {
-            
-        }
+        protected virtual void UseSkill() {}
     }
 }

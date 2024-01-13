@@ -11,6 +11,8 @@ namespace Script.Manager
         public DashSkill Dash { get; private set; }
         public CloneSkill Clone { get; private set; }
 
+        public SlashSkill Slash { get; private set; }
+        
         private void Awake()
         {
             if (Instance != null)
@@ -22,6 +24,7 @@ namespace Script.Manager
         {
             Dash = GetComponent<DashSkill>();
             Clone = GetComponent<CloneSkill>();
+            Slash = GetComponent<SlashSkill>();
         }
     }
 }

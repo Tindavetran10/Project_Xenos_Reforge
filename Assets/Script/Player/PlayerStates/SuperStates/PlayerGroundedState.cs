@@ -20,6 +20,7 @@ namespace Script.Player.PlayerStates.SuperStates
         private bool _dashInput;
 
         private bool _normalAttackInput;
+        private bool _aimSwordInput;
         private bool _counterAttackInput;
         
         protected PlayerGroundedState(PlayerStateMachine.Player player, PlayerStateMachine.PlayerStateMachine stateMachine, 
@@ -61,11 +62,12 @@ namespace Script.Player.PlayerStates.SuperStates
             _dashInput = Player.InputHandler.DashInput;
             
             _normalAttackInput = Player.InputHandler.AttackInputs[(int)CombatInputs.Normal];
-
+            _aimSwordInput = Player.InputHandler.AimSwordInput;
             _counterAttackInput = Player.InputHandler.CounterInput;
             
-            
-            if(_counterAttackInput && !IsTouchingCeiling)
+            if(_aimSwordInput && SkillManager.Instance.Slash.CanUseSkill() && !IsTouchingCeiling)
+                StateMachine.ChangeState(Player.AimSwordState);
+            else if(_counterAttackInput && !IsTouchingCeiling)
                 StateMachine.ChangeState(Player.CounterAttackState);
             else if(_normalAttackInput && !IsTouchingCeiling)
                 StateMachine.ChangeState(Player.PrimaryAttackState);

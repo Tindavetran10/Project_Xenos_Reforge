@@ -30,6 +30,8 @@ namespace Script.Player.PlayerStateMachine
         public PlayerCounterAttackState CounterAttackState { get; private set; }
         public PlayerDeathState DeathState { get; private set; }
         
+        public PlayerAimSwordState AimSwordState { get; private set; }
+        
         [Header("Player Data")]
         [SerializeField] private PlayerData playerData;
         #endregion
@@ -70,6 +72,8 @@ namespace Script.Player.PlayerStateMachine
             CounterAttackState = new PlayerCounterAttackState(this, StateMachine, playerData, "counterAttack");
 
             DeathState = new PlayerDeathState(this, StateMachine, playerData, "die");
+
+            AimSwordState = new PlayerAimSwordState(this, StateMachine, playerData, "aimSword");
         }
 
         protected override void Start()
@@ -105,6 +109,7 @@ namespace Script.Player.PlayerStateMachine
         protected void SetFlipActive() => StateMachine.CurrentState.SetFlipActive();
         private void SetFlipInactive() => StateMachine.CurrentState.SetFlipInactive();
         private void AttackTrigger() => StateMachine.CurrentState.AttackTrigger();
+        private void ThrowSlash() => StateMachine.CurrentState.ThrowSlash();
         #endregion
 
         #region Other Functions

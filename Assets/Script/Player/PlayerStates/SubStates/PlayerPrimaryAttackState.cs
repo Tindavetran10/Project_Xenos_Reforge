@@ -109,7 +109,7 @@ namespace Script.Player.PlayerStates.SubStates
             {
                 if (hit.GetComponent<Enemy.EnemyStateMachine.Enemy>() != null)
                 {
-                    EnemyStats target = hit.GetComponentInChildren<EnemyStats>();
+                    var target = hit.GetComponentInChildren<EnemyStats>();
                     Player.Stats.DoDamage(target);
                 }
             }
