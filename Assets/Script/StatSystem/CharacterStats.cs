@@ -1,9 +1,12 @@
+using Script.Entity;
 using UnityEngine;
 
 namespace Script.StatSystem
 {
     public class CharacterStats : MonoBehaviour
     {
+        private EntityFX _fx;
+        
         [Header("Major stats")]
         public Stat strength; // 1 point increase damage and critical power by 1%
         public Stat agility; // 1 point increase evasion and critical chance by 1%
@@ -26,11 +29,13 @@ namespace Script.StatSystem
         protected bool IsInvincible { get; private set; }
         
         [SerializeField] public int currentHealth;
-        // Start is called before the first frame update
+  
         protected virtual void Start()
         {
             critPower.SetDefaultValue(150);
             currentHealth = GetMaxHealthValue();
+
+            _fx = GetComponentInParent<EntityFX>();
         }
 
         public void DoDamage(CharacterStats targetStats)
@@ -45,13 +50,13 @@ namespace Script.StatSystem
             totalDamage = CheckTargetArmor(targetStats, totalDamage);
             targetStats.TakeDamage(totalDamage);
         }
-
-
-        // Update is called once per frame
-
+        
         protected virtual void TakeDamage(int damageAmount)
         {
             DecreaseHealthBy(damageAmount);
+            
+            GetComponentInParent<Entity.Entity>().DamageImpact();
+            _fx.StartCoroutine("FlashFX");
             
             if (currentHealth <= 0 && !IsDead) 
                 Die();
@@ -59,19 +64,15 @@ namespace Script.StatSystem
 
         private void DecreaseHealthBy(int damageAmount)
         {
-
             if (IsInvincible)
                 damageAmount = Mathf.RoundToInt( damageAmount * 1.1f);
 
             currentHealth -= damageAmount;
-
-            if (OnHealthChanged != null)
-                OnHealthChanged();
+            OnHealthChanged?.Invoke();
         }
 
         protected virtual void Die() => IsDead = true;
-
-
+        
         #region Stat Calculations
         private static int CheckTargetArmor(CharacterStats targetStats, int totalDamage)
         {

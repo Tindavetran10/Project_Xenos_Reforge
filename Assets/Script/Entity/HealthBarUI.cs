@@ -32,11 +32,10 @@ namespace Script.Entity
         }
 
         private void FlipUI() => _myTransform.Rotate(0, 180, 0);
-
-        /*private void OnDisable()
+        private void OnDisable()
         {
             _entity.OnFlipped -= FlipUI;
             myStats.OnHealthChanged -= UpdateHealthUI;
-        }*/
+        }
     }
 }

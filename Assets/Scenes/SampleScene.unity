@@ -2295,17 +2295,6 @@ Transform:
   - {fileID: 181979507}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &971800626 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6797114104800770406, guid: 72d76bd6fe11d484989b5e0c7f67b212, type: 3}
-  m_PrefabInstance: {fileID: 2573784504621021514}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ce767291cd44125ac8bbf5ec9621fad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1124273869
 GameObject:
   m_ObjectHideFlags: 3
@@ -2613,6 +2602,17 @@ MonoBehaviour:
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
+--- !u!114 &2056137556 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 449245017320754560, guid: d1cbc3c17c5ef0a4282b51ba830fce88, type: 3}
+  m_PrefabInstance: {fileID: 3378194266169537847}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ce767291cd44125ac8bbf5ec9621fad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2130064665
 GameObject:
   m_ObjectHideFlags: 0
@@ -2666,7 +2666,7 @@ PrefabInstance:
     - target: {fileID: 2539329480898357682, guid: 72d76bd6fe11d484989b5e0c7f67b212, type: 3}
       propertyPath: _myStats
       value: 
-      objectReference: {fileID: 971800626}
+      objectReference: {fileID: 0}
     - target: {fileID: 4278006547242274560, guid: 72d76bd6fe11d484989b5e0c7f67b212, type: 3}
       propertyPath: m_Name
       value: EnemyRonin
@@ -2772,10 +2772,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3569522187524533640, guid: d1cbc3c17c5ef0a4282b51ba830fce88, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3569522187524533640, guid: d1cbc3c17c5ef0a4282b51ba830fce88, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4719573184135024241, guid: d1cbc3c17c5ef0a4282b51ba830fce88, type: 3}
       propertyPath: m_Name
       value: EnemyRanger
       objectReference: {fileID: 0}
+    - target: {fileID: 6312801927278674308, guid: d1cbc3c17c5ef0a4282b51ba830fce88, type: 3}
+      propertyPath: myStats
+      value: 
+      objectReference: {fileID: 2056137556}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

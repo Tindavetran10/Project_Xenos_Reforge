@@ -18,7 +18,7 @@ namespace Script.Player.PlayerStats
             if(IsInvincible)
                 return;
             
-            _player.DamageEffect();
+            _player.DamageImpact();
         }
 
         protected override void Die()

@@ -49,12 +49,7 @@ namespace Script.Entity
 
         protected virtual void FixedUpdate() {}
 
-        public void DamageEffect()
-        {
-            FX.StartCoroutine("FlashFX");
-            StartCoroutine(nameof(HitKnockBack));
-            //Debug.Log(gameObject.name + " was damaged");
-        }
+        public void DamageImpact() => StartCoroutine(nameof(HitKnockBack));
 
         protected IEnumerator HitKnockBack()
         {

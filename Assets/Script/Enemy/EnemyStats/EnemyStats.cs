@@ -15,7 +15,7 @@ namespace Script.Enemy.EnemyStats
         protected override void TakeDamage(int damageAmount)
         {
             base.TakeDamage(damageAmount);
-            _enemy.DamageEffect();
+            _enemy.DamageImpact();
         }
 
         protected override void Die()
