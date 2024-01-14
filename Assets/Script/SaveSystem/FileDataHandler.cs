@@ -9,8 +9,8 @@ namespace Script.SaveSystem
         private readonly string _dataDirPath;
         private readonly string _dataFileName;
 
-        private bool _encryptData = false;
-        private string _codeWord = "DoAn";
+        private readonly bool _encryptData;
+        private const string CodeWord = "DoAn";
 
         public FileDataHandler(string dataDirPath, string dataFileName, bool encryptData)
         {
@@ -25,18 +25,16 @@ namespace Script.SaveSystem
 
             try
             {
-                Directory.CreateDirectory(Path.GetDirectoryName(fullPath));
+                Directory.CreateDirectory(Path.GetDirectoryName(fullPath)!);
                 
                 string dataToStore = JsonUtility.ToJson(data, true);
 
                 if (_encryptData)
                     dataToStore = EncryptDecrypt(dataToStore);
-                
-                using (FileStream stream = new FileStream(fullPath, FileMode.Create))
-                {
-                    using (StreamWriter writer = new StreamWriter(stream)) 
-                        writer.Write(dataToStore);
-                }
+
+                using var stream = new FileStream(fullPath, FileMode.Create);
+                using var writer = new StreamWriter(stream);
+                writer.Write(dataToStore);
             }
             catch (Exception e)
             {
@@ -87,7 +85,7 @@ namespace Script.SaveSystem
 
             for (int i = 0; i < data.Length; i++)
             {
-                modifiedData += (char)(data[i] ^ _codeWord[i % _codeWord.Length]);
+                modifiedData += (char)(data[i] ^ CodeWord[i % CodeWord.Length]);
             }
             return modifiedData;
         }

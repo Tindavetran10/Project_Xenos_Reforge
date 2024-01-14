@@ -6,7 +6,7 @@ namespace Script.SaveSystem
 {
     public class SaveManager : MonoBehaviour
     {
-        private static SaveManager _instance;
+        public static SaveManager _instance;
 
         [SerializeField] private string fileName;
         [SerializeField] private bool encryptData;
@@ -16,7 +16,7 @@ namespace Script.SaveSystem
         private FileDataHandler _dataHandler;
 
         [ContextMenu("Delete Save File")]
-        private void DeleteSaveData()
+        public void DeleteSaveData()
         {
             _dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, encryptData);
             _dataHandler.Delete();
@@ -63,6 +63,11 @@ namespace Script.SaveSystem
         {
             IEnumerable<ISaveManager> saveManagers = FindObjectsOfType<MonoBehaviour>().OfType<ISaveManager>();
             return new List<ISaveManager>(saveManagers);
+        }
+
+        public bool HasSaveData()
+        {
+            return _dataHandler.Load() != null;
         }
     }
 }
