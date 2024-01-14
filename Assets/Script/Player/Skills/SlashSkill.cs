@@ -1,5 +1,7 @@
 using Script.Player.Skills.SkillController;
+using Script.UI;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Script.Player.Skills
 {
@@ -11,6 +13,16 @@ namespace Script.Player.Skills
         [SerializeField] private float slashGravity;
         [SerializeField] private float  destroyDelay = 1f;
         
+        [Header("Skill Unlock")] 
+        public bool slashUnlocked;
+        [SerializeField] private UISkillTreeSlot slashUnlockButton;
+
+        protected override void Start()
+        {
+            base.Start();
+            slashUnlockButton.GetComponent<Button>().onClick.AddListener(UnlockSlash);
+        }
+
         public void CreateSlash(int playerDir)
         {
             var slashPosition = Player.transform.position;
@@ -31,6 +43,14 @@ namespace Script.Player.Skills
 
             var newSlashSkillController = newSlash.GetComponent<SlashSkillController>();
             newSlashSkillController.SetupSlash(launchDir * playerDir, slashGravity);
+        }
+
+        protected override void CheckUnlock() => UnlockSlash();
+
+        private void UnlockSlash()
+        {
+            if(slashUnlockButton.unlocked)
+                slashUnlocked = true;
         }
     }
 }

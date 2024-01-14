@@ -7,9 +7,10 @@ namespace Script.Player.Skills
     {
         [Header("Clone Info")]
         [SerializeField] private GameObject clonePrefab;
-
+        
         [SerializeField] private float cloneDuration;
         [SerializeField] private bool canAttack;
+        
 
         public void CreateClone(Transform clonePosition)
         {

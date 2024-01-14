@@ -35,6 +35,10 @@ namespace Script.Player.PlayerStates.SubStates
                 IsAbilityDone = true;
         }
         
-        public override void ThrowSlash() => SkillManager.Instance.Slash.CreateSlash(Movement.FacingDirection);
+        public override void ThrowSlash()
+        {
+            if(SkillManager.Instance.Slash.slashUnlocked)
+                SkillManager.Instance.Slash.CreateSlash(Movement.FacingDirection);
+        }
     }
 }

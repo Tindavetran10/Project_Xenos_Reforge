@@ -13,6 +13,10 @@ namespace _Scripts.Player.Input
         // Events for handling pause and resume actions
         public event Action OnPauseEvent;
         public event Action OnResumeEvent;
+        
+        public bool SkillTreeUIInput { get; private set; }
+        public bool SkillTreeUIInputStop { get; private set; }
+        public bool ExitUI { get; private set; }
 
         // Properties to store raw and normalized input values
         private Vector2 RawMovementInput { get; set; }
@@ -44,6 +48,7 @@ namespace _Scripts.Player.Input
         private float _counterInputStartTime;
         private float _attackInputsStartTime;
         private float _aimSwordInputStartTime;
+        private float _skillTreeInputStartTime;
         
         private void Start()
         {
@@ -94,6 +99,12 @@ namespace _Scripts.Player.Input
         {
             if (Time.time >= _counterInputStartTime + inputHoldTime)
                 CounterInput = false;
+        }
+
+        private void CheckSkillTreeUIInputHoldTime()
+        {
+            if (Time.time >= _skillTreeInputStartTime + inputHoldTime)
+                SkillTreeUIInput = false;
         }
         
         // Enable input actions when the script is enabled
@@ -205,8 +216,24 @@ namespace _Scripts.Player.Input
                 AimSwordInputStop = false;
                 _aimSwordInputStartTime = Time.time;
             }
+            else if (context.canceled) AimSwordInputStop = true;
+        }
 
-            if (context.canceled) AimSwordInputStop = true;
+        public void OnSkillTreeUI(InputAction.CallbackContext context)
+        {
+            if (context.started)
+            {
+                SkillTreeUIInput = true;
+                SkillTreeUIInputStop = false;
+                _skillTreeInputStartTime = Time.time;
+            }
+            else if (context.canceled) SkillTreeUIInput = false;
+        }
+
+        public void OnExitUI(InputAction.CallbackContext context)
+        {
+            if (context.started) ExitUI = true;
+            if (context.canceled) ExitUI = false;
         }
 
         // Callback for dash direction input
@@ -241,6 +268,7 @@ namespace _Scripts.Player.Input
         public void UseAttackInput() => AttackInputs[(int)CombatInputs.Normal] = false;
         public void UseAimSwordInput() => AimSwordInput = false;
         public void UseCounterInput() => CounterInput = false;
+        public void UseSkillTreeUIInput() => SkillTreeUIInput = false;
     }
 }
 

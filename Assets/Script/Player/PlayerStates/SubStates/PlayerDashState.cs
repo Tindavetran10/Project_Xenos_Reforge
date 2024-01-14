@@ -86,7 +86,7 @@ namespace Script.Player.PlayerStates.SubStates
                         Player.Rb.drag = PlayerData.drag;
                         Movement?.SetVelocity(PlayerData.dashVelocity, _dashDirection);
                         Player.DashDirectionIndicator.gameObject.SetActive(false);
-                        Player.Skill.Clone.CreateClone(Player.transform);
+                        Player.Skill.Dash.CreateCloneOnDash();
                         
                         Player.Stats.MakeInvincible(true);
                     }

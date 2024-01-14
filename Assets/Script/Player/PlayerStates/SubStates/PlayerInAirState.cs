@@ -119,7 +119,8 @@ namespace Script.Player.PlayerStates.SubStates
                 StateMachine.ChangeState(Player.WallSlideState);
             
             // Change to Dash State if the dash has been cooled down
-            else if (_dashInput && /*Player.DashState.CheckIfCanDash()*/ SkillManager.Instance.Dash.CanUseSkill() )
+            else if (_dashInput && SkillManager.Instance.Dash.CanUseSkill() 
+                                && SkillManager.Instance.Dash.dashUnlocked)
                 StateMachine.ChangeState(Player.DashState);
             else
             {
