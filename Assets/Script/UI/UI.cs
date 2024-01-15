@@ -7,8 +7,8 @@ namespace Script.UI
     {
         [Header("End screen")]
         [SerializeField] private UiFadeScreen fadeScreen;
-
         [SerializeField] private GameObject endText;
+        [SerializeField] private GameObject restartButton;
         [Space]
         
         [SerializeField] private GameObject skillTreeUI;
@@ -17,7 +17,7 @@ namespace Script.UI
         public UISkillToolTip skillToolTip;
         private const float UIToggleCooldown = 0.5f; // Set an appropriate cooldown time
         private float _lastToggleTime;
-        public Player.PlayerStateMachine.Player player;
+        //public Player.PlayerStateMachine.Player player;
         
         private void Awake() => SwitchTo(skillTreeUI); // we need this to assign events on skill tree slots before we assign events on skill scripts
 
@@ -62,7 +62,7 @@ namespace Script.UI
 
         private void Update()
         {
-            if (player.InputHandler.SkillTreeUIInput)
+            if (Input.GetKeyDown(KeyCode.K))
             {
                 if (Time.time - _lastToggleTime > UIToggleCooldown)
                 {
@@ -70,7 +70,7 @@ namespace Script.UI
                     _lastToggleTime = Time.time;
                 }
             }
-            else if (player.InputHandler.ExitUI)
+            else if (Input.GetKeyDown(KeyCode.Escape))
             {
                 SwitchWithKeyTo(inGameUI);
             }
@@ -86,6 +86,8 @@ namespace Script.UI
         {
             yield return new WaitForSeconds(1);
             endText.SetActive(true);
+            yield return new WaitForSeconds(1);
+            restartButton.SetActive(true);
         }
         
         public void RestartGameButton() => GameManager.Instance.RestartScene();
