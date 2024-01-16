@@ -1,3 +1,4 @@
+using Script.Manager;
 using Script.StatSystem;
 
 namespace Script.Enemy.EnemyStats
@@ -5,10 +6,12 @@ namespace Script.Enemy.EnemyStats
     public class EnemyStats : CharacterStats
     {
         private EnemyStateMachine.Enemy _enemy;
+        public Stat soulDropAmount;
         
         protected override void Start()
         {
             base.Start();
+            soulDropAmount.SetDefaultValue(100);
             _enemy = GetComponentInParent<EnemyStateMachine.Enemy>();
         }
 
@@ -22,6 +25,8 @@ namespace Script.Enemy.EnemyStats
         {
             base.Die();
             _enemy.Die();
+
+            PlayerManager.Instance.currency += soulDropAmount.GetValue();
         }
     }
 }

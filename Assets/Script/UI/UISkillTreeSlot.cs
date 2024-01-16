@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using Script.Manager;
 using Script.SaveSystem;
@@ -26,14 +25,10 @@ namespace Script.UI
         [SerializeField] private UISkillTreeSlot[] shouldBeLocked;
 
 
-        private void OnValidate()
-        {
-            gameObject.name = "UISkillTreeSlot - " + skillName;
-        }
+        private void OnValidate() => gameObject.name = "UISkillTreeSlot - " + skillName;
 
-        public void Awake() => GetComponent<Button>().onClick.AddListener(() => UnlockSkillSlot());
-
-        // Start is called before the first frame update
+        public void Awake() => GetComponent<Button>().onClick.AddListener(UnlockSkillSlot);
+        
         private void Start()
         {
             _skillImage = GetComponent<Image>();
@@ -66,25 +61,20 @@ namespace Script.UI
         }
 
 
-        public void OnPointerEnter(PointerEventData eventData) => _ui.skillToolTip.ShowToolTip(skillDescription, skillName);
-
-        public void OnPointerExit(PointerEventData eventData) => _ui.skillToolTip.HideToolTip();
         public void LoadData(GameData data)
         {
-            if (data.skillTree.TryGetValue(skillName, out bool value))
-            {
+            if (data.skillTree.TryGetValue(skillName, out bool value)) 
                 unlocked = value;
-            };
         }
 
         public void SaveData(ref GameData data)
         {
-            if (data.skillTree.TryGetValue(skillName, out bool value))
-            {
-                data.skillTree.Remove(skillName);
+            if (data.skillTree.Remove(skillName, out _))
                 data.skillTree.Add(skillName, unlocked);
-            }
             else data.skillTree.Add(skillName, unlocked);
         }
+        
+        public void OnPointerEnter(PointerEventData eventData) => _ui.skillToolTip.ShowToolTip(skillDescription, skillName);
+        public void OnPointerExit(PointerEventData eventData) => _ui.skillToolTip.HideToolTip();
     }
 }

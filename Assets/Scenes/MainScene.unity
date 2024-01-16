@@ -2921,8 +2921,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 1000
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 988b6a7e6e8878749a9c7871e4312fdc, type: 2}
+  m_sharedMaterial: {fileID: -8089074000275748102, guid: 988b6a7e6e8878749a9c7871e4312fdc, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3477,8 +3477,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 988b6a7e6e8878749a9c7871e4312fdc, type: 2}
+  m_sharedMaterial: {fileID: -8089074000275748102, guid: 988b6a7e6e8878749a9c7871e4312fdc, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3599,6 +3599,8 @@ MonoBehaviour:
   playerStats: {fileID: 6276674831338997321}
   slider: {fileID: 31202988}
   currentSouls: {fileID: 360962987}
+  soulsAmount: 0
+  increaseRate: 100
 --- !u!114 &799846293
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3791,11 +3793,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 3378194266169537848}
+  - {fileID: 887310034}
   - {fileID: 2573784504621021515}
   - {fileID: 1610315720}
   - {fileID: 1885805004}
-  - {fileID: 3378194266169537848}
-  - {fileID: 887310034}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1064090620
@@ -4305,8 +4307,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 988b6a7e6e8878749a9c7871e4312fdc, type: 2}
+  m_sharedMaterial: {fileID: -8089074000275748102, guid: 988b6a7e6e8878749a9c7871e4312fdc, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6212,6 +6214,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3066970319542227904, guid: 9aa5514650fb9ea43ae5c3c374537a15, type: 3}
+      propertyPath: encryptData
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5390983589551009429, guid: 9aa5514650fb9ea43ae5c3c374537a15, type: 3}
       propertyPath: m_Name
       value: SaveManager
@@ -6415,8 +6421,8 @@ SceneRoots:
   - {fileID: 5356939205450122130}
   - {fileID: 5439743303823314559}
   - {fileID: 55957625}
-  - {fileID: 1659646613}
   - {fileID: 15863852}
   - {fileID: 206639314}
   - {fileID: 1016751827}
   - {fileID: 1511033363}
+  - {fileID: 1659646613}

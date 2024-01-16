@@ -8,7 +8,7 @@ namespace Script.Manager
 {
     public class GameManager : MonoBehaviour, ISaveManager
     {
-        public static GameManager Instance;
+        public static GameManager _instance;
         private Transform _player;
         
         [SerializeField] private Checkpoint[] checkpoints;
@@ -16,9 +16,9 @@ namespace Script.Manager
         
         private void Awake()
         {
-            if (Instance != null)
-                Destroy(Instance.gameObject);
-            else Instance = this;
+            if (_instance != null)
+                Destroy(_instance.gameObject);
+            else _instance = this;
         }
 
         private void Start()
@@ -95,6 +95,13 @@ namespace Script.Manager
                 }
             }
             return closestCheckPoint;
+        }
+        
+        public void PauseGame(bool pause)
+        {
+            if (pause)
+                Time.timeScale = 0;
+            else Time.timeScale = 1;
         }
     }
 }

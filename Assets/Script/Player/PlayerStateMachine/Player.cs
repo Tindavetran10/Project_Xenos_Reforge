@@ -89,6 +89,8 @@ namespace Script.Player.PlayerStateMachine
 
         protected override void Update()
         {
+            if(Time.timeScale == 0) return;
+            
             base.Update();
             Core.LogicUpdate();
             StateMachine.CurrentState.LogicUpdate();

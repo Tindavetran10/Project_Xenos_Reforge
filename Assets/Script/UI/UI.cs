@@ -16,33 +16,37 @@ namespace Script.UI
         [SerializeField] private GameObject inGameUI;
         
         public UISkillToolTip skillToolTip;
-        private const float UIToggleCooldown = 0.5f; // Set an appropriate cooldown time
-        private float _lastToggleTime;
-        //public Player.PlayerStateMachine.Player player;
         
-        private void Awake() => SwitchTo(skillTreeUI); // we need this to assign events on skill tree slots before we assign events on skill scripts
+        // we need this to assign events on skill tree slots before we assign events on skill scripts
+        private void Awake() => SwitchTo(skillTreeUI); 
 
         private void Start() => SwitchTo(inGameUI);
 
         public void SwitchTo(GameObject menu)
         {
-            
-            for (int i = 0; i < transform.childCount; i++)
+            for (var i = 0; i < transform.childCount; i++)
             {
-                bool isFadeScreen = transform.GetChild(i).GetComponent<UiFadeScreen>() != null;
+                var isFadeScreen = transform.GetChild(i).GetComponent<UiFadeScreen>() != null;
                 if(!isFadeScreen)
                     transform.GetChild(i).gameObject.SetActive(false);
             }
 
-            if(menu != null)
-                menu.SetActive(true);
+            if(menu != null) menu.SetActive(true);
+
+            if (GameManager._instance != null)
+            {
+                if(menu == inGameUI)
+                    GameManager._instance.PauseGame(false);
+                else GameManager._instance.PauseGame(true);
+            }
         }
 
-        public void SwitchWithKeyTo(GameObject menu)
+        private void SwitchWithKeyTo(GameObject menu)
         {
             if (menu != null && menu.activeSelf)
             {
                 menu.SetActive(false);
+                Time.timeScale = 0;
                 CheckForInGameUI();
                 return;
             }
@@ -52,9 +56,10 @@ namespace Script.UI
 
         private void CheckForInGameUI()
         {
-            for (int i = 0; i < transform.childCount; i++)
+            for (var i = 0; i < transform.childCount; i++)
             {
-                if (transform.GetChild(i).gameObject.activeSelf)
+                if (transform.GetChild(i).gameObject.activeSelf
+                    && transform.GetChild(i).GetComponent<UiFadeScreen>() == null)
                     return;
             }
 
@@ -64,17 +69,9 @@ namespace Script.UI
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.K))
-            {
-                if (Time.time - _lastToggleTime > UIToggleCooldown)
-                {
-                    SwitchWithKeyTo(skillTreeUI);
-                    _lastToggleTime = Time.time;
-                }
-            }
-            else if (Input.GetKeyDown(KeyCode.Escape))
-            {
+                SwitchWithKeyTo(skillTreeUI);
+            else if (Input.GetKeyDown(KeyCode.Escape)) 
                 SwitchWithKeyTo(inGameUI);
-            }
         }
 
         public void SwitchOnEndScreen()

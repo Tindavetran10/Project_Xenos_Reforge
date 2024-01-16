@@ -2,11 +2,11 @@ using Script.StatSystem;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Script.Entity
+namespace Script.UI
 {
     public class HealthBarUI : MonoBehaviour
     {
-        private Entity _entity;
+        private Entity.Entity _entity;
         private RectTransform _myTransform;
         private Slider _slider;
         
@@ -16,7 +16,7 @@ namespace Script.Entity
         protected void Start()
         {
             _myTransform = GetComponent<RectTransform>();
-            _entity = GetComponentInParent<Entity>();
+            _entity = GetComponentInParent<Entity.Entity>();
             _slider = GetComponentInChildren<Slider>();
 
             _entity.OnFlipped += FlipUI;
