@@ -1,78 +1,100 @@
-using System;
-using System.Collections.Generic;
-using Script;
-using Script.Manager;
+using System.Collections;
+using System.Linq;
 using Script.SaveSystem;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour, ISaveManager
+namespace Script.Manager
 {
-    public static GameManager Instance;
-    [SerializeField] private Checkpoint[] _checkpoints;
-    private void Awake()
+    public class GameManager : MonoBehaviour, ISaveManager
     {
-        if (Instance != null)
-            Destroy(Instance.gameObject);
-        else Instance = this;
-    }
-
-    private void Start()
-    {
-        _checkpoints = FindObjectsOfType<Checkpoint>();
-    }
-
-    public void RestartScene()
-    {
-        Scene scene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(scene.name);
-    }
-
-    public void LoadData(GameData data)
-    {
-        foreach (KeyValuePair<string, bool> pair  in data.checkpoints)
-        {
-            foreach (Checkpoint checkpoint in _checkpoints)
-            {
-                if (checkpoint.id == pair.Key && pair.Value) 
-                    checkpoint.ActivateCheckPoint();
-            }
-        }
-
-        foreach (Checkpoint checkpoint in _checkpoints)
-        {
-            if (data.closetCheckpointID == checkpoint.id)
-                PlayerManager.Instance.player.transform.position = checkpoint.transform.position;
-        }
-    }
-
-    public void SaveData(ref GameData data)
-    {
-        data.closetCheckpointID = FindClosestCheckPoint().id;
-        data.checkpoints.Clear();
+        public static GameManager Instance;
+        private Transform _player;
         
-        foreach (var checkpoint in _checkpoints)
+        [SerializeField] private Checkpoint[] checkpoints;
+        [SerializeField] private string closestCheckpointId;
+        
+        private void Awake()
         {
-            data.checkpoints.Add(checkpoint.id, checkpoint.activationStatus);
+            if (Instance != null)
+                Destroy(Instance.gameObject);
+            else Instance = this;
         }
-    }
 
-    private Checkpoint FindClosestCheckPoint()
-    {
-        float closestDistance = Mathf.Infinity;
-        Checkpoint closestCheckPoint = null;
-
-        foreach (var checkpoint in _checkpoints)
+        private void Start()
         {
-            float distanceToCheckpoint = Vector2.Distance(PlayerManager.Instance.player.transform.position,
-                checkpoint.transform.position);
-            if (distanceToCheckpoint < closestDistance && checkpoint.activationStatus)
+            checkpoints = FindObjectsOfType<Checkpoint>();
+            _player = PlayerManager.Instance.player.transform;
+        }
+
+        public static void RestartScene()
+        {
+            SaveManager.Instance.SaveGame();
+            var scene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(scene.name);
+        }
+
+        public void LoadData(GameData data) => StartCoroutine(LoadWithDelay(data));
+
+        private void LoadCheckpoints(GameData data)
+        {
+            foreach (var checkpoint 
+                     in from pair in data.checkpoints 
+                     from checkpoint in checkpoints 
+                     where checkpoint.id == pair.Key && pair.Value select checkpoint) 
+                checkpoint.ActivateCheckPoint();
+        }
+        
+        
+        private IEnumerator LoadWithDelay(GameData data)
+        {
+            yield return new WaitForSeconds(.1f);
+
+            LoadCheckpoints(data);
+            LoadClosestCheckPoint(data);
+        }
+        
+
+        public void SaveData(ref GameData data)
+        {
+            if(FindClosestCheckPoint() != null)
+                data.closestCheckpointID  = FindClosestCheckPoint().id;
+            
+            data.checkpoints.Clear();
+        
+            foreach (var checkpoint in checkpoints) 
+                data.checkpoints.Add(checkpoint.id, checkpoint.activationStatus);
+        }
+        
+        private void LoadClosestCheckPoint(GameData data)
+        {
+            if (data.closestCheckpointID == null) return;
+            
+            closestCheckpointId = data.closestCheckpointID;
+
+            foreach (var checkpoint in checkpoints)
             {
-                closestDistance = distanceToCheckpoint;
-                closestCheckPoint = checkpoint;
+                if (closestCheckpointId == checkpoint.id)
+                    _player.position = checkpoint.transform.position;
             }
         }
 
-        return closestCheckPoint;
+        private Checkpoint FindClosestCheckPoint()
+        {
+            var closestDistance = Mathf.Infinity;
+            Checkpoint closestCheckPoint = null;
+
+            foreach (var checkpoint in checkpoints)
+            {
+                var distanceToCheckpoint = Vector2.Distance(_player.position,
+                    checkpoint.transform.position);
+                if (distanceToCheckpoint < closestDistance && checkpoint.activationStatus)
+                {
+                    closestDistance = distanceToCheckpoint;
+                    closestCheckPoint = checkpoint;
+                }
+            }
+            return closestCheckPoint;
+        }
     }
 }

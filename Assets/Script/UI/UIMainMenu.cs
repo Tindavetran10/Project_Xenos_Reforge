@@ -1,4 +1,5 @@
 using System.Collections;
+using Script.Manager;
 using Script.SaveSystem;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -13,7 +14,7 @@ namespace Script.UI
         
         private void Start()
         {
-            if(SaveManager._instance.HasSaveData() == false)
+            if(SaveManager.Instance.HasSaveData() == false)
                 continueButton.SetActive(false);
         }
 
@@ -24,7 +25,7 @@ namespace Script.UI
 
         public void NewGame()
         {
-            SaveManager._instance.DeleteSaveData();
+            SaveManager.Instance.DeleteSaveData();
             StartCoroutine(LoadScreenWithAfterEffect(1.5f));
             
         }

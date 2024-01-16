@@ -1,4 +1,5 @@
 using System.Collections;
+using Script.Manager;
 using UnityEngine;
 
 namespace Script.UI
@@ -90,6 +91,6 @@ namespace Script.UI
             restartButton.SetActive(true);
         }
         
-        public void RestartGameButton() => GameManager.Instance.RestartScene();
+        public void RestartGameButton() => GameManager.RestartScene();
     }
 }

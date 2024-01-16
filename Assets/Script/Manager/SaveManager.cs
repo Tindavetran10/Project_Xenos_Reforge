@@ -1,12 +1,13 @@
 using System.Collections.Generic;
-using UnityEngine;
 using System.Linq;
+using Script.SaveSystem;
+using UnityEngine;
 
-namespace Script.SaveSystem
+namespace Script.Manager
 {
     public class SaveManager : MonoBehaviour
     {
-        public static SaveManager _instance;
+        public static SaveManager Instance;
 
         [SerializeField] private string fileName;
         [SerializeField] private bool encryptData;
@@ -24,9 +25,9 @@ namespace Script.SaveSystem
         
         private void Awake()
         {
-            if (_instance != null)
-                Destroy(_instance.gameObject);
-            else _instance = this;
+            if (Instance != null)
+                Destroy(Instance.gameObject);
+            else Instance = this;
             
             _dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, encryptData);
             _saveManagers = FindAllSaveManagers();
@@ -49,7 +50,7 @@ namespace Script.SaveSystem
                 saveManager.LoadData(_gameData);
         }
 
-        private void SaveGame()
+        public void SaveGame()
         {
             foreach (ISaveManager saveManager in _saveManagers) 
                 saveManager.SaveData(ref _gameData);
@@ -65,9 +66,6 @@ namespace Script.SaveSystem
             return new List<ISaveManager>(saveManagers);
         }
 
-        public bool HasSaveData()
-        {
-            return _dataHandler.Load() != null;
-        }
+        public bool HasSaveData() => _dataHandler.Load() != null;
     }
 }

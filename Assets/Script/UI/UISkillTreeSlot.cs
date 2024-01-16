@@ -71,7 +71,7 @@ namespace Script.UI
         public void OnPointerExit(PointerEventData eventData) => _ui.skillToolTip.HideToolTip();
         public void LoadData(GameData data)
         {
-            if (data.SkillTree.TryGetValue(skillName, out bool value))
+            if (data.skillTree.TryGetValue(skillName, out bool value))
             {
                 unlocked = value;
             };
@@ -79,12 +79,12 @@ namespace Script.UI
 
         public void SaveData(ref GameData data)
         {
-            if (data.SkillTree.TryGetValue(skillName, out bool value))
+            if (data.skillTree.TryGetValue(skillName, out bool value))
             {
-                data.SkillTree.Remove(skillName);
-                data.SkillTree.Add(skillName, unlocked);
+                data.skillTree.Remove(skillName);
+                data.skillTree.Add(skillName, unlocked);
             }
-            else data.SkillTree.Add(skillName, unlocked);
+            else data.skillTree.Add(skillName, unlocked);
         }
     }
 }
