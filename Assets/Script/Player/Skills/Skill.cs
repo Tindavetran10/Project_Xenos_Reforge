@@ -20,7 +20,7 @@ namespace Script.Player.Skills
 
         protected virtual void CheckUnlock() {}
         
-        public virtual bool CanUseSkill()
+        public bool CanUseSkill()
         {
             if (_coolDownTimer < 0)
             {
@@ -31,6 +31,6 @@ namespace Script.Player.Skills
             return false;
         }
 
-        protected virtual void UseSkill() {}
+        private static void UseSkill() {}
     }
 }

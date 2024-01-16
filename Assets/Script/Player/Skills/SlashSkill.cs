@@ -37,8 +37,6 @@ namespace Script.Player.Skills
                 newScale.x *= -1; // Flip the object along the X-axis
                 newSlash.transform.localScale = newScale;
             }
-            
-            
             Destroy(newSlash, destroyDelay);
 
             var newSlashSkillController = newSlash.GetComponent<SlashSkillController>();

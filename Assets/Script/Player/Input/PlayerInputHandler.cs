@@ -1,4 +1,5 @@
 using System;
+using Script.Manager;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,6 +9,7 @@ namespace _Scripts.Player.Input
     public class PlayerInputHandler : MonoBehaviour, PlayerInput.IGameplayActions, PlayerInput.IUIActions
     {
         private PlayerInput _playerInput;
+        private Script.Player.PlayerStateMachine.Player _player;
         private Camera _cam;
 
         // Events for handling pause and resume actions
@@ -48,13 +50,14 @@ namespace _Scripts.Player.Input
         private float _counterInputStartTime;
         private float _attackInputsStartTime;
         private float _aimSwordInputStartTime;
-        private float _skillTreeInputStartTime;
-        
+
         private void Start()
         {
             var count = Enum.GetValues(typeof(CombatInputs)).Length;
             AttackInputs = new bool[count];
             AttackInputsStop = new bool[count];
+            
+            _player = PlayerManager.Instance.player;
             
             _cam = Camera.main;
         }
@@ -101,12 +104,6 @@ namespace _Scripts.Player.Input
                 CounterInput = false;
         }
 
-        private void CheckSkillTreeUIInputHoldTime()
-        {
-            if (Time.time >= _skillTreeInputStartTime + inputHoldTime)
-                SkillTreeUIInput = false;
-        }
-        
         // Enable input actions when the script is enabled
         private void OnEnable()
         {
@@ -225,7 +222,6 @@ namespace _Scripts.Player.Input
             {
                 SkillTreeUIInput = true;
                 SkillTreeUIInputStop = false;
-                _skillTreeInputStartTime = Time.time;
             }
             else if (context.canceled) SkillTreeUIInput = false;
         }
@@ -239,9 +235,12 @@ namespace _Scripts.Player.Input
         // Callback for dash direction input
         public void OnDashDirection(InputAction.CallbackContext context)
         {
-            RawDashDirectionInput = context.ReadValue<Vector2>();
-            RawDashDirectionInput = _cam.ScreenToWorldPoint(RawDashDirectionInput) - transform.position;
-            DashDirectionInput = Vector2Int.RoundToInt(RawDashDirectionInput.normalized);
+            if (_player != null)
+            {
+                RawDashDirectionInput = context.ReadValue<Vector2>();
+                RawDashDirectionInput = _cam.ScreenToWorldPoint(RawDashDirectionInput) - transform.position;
+                DashDirectionInput = Vector2Int.RoundToInt(RawDashDirectionInput.normalized);
+            }
         }
 
         // Callback for pause input
@@ -268,7 +267,6 @@ namespace _Scripts.Player.Input
         public void UseAttackInput() => AttackInputs[(int)CombatInputs.Normal] = false;
         public void UseAimSwordInput() => AimSwordInput = false;
         public void UseCounterInput() => CounterInput = false;
-        public void UseSkillTreeUIInput() => SkillTreeUIInput = false;
     }
 }
 

@@ -1,4 +1,3 @@
-using System.Collections;
 using Script.Enemy.Data;
 using Script.Player.PlayerStats;
 using Script.Projectile;
@@ -102,14 +101,13 @@ namespace Script.Enemy.EnemyStateMachine
 
         #endregion
 
-        protected virtual void FreezeTime(bool timeFrozen){}
-
-        protected virtual IEnumerator FreezeTimerFor(float seconds)
+        public override void Die()
         {
-            FreezeTime(true);
-            yield return new WaitForSeconds(seconds);
-            FreezeTime(false);
+            base.Die();
+            Invoke(nameof(DestroyEnemy), 1f);
         }
+        
+        private void DestroyEnemy() => Destroy(gameObject);
 
         #region Check Functions, Draw Gizmos
         public bool CheckPlayerInAgroRange() => 

@@ -10,8 +10,9 @@ namespace Script.Enemy.EnemyStats
         
         protected override void Start()
         {
-            base.Start();
             soulDropAmount.SetDefaultValue(100);
+            
+            base.Start();
             _enemy = GetComponentInParent<EnemyStateMachine.Enemy>();
         }
 
@@ -23,11 +24,15 @@ namespace Script.Enemy.EnemyStats
 
         protected override void Die()
         {
+            // From Character Stats
             base.Die();
+            
+            // From the Entity
             _enemy.Die();
-
             PlayerManager.Instance.currency += soulDropAmount.GetValue();
         }
+
+        
     }
 }
 

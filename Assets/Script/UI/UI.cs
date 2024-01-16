@@ -7,7 +7,7 @@ namespace Script.UI
     public class UI : MonoBehaviour
     {
         [Header("End screen")]
-        [SerializeField] private UiFadeScreen fadeScreen;
+        [SerializeField] private UIFadeScreen fadeScreen;
         [SerializeField] private GameObject endText;
         [SerializeField] private GameObject restartButton;
         [Space]
@@ -18,7 +18,11 @@ namespace Script.UI
         public UISkillToolTip skillToolTip;
         
         // we need this to assign events on skill tree slots before we assign events on skill scripts
-        private void Awake() => SwitchTo(skillTreeUI); 
+        private void Awake()
+        {
+            SwitchTo(skillTreeUI);
+            fadeScreen.gameObject.SetActive(true);
+        }
 
         private void Start() => SwitchTo(inGameUI);
 
@@ -26,19 +30,16 @@ namespace Script.UI
         {
             for (var i = 0; i < transform.childCount; i++)
             {
-                var isFadeScreen = transform.GetChild(i).GetComponent<UiFadeScreen>() != null;
+                // we need this to keep fade screen game object active
+                var isFadeScreen = transform.GetChild(i).GetComponent<UIFadeScreen>() != null;
                 if(!isFadeScreen)
                     transform.GetChild(i).gameObject.SetActive(false);
             }
 
             if(menu != null) menu.SetActive(true);
 
-            if (GameManager._instance != null)
-            {
-                if(menu == inGameUI)
-                    GameManager._instance.PauseGame(false);
-                else GameManager._instance.PauseGame(true);
-            }
+            if (GameManager._instance != null) 
+                GameManager._instance.PauseGame(menu != inGameUI);
         }
 
         private void SwitchWithKeyTo(GameObject menu)
@@ -59,7 +60,7 @@ namespace Script.UI
             for (var i = 0; i < transform.childCount; i++)
             {
                 if (transform.GetChild(i).gameObject.activeSelf
-                    && transform.GetChild(i).GetComponent<UiFadeScreen>() == null)
+                    && transform.GetChild(i).GetComponent<UIFadeScreen>() == null)
                     return;
             }
 
@@ -88,6 +89,6 @@ namespace Script.UI
             restartButton.SetActive(true);
         }
         
-        public void RestartGameButton() => GameManager.RestartScene();
+        public void RestartGameButton() => GameManager._instance.RestartScene();
     }
 }

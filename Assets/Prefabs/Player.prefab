@@ -595,7 +595,7 @@ MonoBehaviour:
     baseValue: 10
     modifiers: 
   damage:
-    baseValue: 10
+    baseValue: 15
     modifiers: 
   critChance:
     baseValue: 0

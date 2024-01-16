@@ -70,6 +70,8 @@ namespace Script.Player.PlayerStates.SubStates
                         _dashDirection.Normalize();
                     }
                     
+                    Player.Stats.MakeInvincible(true);
+                    
                     // Calculate the angle (in degree) between 2 vectors
                     var angle = Vector2.SignedAngle(Vector2.right, _dashDirection);
                     // Rotate the z axis of DashDirectionIndicator 45 degree

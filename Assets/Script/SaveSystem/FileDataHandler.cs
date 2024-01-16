@@ -21,13 +21,13 @@ namespace Script.SaveSystem
 
         public void Save(GameData data)
         {
-            string fullPath = Path.Combine(_dataDirPath, _dataFileName);
+            var fullPath = Path.Combine(_dataDirPath, _dataFileName);
 
             try
             {
-                Directory.CreateDirectory(Path.GetDirectoryName(fullPath)!);
+                Directory.CreateDirectory(Path.GetDirectoryName(fullPath) ?? throw new InvalidOperationException());
                 
-                string dataToStore = JsonUtility.ToJson(data, true);
+                var dataToStore = JsonUtility.ToJson(data, true);
 
                 if (_encryptData)
                     dataToStore = EncryptDecrypt(dataToStore);
@@ -47,14 +47,14 @@ namespace Script.SaveSystem
             var fullPath = Path.Combine(_dataDirPath, _dataFileName);
             GameData loadData = null;
 
-            if (File.Exists((fullPath)))
+            if (File.Exists(fullPath))
             {
                 try
                 {
                     string dataToLoad;
-                    using (FileStream stream = new FileStream(fullPath, FileMode.Open))
+                    using (var stream = new FileStream(fullPath, FileMode.Open))
                     {
-                        using (StreamReader  reader =new StreamReader(stream)) 
+                        using (var  reader =new StreamReader(stream)) 
                             dataToLoad = reader.ReadToEnd();
                     }
 
@@ -79,14 +79,12 @@ namespace Script.SaveSystem
                 File.Delete(fullPath);
         }
 
-        private string EncryptDecrypt(string data)
+        private static string EncryptDecrypt(string data)
         {
-            string modifiedData = "";
+            var modifiedData = "";
 
-            for (int i = 0; i < data.Length; i++)
-            {
+            for (var i = 0; i < data.Length; i++) 
                 modifiedData += (char)(data[i] ^ CodeWord[i % CodeWord.Length]);
-            }
             return modifiedData;
         }
     }

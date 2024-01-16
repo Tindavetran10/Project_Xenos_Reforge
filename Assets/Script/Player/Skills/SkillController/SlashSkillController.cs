@@ -34,10 +34,8 @@ namespace Script.Player.Skills.SkillController
             {
                 if (hit.GetComponent<Enemy.EnemyStateMachine.Enemy>() != null)
                 {
-                    var enemy = collision.GetComponent<Enemy.EnemyStateMachine.Enemy>();
                     var target = hit.GetComponentInChildren<EnemyStats>();
                     _stats.DoDamage(target);
-                    enemy.StartCoroutine("FreezeTimerFor", 10f);
                 }
             }
         }

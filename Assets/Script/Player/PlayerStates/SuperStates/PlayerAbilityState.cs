@@ -25,6 +25,8 @@ namespace Script.Player.PlayerStates.SuperStates
         }
 
         public override void Enter() {
+            if(Player.isActiveAndEnabled == false)
+                return;
             base.Enter();
             IsAbilityDone = false;
         }

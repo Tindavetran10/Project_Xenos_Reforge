@@ -72,7 +72,13 @@ namespace Script.StatSystem
         }
 
         protected virtual void Die() => IsDead = true;
-        
+
+        public void KillEntity()
+        {
+            if(!IsDead)
+                Die();
+        }
+
         #region Stat Calculations
         private static int CheckTargetArmor(CharacterStats targetStats, int totalDamage)
         {

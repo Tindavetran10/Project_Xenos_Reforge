@@ -59,7 +59,6 @@ namespace Script.Entity
             Movement.CanSetVelocity = true;
         }
 
-        public virtual void Die() => Invoke(nameof(DestroyCharacter), 1f);
-        private void DestroyCharacter() => Destroy(gameObject);
+        public virtual void Die(){}
     }
 }

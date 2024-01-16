@@ -1,6 +1,5 @@
 using System.Collections;
 using Script.Manager;
-using Script.SaveSystem;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,7 +9,7 @@ namespace Script.UI
     {
         [SerializeField] private string sceneName = "MainScene";
         [SerializeField] private GameObject continueButton;
-        [SerializeField] private UiFadeScreen fadeScreen;
+        [SerializeField] private UIFadeScreen fadeScreen;
         
         private void Start()
         {

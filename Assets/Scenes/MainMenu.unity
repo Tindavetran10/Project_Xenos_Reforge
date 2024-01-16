@@ -426,7 +426,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneName: MainScene
   continueButton: {fileID: 738364541}
-  fadeScreen: {fileID: 2047005779}
+  fadeScreen: {fileID: 2134731822}
 --- !u!1 &571732603
 GameObject:
   m_ObjectHideFlags: 0
@@ -1460,17 +1460,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!114 &2047005779 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7781758560916029201, guid: ad42b87b489fcde49a9bbc6c7c7c57ff, type: 3}
-  m_PrefabInstance: {fileID: 351776025}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3409286b7780a4b4299974c07758e54b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2090241907
 GameObject:
   m_ObjectHideFlags: 0
@@ -1605,6 +1594,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2090241907}
   m_CullTransparentMesh: 1
+--- !u!114 &2134731822 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1504730360446069908, guid: ad42b87b489fcde49a9bbc6c7c7c57ff, type: 3}
+  m_PrefabInstance: {fileID: 351776025}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3409286b7780a4b4299974c07758e54b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

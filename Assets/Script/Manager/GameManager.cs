@@ -27,7 +27,7 @@ namespace Script.Manager
             _player = PlayerManager.Instance.player.transform;
         }
 
-        public static void RestartScene()
+        public void RestartScene()
         {
             SaveManager.Instance.SaveGame();
             var scene = SceneManager.GetActiveScene();
