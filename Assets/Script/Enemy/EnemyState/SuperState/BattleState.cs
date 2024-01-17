@@ -43,7 +43,6 @@ namespace Script.Enemy.EnemyState.SuperState
             }
 
             EnemyBase.Anim.SetInteger(ComboCounter, _comboCounter);
-            EnemyBase.Atsm.BattleState = this;
             EnemyBase.isAnimationFinished = false;
             
             Movement?.SetVelocityX(0f);

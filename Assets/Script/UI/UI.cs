@@ -9,6 +9,7 @@ namespace Script.UI
         [Header("End screen")]
         [SerializeField] private UIFadeScreen fadeScreen;
         [SerializeField] private GameObject endText;
+        [SerializeField] private GameObject winText;
         [SerializeField] private GameObject restartButton;
         [Space]
         
@@ -81,10 +82,24 @@ namespace Script.UI
             StartCoroutine(EndScreenCoroutine());
         }
 
+        public void SwitchOnWinScreen()
+        {
+            fadeScreen.FadeOut();
+            StartCoroutine(WinScreenCoroutine());
+        }
+
         private IEnumerator EndScreenCoroutine()
         {
             yield return new WaitForSeconds(1);
             endText.SetActive(true);
+            yield return new WaitForSeconds(1);
+            restartButton.SetActive(true);
+        }
+
+        private IEnumerator WinScreenCoroutine()
+        {
+            yield return new WaitForSeconds(1);
+            winText.SetActive(true);
             yield return new WaitForSeconds(1);
             restartButton.SetActive(true);
         }

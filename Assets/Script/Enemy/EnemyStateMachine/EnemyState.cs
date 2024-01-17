@@ -36,6 +36,7 @@ namespace Script.Enemy.EnemyStateMachine
             StartTime = Time.time;
         }
         
+        
         public virtual void Exit() => EnemyBase.Anim.SetBool(_animBoolName, false);
 
         public virtual void LogicUpdate(){}

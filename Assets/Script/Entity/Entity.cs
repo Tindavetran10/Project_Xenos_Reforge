@@ -1,7 +1,7 @@
 using System.Collections;
 using Script.CoreSystem;
 using Script.CoreSystem.CoreComponents;
-using Script.Enemy.Intermediaries;
+using Script.Intermediaries;
 using UnityEngine;
 using CharacterStats = Script.StatSystem.CharacterStats;
 
@@ -19,7 +19,7 @@ namespace Script.Entity
 
         protected CapsuleCollider2D MovementCollider2D { get; set; }
 
-        protected Movement Movement => _movement ? _movement : Core.GetCoreComponent(ref _movement);
+        public Movement Movement => _movement ? _movement : Core.GetCoreComponent(ref _movement);
         private Movement _movement;
         #endregion
 
@@ -31,7 +31,7 @@ namespace Script.Entity
 
         public System.Action OnFlipped;
         
-        public AnimationToStateMachine Atsm { get; protected set; }
+        public EnemyAnimationToStateMachine Atsm { get; protected set; }
 
         protected virtual void Awake() => Core = GetComponentInChildren<Core>();
 
@@ -39,7 +39,7 @@ namespace Script.Entity
         {
             Anim = GetComponent<Animator>();
             Rb = GetComponent<Rigidbody2D>();
-            Atsm = GetComponent<AnimationToStateMachine>();
+            Atsm = GetComponent<EnemyAnimationToStateMachine>();
             FX = GetComponent<EntityFX>();
             Stats = GetComponentInChildren<CharacterStats>();
             MovementCollider2D = GetComponent<CapsuleCollider2D>();

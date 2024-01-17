@@ -38,7 +38,7 @@ MonoBehaviour:
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 64
-  comboWindow: 2
+  comboWindow: 1
   numberOfAttacks: 3
   attackVelocity:
   - 1

@@ -130,8 +130,15 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 0.55
+    functionName: CloseCounterAttackWindow
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.6
-    functionName: CloseCounterWindow
+    functionName: CloseCounterAttackWindow
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

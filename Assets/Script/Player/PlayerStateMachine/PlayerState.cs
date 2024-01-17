@@ -7,7 +7,7 @@ namespace Script.Player.PlayerStateMachine
 {
      public class PlayerState
      {
-          private readonly Core Core;
+          private readonly Core _core;
 
           protected readonly Player Player;
           protected readonly PlayerStateMachine StateMachine;
@@ -20,11 +20,11 @@ namespace Script.Player.PlayerStateMachine
           
           private readonly string _animBoolName;
           
-          protected Movement Movement => _movement ? _movement : Core.GetCoreComponent(ref _movement);
+          protected Movement Movement => _movement ? _movement : _core.GetCoreComponent(ref _movement);
           private Movement _movement;
 
           protected CollisionSenses CollisionSenses => _collisionSenses ? _collisionSenses 
-               : Core.GetCoreComponent(ref _collisionSenses);
+               : _core.GetCoreComponent(ref _collisionSenses);
           private CollisionSenses _collisionSenses;
           
 
@@ -36,7 +36,7 @@ namespace Script.Player.PlayerStateMachine
                StateMachine = stateMachine;
                PlayerData = playerData;
                _animBoolName = animBoolName;
-               Core = player.Core;
+               _core = player.Core;
           }
 
           public virtual void Enter()

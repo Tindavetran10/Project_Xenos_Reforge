@@ -1,13 +1,10 @@
-﻿using Script.Enemy.EnemySpecific.Ranger;
-using Script.Enemy.EnemyState.SuperState;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Script.Enemy.Intermediaries
+namespace Script.Intermediaries
 {
-    public class AnimationToStateMachine : MonoBehaviour
+    public class EnemyAnimationToStateMachine : MonoBehaviour
     {
-        public BattleState BattleState;
-        public EnemyStateMachine.Enemy enemy;
+        public Enemy.EnemyStateMachine.Enemy enemy;
         
         private void FinishAttack() => enemy.FinishAttack();
         private void AttackTrigger() => enemy.AttackTrigger();

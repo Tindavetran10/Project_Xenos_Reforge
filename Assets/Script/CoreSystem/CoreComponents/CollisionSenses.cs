@@ -61,7 +61,6 @@ namespace Script.CoreSystem.CoreComponents
 				wallCheckDistance, whatIsGround);
 		
 		public bool LedgeVertical => Physics2D.Raycast(LedgeCheckVertical.position, Vector2.down, wallCheckDistance, whatIsGround);
-
 		#endregion
 
 

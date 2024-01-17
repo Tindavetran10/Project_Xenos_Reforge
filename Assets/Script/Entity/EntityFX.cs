@@ -15,7 +15,7 @@ namespace Script.Entity
 
         private void Start()
         {
-            _spriteRenderer = GetComponent<SpriteRenderer>();
+            _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
             _originalMat = _spriteRenderer.material;
         }
 

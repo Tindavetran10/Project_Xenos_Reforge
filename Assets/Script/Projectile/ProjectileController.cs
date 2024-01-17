@@ -32,7 +32,6 @@ namespace Script.Projectile
         {
             if (collision.gameObject.layer == LayerMask.NameToLayer(targetLayerName))
             {
-                /*collision.GetComponentInChildren<CharacterStats>().TakeDamage(damage);*/
                 _characterStats.DoDamage(collision.GetComponentInChildren<CharacterStats>());
                 ProjectileInteraction(collision);
             }

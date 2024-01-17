@@ -97,11 +97,6 @@ namespace Script.Manager
             return closestCheckPoint;
         }
         
-        public void PauseGame(bool pause)
-        {
-            if (pause)
-                Time.timeScale = 0;
-            else Time.timeScale = 1;
-        }
+        public void PauseGame(bool pause) => Time.timeScale = pause ? 0 : 1;
     }
 }

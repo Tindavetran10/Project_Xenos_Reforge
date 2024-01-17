@@ -16,10 +16,6 @@ namespace _Scripts.Player.Input
         public event Action OnPauseEvent;
         public event Action OnResumeEvent;
         
-        public bool SkillTreeUIInput { get; private set; }
-        public bool SkillTreeUIInputStop { get; private set; }
-        public bool ExitUI { get; private set; }
-
         // Properties to store raw and normalized input values
         private Vector2 RawMovementInput { get; set; }
         private Vector2 RawDashDirectionInput { get; set; }
@@ -216,21 +212,7 @@ namespace _Scripts.Player.Input
             else if (context.canceled) AimSwordInputStop = true;
         }
 
-        public void OnSkillTreeUI(InputAction.CallbackContext context)
-        {
-            if (context.started)
-            {
-                SkillTreeUIInput = true;
-                SkillTreeUIInputStop = false;
-            }
-            else if (context.canceled) SkillTreeUIInput = false;
-        }
-
-        public void OnExitUI(InputAction.CallbackContext context)
-        {
-            if (context.started) ExitUI = true;
-            if (context.canceled) ExitUI = false;
-        }
+        
 
         // Callback for dash direction input
         public void OnDashDirection(InputAction.CallbackContext context)

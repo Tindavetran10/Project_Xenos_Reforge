@@ -116,24 +116,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""SkillTreeUI"",
-                    ""type"": ""Button"",
-                    ""id"": ""30061e2c-35e0-4f8b-ac42-6ddfcb6de8b3"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""ExitUI"",
-                    ""type"": ""Button"",
-                    ""id"": ""a931a01d-329b-497c-8f98-ea3492fe6c70"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -345,28 +327,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""AimSword"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""ff58be30-c13b-4b1b-b1dc-cc44da23e0bb"",
-                    ""path"": ""<Keyboard>/k"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""SkillTreeUI"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""dac47efd-497e-496a-b82f-266eec93b217"",
-                    ""path"": ""<Keyboard>/escape"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""ExitUI"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -413,8 +373,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Gameplay_HeavyAttack = m_Gameplay.FindAction("HeavyAttack", throwIfNotFound: true);
         m_Gameplay_CounterAttack = m_Gameplay.FindAction("CounterAttack", throwIfNotFound: true);
         m_Gameplay_AimSword = m_Gameplay.FindAction("AimSword", throwIfNotFound: true);
-        m_Gameplay_SkillTreeUI = m_Gameplay.FindAction("SkillTreeUI", throwIfNotFound: true);
-        m_Gameplay_ExitUI = m_Gameplay.FindAction("ExitUI", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Resume = m_UI.FindAction("Resume", throwIfNotFound: true);
@@ -489,8 +447,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_HeavyAttack;
     private readonly InputAction m_Gameplay_CounterAttack;
     private readonly InputAction m_Gameplay_AimSword;
-    private readonly InputAction m_Gameplay_SkillTreeUI;
-    private readonly InputAction m_Gameplay_ExitUI;
     public struct GameplayActions
     {
         private @PlayerInput m_Wrapper;
@@ -505,8 +461,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @HeavyAttack => m_Wrapper.m_Gameplay_HeavyAttack;
         public InputAction @CounterAttack => m_Wrapper.m_Gameplay_CounterAttack;
         public InputAction @AimSword => m_Wrapper.m_Gameplay_AimSword;
-        public InputAction @SkillTreeUI => m_Wrapper.m_Gameplay_SkillTreeUI;
-        public InputAction @ExitUI => m_Wrapper.m_Gameplay_ExitUI;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -546,12 +500,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @AimSword.started += instance.OnAimSword;
             @AimSword.performed += instance.OnAimSword;
             @AimSword.canceled += instance.OnAimSword;
-            @SkillTreeUI.started += instance.OnSkillTreeUI;
-            @SkillTreeUI.performed += instance.OnSkillTreeUI;
-            @SkillTreeUI.canceled += instance.OnSkillTreeUI;
-            @ExitUI.started += instance.OnExitUI;
-            @ExitUI.performed += instance.OnExitUI;
-            @ExitUI.canceled += instance.OnExitUI;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -586,12 +534,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @AimSword.started -= instance.OnAimSword;
             @AimSword.performed -= instance.OnAimSword;
             @AimSword.canceled -= instance.OnAimSword;
-            @SkillTreeUI.started -= instance.OnSkillTreeUI;
-            @SkillTreeUI.performed -= instance.OnSkillTreeUI;
-            @SkillTreeUI.canceled -= instance.OnSkillTreeUI;
-            @ExitUI.started -= instance.OnExitUI;
-            @ExitUI.performed -= instance.OnExitUI;
-            @ExitUI.canceled -= instance.OnExitUI;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -667,8 +609,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnHeavyAttack(InputAction.CallbackContext context);
         void OnCounterAttack(InputAction.CallbackContext context);
         void OnAimSword(InputAction.CallbackContext context);
-        void OnSkillTreeUI(InputAction.CallbackContext context);
-        void OnExitUI(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

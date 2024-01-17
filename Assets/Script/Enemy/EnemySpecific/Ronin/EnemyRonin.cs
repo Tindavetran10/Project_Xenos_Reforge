@@ -1,5 +1,5 @@
 using Script.Enemy.EnemyState.StateData;
-using Script.Enemy.Intermediaries;
+using Script.Intermediaries;
 using UnityEngine;
 
 namespace Script.Enemy.EnemySpecific.Ronin
@@ -47,7 +47,7 @@ namespace Script.Enemy.EnemySpecific.Ronin
         protected override void Start()
         {
             base.Start();
-            Atsm = GetComponent<AnimationToStateMachine>();
+            Atsm = GetComponent<EnemyAnimationToStateMachine>();
             StateMachine.Initialize(IdleState);
         }
 
