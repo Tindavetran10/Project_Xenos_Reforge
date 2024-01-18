@@ -27,7 +27,6 @@ namespace Script.Enemy.EnemySpecific.Ranger
         [SerializeField] public D_DodgeState dodgeStateData;
         #endregion
         
-        
         protected override void Awake()
         {
             base.Awake();

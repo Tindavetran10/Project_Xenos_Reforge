@@ -226,14 +226,6 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: c5f9e136-0c10-4ed9-8983-2837bd32d328
     m_ActionName: Gameplay/AimSword[/Keyboard/e]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 30061e2c-35e0-4f8b-ac42-6ddfcb6de8b3
-    m_ActionName: Gameplay/SkillTreeUI[/Keyboard/k]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: a931a01d-329b-497c-8f98-ea3492fe6c70
-    m_ActionName: Gameplay/ExitUI[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay

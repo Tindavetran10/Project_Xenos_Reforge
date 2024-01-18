@@ -8,23 +8,23 @@ namespace Script.Enemy.EnemyState.SubState
     {
         protected bool IsDodgeOver;
 
-        private readonly D_DodgeState StateData;
+        private readonly D_DodgeState _stateData;
         
         protected DodgeState(EnemyStateMachine.Enemy enemyBase, EnemyStateMachine.EnemyStateMachine stateMachine, 
             string animBoolName, D_DodgeState stateData) : base(enemyBase, stateMachine, animBoolName) =>
-            StateData = stateData;
+            _stateData = stateData;
 
         public override void Enter()
         {
             base.Enter();
             IsDodgeOver = false;
-            Movement?.SetVelocity(StateData.dodgeSpeed, StateData.dodgeAngle, -Movement.FacingDirection);
+            Movement?.SetVelocity(_stateData.dodgeSpeed, _stateData.dodgeAngle, -Movement.FacingDirection);
         }
 
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-            if (Time.time >= StartTime + StateData.dodgeTime && IsGrounded)
+            if (Time.time >= StartTime + _stateData.dodgeTime && IsGrounded)
                 IsDodgeOver = true;
         }
     }

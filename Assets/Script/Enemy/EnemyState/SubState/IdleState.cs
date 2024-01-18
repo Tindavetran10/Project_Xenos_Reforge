@@ -37,14 +37,12 @@ namespace Script.Enemy.EnemyState.SubState
             base.Exit();
             if(_flipAfterIdle)
             {
-                if (EnemyBase.OnFlipped != null)
-                    EnemyBase.OnFlipped();
+                EnemyBase.OnFlipped?.Invoke();
                 Movement?.Flip();
             }
         }
 
-        public void SetFlipAfterIdle(bool flip) => 
-            _flipAfterIdle = flip;
+        public void SetFlipAfterIdle(bool flip) => _flipAfterIdle = flip;
 
         private void SetRandomIdleTime() => 
             _idleTime = Random.Range(_stateData.minIdleTime, _stateData.maxIdleTime);

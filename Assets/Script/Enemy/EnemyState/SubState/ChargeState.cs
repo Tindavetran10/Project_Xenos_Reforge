@@ -19,7 +19,6 @@ namespace Script.Enemy.EnemyState.SubState
             base.Enter();
 
             IsChargeTimeOver = false;
-            
             Movement?.SetVelocityX(_stateData.chargeSpeed * Movement.FacingDirection);
         }
 

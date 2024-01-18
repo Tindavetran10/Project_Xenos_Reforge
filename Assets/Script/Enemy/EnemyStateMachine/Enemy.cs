@@ -48,13 +48,8 @@ namespace Script.Enemy.EnemyStateMachine
             base.FixedUpdate();
             StateMachine.CurrentState.PhysicsUpdate();
         }
-        
-        public void FinishAttack()
-        {
-            isAnimationFinished = true;
-            counterImage.SetActive(false);
-        }
 
+        #region Animator Function
         public void AttackTrigger()
         {
             var collider2Ds = Physics2D.OverlapCircleAll(attackPosition.position, enemyData.hitBox.Length);
@@ -75,7 +70,14 @@ namespace Script.Enemy.EnemyStateMachine
                 attackPosition.position, Quaternion.identity);
             newProjectile.GetComponent<ProjectileController>().SetUpProjectile(projectileSpeed * Movement.FacingDirection, Stats);
         }
-
+        
+        public void FinishAttack()
+        {
+            isAnimationFinished = true;
+            counterImage.SetActive(false);
+        }
+        #endregion
+        
         #region CounterAttack Window
         public void OpenCounterAttackWindow()
         {
@@ -98,17 +100,17 @@ namespace Script.Enemy.EnemyStateMachine
             }
             return false;
         }
-
         #endregion
 
+        #region Die Function
         public override void Die()
         {
             base.Die();
             Invoke(nameof(DestroyEnemy), 1f);
         }
-        
         private void DestroyEnemy() => Destroy(gameObject);
-
+        #endregion
+        
         #region Check Functions, Draw Gizmos
         public bool CheckPlayerInAgroRange() => 
             Physics2D.Raycast(attackPosition.position, transform.right, enemyData.agroDistance, 

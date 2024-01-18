@@ -1,5 +1,4 @@
-﻿using Script.CoreSystem.CoreComponents;
-using Script.Player.Data;
+﻿using Script.Player.Data;
 using Script.Player.PlayerStateMachine;
 using UnityEngine;
 
@@ -39,11 +38,14 @@ namespace Script.Player.PlayerStates.SubStates
 
             // Offset the image of Player to be next to the ledge
 
-            _startPos.Set(_cornerPos.x - Movement.FacingDirection * PlayerData.startOffset.x,
-                _cornerPos.y - PlayerData.startOffset.y);
-            _stopPos.Set(_cornerPos.x + Movement.FacingDirection * PlayerData.stopOffset.x,
-                _cornerPos.y + PlayerData.stopOffset.y);
-            
+            if (Movement != null)
+            {
+                _startPos.Set(_cornerPos.x - Movement.FacingDirection * PlayerData.startOffset.x,
+                    _cornerPos.y - PlayerData.startOffset.y);
+                _stopPos.Set(_cornerPos.x + Movement.FacingDirection * PlayerData.stopOffset.x,
+                    _cornerPos.y + PlayerData.stopOffset.y);
+            }
+
             Player.transform.position = _startPos;
         }
 
@@ -76,7 +78,7 @@ namespace Script.Player.PlayerStates.SubStates
                 Movement?.SetVelocityZero();
                 Player.transform.position = _startPos;
 
-                if (_xInput == Movement.FacingDirection && _isHanging && !_isClimbing) 
+                if (Movement != null && _xInput == Movement.FacingDirection && _isHanging && !_isClimbing) 
                 {
                     CheckForSpace();
                     _isClimbing = true;
@@ -84,7 +86,7 @@ namespace Script.Player.PlayerStates.SubStates
                 } 
                 else if (_yInput == -1 && _isHanging && !_isClimbing)
                     StateMachine.ChangeState(Player.InAirState);
-                else if (_xInput == -Movement.FacingDirection && _jumpInput && !_isClimbing) 
+                else if (Movement != null && _xInput == -Movement.FacingDirection && _jumpInput && !_isClimbing) 
                 {
                     Player.WallJumpState.DetermineWallJumpDirection(true);
                     StateMachine.ChangeState(Player.WallJumpState);
