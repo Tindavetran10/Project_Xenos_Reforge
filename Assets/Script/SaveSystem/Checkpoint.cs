@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Script
+namespace Script.SaveSystem
 {
     public class Checkpoint : MonoBehaviour
     {

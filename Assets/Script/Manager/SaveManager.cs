@@ -46,13 +46,13 @@ namespace Script.Manager
                 NewGame();
             }
 
-            foreach (ISaveManager saveManager in _saveManagers) 
+            foreach (var saveManager in _saveManagers) 
                 saveManager.LoadData(_gameData);
         }
 
         public void SaveGame()
         {
-            foreach (ISaveManager saveManager in _saveManagers) 
+            foreach (var saveManager in _saveManagers) 
                 saveManager.SaveData(ref _gameData);
             
             _dataHandler.Save(_gameData);
@@ -60,9 +60,9 @@ namespace Script.Manager
 
         private void OnApplicationQuit() => SaveGame();
 
-        private List<ISaveManager> FindAllSaveManagers()
+        private static List<ISaveManager> FindAllSaveManagers()
         {
-            IEnumerable<ISaveManager> saveManagers = FindObjectsOfType<MonoBehaviour>().OfType<ISaveManager>();
+            var saveManagers = FindObjectsOfType<MonoBehaviour>().OfType<ISaveManager>();
             return new List<ISaveManager>(saveManagers);
         }
 
