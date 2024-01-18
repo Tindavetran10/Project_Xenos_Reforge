@@ -9,6 +9,8 @@ namespace Script.Manager
         public Player.PlayerStateMachine.Player player;
 
         public int currency;
+        public int playerHealth;
+        public Vector3 playerPosition;
         
         private void Awake()
         {
@@ -30,15 +32,20 @@ namespace Script.Manager
         }
 
         public int GetCurrency() => currency;
+        public Vector3 GetPosition() => playerPosition;
 
         public void LoadData(GameData data)
         {
             currency = data.currency;
+            playerHealth = data.playerHealth;
+            playerPosition = data.playerPosition;
         }
 
         public void SaveData(ref GameData data)
         {
             data.currency = currency;
+            data.playerHealth = player.Stats.currentHealth;
+            data.playerPosition = player.transform.position;
         }
     }
 }

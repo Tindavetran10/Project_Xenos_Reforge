@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.tarodev.autosave": {
+      "version": "https://github.com/Matthew-J-Spencer/Tarodev.git?path=Assets/Plugins/AutoSave",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "3417050280086d0d4fff2444d7d0aeb9d928dc0c"
+    },
     "com.unity.2d.pixel-perfect": {
       "version": "5.0.3",
       "depth": 0,

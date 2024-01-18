@@ -39,8 +39,8 @@ namespace Script.UI
 
             if(menu != null) menu.SetActive(true);
 
-            if (GameManager._instance != null) 
-                GameManager._instance.PauseGame(menu != inGameUI);
+            if (GameManager.Instance != null) 
+                GameManager.PauseGame(menu != inGameUI);
         }
 
         private void SwitchWithKeyTo(GameObject menu)
@@ -104,6 +104,6 @@ namespace Script.UI
             restartButton.SetActive(true);
         }
         
-        public void RestartGameButton() => GameManager._instance.RestartScene();
+        public void RestartGameButton() => GameManager.RestartScene();
     }
 }

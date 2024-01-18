@@ -10,7 +10,7 @@ namespace Script.SaveSystem
         private readonly string _dataFileName;
 
         private readonly bool _encryptData;
-        private const string CodeWord = "DoAn";
+        private const string CodeWord = "Project:L";
 
         public FileDataHandler(string dataDirPath, string dataFileName, bool encryptData)
         {
@@ -36,8 +36,7 @@ namespace Script.SaveSystem
                 using var writer = new StreamWriter(stream);
                 writer.Write(dataToStore);
             }
-            catch (Exception e)
-            {
+            catch (Exception e) {
                 Debug.LogError("Error on trying to save data to file" + fullPath + "\n" + e);
             }
         }
@@ -63,8 +62,7 @@ namespace Script.SaveSystem
                     
                     loadData = JsonUtility.FromJson<GameData>(dataToLoad);
                 }
-                catch (Exception e)
-                {
+                catch (Exception e) {
                     Debug.LogError("Error on trying to load data from file:" + fullPath + "\n" + e);
                 }
             }

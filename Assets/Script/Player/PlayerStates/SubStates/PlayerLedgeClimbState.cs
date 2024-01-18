@@ -13,12 +13,8 @@ namespace Script.Player.PlayerStates.SubStates
         private Vector2 _workspace;
         
         private bool _isClimbing;
-        private bool _jumpInput;
         private bool _isTouchingCeiling;
 
-        private int _xInput;
-        private int _yInput;
-        
         private static readonly int ClimbLedge = Animator.StringToHash("climbLedge");
         private static readonly int IsTouchingCeiling = Animator.StringToHash("isTouchingCeiling");
 
@@ -68,10 +64,6 @@ namespace Script.Player.PlayerStates.SubStates
             } 
             else 
             {
-                _xInput = Player.InputHandler.NormInputX;
-                _yInput = Player.InputHandler.NormInputY;
-                _jumpInput = Player.InputHandler.JumpInput;
-
                 Movement?.SetVelocityZero();
                 Player.transform.position = _startPos;
 
