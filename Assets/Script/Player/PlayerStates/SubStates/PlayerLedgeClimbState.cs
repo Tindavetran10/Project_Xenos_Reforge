@@ -12,7 +12,6 @@ namespace Script.Player.PlayerStates.SubStates
         private Vector2 _stopPos;
         private Vector2 _workspace;
         
-        private bool _isHanging;
         private bool _isClimbing;
         private bool _jumpInput;
         private bool _isTouchingCeiling;
@@ -51,9 +50,7 @@ namespace Script.Player.PlayerStates.SubStates
 
         public override void Exit() {
             base.Exit();
-
-            _isHanging = false;
-
+            
             if (_isClimbing) {
                 Player.transform.position = _stopPos;
                 _isClimbing = false;
@@ -78,25 +75,13 @@ namespace Script.Player.PlayerStates.SubStates
                 Movement?.SetVelocityZero();
                 Player.transform.position = _startPos;
 
-                if (Movement != null && _xInput == Movement.FacingDirection && _isHanging && !_isClimbing) 
+                if (!_isClimbing) 
                 {
                     CheckForSpace();
                     _isClimbing = true;
                     Player.Anim.SetBool(ClimbLedge, true);
                 } 
-                else if (_yInput == -1 && _isHanging && !_isClimbing)
-                    StateMachine.ChangeState(Player.InAirState);
-                else if (Movement != null && _xInput == -Movement.FacingDirection && _jumpInput && !_isClimbing) 
-                {
-                    Player.WallJumpState.DetermineWallJumpDirection(true);
-                    StateMachine.ChangeState(Player.WallJumpState);
-                }
             }
-        }
-
-        public override void AnimationTrigger() {
-            base.AnimationTrigger();
-            _isHanging = true;
         }
 
         public override void AnimationFinishTrigger() {
