@@ -2986,40 +2986,16 @@ PrefabInstance:
       value: Parallax Sprite (1)
       objectReference: {fileID: 0}
     - target: {fileID: 6263818477339308017, guid: fb25697031a1f6746a3cbb3f788ef0ea, type: 3}
-      propertyPath: m_Size.x
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6263818477339308017, guid: fb25697031a1f6746a3cbb3f788ef0ea, type: 3}
-      propertyPath: m_Size.y
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6263818477339308017, guid: fb25697031a1f6746a3cbb3f788ef0ea, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 940a5b7a36d5fee4582e7c83d9cad207, type: 3}
-    - target: {fileID: 6263818477339308017, guid: fb25697031a1f6746a3cbb3f788ef0ea, type: 3}
-      propertyPath: m_DrawMode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8061374697967150295, guid: fb25697031a1f6746a3cbb3f788ef0ea, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8061374697967150295, guid: fb25697031a1f6746a3cbb3f788ef0ea, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8061374697967150295, guid: fb25697031a1f6746a3cbb3f788ef0ea, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8061374697967150295, guid: fb25697031a1f6746a3cbb3f788ef0ea, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.7900004
       objectReference: {fileID: 0}
     - target: {fileID: 8061374697967150295, guid: fb25697031a1f6746a3cbb3f788ef0ea, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.62
+      value: 1.8699999
       objectReference: {fileID: 0}
     - target: {fileID: 8061374697967150295, guid: fb25697031a1f6746a3cbb3f788ef0ea, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3667,7 +3643,7 @@ Camera:
   far clip plane: 100
   field of view: 60
   orthographic: 1
-  orthographic size: 2
+  orthographic size: 2.06
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -3692,7 +3668,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.14, y: -0.576, z: -10}
+  m_LocalPosition: {x: -7.14, y: -0.55920005, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3749,7 +3725,7 @@ MonoBehaviour:
   m_RefResolutionY: 215
   m_UpscaleRT: 0
   m_PixelSnapping: 0
-  m_CropFrameX: 1
+  m_CropFrameX: 0
   m_CropFrameY: 0
   m_StretchFill: 0
 --- !u!1 &565401530
@@ -4635,8 +4611,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TrackedObjectOffset: {x: 0, y: 0, z: 0}
-  m_LookaheadTime: 0.4
-  m_LookaheadSmoothing: 4
+  m_LookaheadTime: 0.3
+  m_LookaheadSmoothing: 13
   m_LookaheadIgnoreY: 1
   m_XDamping: 0
   m_YDamping: 1
@@ -4645,12 +4621,12 @@ MonoBehaviour:
   m_ScreenX: 0.5
   m_ScreenY: 0.64
   m_CameraDistance: 10
-  m_DeadZoneWidth: 0.06
-  m_DeadZoneHeight: 0.89
+  m_DeadZoneWidth: 0
+  m_DeadZoneHeight: 0
   m_DeadZoneDepth: 0
   m_UnlimitedSoftZone: 0
-  m_SoftZoneWidth: 0.15
-  m_SoftZoneHeight: 0.89
+  m_SoftZoneWidth: 0
+  m_SoftZoneHeight: 0
   m_BiasX: 0
   m_BiasY: 0
   m_CenterOnActivate: 1
@@ -4854,33 +4830,9 @@ PrefabInstance:
       value: Parallax Sprite (2)
       objectReference: {fileID: 0}
     - target: {fileID: 6263818477339308017, guid: fb25697031a1f6746a3cbb3f788ef0ea, type: 3}
-      propertyPath: m_Size.x
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6263818477339308017, guid: fb25697031a1f6746a3cbb3f788ef0ea, type: 3}
-      propertyPath: m_Size.y
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6263818477339308017, guid: fb25697031a1f6746a3cbb3f788ef0ea, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 8170402221452674b95c84f889517a71, type: 3}
-    - target: {fileID: 6263818477339308017, guid: fb25697031a1f6746a3cbb3f788ef0ea, type: 3}
-      propertyPath: m_DrawMode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8061374697967150295, guid: fb25697031a1f6746a3cbb3f788ef0ea, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.4166666
-      objectReference: {fileID: 0}
-    - target: {fileID: 8061374697967150295, guid: fb25697031a1f6746a3cbb3f788ef0ea, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8061374697967150295, guid: fb25697031a1f6746a3cbb3f788ef0ea, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8061374697967150295, guid: fb25697031a1f6746a3cbb3f788ef0ea, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.7900004
@@ -5316,7 +5268,7 @@ MonoBehaviour:
   m_Follow: {fileID: 5633667459348351550}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 2
+    OrthographicSize: 2.06
     NearClipPlane: 0
     FarClipPlane: 100
     Dutch: 0
@@ -5342,7 +5294,7 @@ Transform:
   m_GameObject: {fileID: 1476663589}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.14, y: -0.576, z: -10}
+  m_LocalPosition: {x: -7.14, y: -0.55920005, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5842,26 +5794,6 @@ PrefabInstance:
     - target: {fileID: 3907191113054966465, guid: fb25697031a1f6746a3cbb3f788ef0ea, type: 3}
       propertyPath: m_Name
       value: Parallax Sprite
-      objectReference: {fileID: 0}
-    - target: {fileID: 6263818477339308017, guid: fb25697031a1f6746a3cbb3f788ef0ea, type: 3}
-      propertyPath: m_Size.x
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6263818477339308017, guid: fb25697031a1f6746a3cbb3f788ef0ea, type: 3}
-      propertyPath: m_Size.y
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6263818477339308017, guid: fb25697031a1f6746a3cbb3f788ef0ea, type: 3}
-      propertyPath: m_DrawMode
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8061374697967150295, guid: fb25697031a1f6746a3cbb3f788ef0ea, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 8061374697967150295, guid: fb25697031a1f6746a3cbb3f788ef0ea, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2.25
       objectReference: {fileID: 0}
     - target: {fileID: 8061374697967150295, guid: fb25697031a1f6746a3cbb3f788ef0ea, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6989,6 +6921,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3066970319542227904, guid: 9aa5514650fb9ea43ae5c3c374537a15, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3066970319542227904, guid: 9aa5514650fb9ea43ae5c3c374537a15, type: 3}
+      propertyPath: encryptData
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5390983589551009429, guid: 9aa5514650fb9ea43ae5c3c374537a15, type: 3}
       propertyPath: m_Name
       value: SaveManager
