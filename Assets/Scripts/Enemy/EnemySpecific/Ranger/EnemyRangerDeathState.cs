@@ -9,7 +9,7 @@ namespace Enemy.EnemySpecific.Ranger
         private readonly EnemyRanger _enemyRanger;
         private static readonly int Die = Animator.StringToHash("die");
 
-        public EnemyRangerDeathState(Scripts.Enemy.EnemyStateMachine.Enemy enemyBase, 
+        public EnemyRangerDeathState(EnemyStateMachine.Enemy enemyBase, 
             Scripts.Enemy.EnemyStateMachine.EnemyStateMachine stateMachine, string animBoolName, EnemyRanger enemyRanger) 
             : base(enemyBase, stateMachine, animBoolName) =>
             _enemyRanger = enemyRanger;

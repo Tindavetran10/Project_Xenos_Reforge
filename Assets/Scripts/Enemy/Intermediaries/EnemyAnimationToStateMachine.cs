@@ -4,7 +4,7 @@ namespace Scripts.Intermediaries
 {
     public class EnemyAnimationToStateMachine : MonoBehaviour
     {
-        public Enemy.EnemyStateMachine.Enemy enemy;
+        public global::Enemy.EnemyStateMachine.Enemy enemy;
         
         private void FinishAttack() => enemy.FinishAttack();
         private void AttackTrigger() => enemy.AttackTrigger();

@@ -1,13 +1,12 @@
 using Cinemachine;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Background
 {
     public class Parallax : MonoBehaviour {
 
         //Parallax Scroll Variables
-        [FormerlySerializedAs("cam")] public CinemachineVirtualCamera cinemachineCam;//the camera
+        public CinemachineVirtualCamera cinemachineCam;//the camera
         public Transform subject;//the subject (usually the player character)
 
 
@@ -22,7 +21,8 @@ namespace Background
         private float ViewWidth => loopSpriteRenderer.sprite.rect.width / loopSpriteRenderer.sprite.pixelsPerUnit;
         private Vector2 Travel => (Vector2)cinemachineCam.transform.position - _startPos; //2D distance travelled from our starting position
         private float DistanceFromSubject => transform.position.z - subject.position.z;
-        private float ClippingPlane => cinemachineCam.transform.position.z + (DistanceFromSubject > 0 ? cinemachineCam.m_Lens.FarClipPlane : cinemachineCam.m_Lens.NearClipPlane);
+        private float ClippingPlane => cinemachineCam.transform.position.z + (DistanceFromSubject > 0 
+            ? cinemachineCam.m_Lens.FarClipPlane : cinemachineCam.m_Lens.NearClipPlane);
         private float ParallaxFactor => Mathf.Abs(DistanceFromSubject) / ClippingPlane;
 
 
@@ -39,9 +39,9 @@ namespace Background
         // Start is called before the first frame update
         private void Awake()
         {
-            //cinemachineCam = GetComponent<CinemachineVirtualCamera>();
-            _startPos = transform.position;
-            _zPosition = transform.position.z;
+            var position = transform.position;
+            _startPos = position;
+            _zPosition = position.z;
 
             if (loopSpriteRenderer != null && infiniteLoop) {
                 var sprite = loopSpriteRenderer.sprite;

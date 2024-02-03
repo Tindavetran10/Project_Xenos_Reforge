@@ -11,7 +11,7 @@ namespace Scripts.Enemy.EnemyState.SuperState
         private Movement _movement;
         private CollisionSenses _collisionSenses;
         
-        protected GroundedState(EnemyStateMachine.Enemy enemyBase, EnemyStateMachine.EnemyStateMachine stateMachine, 
+        protected GroundedState(global::Enemy.EnemyStateMachine.Enemy enemyBase, EnemyStateMachine.EnemyStateMachine stateMachine, 
             string animBoolName) : base(enemyBase, stateMachine, animBoolName) {}
 
         protected override void DoChecks()

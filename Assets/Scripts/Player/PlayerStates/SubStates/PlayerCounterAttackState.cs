@@ -48,9 +48,9 @@ namespace Player.PlayerStates.SubStates
                         SuccessfulCounterAttack();
                     }
                     
-                    if (hit.GetComponent<Scripts.Enemy.EnemyStateMachine.Enemy>() != null)
+                    if (hit.GetComponent<Enemy.EnemyStateMachine.Enemy>() != null)
                     {
-                        if(hit.GetComponent<Scripts.Enemy.EnemyStateMachine.Enemy>().CanBeStunned())
+                        if(hit.GetComponent<Enemy.EnemyStateMachine.Enemy>().CanBeStunned())
                             SuccessfulCounterAttack(); 
                     }
                 }

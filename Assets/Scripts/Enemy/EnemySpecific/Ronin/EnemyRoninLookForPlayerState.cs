@@ -7,7 +7,7 @@ namespace Enemy.EnemySpecific.Ronin
     {
         private readonly EnemyRonin _enemyRonin;
 
-        public EnemyRoninLookForPlayerState(Scripts.Enemy.EnemyStateMachine.Enemy enemyBase, 
+        public EnemyRoninLookForPlayerState(EnemyStateMachine.Enemy enemyBase, 
             Scripts.Enemy.EnemyStateMachine.EnemyStateMachine stateMachine, string animBoolName, D_LookForPlayerState stateData, 
             EnemyRonin enemyRonin) : base(enemyBase, stateMachine, animBoolName, stateData) =>
             _enemyRonin = enemyRonin;

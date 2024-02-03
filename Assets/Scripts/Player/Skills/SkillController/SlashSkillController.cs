@@ -32,7 +32,7 @@ namespace Player.Skills.SkillController
 
             foreach (var hit in collider2Ds)
             {
-                if (hit.GetComponent<Scripts.Enemy.EnemyStateMachine.Enemy>() != null)
+                if (hit.GetComponent<Enemy.EnemyStateMachine.Enemy>() != null)
                 {
                     var target = hit.GetComponentInChildren<EnemyStats>();
                     _stats.DoDamage(target);

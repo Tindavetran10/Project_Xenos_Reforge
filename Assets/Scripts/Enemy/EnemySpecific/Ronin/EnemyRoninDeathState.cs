@@ -9,7 +9,7 @@ namespace Enemy.EnemySpecific.Ronin
         private readonly EnemyRonin _enemyRonin;
         private static readonly int Die = Animator.StringToHash("die");
 
-        public EnemyRoninDeathState(Scripts.Enemy.EnemyStateMachine.Enemy enemyBase, 
+        public EnemyRoninDeathState(EnemyStateMachine.Enemy enemyBase, 
             Scripts.Enemy.EnemyStateMachine.EnemyStateMachine stateMachine, string animBoolName, EnemyRonin enemyRonin) 
             : base(enemyBase, stateMachine, animBoolName) => _enemyRonin = enemyRonin;
 

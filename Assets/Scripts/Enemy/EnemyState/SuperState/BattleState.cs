@@ -19,7 +19,7 @@ namespace Scripts.Enemy.EnemyState.SuperState
         protected int ComboWindow;
         private static readonly int ComboCounter = Animator.StringToHash("comboCounter");
         
-        protected BattleState(EnemyStateMachine.Enemy enemyBase, EnemyStateMachine.EnemyStateMachine stateMachine, 
+        protected BattleState(global::Enemy.EnemyStateMachine.Enemy enemyBase, EnemyStateMachine.EnemyStateMachine stateMachine, 
             string animBoolName) : base(enemyBase, stateMachine, animBoolName) {}
 
         protected override void DoChecks()

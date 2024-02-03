@@ -5,7 +5,7 @@ namespace Scripts.Enemy.EnemyStats
 {
     public class EnemyStats : CharacterStats
     {
-        private EnemyStateMachine.Enemy _enemy;
+        private global::Enemy.EnemyStateMachine.Enemy _enemy;
         public Stat soulDropAmount;
         
         protected override void Start()
@@ -13,7 +13,7 @@ namespace Scripts.Enemy.EnemyStats
             soulDropAmount.SetDefaultValue(100);
             
             base.Start();
-            _enemy = GetComponentInParent<EnemyStateMachine.Enemy>();
+            _enemy = GetComponentInParent<global::Enemy.EnemyStateMachine.Enemy>();
         }
 
         protected override void TakeDamage(int damageAmount)

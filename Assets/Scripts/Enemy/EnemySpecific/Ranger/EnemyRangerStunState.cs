@@ -7,7 +7,7 @@ namespace Enemy.EnemySpecific.Ranger
     {
         private readonly EnemyRanger _enemyRanger;
 
-        public EnemyRangerStunState(Scripts.Enemy.EnemyStateMachine.Enemy enemyBase, 
+        public EnemyRangerStunState(EnemyStateMachine.Enemy enemyBase, 
             Scripts.Enemy.EnemyStateMachine.EnemyStateMachine stateMachine, string animBoolName, D_StunState stateData, 
             EnemyRanger enemyRanger) : base(enemyBase, stateMachine, animBoolName, stateData) =>
             _enemyRanger = enemyRanger;

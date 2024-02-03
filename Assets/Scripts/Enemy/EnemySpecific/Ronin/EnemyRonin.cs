@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Enemy.EnemySpecific.Ronin
 {
-    public class EnemyRonin : Scripts.Enemy.EnemyStateMachine.Enemy
+    public class EnemyRonin : EnemyStateMachine.Enemy
     {
         #region State Variables
         public EnemyRoninIdleState IdleState { get; private set; }
@@ -47,7 +47,7 @@ namespace Enemy.EnemySpecific.Ronin
         protected override void Start()
         {
             base.Start();
-            Atsm = GetComponent<EnemyAnimationToStateMachine>();
+            GetComponent<EnemyAnimationToStateMachine>();
             StateMachine.Initialize(IdleState);
         }
 

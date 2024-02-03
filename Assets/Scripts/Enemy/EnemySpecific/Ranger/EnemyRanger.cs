@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Enemy.EnemySpecific.Ranger
 {
-    public class EnemyRanger : Scripts.Enemy.EnemyStateMachine.Enemy
+    public class EnemyRanger : EnemyStateMachine.Enemy
     {
         #region State Variables
         public EnemyRangerIdleState IdleState { get; private set; }

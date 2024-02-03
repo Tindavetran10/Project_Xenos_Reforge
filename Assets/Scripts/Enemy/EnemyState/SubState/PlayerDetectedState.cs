@@ -8,7 +8,7 @@ namespace Scripts.Enemy.EnemyState.SubState
     {
         private readonly D_PlayerDetectedState _stateData;
         
-        protected PlayerDetectedState(EnemyStateMachine.Enemy enemyBase, EnemyStateMachine.EnemyStateMachine stateMachine, 
+        protected PlayerDetectedState(global::Enemy.EnemyStateMachine.Enemy enemyBase, EnemyStateMachine.EnemyStateMachine stateMachine, 
             string animBoolName, D_PlayerDetectedState stateData) : base(enemyBase, stateMachine, animBoolName) =>
             _stateData = stateData;
 

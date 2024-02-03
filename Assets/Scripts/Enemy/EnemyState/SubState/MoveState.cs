@@ -12,7 +12,7 @@ namespace Scripts.Enemy.EnemyState.SubState
         
         private readonly D_MoveState _stateData;
         
-        protected MoveState(EnemyStateMachine.Enemy enemyBase, EnemyStateMachine.EnemyStateMachine stateMachine, 
+        protected MoveState(global::Enemy.EnemyStateMachine.Enemy enemyBase, EnemyStateMachine.EnemyStateMachine stateMachine, 
             string animBoolName, D_MoveState stateData) : base(enemyBase, stateMachine, animBoolName) =>
             _stateData = stateData;
         

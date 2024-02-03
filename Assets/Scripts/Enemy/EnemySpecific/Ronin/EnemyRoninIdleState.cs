@@ -7,7 +7,7 @@ namespace Enemy.EnemySpecific.Ronin
     {
         private readonly EnemyRonin _enemyRonin;
 
-        public EnemyRoninIdleState(Scripts.Enemy.EnemyStateMachine.Enemy enemyBase, 
+        public EnemyRoninIdleState(EnemyStateMachine.Enemy enemyBase, 
             Scripts.Enemy.EnemyStateMachine.EnemyStateMachine stateMachine, string animBoolName, D_IdleState enemyData, 
             EnemyRonin enemyRonin) : base(enemyBase, stateMachine, animBoolName, enemyData) =>
             _enemyRonin = enemyRonin;

@@ -15,7 +15,7 @@ namespace Scripts.Enemy.EnemyState.SubState
         
         private readonly D_LookForPlayerState _stateData;
         
-        protected LookForPlayerState(EnemyStateMachine.Enemy enemyBase, EnemyStateMachine.EnemyStateMachine stateMachine, 
+        protected LookForPlayerState(global::Enemy.EnemyStateMachine.Enemy enemyBase, EnemyStateMachine.EnemyStateMachine stateMachine, 
             string animBoolName, D_LookForPlayerState stateData) : base(enemyBase, stateMachine, animBoolName) =>
             _stateData = stateData;
         

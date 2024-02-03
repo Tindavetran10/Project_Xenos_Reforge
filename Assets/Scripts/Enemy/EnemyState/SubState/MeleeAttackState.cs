@@ -7,7 +7,7 @@ namespace Scripts.Enemy.EnemyState.SubState
     {
         private readonly D_MeleeAttackState _stateData;
         
-        protected MeleeAttackState(EnemyStateMachine.Enemy enemyBase, EnemyStateMachine.EnemyStateMachine stateMachine, 
+        protected MeleeAttackState(global::Enemy.EnemyStateMachine.Enemy enemyBase, EnemyStateMachine.EnemyStateMachine stateMachine, 
             string animBoolName, D_MeleeAttackState stateData) : base(enemyBase, stateMachine, animBoolName) =>
             _stateData = stateData;
 

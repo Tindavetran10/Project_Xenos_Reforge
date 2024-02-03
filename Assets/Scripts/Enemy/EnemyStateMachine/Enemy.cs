@@ -3,14 +3,14 @@ using Player.PlayerStats;
 using Projectile;
 using UnityEngine;
 
-namespace Scripts.Enemy.EnemyStateMachine
+namespace Enemy.EnemyStateMachine
 {
     public class Enemy : global::Entity.Entity
     {
         #region Components
         [Header("Enemy Data")]
         public EnemyData enemyData;
-        protected EnemyStateMachine StateMachine;
+        protected Scripts.Enemy.EnemyStateMachine.EnemyStateMachine StateMachine;
         #endregion
         
         #region Ranged Attack Properties
@@ -30,9 +30,8 @@ namespace Scripts.Enemy.EnemyStateMachine
         private static readonly int YVelocity = Animator.StringToHash("yVelocity");
         #endregion
         
-        protected override void Awake() {
-            base.Awake();
-            StateMachine = new EnemyStateMachine();
+        protected virtual void Awake() {
+            StateMachine = new Scripts.Enemy.EnemyStateMachine.EnemyStateMachine();
         }
 
         protected override void Update() {
