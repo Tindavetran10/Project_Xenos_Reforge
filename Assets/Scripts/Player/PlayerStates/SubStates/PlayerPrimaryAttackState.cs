@@ -1,8 +1,8 @@
 using System;
 using System.Linq;
+using Enemy.EnemyStats;
 using Player.Data;
 using Player.PlayerStates.SuperStates;
-using Scripts.Enemy.EnemyStats;
 using UnityEngine;
 
 namespace Player.PlayerStates.SubStates

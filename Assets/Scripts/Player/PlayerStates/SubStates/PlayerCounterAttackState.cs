@@ -44,7 +44,7 @@ namespace Player.PlayerStates.SubStates
                 {
                     if (hit.GetComponent<ProjectileController>() != null)
                     {
-                        hit.GetComponent<ProjectileController>().FlipArrow();
+                        hit.GetComponent<ProjectileController>().FlipProjectile();
                         SuccessfulCounterAttack();
                     }
                     

@@ -2,12 +2,12 @@ using CoreSystem;
 using CoreSystem.CoreComponents;
 using UnityEngine;
 
-namespace Scripts.Enemy.EnemyStateMachine
+namespace Enemy.EnemyStateMachine
 {
     public class EnemyState
     {
         private readonly Core _core;
-        protected readonly global::Enemy.EnemyStateMachine.Enemy EnemyBase;
+        protected readonly Enemy EnemyBase;
         protected readonly EnemyStateMachine StateMachine;
 
         public float StartTime { get; private set; }
@@ -21,7 +21,7 @@ namespace Scripts.Enemy.EnemyStateMachine
 
         
         private readonly string _animBoolName;
-        protected EnemyState(global::Enemy.EnemyStateMachine.Enemy enemyBase, EnemyStateMachine stateMachine, string animBoolName)
+        protected EnemyState(Enemy enemyBase, EnemyStateMachine stateMachine, string animBoolName)
         {
             EnemyBase = enemyBase;
             StateMachine = stateMachine;

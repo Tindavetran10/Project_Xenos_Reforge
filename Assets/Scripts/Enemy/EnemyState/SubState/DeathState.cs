@@ -1,10 +1,10 @@
-using Scripts.Enemy.EnemyState.SuperState;
+using Enemy.EnemyState.SuperState;
 
 namespace Enemy.EnemyState.SubState
 {
     public class DeathState : GroundedState
     {
-        protected DeathState(EnemyStateMachine.Enemy enemyBase, Scripts.Enemy.EnemyStateMachine.EnemyStateMachine stateMachine, 
+        protected DeathState(EnemyStateMachine.Enemy enemyBase, EnemyStateMachine.EnemyStateMachine stateMachine, 
             string animBoolName) : base(enemyBase, stateMachine, animBoolName) {}
 
         public override void Enter()

@@ -1,4 +1,4 @@
-using Scripts.Enemy.EnemyStats;
+using Enemy.EnemyStats;
 using StatSystem;
 using UnityEngine;
 

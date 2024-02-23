@@ -55,7 +55,7 @@ namespace StatSystem
         {
             DecreaseHealthBy(damageAmount);
             
-            GetComponentInParent<global::Entity.Entity>().DamageImpact();
+            
             _fx.StartCoroutine("FlashFX");
             
             if (currentHealth <= 0 && !IsDead) 

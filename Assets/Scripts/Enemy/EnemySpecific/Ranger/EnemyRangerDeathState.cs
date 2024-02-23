@@ -1,5 +1,4 @@
 using Enemy.EnemyState.SubState;
-using Scripts.Enemy.EnemyState.SubState;
 using UnityEngine;
 
 namespace Enemy.EnemySpecific.Ranger
@@ -10,7 +9,7 @@ namespace Enemy.EnemySpecific.Ranger
         private static readonly int Die = Animator.StringToHash("die");
 
         public EnemyRangerDeathState(EnemyStateMachine.Enemy enemyBase, 
-            Scripts.Enemy.EnemyStateMachine.EnemyStateMachine stateMachine, string animBoolName, EnemyRanger enemyRanger) 
+            EnemyStateMachine.EnemyStateMachine stateMachine, string animBoolName, EnemyRanger enemyRanger) 
             : base(enemyBase, stateMachine, animBoolName) =>
             _enemyRanger = enemyRanger;
         

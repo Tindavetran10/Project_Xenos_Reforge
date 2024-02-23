@@ -60,6 +60,8 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -82,7 +84,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -832496639
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -259491904, guid: eaffac403d91cdd4ca37db430bee8fc4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -130,6 +132,7 @@ CapsuleCollider2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 609758280927387184}
   m_Enabled: 1
+  serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 6200000, guid: 7c8a2c4a889d32b488fd795969cc7b95, type: 2}
   m_IncludeLayers:
@@ -153,7 +156,8 @@ CapsuleCollider2D:
     m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
   m_Offset: {x: -0.002384186, y: -0.003095508}
   m_Size: {x: 0.1622891, y: 0.666191}
   m_Direction: 0
@@ -185,47 +189,47 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 5fe99a74-209b-4c08-a1c2-f8769178cafb
-    m_ActionName: Gameplay/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
+    m_ActionName: 'Gameplay/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]'
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 4030cd18-e9aa-43d9-b459-e0af013dd791
-    m_ActionName: Gameplay/Jump[/Keyboard/space]
+    m_ActionName: 'Gameplay/Jump[/Keyboard/space]'
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 674ada48-48a0-44f2-8dd6-cbfe87553e6e
-    m_ActionName: Gameplay/Dash[/Keyboard/shift]
+    m_ActionName: 'Gameplay/Dash[/Keyboard/shift]'
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: f906c3fe-223b-4592-b2c8-1d80a7f906c4
-    m_ActionName: Gameplay/Pause[/Keyboard/tab]
+    m_ActionName: 'Gameplay/Pause[/Keyboard/tab]'
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 70a58268-18a6-45a6-999c-87cacc566f8b
-    m_ActionName: Gameplay/DashDirection[/Mouse/position]
+    m_ActionName: 'Gameplay/DashDirection[/Mouse/position]'
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: ea9cca54-64bc-4a8c-b19e-ae7f5c752822
-    m_ActionName: Gameplay/Grab[/Keyboard/f]
+    m_ActionName: 'Gameplay/Grab[/Keyboard/f]'
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: 89e21b66-98b7-4e20-9b78-57fc73efa886
-    m_ActionName: Gameplay/NormalAttack[/Mouse/leftButton]
+    m_ActionName: 'Gameplay/NormalAttack[/Mouse/leftButton]'
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: f0def381-6163-4baf-922d-ad2136ffba97
-    m_ActionName: Gameplay/HeavyAttack[/Mouse/rightButton]
+    m_ActionName: 'Gameplay/HeavyAttack[/Mouse/rightButton]'
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: b5e144ea-e9ae-42d4-85bf-06ccba6e5623
-    m_ActionName: UI/Resume[/Keyboard/tab]
+    m_ActionName: 'UI/Resume[/Keyboard/tab]'
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: a3dfcdad-6dda-4118-812b-e2c871e5c3c6
-    m_ActionName: Gameplay/CounterAttack[/Keyboard/q]
+    m_ActionName: 'Gameplay/CounterAttack[/Keyboard/q]'
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: c5f9e136-0c10-4ed9-8983-2837bd32d328
-    m_ActionName: Gameplay/AimSword[/Keyboard/e]
+    m_ActionName: 'Gameplay/AimSword[/Keyboard/e]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -233,7 +237,7 @@ MonoBehaviour:
   m_Camera: {fileID: 0}
 --- !u!95 &9122337023420919378
 Animator:
-  serializedVersion: 5
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -247,6 +251,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
@@ -495,6 +500,8 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -517,7 +524,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -832496639
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 5edb7c0724529dc428f2ec6fb3bf2c0e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

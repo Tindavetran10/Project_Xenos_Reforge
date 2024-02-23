@@ -1,7 +1,7 @@
 using Manager;
 using StatSystem;
 
-namespace Scripts.Enemy.EnemyStats
+namespace Enemy.EnemyStats
 {
     public class EnemyStats : CharacterStats
     {
@@ -13,13 +13,14 @@ namespace Scripts.Enemy.EnemyStats
             soulDropAmount.SetDefaultValue(100);
             
             base.Start();
-            _enemy = GetComponentInParent<global::Enemy.EnemyStateMachine.Enemy>();
+            _enemy = GetComponentInParent<Enemy.EnemyStateMachine.Enemy>();
         }
 
         protected override void TakeDamage(int damageAmount)
         {
             base.TakeDamage(damageAmount);
-            _enemy.DamageImpact();
+            GetComponentInParent<Enemy.EnemyStateMachine.Enemy>().DamageImpact();
+           _enemy.DamageImpact();
         }
 
         protected override void Die()

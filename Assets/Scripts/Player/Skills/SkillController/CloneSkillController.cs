@@ -1,7 +1,7 @@
 using CoreSystem;
 using CoreSystem.CoreComponents;
+using Enemy.EnemyStats;
 using Player.Data;
-using Scripts.Enemy.EnemyStats;
 using StatSystem;
 using UnityEngine;
 

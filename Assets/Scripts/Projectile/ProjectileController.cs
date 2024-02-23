@@ -50,7 +50,7 @@ namespace Projectile
             Destroy(gameObject);
         }
 
-        public void FlipArrow()
+        public void FlipProjectile()
         {
             if(flipped) return;
 

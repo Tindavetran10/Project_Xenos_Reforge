@@ -1,8 +1,8 @@
 using UnityEngine;
 
-namespace Scripts.Enemy.EnemyState.SuperState
+namespace Enemy.EnemyState.SuperState
 {
-    public class BattleState : EnemyStateMachine.EnemyState
+    public class BattleState : global::Enemy.EnemyStateMachine.EnemyState
     {
         //protected bool IsAnimationFinished;
         protected bool IsPlayerInAgroRange;
@@ -46,6 +46,12 @@ namespace Scripts.Enemy.EnemyState.SuperState
             EnemyBase.isAnimationFinished = false;
             
             Movement?.SetVelocityX(0f);
+        }
+
+        public override void LogicUpdate()
+        {
+            base.LogicUpdate();
+            EnemyBase.BattleStateFlipControl();
         }
 
         public override void Exit()

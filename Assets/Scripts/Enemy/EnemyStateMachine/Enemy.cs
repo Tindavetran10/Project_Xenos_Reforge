@@ -1,16 +1,18 @@
+using System.Collections;
 using Enemy.Data.EnemyDataScript;
+using Manager;
 using Player.PlayerStats;
 using Projectile;
 using UnityEngine;
 
 namespace Enemy.EnemyStateMachine
 {
-    public class Enemy : global::Entity.Entity
+    public class Enemy : Entity.Entity
     {
         #region Components
         [Header("Enemy Data")]
         public EnemyData enemyData;
-        protected Scripts.Enemy.EnemyStateMachine.EnemyStateMachine StateMachine;
+        protected EnemyStateMachine StateMachine;
         #endregion
         
         #region Ranged Attack Properties
@@ -24,14 +26,23 @@ namespace Enemy.EnemyStateMachine
         [SerializeField] public GameObject counterImage;
         #endregion
         
+        #region Knockback Components
+        [Header("KnockBack Mechanics")] 
+        [SerializeField] protected Vector2 knockBackDirection;
+        [SerializeField] protected float knockBackDuration;
+        #endregion
+        
         #region Animation
         [HideInInspector] public bool isAnimationFinished;
         private Vector2 _velocityWorkspace;
         private static readonly int YVelocity = Animator.StringToHash("yVelocity");
         #endregion
+
+        private Transform _player;
         
-        protected virtual void Awake() {
-            StateMachine = new Scripts.Enemy.EnemyStateMachine.EnemyStateMachine();
+        protected override void Awake() {
+            base.Awake();
+            StateMachine = new EnemyStateMachine();
         }
 
         protected override void Update() {
@@ -40,6 +51,7 @@ namespace Enemy.EnemyStateMachine
             StateMachine.CurrentState.LogicUpdate();
             
             Anim.SetFloat(YVelocity, Movement.Rb.velocity.y);
+            _player = PlayerManager.Instance.player.transform;
         }
         
         protected override void FixedUpdate()
@@ -55,7 +67,7 @@ namespace Enemy.EnemyStateMachine
 
             foreach (var hit in collider2Ds)
             {
-                if(hit.GetComponent<global::Player.PlayerStateMachine.Player>() != null)
+                if(hit.GetComponent<Player.PlayerStateMachine.Player>() != null)
                 {
                     var target = hit.GetComponentInChildren<PlayerStats>();
                     Stats.DoDamage(target);
@@ -101,6 +113,38 @@ namespace Enemy.EnemyStateMachine
         }
         #endregion
 
+        public void DamageImpact() => StartCoroutine(nameof(HitKnockBack));
+
+        public IEnumerator HitKnockBack()
+        {
+            Movement.CanSetVelocity = false;
+            CheckKnockBackDirection();
+            yield return new WaitForSeconds(knockBackDuration);
+            Movement.SetVelocityX(0f);
+            Movement.CanSetVelocity = true;
+        }
+
+        private void CheckKnockBackDirection()
+        {
+            if(_player.position.x < transform.position.x && Movement.FacingDirection == 1)
+                Rb.velocity = new Vector2(knockBackDirection.x  * Movement.FacingDirection, knockBackDirection.y);
+            else if(_player.position.x < transform.position.x && Movement.FacingDirection == -1)
+                Rb.velocity = new Vector2(knockBackDirection.x  * -Movement.FacingDirection, knockBackDirection.y);
+            else if(_player.position.x > transform.position.x && Movement.FacingDirection == 1) 
+                Rb.velocity = new Vector2(knockBackDirection.x  * -Movement.FacingDirection, knockBackDirection.y);
+            else if (_player.position.x > transform.position.x && Movement.FacingDirection == -1)
+                Rb.velocity = new Vector2(knockBackDirection.x  * Movement.FacingDirection, knockBackDirection.y);
+
+        }
+        
+        public void BattleStateFlipControl()
+        {
+            if (_player.position.x > transform.position.x && Movement.FacingDirection == -1)
+                Movement.Flip();
+            else if (_player.position.x < transform.position.x && Movement.FacingDirection == 1)
+                Movement.Flip();
+        }
+        
         #region Die Function
         public override void Die()
         {

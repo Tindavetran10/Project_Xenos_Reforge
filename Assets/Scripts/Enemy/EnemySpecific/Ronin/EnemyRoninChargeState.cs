@@ -1,6 +1,5 @@
 using Enemy.EnemyState.StateData;
 using Enemy.EnemyState.SubState;
-using Scripts.Enemy.EnemyState.SubState;
 
 namespace Enemy.EnemySpecific.Ronin
 {
@@ -9,7 +8,7 @@ namespace Enemy.EnemySpecific.Ronin
         private readonly EnemyRonin _enemyRonin;
 
         public EnemyRoninChargeState(EnemyStateMachine.Enemy enemyBase, 
-            Scripts.Enemy.EnemyStateMachine.EnemyStateMachine stateMachine, string animBoolName, D_ChargeState stateData, 
+            EnemyStateMachine.EnemyStateMachine stateMachine, string animBoolName, D_ChargeState stateData, 
             EnemyRonin enemyRonin) : base(enemyBase, stateMachine, animBoolName, stateData) =>
             _enemyRonin = enemyRonin;
 

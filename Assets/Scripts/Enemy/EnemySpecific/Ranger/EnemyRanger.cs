@@ -33,8 +33,7 @@ namespace Enemy.EnemySpecific.Ranger
             IdleState = new EnemyRangerIdleState(this, StateMachine, "idle", idleStateData, this);
             MoveState = new EnemyRangerMoveState(this, StateMachine, "move", moveStateData, this);
             PlayerDetectedState = new EnemyRangerPlayerDetectedState(this, StateMachine, "playerDetected", playerDetectedStateData, this);
-            LookForPlayerState =
-                new EnemyRangerLookForPlayerState(this, StateMachine, "lookForPlayer", lookForPlayerStateData, this);
+            LookForPlayerState = new EnemyRangerLookForPlayerState(this, StateMachine, "lookForPlayer", lookForPlayerStateData, this);
             StunState = new EnemyRangerStunState(this, StateMachine, "stun", stunStateData, this);
             DeathState = new EnemyRangerDeathState(this, StateMachine, "die", this);
             RangedAttackState = new EnemyRangerRangedAttackState(this, StateMachine, "shoot", rangedAttackStateData, this);

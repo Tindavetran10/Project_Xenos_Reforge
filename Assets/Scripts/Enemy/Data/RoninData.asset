@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf6d2d4811ea4ee09298abfd59241c72, type: 3}
   m_Name: RoninData
   m_EditorClassIdentifier: 
-  agroDistance: 3
-  closeRangeActionDistance: 0.34
+  agroDistance: 1.5
+  closeRangeActionDistance: 0.35
   hitParticle: {fileID: 0}
   whatIsPlayer:
     serializedVersion: 2

@@ -1,8 +1,8 @@
 using CoreSystem.CoreComponents;
 
-namespace Scripts.Enemy.EnemyState.SuperState
+namespace Enemy.EnemyState.SuperState
 {
-    public class GroundedState : EnemyStateMachine.EnemyState
+    public class GroundedState : global::Enemy.EnemyStateMachine.EnemyState
     {
         protected bool IsPlayerInAgroRange;
         protected bool IsDetectingLedge;

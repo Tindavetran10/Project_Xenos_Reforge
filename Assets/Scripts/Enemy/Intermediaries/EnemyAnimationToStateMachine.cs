@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Scripts.Intermediaries
+namespace Enemy.Intermediaries
 {
     public class EnemyAnimationToStateMachine : MonoBehaviour
     {

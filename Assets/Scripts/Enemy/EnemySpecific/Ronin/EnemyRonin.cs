@@ -1,5 +1,5 @@
 using Enemy.EnemyState.StateData;
-using Scripts.Intermediaries;
+using Enemy.Intermediaries;
 using UnityEngine;
 
 namespace Enemy.EnemySpecific.Ronin
@@ -35,15 +35,12 @@ namespace Enemy.EnemySpecific.Ronin
             MoveState = new EnemyRoninMoveState(this, StateMachine, "move", moveStateData, this);
             PlayerDetectedState = new EnemyRoninPlayerDetectedState(this, StateMachine, "playerDetected", playerDetectedStateData, this);
             ChargeState = new EnemyRoninChargeState(this, StateMachine, "charge", chargeStateData, this);
-            LookForPlayerState =
-                new EnemyRoninLookForPlayerState(this, StateMachine, "lookForPlayer", lookForPlayerStateData, this);
-            MeleeAttackState =
-                new EnemyRoninMeleeAttackState(this, StateMachine, "meleeAttack", meleeAttackStateData, this);
+            LookForPlayerState = new EnemyRoninLookForPlayerState(this, StateMachine, "lookForPlayer", lookForPlayerStateData, this);
+            MeleeAttackState = new EnemyRoninMeleeAttackState(this, StateMachine, "meleeAttack", meleeAttackStateData, this);
             StunState = new EnemyRoninStunState(this, StateMachine, "stun", stunStateData, this);
             DeathState = new EnemyRoninDeathState(this, StateMachine, "die", this);
         }
         
-
         protected override void Start()
         {
             base.Start();

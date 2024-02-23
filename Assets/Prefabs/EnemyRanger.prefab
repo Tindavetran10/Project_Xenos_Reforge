@@ -268,7 +268,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1364924271
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: -471872889, guid: e87527302c5519742a63249bc1ea12d5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -380,8 +380,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackPosition: {fileID: 3634429507668666571}
-  knockBackDirection: {x: 1.5, y: 0.5}
-  knockBackDuration: 0.07
+  knockBackDirection: {x: 0, y: 0}
+  knockBackDuration: 0
   enemyData: {fileID: 11400000, guid: 18cea04d101bb3f4b86ce161143ec357, type: 2}
   projectileSpeed: 7
   enemyProjectile: {fileID: 1847536841587570730, guid: d92138e9a08efbd45a23e0c84ffda344, type: 3}
