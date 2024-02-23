@@ -22,7 +22,8 @@ namespace Enemy.EnemyState.SubState
         public override void Enter()
         {
             base.Enter();
-
+            EnemyBase.CloseCounterAttackWindow();
+            
             _isAllTurnsDone = false;
             IsAllTurnsTimeDone = false;
 
@@ -35,6 +36,7 @@ namespace Enemy.EnemyState.SubState
         public override void LogicUpdate()
         {
             base.LogicUpdate();
+            
             
             Movement?.SetVelocityX(0f);
 

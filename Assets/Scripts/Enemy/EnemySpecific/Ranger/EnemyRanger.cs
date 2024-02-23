@@ -48,11 +48,8 @@ namespace Enemy.EnemySpecific.Ranger
 
         public override bool CanBeStunned()
         {
-            if (base.CanBeStunned())
-            {
-                StateMachine.ChangeState(StunState);
-                return true;
-            }
+            base.CanBeStunned();
+            StateMachine.ChangeState(StunState);
             return false;
         }
         public override void Die()

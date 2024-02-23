@@ -59,6 +59,14 @@ namespace Enemy.EnemyStateMachine
             base.FixedUpdate();
             StateMachine.CurrentState.PhysicsUpdate();
         }
+        
+        public void BattleStateFlipControl()
+        {
+            if (_player.position.x > transform.position.x && Movement.FacingDirection == -1)
+                Movement.Flip();
+            else if (_player.position.x < transform.position.x && Movement.FacingDirection == 1)
+                Movement.Flip();
+        }
 
         #region Animator Function
         public void AttackTrigger()
@@ -104,15 +112,13 @@ namespace Enemy.EnemyStateMachine
 
         public virtual bool CanBeStunned()
         {
-            if (canBeStunned)
-            {
-                CloseCounterAttackWindow();
-                return true;
-            }
-            return false;
+            if (!canBeStunned) return false;
+            CloseCounterAttackWindow();
+            return true;
         }
         #endregion
 
+        #region KnockBack Function
         public void DamageImpact() => StartCoroutine(nameof(HitKnockBack));
 
         public IEnumerator HitKnockBack()
@@ -136,14 +142,7 @@ namespace Enemy.EnemyStateMachine
                 Rb.velocity = new Vector2(knockBackDirection.x  * Movement.FacingDirection, knockBackDirection.y);
 
         }
-        
-        public void BattleStateFlipControl()
-        {
-            if (_player.position.x > transform.position.x && Movement.FacingDirection == -1)
-                Movement.Flip();
-            else if (_player.position.x < transform.position.x && Movement.FacingDirection == 1)
-                Movement.Flip();
-        }
+        #endregion
         
         #region Die Function
         public override void Die()

@@ -54,8 +54,6 @@ namespace StatSystem
         protected virtual void TakeDamage(int damageAmount)
         {
             DecreaseHealthBy(damageAmount);
-            
-            
             _fx.StartCoroutine("FlashFX");
             
             if (currentHealth <= 0 && !IsDead) 

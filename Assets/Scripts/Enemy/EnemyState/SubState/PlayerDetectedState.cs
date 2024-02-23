@@ -16,6 +16,7 @@ namespace Enemy.EnemyState.SubState
         public override void Enter()
         {
             base.Enter();
+            EnemyBase.CloseCounterAttackWindow();
             PerformLongRangeAction = false;
             Movement?.SetVelocityX(0f);
         }
