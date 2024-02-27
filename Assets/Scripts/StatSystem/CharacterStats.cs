@@ -54,7 +54,9 @@ namespace StatSystem
         protected virtual void TakeDamage(int damageAmount)
         {
             DecreaseHealthBy(damageAmount);
-            _fx.StartCoroutine("FlashFX");
+            
+            if(!IsInvincible)
+                _fx.StartCoroutine("FlashFX");
             
             if (currentHealth <= 0 && !IsDead) 
                 Die();
@@ -62,8 +64,9 @@ namespace StatSystem
 
         private void DecreaseHealthBy(int damageAmount)
         {
-            if (IsInvincible)
-                damageAmount = Mathf.RoundToInt( damageAmount * 1.1f);
+            if (!IsInvincible)
+                damageAmount = Mathf.RoundToInt(damageAmount * 1.1f);
+            else damageAmount = 0;
 
             currentHealth -= damageAmount;
             OnHealthChanged?.Invoke();

@@ -41,12 +41,11 @@ namespace Player.PlayerStates.SubStates
         public override void Exit()
         {
             base.Exit();
-
-            Player.Stats.MakeInvincible(false);
             
             // Adjust the y velocity if the player exiting the dash state
             if (Movement?.CurrentVelocity.y > 0) 
                 Movement?.SetVelocityY(Movement.CurrentVelocity.y * PlayerData.dashEndYMultiplier);
+            Player.Stats.MakeInvincible(false);
         }
 
         public override void LogicUpdate()
@@ -81,6 +80,8 @@ namespace Player.PlayerStates.SubStates
                     // If a certain amount of real-time (from the start time point to the maxHoldTime point)
                     if (_dashInputStop || Time.unscaledTime >= StartTime + PlayerData.maxHoldTime)
                     {
+                        Player.Stats.MakeInvincible(true);
+                        
                         IsHolding = false;
                         Time.timeScale = 1f;
                         StartTime = Time.time;
@@ -89,8 +90,6 @@ namespace Player.PlayerStates.SubStates
                         Movement?.SetVelocity(PlayerData.dashVelocity, _dashDirection);
                         Player.DashDirectionIndicator.gameObject.SetActive(false);
                         Player.Skill.Dash.CreateCloneOnDash();
-                        
-                        Player.Stats.MakeInvincible(true);
                     }
                 }
                 else

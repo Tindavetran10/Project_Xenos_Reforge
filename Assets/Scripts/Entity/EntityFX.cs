@@ -5,7 +5,6 @@ namespace Entity
 {
     public class EntityFX : MonoBehaviour
     {
-
         private SpriteRenderer _spriteRenderer;
 
         private Material _originalMat;

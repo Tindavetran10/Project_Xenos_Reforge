@@ -39,9 +39,7 @@ namespace Entity
         protected virtual void Update() {}
 
         protected virtual void FixedUpdate() {}
-
         
-
         public virtual void Die(){}
     }
 }

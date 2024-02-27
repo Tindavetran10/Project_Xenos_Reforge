@@ -3452,12 +3452,28 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3508060986822370213, guid: 72d76bd6fe11d484989b5e0c7f67b212, type: 3}
+      propertyPath: attackCoolDown
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3508060986822370213, guid: 72d76bd6fe11d484989b5e0c7f67b212, type: 3}
       propertyPath: attackCooldown
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3508060986822370213, guid: 72d76bd6fe11d484989b5e0c7f67b212, type: 3}
+      propertyPath: knockBackDuration
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3508060986822370213, guid: 72d76bd6fe11d484989b5e0c7f67b212, type: 3}
       propertyPath: knockBackStrength
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3508060986822370213, guid: 72d76bd6fe11d484989b5e0c7f67b212, type: 3}
+      propertyPath: knockBackDirection.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3508060986822370213, guid: 72d76bd6fe11d484989b5e0c7f67b212, type: 3}
+      propertyPath: knockBackDirection.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3835307989419398132, guid: 72d76bd6fe11d484989b5e0c7f67b212, type: 3}
       propertyPath: m_PresetInfoIsWorld

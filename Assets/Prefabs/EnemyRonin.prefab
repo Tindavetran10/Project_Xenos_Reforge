@@ -273,9 +273,11 @@ MonoBehaviour:
   enemyProjectile: {fileID: 0}
   canBeStunned: 0
   counterImage: {fileID: 8501139046309401062}
-  knockBackDirection: {x: 0, y: 0}
-  knockBackDuration: 0
+  knockBackDirection: {x: 1, y: 1}
+  knockBackDuration: 0.1
   isAnimationFinished: 0
+  lastTimeAttacked: 0
+  attackCoolDown: 2
   idleStateData: {fileID: 11400000, guid: 86814309784c77248bfaca19aa1c0336, type: 2}
   moveStateData: {fileID: 11400000, guid: 2d21c5f8f05484a4da30ec71099f6f43, type: 2}
   playerDetectedStateData: {fileID: 11400000, guid: 77ad649b8a387bd438de526c8ff3db9e, type: 2}
