@@ -1,4 +1,3 @@
-using System.Collections;
 using CoreSystem;
 using CoreSystem.CoreComponents;
 using UnityEngine;

@@ -39,6 +39,8 @@ namespace Enemy.EnemyStateMachine
         #endregion
 
         private Transform _player;
+        [HideInInspector] public float lastTimeAttacked;
+        public float attackCoolDown;
         
         protected override void Awake() {
             base.Awake();
@@ -112,9 +114,12 @@ namespace Enemy.EnemyStateMachine
 
         public virtual bool CanBeStunned()
         {
-            if (!canBeStunned) return false;
-            CloseCounterAttackWindow();
-            return true;
+            if (canBeStunned)
+            {
+                CloseCounterAttackWindow();
+                return true;
+            }
+            return false;
         }
         #endregion
 

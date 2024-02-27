@@ -4,7 +4,6 @@ namespace Enemy.EnemyState.SuperState
 {
     public class BattleState : global::Enemy.EnemyStateMachine.EnemyState
     {
-        //protected bool IsAnimationFinished;
         protected bool IsPlayerInAgroRange;
         protected bool IsDetectingLedge;
         protected bool IsDetectingWall;
@@ -13,12 +12,9 @@ namespace Enemy.EnemyState.SuperState
         protected bool PerformLongRangeAction;
         protected bool PerformCloseRangeAction;
 
-        private float _lastTimeAttacked;
-        
-        private int _comboCounter;
-        protected int ComboWindow;
-        private static readonly int ComboCounter = Animator.StringToHash("comboCounter");
-        
+        protected int _comboCounter;
+        protected int _comboWindow;
+        protected static readonly int ComboCounter = Animator.StringToHash("comboCounter");
         protected BattleState(global::Enemy.EnemyStateMachine.Enemy enemyBase, EnemyStateMachine.EnemyStateMachine stateMachine, 
             string animBoolName) : base(enemyBase, stateMachine, animBoolName) {}
 
@@ -36,15 +32,6 @@ namespace Enemy.EnemyState.SuperState
         public override void Enter()
         {
             base.Enter();
-            if (_comboCounter > ComboWindow || Time.time >= _lastTimeAttacked + ComboWindow)
-            {
-                _lastTimeAttacked = Time.time;
-                _comboCounter = 0;
-            }
-
-            EnemyBase.Anim.SetInteger(ComboCounter, _comboCounter);
-            EnemyBase.isAnimationFinished = false;
-            
             Movement?.SetVelocityX(0f);
         }
 
@@ -52,12 +39,6 @@ namespace Enemy.EnemyState.SuperState
         {
             base.LogicUpdate();
             EnemyBase.BattleStateFlipControl();
-        }
-
-        public override void Exit()
-        {
-            base.Exit();
-            _comboCounter++;
         }
     }
 }

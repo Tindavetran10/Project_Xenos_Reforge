@@ -48,9 +48,9 @@ namespace Enemy.EnemySpecific.Ranger
 
         public override bool CanBeStunned()
         {
-            base.CanBeStunned();
+            if (!base.CanBeStunned()) return false;
             StateMachine.ChangeState(StunState);
-            return false;
+            return true;
         }
         public override void Die()
         {
@@ -67,6 +67,16 @@ namespace Enemy.EnemySpecific.Ranger
                 Gizmos.DrawWireSphere(playerCheckPosition + (Vector3)(Vector2.right * enemyData.agroDistance * Movement.FacingDirection), 0.2f);
                 Gizmos.DrawWireSphere(playerCheckPosition + (Vector3)(Vector2.right * enemyData.closeRangeActionDistance * Movement.FacingDirection), 0.2f);
             }
+        }
+
+        public bool CanAttack()
+        {
+            if (Time.time >= lastTimeAttacked + attackCoolDown)
+            {
+                lastTimeAttacked = Time.time;
+                return true;
+            }
+            return false;
         }
     }
 }

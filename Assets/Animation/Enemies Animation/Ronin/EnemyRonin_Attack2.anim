@@ -22,17 +22,17 @@ AnimationClip:
     curve:
     - time: 0
       value: {fileID: -944569703, guid: e6ef5f0dcf8b3c84f940309d785644ed, type: 3}
-    - time: 0.06666667
-      value: {fileID: 1479588508, guid: e6ef5f0dcf8b3c84f940309d785644ed, type: 3}
-    - time: 0.13333334
-      value: {fileID: -2093656980, guid: e6ef5f0dcf8b3c84f940309d785644ed, type: 3}
     - time: 0.2
-      value: {fileID: 1233942394, guid: e6ef5f0dcf8b3c84f940309d785644ed, type: 3}
+      value: {fileID: 1479588508, guid: e6ef5f0dcf8b3c84f940309d785644ed, type: 3}
     - time: 0.26666668
-      value: {fileID: 1355838390, guid: e6ef5f0dcf8b3c84f940309d785644ed, type: 3}
+      value: {fileID: -2093656980, guid: e6ef5f0dcf8b3c84f940309d785644ed, type: 3}
     - time: 0.33333334
-      value: {fileID: -909608953, guid: e6ef5f0dcf8b3c84f940309d785644ed, type: 3}
+      value: {fileID: 1233942394, guid: e6ef5f0dcf8b3c84f940309d785644ed, type: 3}
     - time: 0.4
+      value: {fileID: 1355838390, guid: e6ef5f0dcf8b3c84f940309d785644ed, type: 3}
+    - time: 0.46666667
+      value: {fileID: -909608953, guid: e6ef5f0dcf8b3c84f940309d785644ed, type: 3}
+    - time: 0.53333336
       value: {fileID: -3404068, guid: e6ef5f0dcf8b3c84f940309d785644ed, type: 3}
     attribute: m_Sprite
     path: 
@@ -68,7 +68,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.46666667
+    m_StopTime: 0.6
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -95,35 +95,35 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.13333334
+  - time: 0.26666668
     functionName: AttackTrigger
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.26666668
+  - time: 0.4
     functionName: CloseCounterWindow
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.33333334
-    functionName: CloseCounterAttackWindow
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.4
-    functionName: CloseCounterAttackWindow
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
   - time: 0.46666667
+    functionName: CloseCounterAttackWindow
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.53333336
+    functionName: CloseCounterAttackWindow
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.6
     functionName: FinishAttack
     data: 
     objectReferenceParameter: {fileID: 0}

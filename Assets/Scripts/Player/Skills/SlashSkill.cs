@@ -20,7 +20,7 @@ namespace Player.Skills
         protected override void Start()
         {
             base.Start();
-            slashUnlockButton.GetComponent<Button>().onClick.AddListener(UnlockSlash);
+            //slashUnlockButton.GetComponent<Button>().onClick.AddListener(UnlockSlash);
         }
 
         public void CreateSlash(int playerDir)
@@ -43,7 +43,7 @@ namespace Player.Skills
             newSlashSkillController.SetupSlash(launchDir * playerDir, slashGravity);
         }
 
-        protected override void CheckUnlock() => UnlockSlash();
+        //protected override void CheckUnlock() => UnlockSlash();
 
         private void UnlockSlash()
         {

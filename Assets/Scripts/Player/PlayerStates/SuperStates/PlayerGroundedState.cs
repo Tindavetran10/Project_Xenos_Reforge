@@ -86,9 +86,7 @@ namespace Player.PlayerStates.SuperStates
             else if (_isTouchingWall && _grabInput && _isTouchingLedge)
                 StateMachine.ChangeState(Player.WallGrabState);
             // Change to Dash State if there is dashInput and the dash has been cooled down
-            else if (_dashInput && SkillManager.Instance.Dash.CanUseSkill() 
-                                && SkillManager.Instance.Dash.dashUnlocked 
-                                && !IsTouchingCeiling)
+            else if (_dashInput && !IsTouchingCeiling)
                 StateMachine.ChangeState(Player.DashState);
         }
     }

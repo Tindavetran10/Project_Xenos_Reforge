@@ -57,9 +57,9 @@ namespace Enemy.EnemySpecific.Ronin
 
         public override bool CanBeStunned()
         {
-            base.CanBeStunned();
+            if (!base.CanBeStunned()) return false;
             StateMachine.ChangeState(StunState);
-            return false;
+            return true;
         }
 
         public override void Die()
@@ -81,5 +81,7 @@ namespace Enemy.EnemySpecific.Ronin
             foreach (var item in enemyData.hitBox) 
                 Gizmos.DrawWireCube(attackPosition.transform.position + (Vector3)item.center, item.size);
         }
+
+        
     }
 }

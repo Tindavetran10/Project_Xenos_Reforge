@@ -12,7 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ce44ebee0fb4946885e80697a6026ab, type: 3}
   m_Name: RangerRangedAttackData
   m_EditorClassIdentifier: 
-  projectile: {fileID: 0}
-  projectileDamage: 10
-  projectileSpeed: 12
-  projectileTravelDistance: 0
+  rangedAttackCoolDown: 10

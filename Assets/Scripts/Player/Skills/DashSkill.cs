@@ -19,14 +19,14 @@ namespace Player.Skills
         protected override void Start()
         {
             base.Start();
-            dashUnlockButton.GetComponent<Button>().onClick.AddListener(UnlockDash);
-            cloneOnDashUnlockButton.GetComponent<Button>().onClick.AddListener(UnlockCloneDash);
+            //dashUnlockButton.GetComponent<Button>().onClick.AddListener(UnlockDash);
+            //cloneOnDashUnlockButton.GetComponent<Button>().onClick.AddListener(UnlockCloneDash);
         }
 
         protected override void CheckUnlock()
         {
-            UnlockDash();
-            UnlockCloneDash();
+            //UnlockDash();
+            //UnlockCloneDash();
         }
 
         private void UnlockDash()

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RoninData
   m_EditorClassIdentifier: 
   agroDistance: 1.5
-  closeRangeActionDistance: 0.35
+  closeRangeActionDistance: 0.45
   hitParticle: {fileID: 0}
   whatIsPlayer:
     serializedVersion: 2

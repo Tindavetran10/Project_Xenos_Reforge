@@ -22,31 +22,31 @@ AnimationClip:
     curve:
     - time: 0
       value: {fileID: -1602261853, guid: e6ef5f0dcf8b3c84f940309d785644ed, type: 3}
-    - time: 0.05
-      value: {fileID: 1198530159, guid: e6ef5f0dcf8b3c84f940309d785644ed, type: 3}
-    - time: 0.1
-      value: {fileID: 1568144105, guid: e6ef5f0dcf8b3c84f940309d785644ed, type: 3}
     - time: 0.15
-      value: {fileID: -1345821532, guid: e6ef5f0dcf8b3c84f940309d785644ed, type: 3}
+      value: {fileID: 1198530159, guid: e6ef5f0dcf8b3c84f940309d785644ed, type: 3}
     - time: 0.2
-      value: {fileID: 2058082817, guid: e6ef5f0dcf8b3c84f940309d785644ed, type: 3}
+      value: {fileID: 1568144105, guid: e6ef5f0dcf8b3c84f940309d785644ed, type: 3}
     - time: 0.25
-      value: {fileID: 1775014923, guid: e6ef5f0dcf8b3c84f940309d785644ed, type: 3}
+      value: {fileID: -1345821532, guid: e6ef5f0dcf8b3c84f940309d785644ed, type: 3}
     - time: 0.3
-      value: {fileID: -605521876, guid: e6ef5f0dcf8b3c84f940309d785644ed, type: 3}
+      value: {fileID: 2058082817, guid: e6ef5f0dcf8b3c84f940309d785644ed, type: 3}
     - time: 0.35
-      value: {fileID: 1157118168, guid: e6ef5f0dcf8b3c84f940309d785644ed, type: 3}
+      value: {fileID: 1775014923, guid: e6ef5f0dcf8b3c84f940309d785644ed, type: 3}
     - time: 0.4
-      value: {fileID: -290179638, guid: e6ef5f0dcf8b3c84f940309d785644ed, type: 3}
+      value: {fileID: -605521876, guid: e6ef5f0dcf8b3c84f940309d785644ed, type: 3}
     - time: 0.45
-      value: {fileID: 101346289, guid: e6ef5f0dcf8b3c84f940309d785644ed, type: 3}
+      value: {fileID: 1157118168, guid: e6ef5f0dcf8b3c84f940309d785644ed, type: 3}
     - time: 0.5
-      value: {fileID: -1438291866, guid: e6ef5f0dcf8b3c84f940309d785644ed, type: 3}
+      value: {fileID: -290179638, guid: e6ef5f0dcf8b3c84f940309d785644ed, type: 3}
     - time: 0.55
-      value: {fileID: -2028355108, guid: ec70f98d11bb839409c687d3aefff836, type: 3}
+      value: {fileID: 101346289, guid: e6ef5f0dcf8b3c84f940309d785644ed, type: 3}
     - time: 0.6
-      value: {fileID: -2028355108, guid: ec70f98d11bb839409c687d3aefff836, type: 3}
+      value: {fileID: -1438291866, guid: e6ef5f0dcf8b3c84f940309d785644ed, type: 3}
     - time: 0.65
+      value: {fileID: -2028355108, guid: ec70f98d11bb839409c687d3aefff836, type: 3}
+    - time: 0.7
+      value: {fileID: -2028355108, guid: ec70f98d11bb839409c687d3aefff836, type: 3}
+    - time: 0.75
       value: {fileID: -2028355108, guid: ec70f98d11bb839409c687d3aefff836, type: 3}
     attribute: m_Sprite
     path: 
@@ -89,7 +89,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.7
+    m_StopTime: 0.8
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -116,35 +116,35 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.1
+  - time: 0.2
     functionName: AttackTrigger
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.25
+  - time: 0.35
     functionName: CloseCounterWindow
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.55
-    functionName: CloseCounterAttackWindow
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 0.6
-    functionName: CloseCounterAttackWindow
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
   - time: 0.65
+    functionName: CloseCounterAttackWindow
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.7
+    functionName: CloseCounterAttackWindow
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.75
     functionName: FinishAttack
     data: 
     objectReferenceParameter: {fileID: 0}

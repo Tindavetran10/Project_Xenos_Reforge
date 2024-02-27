@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: RangerPlayerDetectedData
   m_EditorClassIdentifier: 
   longRangeActionTime: 0.75
+  restTime: 10
