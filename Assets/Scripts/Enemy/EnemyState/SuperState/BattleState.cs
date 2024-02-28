@@ -1,10 +1,9 @@
 using UnityEngine;
 
-namespace Scripts.Enemy.EnemyState.SuperState
+namespace Enemy.EnemyState.SuperState
 {
-    public class BattleState : EnemyStateMachine.EnemyState
+    public class BattleState : global::Enemy.EnemyStateMachine.EnemyState
     {
-        //protected bool IsAnimationFinished;
         protected bool IsPlayerInAgroRange;
         protected bool IsDetectingLedge;
         protected bool IsDetectingWall;
@@ -13,13 +12,10 @@ namespace Scripts.Enemy.EnemyState.SuperState
         protected bool PerformLongRangeAction;
         protected bool PerformCloseRangeAction;
 
-        private float _lastTimeAttacked;
-        
-        private int _comboCounter;
-        protected int ComboWindow;
-        private static readonly int ComboCounter = Animator.StringToHash("comboCounter");
-        
-        protected BattleState(EnemyStateMachine.Enemy enemyBase, EnemyStateMachine.EnemyStateMachine stateMachine, 
+        protected int _comboCounter;
+        protected int _comboWindow;
+        protected static readonly int ComboCounter = Animator.StringToHash("comboCounter");
+        protected BattleState(global::Enemy.EnemyStateMachine.Enemy enemyBase, EnemyStateMachine.EnemyStateMachine stateMachine, 
             string animBoolName) : base(enemyBase, stateMachine, animBoolName) {}
 
         protected override void DoChecks()
@@ -36,22 +32,13 @@ namespace Scripts.Enemy.EnemyState.SuperState
         public override void Enter()
         {
             base.Enter();
-            if (_comboCounter > ComboWindow || Time.time >= _lastTimeAttacked + ComboWindow)
-            {
-                _lastTimeAttacked = Time.time;
-                _comboCounter = 0;
-            }
-
-            EnemyBase.Anim.SetInteger(ComboCounter, _comboCounter);
-            EnemyBase.isAnimationFinished = false;
-            
             Movement?.SetVelocityX(0f);
         }
 
-        public override void Exit()
+        public override void LogicUpdate()
         {
-            base.Exit();
-            _comboCounter++;
+            base.LogicUpdate();
+            EnemyBase.BattleStateFlipControl();
         }
     }
 }

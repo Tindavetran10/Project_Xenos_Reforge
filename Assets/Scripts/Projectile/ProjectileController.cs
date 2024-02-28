@@ -39,7 +39,7 @@ namespace Projectile
                 ProjectileInteraction(collision);
         }
 
-        private void ProjectileInteraction(Collider2D collision)
+        private void ProjectileInteraction(Component collision)
         {
             GetComponent<CapsuleCollider2D>().enabled = false;
             canMove = false;
@@ -50,7 +50,7 @@ namespace Projectile
             Destroy(gameObject);
         }
 
-        public void FlipArrow()
+        public void FlipProjectile()
         {
             if(flipped) return;
 

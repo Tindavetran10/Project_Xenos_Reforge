@@ -4,12 +4,12 @@ namespace Player.PlayerStats
 {
     public class PlayerStats : CharacterStats
     {
-        private global::Player.PlayerStateMachine.Player _player;
+        private Player.PlayerStateMachine.Player _player;
         
         protected override void Start()
         {
             base.Start();
-            _player = GetComponentInParent<global::Player.PlayerStateMachine.Player>();
+            _player = GetComponentInParent<Player.PlayerStateMachine.Player>();
         }
 
         protected override void TakeDamage(int damageAmount)
@@ -18,8 +18,9 @@ namespace Player.PlayerStats
             if(IsInvincible)
                 return;
             
-            _player.DamageImpact();
+            //_player.DamageImpact();
         }
+        
 
         protected override void Die()
         {

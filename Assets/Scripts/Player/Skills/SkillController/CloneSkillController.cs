@@ -1,7 +1,7 @@
 using CoreSystem;
 using CoreSystem.CoreComponents;
+using Enemy.EnemyStats;
 using Player.Data;
-using Scripts.Enemy.EnemyStats;
 using StatSystem;
 using UnityEngine;
 
@@ -85,7 +85,7 @@ namespace Player.Skills.SkillController
 
             foreach (var hit in collider2Ds)
             {
-                if (hit.GetComponent<Scripts.Enemy.EnemyStateMachine.Enemy>() != null)
+                if (hit.GetComponent<Enemy.EnemyStateMachine.Enemy>() != null)
                 {
                     var target = hit.GetComponentInChildren<EnemyStats>();
                     _stats.DoDamage(target);
@@ -105,7 +105,7 @@ namespace Player.Skills.SkillController
             foreach (var hit in collider2Ds)
             {
                 // Step 4: Check if the collider represents an enemy (by checking if it has a specific component).
-                if (hit.GetComponent<Scripts.Enemy.EnemyStateMachine.Enemy>() != null)
+                if (hit.GetComponent<Enemy.EnemyStateMachine.Enemy>() != null)
                 {
                     // Step 5: Calculate the distance from the current object to the enemy.
                     var distanceToEnemy = Vector2.Distance(transform.position, hit.transform.position);

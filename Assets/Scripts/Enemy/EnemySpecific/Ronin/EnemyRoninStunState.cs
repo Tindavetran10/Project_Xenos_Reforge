@@ -1,5 +1,5 @@
 using Enemy.EnemyState.StateData;
-using Scripts.Enemy.EnemyState.SubState;
+using Enemy.EnemyState.SubState;
 
 namespace Enemy.EnemySpecific.Ronin
 {
@@ -7,8 +7,8 @@ namespace Enemy.EnemySpecific.Ronin
     {
         private readonly EnemyRonin _enemyRonin;
 
-        public EnemyRoninStunState(Scripts.Enemy.EnemyStateMachine.Enemy enemyBase, 
-            Scripts.Enemy.EnemyStateMachine.EnemyStateMachine stateMachine, string animBoolName, D_StunState stateData, 
+        public EnemyRoninStunState(EnemyStateMachine.Enemy enemyBase, 
+            EnemyStateMachine.EnemyStateMachine stateMachine, string animBoolName, D_StunState stateData, 
             EnemyRonin enemyRonin) : base(enemyBase, stateMachine, animBoolName, stateData) =>
             _enemyRonin = enemyRonin;
         

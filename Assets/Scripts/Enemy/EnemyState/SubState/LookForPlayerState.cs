@@ -1,8 +1,8 @@
 using Enemy.EnemyState.StateData;
-using Scripts.Enemy.EnemyState.SuperState;
+using Enemy.EnemyState.SuperState;
 using UnityEngine;
 
-namespace Scripts.Enemy.EnemyState.SubState
+namespace Enemy.EnemyState.SubState
 {
     public class LookForPlayerState : GroundedState
     {
@@ -15,14 +15,15 @@ namespace Scripts.Enemy.EnemyState.SubState
         
         private readonly D_LookForPlayerState _stateData;
         
-        protected LookForPlayerState(EnemyStateMachine.Enemy enemyBase, EnemyStateMachine.EnemyStateMachine stateMachine, 
+        protected LookForPlayerState(global::Enemy.EnemyStateMachine.Enemy enemyBase, EnemyStateMachine.EnemyStateMachine stateMachine, 
             string animBoolName, D_LookForPlayerState stateData) : base(enemyBase, stateMachine, animBoolName) =>
             _stateData = stateData;
         
         public override void Enter()
         {
             base.Enter();
-
+            EnemyBase.CloseCounterAttackWindow();
+            
             _isAllTurnsDone = false;
             IsAllTurnsTimeDone = false;
 
@@ -35,6 +36,7 @@ namespace Scripts.Enemy.EnemyState.SubState
         public override void LogicUpdate()
         {
             base.LogicUpdate();
+            
             
             Movement?.SetVelocityX(0f);
 

@@ -61,11 +61,11 @@ namespace Player.PlayerStates.SuperStates
             _grabInput = Player.InputHandler.GrabInput;
             _dashInput = Player.InputHandler.DashInput;
             
-            _normalAttackInput = Player.InputHandler.AttackInputs[(int)CombatInputs.Normal];
+            _normalAttackInput = Player.InputHandler.NormalAttackInputs[(int)CombatInputs.Normal];
             _aimSwordInput = Player.InputHandler.AimSwordInput;
             _counterAttackInput = Player.InputHandler.CounterInput;
             
-            if(_aimSwordInput && SkillManager.Instance.Slash.CanUseSkill() && !IsTouchingCeiling)
+            if(_aimSwordInput && /*SkillManager.Instance.Slash.CanUseSkill() &&*/ !IsTouchingCeiling)
                 StateMachine.ChangeState(Player.AimSwordState);
             else if(_counterAttackInput && !IsTouchingCeiling)
                 StateMachine.ChangeState(Player.CounterAttackState);
@@ -86,9 +86,7 @@ namespace Player.PlayerStates.SuperStates
             else if (_isTouchingWall && _grabInput && _isTouchingLedge)
                 StateMachine.ChangeState(Player.WallGrabState);
             // Change to Dash State if there is dashInput and the dash has been cooled down
-            else if (_dashInput && SkillManager.Instance.Dash.CanUseSkill() 
-                                && SkillManager.Instance.Dash.dashUnlocked 
-                                && !IsTouchingCeiling)
+            else if (_dashInput && !IsTouchingCeiling)
                 StateMachine.ChangeState(Player.DashState);
         }
     }

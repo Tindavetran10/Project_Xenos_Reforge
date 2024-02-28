@@ -12,7 +12,7 @@ namespace Player.PlayerStates.SubStates
         public override void Enter()
         {
             base.Enter();
-            GameObject.Find("Canvas").GetComponent<UI.UI>().SwitchOnEndScreen();
+            //GameObject.Find("Canvas").GetComponent<UI.UI>().SwitchOnEndScreen();
         }
 
         public override void LogicUpdate()

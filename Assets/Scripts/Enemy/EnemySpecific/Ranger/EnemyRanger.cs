@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Enemy.EnemySpecific.Ranger
 {
-    public class EnemyRanger : Scripts.Enemy.EnemyStateMachine.Enemy
+    public class EnemyRanger : EnemyStateMachine.Enemy
     {
         #region State Variables
         public EnemyRangerIdleState IdleState { get; private set; }
@@ -33,8 +33,7 @@ namespace Enemy.EnemySpecific.Ranger
             IdleState = new EnemyRangerIdleState(this, StateMachine, "idle", idleStateData, this);
             MoveState = new EnemyRangerMoveState(this, StateMachine, "move", moveStateData, this);
             PlayerDetectedState = new EnemyRangerPlayerDetectedState(this, StateMachine, "playerDetected", playerDetectedStateData, this);
-            LookForPlayerState =
-                new EnemyRangerLookForPlayerState(this, StateMachine, "lookForPlayer", lookForPlayerStateData, this);
+            LookForPlayerState = new EnemyRangerLookForPlayerState(this, StateMachine, "lookForPlayer", lookForPlayerStateData, this);
             StunState = new EnemyRangerStunState(this, StateMachine, "stun", stunStateData, this);
             DeathState = new EnemyRangerDeathState(this, StateMachine, "die", this);
             RangedAttackState = new EnemyRangerRangedAttackState(this, StateMachine, "shoot", rangedAttackStateData, this);
@@ -49,12 +48,9 @@ namespace Enemy.EnemySpecific.Ranger
 
         public override bool CanBeStunned()
         {
-            if (base.CanBeStunned())
-            {
-                StateMachine.ChangeState(StunState);
-                return true;
-            }
-            return false;
+            if (!base.CanBeStunned()) return false;
+            StateMachine.ChangeState(StunState);
+            return true;
         }
         public override void Die()
         {
@@ -71,6 +67,16 @@ namespace Enemy.EnemySpecific.Ranger
                 Gizmos.DrawWireSphere(playerCheckPosition + (Vector3)(Vector2.right * enemyData.agroDistance * Movement.FacingDirection), 0.2f);
                 Gizmos.DrawWireSphere(playerCheckPosition + (Vector3)(Vector2.right * enemyData.closeRangeActionDistance * Movement.FacingDirection), 0.2f);
             }
+        }
+
+        public bool CanAttack()
+        {
+            if (Time.time >= lastTimeAttacked + attackCoolDown)
+            {
+                lastTimeAttacked = Time.time;
+                return true;
+            }
+            return false;
         }
     }
 }

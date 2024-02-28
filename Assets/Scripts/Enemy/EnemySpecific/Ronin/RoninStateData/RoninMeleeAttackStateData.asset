@@ -13,12 +13,4 @@ MonoBehaviour:
   m_Name: RoninMeleeAttackStateData
   m_EditorClassIdentifier: 
   comboTotal: 2
-  attackDistance: 0.5
-  attackDamage: 0
-  knockbackAngle: {x: 0, y: 0}
-  knockbackStrength: 0
-  poiseDamage: 0
-  attackCooldown: 1
-  whatIsPlayer:
-    serializedVersion: 2
-    m_Bits: 128
+  restTime: 10

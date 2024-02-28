@@ -1,8 +1,8 @@
 using Enemy.EnemyState.StateData;
-using Scripts.Enemy.EnemyState.SuperState;
+using Enemy.EnemyState.SuperState;
 using UnityEngine;
 
-namespace Scripts.Enemy.EnemyState.SubState
+namespace Enemy.EnemyState.SubState
 {
     public class IdleState : GroundedState
     {
@@ -12,7 +12,7 @@ namespace Scripts.Enemy.EnemyState.SubState
         
         private readonly D_IdleState _stateData;
         
-        protected IdleState(EnemyStateMachine.Enemy enemyBase, EnemyStateMachine.EnemyStateMachine stateMachine, 
+        protected IdleState(global::Enemy.EnemyStateMachine.Enemy enemyBase, EnemyStateMachine.EnemyStateMachine stateMachine, 
             string animBoolName, D_IdleState stateData) : base(enemyBase, stateMachine, animBoolName) =>
             _stateData = stateData;
         

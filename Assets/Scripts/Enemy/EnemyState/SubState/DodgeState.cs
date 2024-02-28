@@ -1,8 +1,8 @@
 using Enemy.EnemyState.StateData;
-using Scripts.Enemy.EnemyState.SuperState;
+using Enemy.EnemyState.SuperState;
 using UnityEngine;
 
-namespace Scripts.Enemy.EnemyState.SubState
+namespace Enemy.EnemyState.SubState
 {
     public class DodgeState : BattleState
     {
@@ -10,7 +10,7 @@ namespace Scripts.Enemy.EnemyState.SubState
 
         private readonly D_DodgeState _stateData;
         
-        protected DodgeState(EnemyStateMachine.Enemy enemyBase, EnemyStateMachine.EnemyStateMachine stateMachine, 
+        protected DodgeState(global::Enemy.EnemyStateMachine.Enemy enemyBase, EnemyStateMachine.EnemyStateMachine stateMachine, 
             string animBoolName, D_DodgeState stateData) : base(enemyBase, stateMachine, animBoolName) =>
             _stateData = stateData;
 

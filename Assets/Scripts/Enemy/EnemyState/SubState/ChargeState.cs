@@ -1,5 +1,5 @@
 using Enemy.EnemyState.StateData;
-using Scripts.Enemy.EnemyState.SuperState;
+using Enemy.EnemyState.SuperState;
 using UnityEngine;
 
 namespace Enemy.EnemyState.SubState
@@ -10,7 +10,7 @@ namespace Enemy.EnemyState.SubState
         
         private readonly D_ChargeState _stateData;
         
-        protected ChargeState(Scripts.Enemy.EnemyStateMachine.Enemy enemyBase, Scripts.Enemy.EnemyStateMachine.EnemyStateMachine stateMachine, 
+        protected ChargeState(EnemyStateMachine.Enemy enemyBase, EnemyStateMachine.EnemyStateMachine stateMachine, 
             string animBoolName, D_ChargeState stateData) : base(enemyBase, stateMachine, animBoolName) =>
             _stateData = stateData;
 

@@ -2,7 +2,7 @@ using CoreSystem;
 using CoreSystem.CoreComponents;
 using UnityEngine;
 
-namespace Scripts.Enemy.EnemyStateMachine
+namespace Enemy.EnemyStateMachine
 {
     public class EnemyState
     {
@@ -35,7 +35,6 @@ namespace Scripts.Enemy.EnemyStateMachine
             EnemyBase.Anim.SetBool(_animBoolName, true);
             StartTime = Time.time;
         }
-        
         
         public virtual void Exit() => EnemyBase.Anim.SetBool(_animBoolName, false);
 

@@ -76,7 +76,7 @@ namespace Manager
         }
 
         // Called when the application is quitting
-        private void OnApplicationQuit() => SaveGame();
+        //private void OnApplicationQuit() => SaveGame();
 
         // Find all objects in the scene implementing ISaveManager
         private static List<ISaveManager> FindAllSaveManagers()

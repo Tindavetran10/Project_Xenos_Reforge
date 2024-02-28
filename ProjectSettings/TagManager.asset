@@ -7,6 +7,7 @@ TagManager:
   - Ground
   - Enemy
   - Projectile
+  - WorldCamera
   layers:
   - Default
   - TransparentFX
@@ -16,8 +17,8 @@ TagManager:
   - UI
   - Enemy
   - Player
-  - 
-  - 
+  - Background
+  - Item
   - 
   - 
   - 
@@ -44,6 +45,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 4039478803
+    locked: 0
   - name: Ground
     uniqueID: 1673992909
     locked: 0
@@ -55,6 +59,9 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 3462470657
+    locked: 0
+  - name: Item
+    uniqueID: 3630599891
     locked: 0
   - name: UI
     uniqueID: 4029906795

@@ -15,20 +15,23 @@ namespace Player.PlayerStates.SubStates
         public override void Enter()
         {
             base.Enter();
+            Movement?.SetVelocityZero();
+            
             IsHolding = false;
             StartTime = Time.time;
 
             Player.InputHandler.UseAimSwordInput();
             _aimSwordInputStop = Player.InputHandler.AimSwordInputStop;
             
-            Movement?.SetVelocityZero();
+            ThrowSlash();
+            Movement?.SetVelocityX(1f * Movement.FacingDirection);
         }
 
         public override void LogicUpdate()
         {
             base.LogicUpdate();
             
-            if (_aimSwordInputStop || Time.time >= StartTime + PlayerData.maxHoldTime)
+            if (_aimSwordInputStop || Time.time >= StartTime + PlayerData.maxHoldTime) 
                 IsHolding = false;
 
             if (IsAnimationFinished)
@@ -37,8 +40,10 @@ namespace Player.PlayerStates.SubStates
         
         public override void ThrowSlash()
         {
-            if(SkillManager.Instance.Slash.slashUnlocked)
-                SkillManager.Instance.Slash.CreateSlash(Movement.FacingDirection);
+            /*if(SkillManager.Instance.Slash.slashUnlocked)
+                SkillManager.Instance.Slash.CreateSlash(Movement.FacingDirection);*/
+            
+            SkillManager.Instance.Slash.CreateSlash(Movement.FacingDirection);
         }
     }
 }

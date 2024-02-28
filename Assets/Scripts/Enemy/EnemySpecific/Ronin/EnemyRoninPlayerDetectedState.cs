@@ -1,5 +1,6 @@
 using Enemy.EnemyState.StateData;
-using Scripts.Enemy.EnemyState.SubState;
+using Enemy.EnemyState.SubState;
+using UnityEngine;
 
 namespace Enemy.EnemySpecific.Ronin
 {
@@ -7,8 +8,8 @@ namespace Enemy.EnemySpecific.Ronin
     {
         private readonly EnemyRonin _enemyRonin;
 
-        public EnemyRoninPlayerDetectedState(Scripts.Enemy.EnemyStateMachine.Enemy enemyBase, 
-            Scripts.Enemy.EnemyStateMachine.EnemyStateMachine stateMachine, string animBoolName, D_PlayerDetectedState stateData, 
+        public EnemyRoninPlayerDetectedState(EnemyStateMachine.Enemy enemyBase, 
+            EnemyStateMachine.EnemyStateMachine stateMachine, string animBoolName, D_PlayerDetectedState stateData, 
             EnemyRonin enemyRonin) : base(enemyBase, stateMachine, animBoolName, stateData) =>
             _enemyRonin = enemyRonin;
 
@@ -27,7 +28,5 @@ namespace Enemy.EnemySpecific.Ronin
                 StateMachine.ChangeState(_enemyRonin.MoveState);
             }
         }
-
-        
     }
 }

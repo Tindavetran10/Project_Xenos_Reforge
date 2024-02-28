@@ -1,8 +1,8 @@
 using Enemy.EnemyState.StateData;
-using Scripts.Enemy.EnemyState.SuperState;
+using Enemy.EnemyState.SuperState;
 using UnityEngine;
 
-namespace Scripts.Enemy.EnemyState.SubState
+namespace Enemy.EnemyState.SubState
 {
     public class StunState : BattleState
     {
@@ -12,7 +12,7 @@ namespace Scripts.Enemy.EnemyState.SubState
 
         private readonly D_StunState _stateData;
         
-        protected StunState(EnemyStateMachine.Enemy enemyBase, EnemyStateMachine.EnemyStateMachine stateMachine, 
+        protected StunState(global::Enemy.EnemyStateMachine.Enemy enemyBase, EnemyStateMachine.EnemyStateMachine stateMachine, 
             string animBoolName, D_StunState stateData) : base(enemyBase, stateMachine, animBoolName) =>
             _stateData = stateData;
 

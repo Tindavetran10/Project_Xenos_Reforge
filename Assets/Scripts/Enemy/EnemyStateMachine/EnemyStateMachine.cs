@@ -1,4 +1,4 @@
-namespace Scripts.Enemy.EnemyStateMachine
+namespace Enemy.EnemyStateMachine
 {
     public class EnemyStateMachine
     {

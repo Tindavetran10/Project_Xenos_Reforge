@@ -1,8 +1,8 @@
 using System;
 using System.Linq;
+using Enemy.EnemyStats;
 using Player.Data;
 using Player.PlayerStates.SuperStates;
-using Scripts.Enemy.EnemyStats;
 using UnityEngine;
 
 namespace Player.PlayerStates.SubStates
@@ -57,7 +57,7 @@ namespace Player.PlayerStates.SubStates
 
             foreach (var combatInput in Enum.GetValues(typeof(CombatInputs)).Cast<CombatInputs>())
             {
-                if (Player.InputHandler.AttackInputs[(int)combatInput] ||
+                if (Player.InputHandler.NormalAttackInputs[(int)combatInput] ||
                     Player.InputHandler.NormInputX == 1 || Player.InputHandler.NormInputX == -1 ||
                     Player.InputHandler.JumpInput ||
                     Player.InputHandler.DashInput)
@@ -107,7 +107,7 @@ namespace Player.PlayerStates.SubStates
 
             foreach (var hit in collider2Ds)
             {
-                if (hit.GetComponent<Scripts.Enemy.EnemyStateMachine.Enemy>() != null)
+                if (hit.GetComponent<Enemy.EnemyStateMachine.Enemy>() != null)
                 {
                     var target = hit.GetComponentInChildren<EnemyStats>();
                     Player.Stats.DoDamage(target);

@@ -22,13 +22,14 @@ namespace UI
         private void Awake()
         {
             SwitchTo(skillTreeUI);
-            fadeScreen.gameObject.SetActive(true);
+            //fadeScreen.gameObject.SetActive(true);
         }
 
         private void Start() => SwitchTo(inGameUI);
 
         public void SwitchTo(GameObject menu)
         {
+            // Register every child object and switch it off by default
             for (var i = 0; i < transform.childCount; i++)
             {
                 // we need this to keep fade screen game object active

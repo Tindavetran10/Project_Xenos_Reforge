@@ -1,5 +1,5 @@
 using Enemy.EnemyState.StateData;
-using Scripts.Enemy.EnemyState.SubState;
+using Enemy.EnemyState.SubState;
 
 namespace Enemy.EnemySpecific.Ranger
 {
@@ -7,8 +7,8 @@ namespace Enemy.EnemySpecific.Ranger
     {
         private readonly EnemyRanger _enemyRanger;
 
-        public EnemyRangerDodgeState(Scripts.Enemy.EnemyStateMachine.Enemy enemyBase, 
-            Scripts.Enemy.EnemyStateMachine.EnemyStateMachine stateMachine, string animBoolName, D_DodgeState stateData, 
+        public EnemyRangerDodgeState(EnemyStateMachine.Enemy enemyBase, 
+            EnemyStateMachine.EnemyStateMachine stateMachine, string animBoolName, D_DodgeState stateData, 
             EnemyRanger enemyRanger) : base(enemyBase, stateMachine, animBoolName, stateData) =>
             _enemyRanger = enemyRanger;
 

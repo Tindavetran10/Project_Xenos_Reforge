@@ -1,3 +1,4 @@
+using System.Collections;
 using _Scripts.Player.Input;
 using Manager;
 using Player.Data;
@@ -11,7 +12,7 @@ namespace Player.PlayerStateMachine
         #region State Variables
         // By declaring the state machine, we can access all the function
         // including changing or initializing different states
-        private PlayerStateMachine StateMachine { get; set; }
+        public PlayerStateMachine StateMachine { get; private set; }
         
         public PlayerIdleState IdleState { get; private set; }
         public PlayerMoveState MoveState { get; private set; }
@@ -130,12 +131,11 @@ namespace Player.PlayerStateMachine
             MovementCollider2D.offset = center;
         }
         
-        /*private void OnDrawGizmos()
+        private void OnDrawGizmos()
         {
             foreach (var item in playerData.hitBox) 
-                Gizmos.DrawWireCube(attackPosition.transform.position + 
-                                    (Vector3)item.center, item.size);
-        }*/
+                Gizmos.DrawWireCube(attackPosition.transform.position + (Vector3)item.center, item.size);
+        }
         #endregion
 
         public override void Die()

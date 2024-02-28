@@ -1,11 +1,11 @@
 using Manager;
 using StatSystem;
 
-namespace Scripts.Enemy.EnemyStats
+namespace Enemy.EnemyStats
 {
     public class EnemyStats : CharacterStats
     {
-        private EnemyStateMachine.Enemy _enemy;
+        private global::Enemy.EnemyStateMachine.Enemy _enemy;
         public Stat soulDropAmount;
         
         protected override void Start()
@@ -13,13 +13,14 @@ namespace Scripts.Enemy.EnemyStats
             soulDropAmount.SetDefaultValue(100);
             
             base.Start();
-            _enemy = GetComponentInParent<EnemyStateMachine.Enemy>();
+            _enemy = GetComponentInParent<Enemy.EnemyStateMachine.Enemy>();
         }
 
         protected override void TakeDamage(int damageAmount)
         {
             base.TakeDamage(damageAmount);
-            _enemy.DamageImpact();
+            GetComponentInParent<Enemy.EnemyStateMachine.Enemy>().DamageImpact();
+           _enemy.DamageImpact();
         }
 
         protected override void Die()

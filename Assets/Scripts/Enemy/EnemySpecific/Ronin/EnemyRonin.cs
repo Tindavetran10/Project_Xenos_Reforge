@@ -1,10 +1,10 @@
 using Enemy.EnemyState.StateData;
-using Scripts.Intermediaries;
+using Enemy.Intermediaries;
 using UnityEngine;
 
 namespace Enemy.EnemySpecific.Ronin
 {
-    public class EnemyRonin : Scripts.Enemy.EnemyStateMachine.Enemy
+    public class EnemyRonin : EnemyStateMachine.Enemy
     {
         #region State Variables
         public EnemyRoninIdleState IdleState { get; private set; }
@@ -35,19 +35,16 @@ namespace Enemy.EnemySpecific.Ronin
             MoveState = new EnemyRoninMoveState(this, StateMachine, "move", moveStateData, this);
             PlayerDetectedState = new EnemyRoninPlayerDetectedState(this, StateMachine, "playerDetected", playerDetectedStateData, this);
             ChargeState = new EnemyRoninChargeState(this, StateMachine, "charge", chargeStateData, this);
-            LookForPlayerState =
-                new EnemyRoninLookForPlayerState(this, StateMachine, "lookForPlayer", lookForPlayerStateData, this);
-            MeleeAttackState =
-                new EnemyRoninMeleeAttackState(this, StateMachine, "meleeAttack", meleeAttackStateData, this);
+            LookForPlayerState = new EnemyRoninLookForPlayerState(this, StateMachine, "lookForPlayer", lookForPlayerStateData, this);
+            MeleeAttackState = new EnemyRoninMeleeAttackState(this, StateMachine, "meleeAttack", meleeAttackStateData, this);
             StunState = new EnemyRoninStunState(this, StateMachine, "stun", stunStateData, this);
             DeathState = new EnemyRoninDeathState(this, StateMachine, "die", this);
         }
         
-
         protected override void Start()
         {
             base.Start();
-            Atsm = GetComponent<EnemyAnimationToStateMachine>();
+            GetComponent<EnemyAnimationToStateMachine>();
             StateMachine.Initialize(IdleState);
         }
 
@@ -60,12 +57,9 @@ namespace Enemy.EnemySpecific.Ronin
 
         public override bool CanBeStunned()
         {
-            if (base.CanBeStunned())
-            {
-                StateMachine.ChangeState(StunState);
-                return true;
-            }
-            return false;
+            if (!base.CanBeStunned()) return false;
+            StateMachine.ChangeState(StunState);
+            return true;
         }
 
         public override void Die()
@@ -87,5 +81,7 @@ namespace Enemy.EnemySpecific.Ronin
             foreach (var item in enemyData.hitBox) 
                 Gizmos.DrawWireCube(attackPosition.transform.position + (Vector3)item.center, item.size);
         }
+
+        
     }
 }

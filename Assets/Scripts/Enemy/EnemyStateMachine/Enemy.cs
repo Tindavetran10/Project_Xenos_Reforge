@@ -1,11 +1,13 @@
+using System.Collections;
 using Enemy.Data.EnemyDataScript;
+using Manager;
 using Player.PlayerStats;
 using Projectile;
 using UnityEngine;
 
-namespace Scripts.Enemy.EnemyStateMachine
+namespace Enemy.EnemyStateMachine
 {
-    public class Enemy : global::Entity.Entity
+    public class Enemy : Entity.Entity
     {
         #region Components
         [Header("Enemy Data")]
@@ -24,11 +26,21 @@ namespace Scripts.Enemy.EnemyStateMachine
         [SerializeField] public GameObject counterImage;
         #endregion
         
+        #region Knockback Components
+        [Header("KnockBack Mechanics")] 
+        [SerializeField] protected Vector2 knockBackDirection;
+        [SerializeField] protected float knockBackDuration;
+        #endregion
+        
         #region Animation
         [HideInInspector] public bool isAnimationFinished;
         private Vector2 _velocityWorkspace;
         private static readonly int YVelocity = Animator.StringToHash("yVelocity");
         #endregion
+
+        private Transform _player;
+        [HideInInspector] public float lastTimeAttacked;
+        public float attackCoolDown;
         
         protected override void Awake() {
             base.Awake();
@@ -41,12 +53,21 @@ namespace Scripts.Enemy.EnemyStateMachine
             StateMachine.CurrentState.LogicUpdate();
             
             Anim.SetFloat(YVelocity, Movement.Rb.velocity.y);
+            _player = PlayerManager.Instance.player.transform;
         }
         
         protected override void FixedUpdate()
         {
             base.FixedUpdate();
             StateMachine.CurrentState.PhysicsUpdate();
+        }
+        
+        public void BattleStateFlipControl()
+        {
+            if (_player.position.x > transform.position.x && Movement.FacingDirection == -1)
+                Movement.Flip();
+            else if (_player.position.x < transform.position.x && Movement.FacingDirection == 1)
+                Movement.Flip();
         }
 
         #region Animator Function
@@ -56,7 +77,7 @@ namespace Scripts.Enemy.EnemyStateMachine
 
             foreach (var hit in collider2Ds)
             {
-                if(hit.GetComponent<global::Player.PlayerStateMachine.Player>() != null)
+                if(hit.GetComponent<Player.PlayerStateMachine.Player>() != null)
                 {
                     var target = hit.GetComponentInChildren<PlayerStats>();
                     Stats.DoDamage(target);
@@ -102,6 +123,32 @@ namespace Scripts.Enemy.EnemyStateMachine
         }
         #endregion
 
+        #region KnockBack Function
+        public void DamageImpact() => StartCoroutine(nameof(HitKnockBack));
+
+        public IEnumerator HitKnockBack()
+        {
+            Movement.CanSetVelocity = false;
+            CheckKnockBackDirection();
+            yield return new WaitForSeconds(knockBackDuration);
+            Movement.SetVelocityX(0f);
+            Movement.CanSetVelocity = true;
+        }
+
+        private void CheckKnockBackDirection()
+        {
+            if(_player.position.x < transform.position.x && Movement.FacingDirection == 1)
+                Rb.velocity = new Vector2(knockBackDirection.x  * Movement.FacingDirection, knockBackDirection.y);
+            else if(_player.position.x < transform.position.x && Movement.FacingDirection == -1)
+                Rb.velocity = new Vector2(knockBackDirection.x  * -Movement.FacingDirection, knockBackDirection.y);
+            else if(_player.position.x > transform.position.x && Movement.FacingDirection == 1) 
+                Rb.velocity = new Vector2(knockBackDirection.x  * -Movement.FacingDirection, knockBackDirection.y);
+            else if (_player.position.x > transform.position.x && Movement.FacingDirection == -1)
+                Rb.velocity = new Vector2(knockBackDirection.x  * Movement.FacingDirection, knockBackDirection.y);
+
+        }
+        #endregion
+        
         #region Die Function
         public override void Die()
         {

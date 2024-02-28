@@ -20,8 +20,8 @@ namespace _Scripts.Player.Input
         private Vector2 RawMovementInput { get; set; }
         private Vector2 RawDashDirectionInput { get; set; }
         public Vector2Int DashDirectionInput { get; private set; }
-        public int NormInputX { get; set; }
-        public int NormInputY { get; set; }
+        public int NormInputX { get; private set; }
+        public int NormInputY { get; private set; }
 
         // Properties to track various input states
         public bool JumpInput { get; private set; }
@@ -30,11 +30,14 @@ namespace _Scripts.Player.Input
         public bool DashInput { get; private set; }
         public bool DashInputStop { get; private set; }
         
-        public bool[] AttackInputs { get; private set; }
+        public bool[] NormalAttackInputs { get; private set; }
         public bool[] AttackInputsStop { get; private set; }
         
         public bool AimSwordInput { get; private set; }
         public bool AimSwordInputStop { get; private set; }
+        
+        public bool FocusSwordInput { get; private set; }
+        public bool FocusSwordInputStop { get; private set; }
         
         public bool CounterInput { get; private set; }
         public bool CounterInputStop { get; private set; }
@@ -46,11 +49,12 @@ namespace _Scripts.Player.Input
         private float _counterInputStartTime;
         private float _attackInputsStartTime;
         private float _aimSwordInputStartTime;
+        private float _focusSwordInputStartTime;
 
         private void Start()
         {
             var count = Enum.GetValues(typeof(CombatInputs)).Length;
-            AttackInputs = new bool[count];
+            NormalAttackInputs = new bool[count];
             AttackInputsStop = new bool[count];
             
             _player = PlayerManager.Instance.player;
@@ -60,11 +64,12 @@ namespace _Scripts.Player.Input
 
         private void Update()
         {
-            // Check and update jump and dash input hold times
+            // Check and update input hold times
             CheckJumpInputHoldTime();
             CheckDashInputHoldTime();
             CheckAttackInputsHoldTime();
             CheckAimSwordInputHoldTime();
+            CheckFocusSwordInputHoldTime();
             CheckCounterInputHoldTime();
         }
 
@@ -85,13 +90,19 @@ namespace _Scripts.Player.Input
         private void CheckAttackInputsHoldTime()
         {
             if (Time.time >= _attackInputsStartTime + inputHoldTime)
-                AttackInputs[(int)CombatInputs.Normal] = false;
+                NormalAttackInputs[(int)CombatInputs.Normal] = false;
         }
 
         private void CheckAimSwordInputHoldTime()
         {
             if (Time.time >= _aimSwordInputStartTime + inputHoldTime)
                 AimSwordInput = false;
+        }
+
+        private void CheckFocusSwordInputHoldTime()
+        {
+            if (Time.time >= _focusSwordInputStartTime + inputHoldTime)
+                FocusSwordInput = false;
         }
         
         private void CheckCounterInputHoldTime()
@@ -175,7 +186,7 @@ namespace _Scripts.Player.Input
         {
             if (context.started)
             {
-                AttackInputs[(int)CombatInputs.Normal] = true;
+                NormalAttackInputs[(int)CombatInputs.Normal] = true;
                 AttackInputsStop[(int)CombatInputs.Normal] = false;
                 _attackInputsStartTime = Time.time;
             }
@@ -185,9 +196,9 @@ namespace _Scripts.Player.Input
         public void OnHeavyAttack(InputAction.CallbackContext context)
         {
             if (context.started)
-                AttackInputs[(int)CombatInputs.Heavy] = true;
+                NormalAttackInputs[(int)CombatInputs.Heavy] = true;
             if (context.canceled)
-                AttackInputs[(int)CombatInputs.Heavy] = false;
+                NormalAttackInputs[(int)CombatInputs.Heavy] = false;
         }
 
         public void OnCounterAttack(InputAction.CallbackContext context)
@@ -212,7 +223,17 @@ namespace _Scripts.Player.Input
             else if (context.canceled) AimSwordInputStop = true;
         }
 
-        
+        public void OnFocusSword(InputAction.CallbackContext context)
+        {
+            if (context.started)
+            {
+                FocusSwordInput = true;
+                FocusSwordInputStop = false;
+                _focusSwordInputStartTime = Time.time;
+            }
+            else if (context.canceled) FocusSwordInputStop = true;
+        }
+
 
         // Callback for dash direction input
         public void OnDashDirection(InputAction.CallbackContext context)
@@ -246,8 +267,9 @@ namespace _Scripts.Player.Input
 
         // Utility method to consume dash input
         public void UseDashInput() => DashInput = false;
-        public void UseAttackInput() => AttackInputs[(int)CombatInputs.Normal] = false;
+        public void UseAttackInput() => NormalAttackInputs[(int)CombatInputs.Normal] = false;
         public void UseAimSwordInput() => AimSwordInput = false;
+        public void UseFocusSwordInput() => FocusSwordInput = false;
         public void UseCounterInput() => CounterInput = false;
     }
 }

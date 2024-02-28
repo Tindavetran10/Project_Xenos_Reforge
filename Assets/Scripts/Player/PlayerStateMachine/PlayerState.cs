@@ -17,8 +17,8 @@ namespace Player.PlayerStateMachine
           protected bool IsAnimationCancel;
           protected bool IsExitingState;
           protected float StartTime;
-          
-          public readonly string AnimBoolName;
+
+          private readonly string AnimBoolName;
           
           protected Movement Movement => _movement ? _movement : _core.GetCoreComponent(ref _movement);
           private Movement _movement;

@@ -1,9 +1,8 @@
 using Enemy.EnemyState.StateData;
-using Scripts.Enemy.EnemyState.SuperState;
+using Enemy.EnemyState.SuperState;
 using UnityEngine;
 
-
-namespace Scripts.Enemy.EnemyState.SubState
+namespace Enemy.EnemyState.SubState
 {
     public class MoveState : GroundedState
     {
@@ -12,7 +11,7 @@ namespace Scripts.Enemy.EnemyState.SubState
         
         private readonly D_MoveState _stateData;
         
-        protected MoveState(EnemyStateMachine.Enemy enemyBase, EnemyStateMachine.EnemyStateMachine stateMachine, 
+        protected MoveState(global::Enemy.EnemyStateMachine.Enemy enemyBase, EnemyStateMachine.EnemyStateMachine stateMachine, 
             string animBoolName, D_MoveState stateData) : base(enemyBase, stateMachine, animBoolName) =>
             _stateData = stateData;
         
@@ -32,6 +31,8 @@ namespace Scripts.Enemy.EnemyState.SubState
                 IsMoveTimeOver = true;
             
             Movement?.SetVelocityX(_stateData.movementSpeed * Movement.FacingDirection);
+            
+            
         }
         
         private void SetRandomMoveTime() => 
