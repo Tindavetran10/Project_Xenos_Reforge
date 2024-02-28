@@ -20,9 +20,7 @@ namespace Entity
         protected Movement Movement => _movement ? _movement : Core.GetCoreComponent(ref _movement);
         private Movement _movement;
         #endregion
-
         
-
         public System.Action OnFlipped;
 
         protected virtual void Awake() => Core = GetComponentInChildren<Core>();

@@ -57,7 +57,7 @@ namespace Player.PlayerStates.SubStates
 
             foreach (var combatInput in Enum.GetValues(typeof(CombatInputs)).Cast<CombatInputs>())
             {
-                if (Player.InputHandler.AttackInputs[(int)combatInput] ||
+                if (Player.InputHandler.NormalAttackInputs[(int)combatInput] ||
                     Player.InputHandler.NormInputX == 1 || Player.InputHandler.NormInputX == -1 ||
                     Player.InputHandler.JumpInput ||
                     Player.InputHandler.DashInput)

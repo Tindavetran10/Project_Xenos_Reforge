@@ -94,6 +94,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "FocusSword",
+                    "type": "Button",
+                    "id": "b81e8179-9177-411a-a2b6-9205de1d5cc4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -254,7 +263,7 @@
                 {
                     "name": "",
                     "id": "c556c90b-9da7-459a-8832-0a39c00ad1c7",
-                    "path": "<Keyboard>/f",
+                    "path": "<Keyboard>/g",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -303,6 +312,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "AimSword",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f1ec7618-5cf0-4dac-9298-c089ca787024",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "FocusSword",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

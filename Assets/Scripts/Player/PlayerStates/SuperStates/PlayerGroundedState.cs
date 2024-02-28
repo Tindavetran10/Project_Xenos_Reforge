@@ -61,11 +61,11 @@ namespace Player.PlayerStates.SuperStates
             _grabInput = Player.InputHandler.GrabInput;
             _dashInput = Player.InputHandler.DashInput;
             
-            _normalAttackInput = Player.InputHandler.AttackInputs[(int)CombatInputs.Normal];
+            _normalAttackInput = Player.InputHandler.NormalAttackInputs[(int)CombatInputs.Normal];
             _aimSwordInput = Player.InputHandler.AimSwordInput;
             _counterAttackInput = Player.InputHandler.CounterInput;
             
-            if(_aimSwordInput && SkillManager.Instance.Slash.CanUseSkill() && !IsTouchingCeiling)
+            if(_aimSwordInput && /*SkillManager.Instance.Slash.CanUseSkill() &&*/ !IsTouchingCeiling)
                 StateMachine.ChangeState(Player.AimSwordState);
             else if(_counterAttackInput && !IsTouchingCeiling)
                 StateMachine.ChangeState(Player.CounterAttackState);
