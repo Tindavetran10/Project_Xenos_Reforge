@@ -1,11 +1,14 @@
 using Player.Data;
 using Player.PlayerStates.SuperStates;
 using UnityEngine;
+using EzySlice;
+using DG.Tweening;
 
 namespace Player.PlayerStates.SubStates
 {
     public class PlayerFocusSwordState : PlayerAbilityState
     {
+        public LayerMask LayerMask;
         private bool _focusSwordInputStop;
         
         protected PlayerFocusSwordState(Player.PlayerStateMachine.Player player, PlayerStateMachine.PlayerStateMachine stateMachine, 

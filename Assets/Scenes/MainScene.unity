@@ -7628,6 +7628,14 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4767038522924034574, guid: d3c59ee5e474a7d41b505da6b5ae51bf, type: 3}
+      propertyPath: m_Name
+      value: SliceSurface
+      objectReference: {fileID: 0}
+    - target: {fileID: 4767038522924034574, guid: d3c59ee5e474a7d41b505da6b5ae51bf, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4853456149582733648, guid: d3c59ee5e474a7d41b505da6b5ae51bf, type: 3}
       propertyPath: damage.baseValue
       value: 30
@@ -7635,6 +7643,22 @@ PrefabInstance:
     - target: {fileID: 4853456149582733648, guid: d3c59ee5e474a7d41b505da6b5ae51bf, type: 3}
       propertyPath: maxHealth.baseValue
       value: 999
+      objectReference: {fileID: 0}
+    - target: {fileID: 6509364117339771962, guid: d3c59ee5e474a7d41b505da6b5ae51bf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 6900757262804847941, guid: d3c59ee5e474a7d41b505da6b5ae51bf, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6900757262804847941, guid: d3c59ee5e474a7d41b505da6b5ae51bf, type: 3}
+      propertyPath: m_ActionEvents.Array.data[11].m_ActionId
+      value: b81e8179-9177-411a-a2b6-9205de1d5cc4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6900757262804847941, guid: d3c59ee5e474a7d41b505da6b5ae51bf, type: 3}
+      propertyPath: m_ActionEvents.Array.data[11].m_ActionName
+      value: Gameplay/FocusSword[/Keyboard/f]
       objectReference: {fileID: 0}
     - target: {fileID: 7849466132785042285, guid: d3c59ee5e474a7d41b505da6b5ae51bf, type: 3}
       propertyPath: knockBackDuration
@@ -7653,7 +7677,8 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 755415959105233044, guid: d3c59ee5e474a7d41b505da6b5ae51bf, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3c59ee5e474a7d41b505da6b5ae51bf, type: 3}
