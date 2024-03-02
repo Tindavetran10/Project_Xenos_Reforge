@@ -71,11 +71,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
-  ignoreMasterTextureLimit: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -84,7 +85,7 @@ TextureImporter:
   maxTextureSize: 4096
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -114,6 +115,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 1
+  swizzle: 50462976
   cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
@@ -126,6 +128,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -138,6 +141,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -150,6 +154,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -523,26 +528,25 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      SpriteSheet_13: 21300026
-      SpriteSheet_5: 21300010
-      SpriteSheet_4: 21300008
-      SpriteSheet_7: 21300014
-      SpriteSheet_8: 21300016
-      SpriteSheet_16: 21300032
-      SpriteSheet_2: 21300004
-      SpriteSheet_6: 21300012
-      SpriteSheet_14: 21300028
       SpriteSheet_0: 21300000
       SpriteSheet_1: 21300002
       SpriteSheet_10: 21300020
-      SpriteSheet_15: 21300030
-      SpriteSheet_3: 21300006
-      SpriteSheet_12: 21300024
-      SpriteSheet_9: 21300018
       SpriteSheet_11: 21300022
-  spritePackingTag: 
+      SpriteSheet_12: 21300024
+      SpriteSheet_13: 21300026
+      SpriteSheet_14: 21300028
+      SpriteSheet_15: 21300030
+      SpriteSheet_16: 21300032
+      SpriteSheet_2: 21300004
+      SpriteSheet_3: 21300006
+      SpriteSheet_4: 21300008
+      SpriteSheet_5: 21300010
+      SpriteSheet_6: 21300012
+      SpriteSheet_7: 21300014
+      SpriteSheet_8: 21300016
+      SpriteSheet_9: 21300018
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

@@ -21,10 +21,10 @@ namespace Player.PlayerStates.SubStates
             
             IsHolding = true;
             
-            // Set the amount of time that allow the player to hold the focus sword input in REAL-TIME
+            /*// Set the amount of time that allow the player to hold the focus sword input in REAL-TIME
             Time.timeScale = PlayerData.focusSwordDuration;
             // Save the StartTime when entering the Dash State without getting affected by Time.timeScale
-            StartTime = Time.unscaledTime;
+            StartTime = Time.unscaledTime;*/
             
             Player.InputHandler.UseFocusSwordInput();
             Movement?.SetVelocityZero();
@@ -44,9 +44,7 @@ namespace Player.PlayerStates.SubStates
                     
                     Player.Stats.MakeInvincible(true);
                     
-                    if(_focusSwordPositionInput != Vector2.zero)
-                        FocusSword();
-                    else ClearFocusSword();
+                    FocusSword();
                     
                     // If a certain amount of real-time (from the start time point to the maxHoldTime point)
                     if (_focusSwordInputStop)
@@ -55,7 +53,7 @@ namespace Player.PlayerStates.SubStates
                         
                         IsHolding = false;
                         Time.timeScale = 1f;
-                        StartTime = Time.time;
+                        //StartTime = Time.time;
                         ClearFocusSword();
                     }
                 }

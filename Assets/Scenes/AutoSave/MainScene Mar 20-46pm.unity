@@ -3503,7 +3503,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8023768704517463784, guid: 72d76bd6fe11d484989b5e0c7f67b212, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.79
+      value: 0.31
       objectReference: {fileID: 0}
     - target: {fileID: 8023768704517463784, guid: 72d76bd6fe11d484989b5e0c7f67b212, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4204,7 +4204,7 @@ TrailRenderer:
   m_SortingLayerID: -832496639
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Time: 0.2
+  m_Time: 5
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
@@ -4556,7 +4556,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1016751827
 Transform:
   m_ObjectHideFlags: 0

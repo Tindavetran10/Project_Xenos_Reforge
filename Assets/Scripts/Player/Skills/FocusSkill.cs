@@ -16,73 +16,84 @@ namespace Player.Skills
 
         public float mouseRecordInterval = 0.05f;
         public int maxMousePositions = 5;
+        public float sliceForce = 2.0f;
+        public LayerMask sliceLayer;
         public bool fadeFragments;
 
         private readonly List<MousePosition> _mousePositions = new();
         private float _mouseRecordTimer;
-
+        
         protected override void Start () => _trailRenderer = GetComponentInChildren<TrailRenderer>();
 
         public void Slice () 
 		{
-			// Left mouse button - hold and swipe to cut objects
-			var mousePositionAdded = false;
-			_mouseRecordTimer -= Time.deltaTime;
-
-			// Record the world position of the mouse every x seconds
-			if(_mouseRecordTimer <= 0.0f)
+			if (Input.GetMouseButton(0))
 			{
-				MousePosition newMousePosition = new MousePosition();
-				newMousePosition.WorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-				newMousePosition.Time = Time.time;
+				// Left mouse button - swipe to cut objects
+				var mousePositionAdded = false;
+				_mouseRecordTimer -= Time.deltaTime;
 
-				_mousePositions.Add(newMousePosition);
-				_mouseRecordTimer = mouseRecordInterval;
-				mousePositionAdded = true;
-
-				// Remove the first recorded point if we've recorded too many
-				if(_mousePositions.Count > maxMousePositions) 
-					_mousePositions.RemoveAt(0);
-			}
-
-			// Forget any positions that are too old to care about
-			if(_mousePositions.Count > 0 && (Time.time - _mousePositions[0].Time) > mouseRecordInterval * maxMousePositions)
-				_mousePositions.RemoveAt(0);
-
-			// Go through all our recorded positions and slice any sprites that intersect them
-			if(mousePositionAdded)
-			{
-				for(int loop = 0; loop < _mousePositions.Count - 1; loop++)
+				// Record the world position of the mouse every x seconds
+				if (_mouseRecordTimer <= 0.0f)
 				{
-					SpriteSlicer2D.SliceAllSprites(_mousePositions[loop].WorldPosition, _mousePositions[_mousePositions.Count - 1].WorldPosition, true, ref _slicedSpriteInfo);
+					MousePosition newMousePosition = new MousePosition();
+					newMousePosition.WorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+					newMousePosition.Time = Time.time;
 
-					if(_slicedSpriteInfo.Count > 0)
+					_mousePositions.Add(newMousePosition);
+					_mouseRecordTimer = mouseRecordInterval;
+					mousePositionAdded = true;
+
+					// Remove the first recorded point if we've recorded too many
+					if (_mousePositions.Count > maxMousePositions)
+						_mousePositions.RemoveAt(0);
+				}
+
+				// Forget any positions that are too old to care about
+				if (_mousePositions.Count > 0 &&
+				    (Time.time - _mousePositions[0].Time) > mouseRecordInterval * maxMousePositions)
+					_mousePositions.RemoveAt(0);
+
+				// Go through all our recorded positions and slice any sprites that intersect them
+				if (mousePositionAdded)
+				{
+					for (int loop = 0; loop < _mousePositions.Count - 1; loop++)
 					{
-						// Add some force in the direction of the swipe so that stuff topples over rather than just being
-						// sliced but remaining stationary
-						for(int spriteIndex = 0; spriteIndex < _slicedSpriteInfo.Count; spriteIndex++)
-						{
-							for(int childSprite = 0; childSprite < _slicedSpriteInfo[spriteIndex].ChildObjects.Count; childSprite++)
-							{
-								Vector2 sliceDirection = _mousePositions[_mousePositions.Count - 1].WorldPosition - _mousePositions[loop].WorldPosition;
-								sliceDirection.Normalize();
-								_slicedSpriteInfo[spriteIndex].ChildObjects[childSprite].GetComponent<Rigidbody2D>().AddForce(sliceDirection * 500.0f);
-							}
-						}
+						SpriteSlicer2D.SliceAllSprites(_mousePositions[loop].WorldPosition,
+							_mousePositions[^1].WorldPosition, true, ref _slicedSpriteInfo, sliceLayer);
 
-						_mousePositions.Clear();
-						break;
+						if (_slicedSpriteInfo.Count > 0)
+						{
+							// Add some force in the direction of the swipe so that stuff topples over rather than just being
+							// sliced but remaining stationary
+							for (int spriteIndex = 0; spriteIndex < _slicedSpriteInfo.Count; spriteIndex++)
+							{
+								for (int childSprite = 0;
+								     childSprite < _slicedSpriteInfo[spriteIndex].ChildObjects.Count;
+								     childSprite++)
+								{
+									Vector2 sliceDirection = _mousePositions[^1].WorldPosition -
+									                         _mousePositions[loop].WorldPosition;
+									sliceDirection.Normalize();
+									_slicedSpriteInfo[spriteIndex].ChildObjects[childSprite].GetComponent<Rigidbody2D>()
+										.AddForce(sliceDirection * sliceForce);
+								}
+							}
+
+							_mousePositions.Clear();
+							break;
+						}
 					}
 				}
-			}
 
-			if(_trailRenderer)
-			{
-				Vector3 trailPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-				trailPosition.z = -9.0f;
-				_trailRenderer.transform.position = trailPosition;
+				if (_trailRenderer)
+				{
+					Vector3 trailPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+					trailPosition.z = -9.0f;
+					_trailRenderer.transform.position = trailPosition;
+				}
 			}
-			//_mousePositions.Clear();
+			else _mousePositions.Clear();
 
 			// Sliced sprites sharing the same layer as standard Unity sprites could increase the draw call count as
 			// the engine will have to keep swapping between rendering SlicedSprites and Unity Sprites.To avoid this, 
