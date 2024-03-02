@@ -9,6 +9,7 @@ namespace Player.PlayerStates.SubStates
     {
         private bool _focusSwordInput;
         private bool _focusSwordInputStop;
+        private Vector2 _focusSwordPositionInput;
         
         public PlayerFocusSwordState(Player.PlayerStateMachine.Player player, PlayerStateMachine.PlayerStateMachine stateMachine, 
             PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName) {}
@@ -39,8 +40,13 @@ namespace Player.PlayerStates.SubStates
                 {
                     _focusSwordInput = Player.InputHandler.FocusSwordInput;
                     _focusSwordInputStop = Player.InputHandler.FocusSwordInputStop;
+                    _focusSwordPositionInput = Player.InputHandler.FocusSwordPositionInput;
+                    
                     Player.Stats.MakeInvincible(true);
-                    FocusSword();
+                    
+                    if(_focusSwordPositionInput != Vector2.zero)
+                        FocusSword();
+                    else ClearFocusSword();
                     
                     // If a certain amount of real-time (from the start time point to the maxHoldTime point)
                     if (_focusSwordInputStop)
@@ -50,13 +56,10 @@ namespace Player.PlayerStates.SubStates
                         IsHolding = false;
                         Time.timeScale = 1f;
                         StartTime = Time.time;
+                        ClearFocusSword();
                     }
                 }
-                else
-                {
-                    if (!(Time.time >= StartTime + PlayerData.dashTime)) return;
-                    IsAbilityDone = true;
-                }
+                else IsAbilityDone = true;
             }
         }
 
@@ -68,5 +71,6 @@ namespace Player.PlayerStates.SubStates
         }
 
         private static void FocusSword() => SkillManager.Instance.Focus.Slice();
+        private static void ClearFocusSword() => SkillManager.Instance.Focus.ClearMousePositions();
     }
 }

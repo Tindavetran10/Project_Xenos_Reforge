@@ -125,6 +125,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""FocusSwordMousePos"",
+                    ""type"": ""Value"",
+                    ""id"": ""194ce9ff-24e4-4160-8b83-c5ba2435d1a0"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -347,6 +356,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""FocusSword"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9daffda3-0b23-445b-bc83-820b649181f5"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FocusSwordMousePos"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -394,6 +414,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Gameplay_CounterAttack = m_Gameplay.FindAction("CounterAttack", throwIfNotFound: true);
         m_Gameplay_AimSword = m_Gameplay.FindAction("AimSword", throwIfNotFound: true);
         m_Gameplay_FocusSword = m_Gameplay.FindAction("FocusSword", throwIfNotFound: true);
+        m_Gameplay_FocusSwordMousePos = m_Gameplay.FindAction("FocusSwordMousePos", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Resume = m_UI.FindAction("Resume", throwIfNotFound: true);
@@ -469,6 +490,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_CounterAttack;
     private readonly InputAction m_Gameplay_AimSword;
     private readonly InputAction m_Gameplay_FocusSword;
+    private readonly InputAction m_Gameplay_FocusSwordMousePos;
     public struct GameplayActions
     {
         private @PlayerInput m_Wrapper;
@@ -484,6 +506,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @CounterAttack => m_Wrapper.m_Gameplay_CounterAttack;
         public InputAction @AimSword => m_Wrapper.m_Gameplay_AimSword;
         public InputAction @FocusSword => m_Wrapper.m_Gameplay_FocusSword;
+        public InputAction @FocusSwordMousePos => m_Wrapper.m_Gameplay_FocusSwordMousePos;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -526,6 +549,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @FocusSword.started += instance.OnFocusSword;
             @FocusSword.performed += instance.OnFocusSword;
             @FocusSword.canceled += instance.OnFocusSword;
+            @FocusSwordMousePos.started += instance.OnFocusSwordMousePos;
+            @FocusSwordMousePos.performed += instance.OnFocusSwordMousePos;
+            @FocusSwordMousePos.canceled += instance.OnFocusSwordMousePos;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -563,6 +589,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @FocusSword.started -= instance.OnFocusSword;
             @FocusSword.performed -= instance.OnFocusSword;
             @FocusSword.canceled -= instance.OnFocusSword;
+            @FocusSwordMousePos.started -= instance.OnFocusSwordMousePos;
+            @FocusSwordMousePos.performed -= instance.OnFocusSwordMousePos;
+            @FocusSwordMousePos.canceled -= instance.OnFocusSwordMousePos;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -639,6 +668,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnCounterAttack(InputAction.CallbackContext context);
         void OnAimSword(InputAction.CallbackContext context);
         void OnFocusSword(InputAction.CallbackContext context);
+        void OnFocusSwordMousePos(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

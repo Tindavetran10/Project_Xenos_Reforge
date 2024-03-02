@@ -20,6 +20,8 @@ namespace _Scripts.Player.Input
         private Vector2 RawMovementInput { get; set; }
         private Vector2 RawDashDirectionInput { get; set; }
         public Vector2Int DashDirectionInput { get; private set; }
+        public Vector2 FocusSwordPositionInput { get; private set; }
+        
         public int NormInputX { get; private set; }
         public int NormInputY { get; private set; }
 
@@ -181,6 +183,7 @@ namespace _Scripts.Player.Input
             else if (context.canceled) FocusSwordInputStop = true;
         }
 
+
         // Callback for dash input
         public void OnDash(InputAction.CallbackContext context)
         {
@@ -233,6 +236,14 @@ namespace _Scripts.Player.Input
                 _aimSwordInputStartTime = Time.time;
             }
             else if (context.canceled) AimSwordInputStop = true;
+        }
+        public void OnFocusSwordMousePos(InputAction.CallbackContext context)
+        {
+            if (_player != null)
+            {
+                FocusSwordPositionInput = context.ReadValue<Vector2>();
+                FocusSwordPositionInput = _cam.ScreenToWorldPoint(FocusSwordPositionInput) - transform.position;
+            }
         }
         
         // Callback for dash direction input
