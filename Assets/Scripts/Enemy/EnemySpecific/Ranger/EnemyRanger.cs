@@ -68,15 +68,5 @@ namespace Enemy.EnemySpecific.Ranger
                 Gizmos.DrawWireSphere(playerCheckPosition + (Vector3)(Vector2.right * enemyData.closeRangeActionDistance * Movement.FacingDirection), 0.2f);
             }
         }
-
-        public bool CanAttack()
-        {
-            if (Time.time >= lastTimeAttacked + attackCoolDown)
-            {
-                lastTimeAttacked = Time.time;
-                return true;
-            }
-            return false;
-        }
     }
 }

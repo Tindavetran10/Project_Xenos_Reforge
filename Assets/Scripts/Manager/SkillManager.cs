@@ -12,6 +12,7 @@ namespace Manager
         public CloneSkill Clone { get; private set; }
 
         public SlashSkill Slash { get; private set; }
+        public FocusSkill Focus { get; private set; }
         
         private void Awake()
         {
@@ -25,6 +26,7 @@ namespace Manager
             Dash = GetComponent<DashSkill>();
             Clone = GetComponent<CloneSkill>();
             Slash = GetComponent<SlashSkill>();
+            Focus = GetComponent<FocusSkill>();
         }
     }
 }

@@ -22,7 +22,6 @@ MonoBehaviour:
   coyoteTime: 0.5
   variableJumpHeightMultiplier: 0.35
   wallSlideVelocity: 1
-  wallClimbVelocity: 3
   startOffset: {x: 0.07, y: 0.3}
   stopOffset: {x: 0.1, y: 0.35}
   maxHoldTime: 0.5
@@ -64,4 +63,5 @@ MonoBehaviour:
     y: -0.34
     width: 1.16
     height: 0.72
+  focusSwordDuration: 99
   counterAttackDuration: 0.08

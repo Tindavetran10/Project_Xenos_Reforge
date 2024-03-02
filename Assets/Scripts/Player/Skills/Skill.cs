@@ -8,7 +8,7 @@ namespace Player.Skills
         [SerializeField] protected float coolDown;
         private float _coolDownTimer;
 
-        protected global::Player.PlayerStateMachine.Player Player;
+        protected Player.PlayerStateMachine.Player Player;
 
         protected virtual void Start()
         {
@@ -16,7 +16,7 @@ namespace Player.Skills
             CheckUnlock();
         }
 
-        protected void Update() => _coolDownTimer -= Time.deltaTime;
+        protected virtual void Update() => _coolDownTimer -= Time.deltaTime;
 
         protected virtual void CheckUnlock() {}
         

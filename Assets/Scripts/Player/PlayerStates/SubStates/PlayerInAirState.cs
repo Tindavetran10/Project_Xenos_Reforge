@@ -109,10 +109,6 @@ namespace Player.PlayerStates.SubStates
             else if (_jumpInput && Player.JumpState.CanJump())
                 StateMachine.ChangeState(Player.JumpState);
             
-            // Change to wall grab when he touching a wall in the air and there is grab input
-            else if (_isTouchingWall && _grabInput)
-                StateMachine.ChangeState(Player.WallGrabState);
-            
             // Change to WallSlide state if he touching a wall
             // there is x input moving toward the wall and receive no y input for jumping
             else if (_isTouchingWall && _xInput == Movement?.FacingDirection && Movement?.CurrentVelocity.y <= 0)

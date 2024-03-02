@@ -15,9 +15,6 @@ namespace Player.PlayerStates.SubStates
             
             if (!IsExitingState) {
                 Movement?.SetVelocityY(-PlayerData.wallSlideVelocity);
-
-                if (GrabInput && YInput == 0) 
-                    StateMachine.ChangeState(Player.WallGrabState);
             }
         }
     }

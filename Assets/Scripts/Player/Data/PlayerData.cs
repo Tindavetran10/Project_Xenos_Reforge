@@ -25,9 +25,6 @@ namespace Player.Data
         [Header("Wall Slide State")]
         public float wallSlideVelocity;
 
-        [Header("Wall Climb State")]
-        public float wallClimbVelocity;
-
         [Header("Ledge Climb State")]
         public Vector2 startOffset;
         public Vector2 stopOffset;
@@ -54,6 +51,9 @@ namespace Player.Data
         public float[] attackVelocity;
         public Vector2[] direction;
         public Rect[] hitBox;
+        
+        [Header("Focus Sword State")]
+        public float focusSwordDuration;
         
         [Header("Counter Attack State")]
         public float counterAttackDuration;

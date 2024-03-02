@@ -48,9 +48,9 @@ namespace Player.PlayerStates.SuperStates
                 Player.WallJumpState.DetermineWallJumpDirection(_isTouchingWall);
                 StateMachine.ChangeState(Player.WallJumpState);
             }
-            else if (_isGrounded && !GrabInput)
+            else if (_isGrounded)
                 StateMachine.ChangeState(Player.IdleState);
-            else if (!_isTouchingWall || (_xInput != Movement?.FacingDirection && !GrabInput))
+            else if (!_isTouchingWall || _xInput != Movement?.FacingDirection)
                 StateMachine.ChangeState(Player.InAirState);
             else if (_isTouchingWall && !_isTouchingLedge)
                 StateMachine.ChangeState(Player.LedgeClimbState);
