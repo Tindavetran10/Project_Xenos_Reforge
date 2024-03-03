@@ -554,21 +554,21 @@ public static class SpriteSlicer2D
         Physics2D.queriesHitTriggers = false;
 #endif
 
-		Vector3 direction = Vector3.Normalize(worldEndPoint - worldStartPoint);
-		float length = Vector3.Distance(worldStartPoint, worldEndPoint);
-		RaycastHit2D[] cutStartResults = Physics2D.RaycastAll(worldStartPoint, direction, length, layerMask.value);
-		RaycastHit2D[] cutEndResults = Physics2D.RaycastAll(worldEndPoint, -direction, length, layerMask.value);
+		var direction = Vector3.Normalize(worldEndPoint - worldStartPoint);
+		var length = Vector3.Distance(worldStartPoint, worldEndPoint);
+		var cutStartResults = Physics2D.RaycastAll(worldStartPoint, direction, length, layerMask.value);
+		var cutEndResults = Physics2D.RaycastAll(worldEndPoint, -direction, length, layerMask.value);
 
 		if(cutStartResults.Length == cutEndResults.Length)
 		{
-			for(int cutResultIndex = 0; cutResultIndex < cutStartResults.Length && cutResultIndex < cutEndResults.Length; cutResultIndex++)
+			for(var cutResultIndex = 0; cutResultIndex < cutStartResults.Length && cutResultIndex < cutEndResults.Length; cutResultIndex++)
 			{
-				RaycastHit2D cutEnter = cutStartResults[cutResultIndex];
+				var cutEnter = cutStartResults[cutResultIndex];
 
-				int cutExitIndex = -1;
+				var cutExitIndex = -1;
 				
 				// Find the matching cut end point in the cut end results
-				for(int endResultIndex = 0; endResultIndex < cutEndResults.Length; endResultIndex++)
+				for(var endResultIndex = 0; endResultIndex < cutEndResults.Length; endResultIndex++)
 				{
 					if(cutEndResults[endResultIndex].collider == cutEnter.collider)
 					{
@@ -578,9 +578,7 @@ public static class SpriteSlicer2D
 				}
 				
 				if(cutExitIndex == -1)
-				{
 					continue;
-				}
 				
 				RaycastHit2D cutExit = cutEndResults[cutExitIndex];
 
@@ -591,24 +589,16 @@ public static class SpriteSlicer2D
                     Color32 spriteColor = Color.white;
 
 					if(!parentRigidBody)
-					{
 						continue;
-					}
 
 					if(parentRigidBody.gameObject.isStatic)
-					{
 						continue;
-					}
 
 					if(spriteObject != null && parentRigidBody.gameObject != spriteObject)
-					{
 						continue;
-					}
 
 					if(tag != null && parentRigidBody.tag != tag)
-					{
 						continue;
-					}
 
 #if TK2D_SLICING_ENABLED
 					tk2dSprite parenttk2dSprite = parentRigidBody.GetComponent<tk2dSprite>();
@@ -649,14 +639,14 @@ public static class SpriteSlicer2D
 						}
 					}
 
-					Vector3 cutStartLocalPoint = parentTransform.InverseTransformPoint(worldStartPoint);
-					Vector3 cutEndLocalPoint = parentTransform.InverseTransformPoint(worldEndPoint);
+					var cutStartLocalPoint = parentTransform.InverseTransformPoint(worldStartPoint);
+					var cutEndLocalPoint = parentTransform.InverseTransformPoint(worldEndPoint);
 
-					Vector3 cutEnterLocalPoint = parentTransform.InverseTransformPoint(cutEnter.point);
-					Vector3 cutExitLocalPoint = parentTransform.InverseTransformPoint(cutExit.point);
+					var cutEnterLocalPoint = parentTransform.InverseTransformPoint(cutEnter.point);
+					var cutExitLocalPoint = parentTransform.InverseTransformPoint(cutExit.point);
 
 					List<Vector2> polygonPoints = null;
-					PolygonCollider2D polygonCollider = parentRigidBody.GetComponent<PolygonCollider2D>();
+					var polygonCollider = parentRigidBody.GetComponent<PolygonCollider2D>();
 					PhysicsMaterial2D physicsMaterial = null;
 
 					if(polygonCollider)
@@ -666,7 +656,7 @@ public static class SpriteSlicer2D
 					}
 					else
 					{
-						BoxCollider2D boxCollider = parentRigidBody.GetComponent<BoxCollider2D>();
+						var boxCollider = parentRigidBody.GetComponent<BoxCollider2D>();
 
 						if(boxCollider)
 						{
@@ -691,7 +681,7 @@ public static class SpriteSlicer2D
 							if(circleCollider)
 							{
 								int numSteps = 32;
-								float angleStepRate = (Mathf.PI * 2)/numSteps;
+								float angleStepRate = Mathf.PI * 2/numSteps;
 								polygonPoints = new List<Vector2>(numSteps);
 
 #if UNITY_5
@@ -788,7 +778,7 @@ public static class SpriteSlicer2D
 								}
 								else
 #endif
-									if(parentSlicedSprite)
+								if(parentSlicedSprite)
 								{
 									childSprite1.InitFromSlicedSprite(parentSlicedSprite, ref child1Collider, ref childSprite1Vertices, false);
 									childSprite2.InitFromSlicedSprite(parentSlicedSprite, ref child2Collider, ref childSprite2Vertices, false);
@@ -830,7 +820,7 @@ public static class SpriteSlicer2D
 									}
 									else
 #endif
-										if(parentSlicedSprite)
+									if(parentSlicedSprite)
 									{
 										childSprite.InitFromSlicedSprite(parentSlicedSprite, ref childCollider, ref childSpriteVertices, true);
 									}
@@ -894,7 +884,7 @@ public static class SpriteSlicer2D
 		childRigidBody.angularDrag = parentRigidBody.angularDrag;
 		childRigidBody.gravityScale = parentRigidBody.gravityScale;
 		childRigidBody.constraints = parentRigidBody.constraints;
-
+		
 		childRigidBody.isKinematic = parentRigidBody.isKinematic;
 		childRigidBody.interpolation = parentRigidBody.interpolation;
 		childRigidBody.sleepMode = parentRigidBody.sleepMode;

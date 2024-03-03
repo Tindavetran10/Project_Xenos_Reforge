@@ -36,11 +36,17 @@ namespace Player.Skills
 				// Record the world position of the mouse every x seconds
 				if (_mouseRecordTimer <= 0.0f)
 				{
-					MousePosition newMousePosition = new MousePosition();
-					newMousePosition.WorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-					newMousePosition.Time = Time.time;
+					if (Camera.main != null)
+					{
+						var newMousePosition = new MousePosition
+						{
+							WorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition),
+							Time = Time.time
+						};
 
-					_mousePositions.Add(newMousePosition);
+						_mousePositions.Add(newMousePosition);
+					}
+
 					_mouseRecordTimer = mouseRecordInterval;
 					mousePositionAdded = true;
 
@@ -50,14 +56,13 @@ namespace Player.Skills
 				}
 
 				// Forget any positions that are too old to care about
-				if (_mousePositions.Count > 0 &&
-				    (Time.time - _mousePositions[0].Time) > mouseRecordInterval * maxMousePositions)
+				if (_mousePositions.Count > 0 && Time.time - _mousePositions[0].Time > mouseRecordInterval * maxMousePositions)
 					_mousePositions.RemoveAt(0);
 
 				// Go through all our recorded positions and slice any sprites that intersect them
 				if (mousePositionAdded)
 				{
-					for (int loop = 0; loop < _mousePositions.Count - 1; loop++)
+					for (var loop = 0; loop < _mousePositions.Count - 1; loop++)
 					{
 						SpriteSlicer2D.SliceAllSprites(_mousePositions[loop].WorldPosition,
 							_mousePositions[^1].WorldPosition, true, ref _slicedSpriteInfo, sliceLayer);
@@ -68,15 +73,14 @@ namespace Player.Skills
 							// sliced but remaining stationary
 							for (int spriteIndex = 0; spriteIndex < _slicedSpriteInfo.Count; spriteIndex++)
 							{
-								for (int childSprite = 0;
-								     childSprite < _slicedSpriteInfo[spriteIndex].ChildObjects.Count;
-								     childSprite++)
+								for (int childSprite = 0; childSprite < _slicedSpriteInfo[spriteIndex].ChildObjects.Count; childSprite++)
 								{
-									Vector2 sliceDirection = _mousePositions[^1].WorldPosition -
-									                         _mousePositions[loop].WorldPosition;
+									Vector2 sliceDirection = _mousePositions[^1].WorldPosition - _mousePositions[loop].WorldPosition;
 									sliceDirection.Normalize();
 									_slicedSpriteInfo[spriteIndex].ChildObjects[childSprite].GetComponent<Rigidbody2D>()
 										.AddForce(sliceDirection * sliceForce);
+									
+									
 								}
 							}
 
@@ -88,7 +92,7 @@ namespace Player.Skills
 
 				if (_trailRenderer)
 				{
-					Vector3 trailPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+					var trailPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 					trailPosition.z = -9.0f;
 					_trailRenderer.transform.position = trailPosition;
 				}
@@ -105,6 +109,9 @@ namespace Player.Skills
 					Vector3 spritePosition = _slicedSpriteInfo[spriteIndex].ChildObjects[childSprite].transform.position;
 					spritePosition.z = -1.0f;
 					_slicedSpriteInfo[spriteIndex].ChildObjects[childSprite].transform.position = spritePosition;
+					
+					// Scale the fragments down to half their size
+					_slicedSpriteInfo[spriteIndex].ChildObjects[childSprite].transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
 				}
 			}
 
@@ -129,5 +136,6 @@ namespace Player.Skills
 	        _mousePositions.Clear();
 	        _trailRenderer.Clear();
         }
+        
     }
 }
