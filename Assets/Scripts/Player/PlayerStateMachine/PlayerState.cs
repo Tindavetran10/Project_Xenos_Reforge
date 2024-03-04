@@ -18,7 +18,7 @@ namespace Player.PlayerStateMachine
           protected bool IsExitingState;
           protected float StartTime;
 
-          private readonly string AnimBoolName;
+          private readonly string _animBoolName;
           
           protected Movement Movement => _movement ? _movement : _core.GetCoreComponent(ref _movement);
           private Movement _movement;
@@ -35,7 +35,7 @@ namespace Player.PlayerStateMachine
                Player = player;
                StateMachine = stateMachine;
                PlayerData = playerData;
-               AnimBoolName = animBoolName;
+               _animBoolName = animBoolName;
                _core = player.Core;
           }
 
@@ -46,7 +46,7 @@ namespace Player.PlayerStateMachine
                DoChecks();
                
                // Run the animation with the same name in the animator
-               Player.Anim.SetBool(AnimBoolName, true);
+               Player.Anim.SetBool(_animBoolName, true);
                
                // Save the time when the player enter a state 
                StartTime = Time.time;
@@ -58,15 +58,14 @@ namespace Player.PlayerStateMachine
           public virtual void Exit()
           {
                // Set the current animation to false so we can change into a new animation                                                                                                                                                                                    
-               Player.Anim.SetBool(AnimBoolName, false);
+               Player.Anim.SetBool(_animBoolName, false);
                IsExitingState = true;
           }
 
           public virtual void LogicUpdate(){}
      
-          public virtual void PhysicsUpdate() => DoChecks();
+          public void PhysicsUpdate() => DoChecks();
           protected virtual void DoChecks(){}
-     
           
           #region Animation Function
           public virtual void AnimationTrigger() {}
@@ -80,7 +79,6 @@ namespace Player.PlayerStateMachine
           public virtual void SetFlipInactive(){}
           public virtual void AttackTrigger(){}
           
-          public virtual void ThrowSlash(){}
           #endregion
      }
 }

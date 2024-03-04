@@ -20,8 +20,6 @@ namespace Player.PlayerStateMachine
         public PlayerInAirState InAirState { get; private set; }
         public PlayerLandState LandState { get; private set; }
         public PlayerWallSlideState WallSlideState { get; private set; }
-        public PlayerWallGrabState WallGrabState { get; private set; }
-        public PlayerWallClimbState WallClimbState { get; private set; }
         public PlayerWallJumpState WallJumpState { get; private set; }
         public PlayerLedgeClimbState LedgeClimbState { get; private set; }
         public PlayerDashState DashState { get; private set; }
@@ -32,6 +30,7 @@ namespace Player.PlayerStateMachine
         private PlayerDeathState DeathState { get; set; }
         
         public PlayerAimSwordState AimSwordState { get; private set; }
+        public PlayerFocusSwordState FocusSwordState { get; private set; }
         
         [Header("Player Data")]
         [SerializeField] private PlayerData playerData;
@@ -61,8 +60,6 @@ namespace Player.PlayerStateMachine
             InAirState = new PlayerInAirState(this, StateMachine, playerData, "inAir");
             LandState = new PlayerLandState(this, StateMachine, playerData, "land");
             WallSlideState = new PlayerWallSlideState(this, StateMachine, playerData, "wallSlide");
-            WallGrabState = new PlayerWallGrabState(this, StateMachine, playerData, "wallGrab");
-            WallClimbState = new PlayerWallClimbState(this, StateMachine, playerData, "wallClimb");
             WallJumpState = new PlayerWallJumpState(this, StateMachine, playerData, "inAir");
             LedgeClimbState = new PlayerLedgeClimbState(this, StateMachine, playerData, "ledgeClimbState");
             DashState = new PlayerDashState(this, StateMachine, playerData, "dash");
@@ -75,6 +72,7 @@ namespace Player.PlayerStateMachine
             DeathState = new PlayerDeathState(this, StateMachine, playerData, "die");
 
             AimSwordState = new PlayerAimSwordState(this, StateMachine, playerData, "aimSword");
+            FocusSwordState = new PlayerFocusSwordState(this, StateMachine, playerData, "focusSword");
         }
 
         protected override void Start()
@@ -112,7 +110,6 @@ namespace Player.PlayerStateMachine
         protected void SetFlipActive() => StateMachine.CurrentState.SetFlipActive();
         private void SetFlipInactive() => StateMachine.CurrentState.SetFlipInactive();
         private void AttackTrigger() => StateMachine.CurrentState.AttackTrigger();
-        private void ThrowSlash() => StateMachine.CurrentState.ThrowSlash();
         #endregion
 
         #region Other Functions

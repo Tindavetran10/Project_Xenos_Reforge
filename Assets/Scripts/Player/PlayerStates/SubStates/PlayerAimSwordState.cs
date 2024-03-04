@@ -3,6 +3,7 @@ using Player.Data;
 using Player.PlayerStates.SuperStates;
 using UnityEngine;
 
+
 namespace Player.PlayerStates.SubStates
 {
     public class PlayerAimSwordState : PlayerAbilityState
@@ -37,8 +38,8 @@ namespace Player.PlayerStates.SubStates
             if (IsAnimationFinished)
                 IsAbilityDone = true;
         }
-        
-        public override void ThrowSlash()
+
+        private void ThrowSlash()
         {
             /*if(SkillManager.Instance.Slash.slashUnlocked)
                 SkillManager.Instance.Slash.CreateSlash(Movement.FacingDirection);*/
