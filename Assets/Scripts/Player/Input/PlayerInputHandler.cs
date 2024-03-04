@@ -40,6 +40,7 @@ namespace _Scripts.Player.Input
         
         public bool FocusSwordInput { get; private set; }
         public bool FocusSwordInputStop { get; private set; }
+        public bool FocusSwordMouseClick { get; private set; }
         
         
         public bool CounterInput { get; private set; }
@@ -245,7 +246,13 @@ namespace _Scripts.Player.Input
                 FocusSwordPositionInput = _cam.ScreenToWorldPoint(FocusSwordPositionInput) - transform.position;
             }
         }
-        
+
+        public void OnFocusSwordMouseClick(InputAction.CallbackContext context)
+        {
+            if(context.started) FocusSwordMouseClick = true;
+            if(context.canceled) FocusSwordMouseClick = false;
+        }
+
         // Callback for dash direction input
         public void OnDashDirection(InputAction.CallbackContext context)
         {

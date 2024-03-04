@@ -23,10 +23,13 @@ namespace Player.Skills
         private readonly List<MousePosition> _mousePositions = new();
         private float _mouseRecordTimer;
         
+        
         protected override void Start () => _trailRenderer = GetComponentInChildren<TrailRenderer>();
+        
+        
 
-        public void Slice () 
-		{
+        public void Slice ()
+        {
 			if (Input.GetMouseButton(0))
 			{
 				// Left mouse button - swipe to cut objects
@@ -79,8 +82,6 @@ namespace Player.Skills
 									sliceDirection.Normalize();
 									_slicedSpriteInfo[spriteIndex].ChildObjects[childSprite].GetComponent<Rigidbody2D>()
 										.AddForce(sliceDirection * sliceForce);
-									
-									
 								}
 							}
 

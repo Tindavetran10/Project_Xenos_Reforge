@@ -1,5 +1,4 @@
-﻿using Manager;
-using Player.Data;
+﻿using Player.Data;
 using Player.PlayerStateMachine;
 using UnityEngine;
 
@@ -12,7 +11,6 @@ namespace Player.PlayerStates.SubStates
         private bool _jumpInput;
         private bool _jumpInputStop;
         private bool _dashInput;
-        private bool _grabInput;
         #endregion
     
         #region Checks
@@ -78,7 +76,6 @@ namespace Player.PlayerStates.SubStates
             _jumpInput = Player.InputHandler.JumpInput;
             _jumpInputStop = Player.InputHandler.JumpInputStop;
             _dashInput = Player.InputHandler.DashInput;
-            _grabInput = Player.InputHandler.GrabInput;
         
             CheckJumpMultiplier();
             

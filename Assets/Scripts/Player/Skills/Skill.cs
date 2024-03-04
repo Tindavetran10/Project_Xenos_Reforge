@@ -9,7 +9,7 @@ namespace Player.Skills
         private float _coolDownTimer;
 
         protected Player.PlayerStateMachine.Player Player;
-
+        
         protected virtual void Start()
         {
             Player = PlayerManager.Instance.player;

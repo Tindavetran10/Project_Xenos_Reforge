@@ -134,6 +134,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""FocusSwordMouseClick"",
+                    ""type"": ""Button"",
+                    ""id"": ""9a6f7134-a652-4621-b469-7e4ca68754a6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -367,6 +376,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""FocusSwordMousePos"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8297f5ba-0438-42da-9ace-faa621e84a67"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FocusSwordMouseClick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -415,6 +435,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Gameplay_AimSword = m_Gameplay.FindAction("AimSword", throwIfNotFound: true);
         m_Gameplay_FocusSword = m_Gameplay.FindAction("FocusSword", throwIfNotFound: true);
         m_Gameplay_FocusSwordMousePos = m_Gameplay.FindAction("FocusSwordMousePos", throwIfNotFound: true);
+        m_Gameplay_FocusSwordMouseClick = m_Gameplay.FindAction("FocusSwordMouseClick", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Resume = m_UI.FindAction("Resume", throwIfNotFound: true);
@@ -491,6 +512,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_AimSword;
     private readonly InputAction m_Gameplay_FocusSword;
     private readonly InputAction m_Gameplay_FocusSwordMousePos;
+    private readonly InputAction m_Gameplay_FocusSwordMouseClick;
     public struct GameplayActions
     {
         private @PlayerInput m_Wrapper;
@@ -507,6 +529,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @AimSword => m_Wrapper.m_Gameplay_AimSword;
         public InputAction @FocusSword => m_Wrapper.m_Gameplay_FocusSword;
         public InputAction @FocusSwordMousePos => m_Wrapper.m_Gameplay_FocusSwordMousePos;
+        public InputAction @FocusSwordMouseClick => m_Wrapper.m_Gameplay_FocusSwordMouseClick;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -552,6 +575,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @FocusSwordMousePos.started += instance.OnFocusSwordMousePos;
             @FocusSwordMousePos.performed += instance.OnFocusSwordMousePos;
             @FocusSwordMousePos.canceled += instance.OnFocusSwordMousePos;
+            @FocusSwordMouseClick.started += instance.OnFocusSwordMouseClick;
+            @FocusSwordMouseClick.performed += instance.OnFocusSwordMouseClick;
+            @FocusSwordMouseClick.canceled += instance.OnFocusSwordMouseClick;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -592,6 +618,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @FocusSwordMousePos.started -= instance.OnFocusSwordMousePos;
             @FocusSwordMousePos.performed -= instance.OnFocusSwordMousePos;
             @FocusSwordMousePos.canceled -= instance.OnFocusSwordMousePos;
+            @FocusSwordMouseClick.started -= instance.OnFocusSwordMouseClick;
+            @FocusSwordMouseClick.performed -= instance.OnFocusSwordMouseClick;
+            @FocusSwordMouseClick.canceled -= instance.OnFocusSwordMouseClick;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -669,6 +698,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnAimSword(InputAction.CallbackContext context);
         void OnFocusSword(InputAction.CallbackContext context);
         void OnFocusSwordMousePos(InputAction.CallbackContext context);
+        void OnFocusSwordMouseClick(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

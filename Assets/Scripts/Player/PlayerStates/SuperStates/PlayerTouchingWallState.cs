@@ -9,7 +9,6 @@ namespace Player.PlayerStates.SuperStates
         private bool _isGrounded;
         private bool _isTouchingWall;
         private bool _isTouchingLedge;
-        protected bool GrabInput;
         private bool _jumpInput;
         private int _xInput;
         protected int YInput;
@@ -40,7 +39,6 @@ namespace Player.PlayerStates.SuperStates
 
             _xInput = Player.InputHandler.NormInputX;
             YInput = Player.InputHandler.NormInputY;
-            GrabInput = Player.InputHandler.GrabInput;
             _jumpInput = Player.InputHandler.JumpInput;
 
             if (_jumpInput)
