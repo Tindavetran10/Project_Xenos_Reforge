@@ -103,6 +103,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "FocusSwordMousePos",
+                    "type": "Value",
+                    "id": "194ce9ff-24e4-4160-8b83-c5ba2435d1a0",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "FocusSwordMouseClick",
+                    "type": "Button",
+                    "id": "9a6f7134-a652-4621-b469-7e4ca68754a6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -323,6 +341,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "FocusSword",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9daffda3-0b23-445b-bc83-820b649181f5",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "FocusSwordMousePos",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8297f5ba-0438-42da-9ace-faa621e84a67",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "FocusSwordMouseClick",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -1,5 +1,4 @@
-﻿using Manager;
-using Player.Data;
+﻿using Player.Data;
 using Player.PlayerStateMachine;
 using UnityEngine;
 
@@ -12,7 +11,6 @@ namespace Player.PlayerStates.SubStates
         private bool _jumpInput;
         private bool _jumpInputStop;
         private bool _dashInput;
-        private bool _grabInput;
         #endregion
     
         #region Checks
@@ -78,7 +76,6 @@ namespace Player.PlayerStates.SubStates
             _jumpInput = Player.InputHandler.JumpInput;
             _jumpInputStop = Player.InputHandler.JumpInputStop;
             _dashInput = Player.InputHandler.DashInput;
-            _grabInput = Player.InputHandler.GrabInput;
         
             CheckJumpMultiplier();
             
@@ -108,10 +105,6 @@ namespace Player.PlayerStates.SubStates
             // This is for when the player doing a double jump
             else if (_jumpInput && Player.JumpState.CanJump())
                 StateMachine.ChangeState(Player.JumpState);
-            
-            // Change to wall grab when he touching a wall in the air and there is grab input
-            else if (_isTouchingWall && _grabInput)
-                StateMachine.ChangeState(Player.WallGrabState);
             
             // Change to WallSlide state if he touching a wall
             // there is x input moving toward the wall and receive no y input for jumping

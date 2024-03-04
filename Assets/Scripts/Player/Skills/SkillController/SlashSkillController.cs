@@ -8,15 +8,15 @@ namespace Player.Skills.SkillController
     {
         private Rigidbody2D _rb;
         private CharacterStats _stats;
-        private global::Player.PlayerStateMachine.Player _player;
         [SerializeField] private float radius = 10f;
         
         
         private void Awake()
         {
-            GetComponent<Animator>();
+            //GetComponent<Animator>();
+            //GetComponent<BoxCollider2D>();
+            
             _rb = GetComponent<Rigidbody2D>();
-            GetComponent<BoxCollider2D>();
             _stats = GetComponentInChildren<CharacterStats>();
         }
 

@@ -29,7 +29,6 @@ namespace Enemy.EnemyState.SubState
             if (Time.time >= StartTime + _stateData.longRangeActionTime)
                 PerformLongRangeAction = true;
         }
-        
         protected bool CanAttack()
         {
             if (_comboCounter == _comboWindow)

@@ -1,5 +1,4 @@
-﻿using Manager;
-using Player.Data;
+﻿using Player.Data;
 using Player.PlayerStateMachine;
 
 namespace Player.PlayerStates.SuperStates
@@ -13,14 +12,12 @@ namespace Player.PlayerStates.SuperStates
         protected bool IsTouchingCeiling;
         
         private bool _jumpInput;
-        private bool _grabInput;
         private bool _isGrounded;
-        private bool _isTouchingWall;
-        private bool _isTouchingLedge;
         private bool _dashInput;
 
         private bool _normalAttackInput;
         private bool _aimSwordInput;
+        private bool _focusSwordInput;
         private bool _counterAttackInput;
         
         protected PlayerGroundedState(global::Player.PlayerStateMachine.Player player, global::Player.PlayerStateMachine.PlayerStateMachine stateMachine, 
@@ -34,8 +31,6 @@ namespace Player.PlayerStates.SuperStates
             if (CollisionSenses)
             {
                 _isGrounded = CollisionSenses.Ground;
-                _isTouchingWall = CollisionSenses.WallFront;
-                _isTouchingLedge = CollisionSenses.LedgeHorizontal;
                 IsTouchingCeiling = CollisionSenses.Ceiling;
             }
         }
@@ -58,13 +53,21 @@ namespace Player.PlayerStates.SuperStates
             XInput = Player.InputHandler.NormInputX;
             YInput = Player.InputHandler.NormInputY;
             _jumpInput =Player.InputHandler.JumpInput;
-            _grabInput = Player.InputHandler.GrabInput;
             _dashInput = Player.InputHandler.DashInput;
             
             _normalAttackInput = Player.InputHandler.NormalAttackInputs[(int)CombatInputs.Normal];
             _aimSwordInput = Player.InputHandler.AimSwordInput;
+            _focusSwordInput = Player.InputHandler.FocusSwordInput;
             _counterAttackInput = Player.InputHandler.CounterInput;
             
+            if(_focusSwordInput && !IsTouchingCeiling)
+                StateMachine.ChangeState(Player.FocusSwordState);
+            else if(_aimSwordInput && /*SkillManager.Instance.Slash.CanUseSkill() &&*/ !IsTouchingCeiling)
+                StateMachine.ChangeState(Player.AimSwordState);
+            else if(_counterAttackInput && !IsTouchingCeiling)
+                StateMachine.ChangeState(Player.CounterAttackState);
+            else if(_normalAttackInput && !IsTouchingCeiling)
+                StateMachine.ChangeState(Player.PrimaryAttackState);
             if(_aimSwordInput && /*SkillManager.Instance.Slash.CanUseSkill() &&*/ !IsTouchingCeiling)
                 StateMachine.ChangeState(Player.AimSwordState);
             else if(_counterAttackInput && !IsTouchingCeiling)
@@ -82,9 +85,6 @@ namespace Player.PlayerStates.SuperStates
                 Player.InAirState.StartCoyoteTimer();
                 StateMachine.ChangeState(Player.InAirState);
             }
-            // Change to Wall Grab State if detecting a wall and receiving grab input
-            else if (_isTouchingWall && _grabInput && _isTouchingLedge)
-                StateMachine.ChangeState(Player.WallGrabState);
             // Change to Dash State if there is dashInput and the dash has been cooled down
             else if (_dashInput && !IsTouchingCeiling)
                 StateMachine.ChangeState(Player.DashState);
