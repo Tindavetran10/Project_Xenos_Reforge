@@ -194,7 +194,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1953629075662701394}
   - component: {fileID: 2184830889305301475}
-  - component: {fileID: 5030370382074357325}
+  - component: {fileID: 2978250728884502623}
   - component: {fileID: 7983805379921350770}
   - component: {fileID: 6113694608111919682}
   - component: {fileID: 4223666032094539201}
@@ -279,7 +279,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!70 &5030370382074357325
+--- !u!70 &2978250728884502623
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -311,8 +311,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0025914758, y: 0.0054940134}
-  m_Size: {x: 0.1367108, y: 0.4234884}
+  m_Offset: {x: 0.025988579, y: 0.017149687}
+  m_Size: {x: 0.28220558, y: 0.44679976}
   m_Direction: 0
 --- !u!50 &7983805379921350770
 Rigidbody2D:
@@ -383,6 +383,8 @@ MonoBehaviour:
   knockBackDirection: {x: 0, y: 0}
   knockBackDuration: 0
   isAnimationFinished: 0
+  lastTimeAttacked: 0
+  attackCoolDown: 0
   idleStateData: {fileID: 11400000, guid: f20999f20ce604e408dbc543ec58bb20, type: 2}
   moveStateData: {fileID: 11400000, guid: ff6b728042ca0c04f839e98d3d02c531, type: 2}
   playerDetectedStateData: {fileID: 11400000, guid: 77ad649b8a387bd438de526c8ff3db9e, type: 2}

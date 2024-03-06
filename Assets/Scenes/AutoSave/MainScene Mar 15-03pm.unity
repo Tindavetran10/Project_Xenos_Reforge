@@ -6624,7 +6624,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4223666032094539201, guid: d1cbc3c17c5ef0a4282b51ba830fce88, type: 3}
       propertyPath: attackCoolDown
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4223666032094539201, guid: d1cbc3c17c5ef0a4282b51ba830fce88, type: 3}
       propertyPath: knockBackDuration

@@ -18,13 +18,23 @@ namespace Enemy.EnemySpecific.Ranger
             base.LogicUpdate();
             if(PerformCloseRangeAction)
             {
-                if(Time.time >= _enemyRanger.DodgeState.StartTime + _enemyRanger.dodgeStateData.dodgeCooldown)
+                if(Time.time > _enemyRanger.DodgeState.StartTime + _enemyRanger.dodgeStateData.dodgeCooldown)
                     StateMachine.ChangeState(_enemyRanger.DodgeState);
-                else if(CanAttack()) StateMachine.ChangeState(_enemyRanger.RangedAttackState);
+                else if(!CanAttack()) StateMachine.ChangeState(_enemyRanger.RangedAttackState);
             }
-            else if(PerformLongRangeAction && CanAttack())
+            else if(PerformLongRangeAction && !CanAttack())
                 StateMachine.ChangeState(_enemyRanger.RangedAttackState);
             else if (!IsPlayerInAgroRange) StateMachine.ChangeState(_enemyRanger.LookForPlayerState);
+        }
+
+        private bool CanAttack()
+        {
+            if (Time.time > _enemyRanger.lastTimeAttacked + _enemyRanger.attackCoolDown)
+            {
+                _enemyRanger.lastTimeAttacked = Time.time;
+                return false;
+            }
+            return true;
         }
     }
 }

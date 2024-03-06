@@ -38,9 +38,12 @@ namespace Enemy.EnemyStateMachine
         private static readonly int YVelocity = Animator.StringToHash("yVelocity");
         #endregion
 
-        private Transform _player;
+        #region Attack Cooldown
         [HideInInspector] public float lastTimeAttacked;
         public float attackCoolDown;
+        #endregion
+        
+        private Transform _player;
         
         protected override void Awake() {
             base.Awake();

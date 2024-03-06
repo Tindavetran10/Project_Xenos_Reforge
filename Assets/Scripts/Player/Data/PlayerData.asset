@@ -63,5 +63,5 @@ MonoBehaviour:
     y: -0.34
     width: 1.16
     height: 0.72
-  focusSwordDuration: 99
+  focusSwordDuration: 10
   counterAttackDuration: 0.08

@@ -22,18 +22,25 @@ namespace StatSystem
         public Stat maxHealth;
         public Stat armor;
         public Stat evasion;
+        public Stat maxPoiseResistance;
+        
+        
         
         public System.Action OnHealthChanged;
+        
         private bool IsDead { get; set; }
+        private bool IsStunned { get; set; }
 
         protected bool IsInvincible { get; private set; }
         
         [SerializeField] public int currentHealth;
+        [SerializeField] public int currentPoise;
   
         protected virtual void Start()
         {
             critPower.SetDefaultValue(150);
             currentHealth = GetMaxHealthValue();
+            currentPoise = GetMaxPoiseValue();
 
             _fx = GetComponentInParent<EntityFX>();
         }
@@ -54,12 +61,16 @@ namespace StatSystem
         protected virtual void TakeDamage(int damageAmount)
         {
             DecreaseHealthBy(damageAmount);
+            DecreasePoiseBy(damageAmount);
             
             if(!IsInvincible)
                 _fx.StartCoroutine("FlashFX");
             
             if (currentHealth <= 0 && !IsDead) 
                 Die();
+
+            if (currentPoise <= 0)
+                Stun();
         }
 
         private void DecreaseHealthBy(int damageAmount)
@@ -71,6 +82,15 @@ namespace StatSystem
             currentHealth -= damageAmount;
             OnHealthChanged?.Invoke();
         }
+        
+        private void DecreasePoiseBy(int poiseAmount)
+        {
+            if (!IsInvincible)
+                poiseAmount = Mathf.RoundToInt(poiseAmount * 1.1f);
+            else poiseAmount = 0;
+            
+            currentPoise -= poiseAmount;
+        }
 
         protected virtual void Die() => IsDead = true;
 
@@ -78,6 +98,14 @@ namespace StatSystem
         {
             if(!IsDead)
                 Die();
+        }
+
+        protected virtual void Stun() => IsStunned = true;
+        
+        public void StunEntity()
+        {
+            if(!IsStunned)
+                Stun();
         }
 
         #region Stat Calculations
@@ -107,6 +135,8 @@ namespace StatSystem
         
         public int GetMaxHealthValue() => 
             maxHealth.GetValue() + vitality.GetValue() * 5;
+
+        public int GetMaxPoiseValue() => maxPoiseResistance.GetValue();
 
         public void MakeInvincible(bool invincible) => IsInvincible = invincible;
         #endregion

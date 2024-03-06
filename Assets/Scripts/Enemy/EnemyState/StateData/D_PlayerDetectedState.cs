@@ -6,5 +6,6 @@ namespace Enemy.EnemyState.StateData
     public class D_PlayerDetectedState : ScriptableObject
     {
         public float longRangeActionTime = 1f;
+        public double attackCooldown;
     }
 }
