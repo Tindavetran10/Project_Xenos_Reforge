@@ -30,8 +30,8 @@ namespace StatSystem
         
         public Action OnHealthChanged;
 
-        public bool IsDead { get; set; }
-        private bool IsStunned { get; set; }
+        public bool IsDead { get; private set; }
+        public bool IsStunned { get; set; }
 
         protected bool IsInvincible { get; private set; }
         
@@ -77,11 +77,8 @@ namespace StatSystem
             if(!IsInvincible)
                 _fx.StartCoroutine("FlashFX");
             
-            if (currentHealth <= 0 && !IsDead) 
-                Die();
-
-            if (currentPoise <= 0)
-                Stun();
+            if (currentHealth <= 0 && !IsDead) Die();
+            if (currentPoise <= 0) Stun();
         }
 
         private void DecreaseHealthBy(int damageAmount)
@@ -97,7 +94,10 @@ namespace StatSystem
             poiseAmount = !IsInvincible ? Mathf.RoundToInt(poiseAmount * 1.1f) : 0;
             currentPoise -= poiseAmount;
         }
+        
+        protected virtual void Stun() => IsStunned = true;
 
+        #region Make an Entity Die
         protected virtual void Die() => IsDead = true;
 
         public void KillEntity()
@@ -105,9 +105,8 @@ namespace StatSystem
             if(!IsDead)
                 Die();
         }
-
-        protected virtual void Stun() => IsStunned = true;
-
+        #endregion
+        
         #region Stat Calculations
         private static int CheckTargetArmor(CharacterStats targetStats, int totalDamage)
         {

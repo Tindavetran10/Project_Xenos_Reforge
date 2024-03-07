@@ -140,6 +140,7 @@ namespace Enemy.EnemyStateMachine
 
         private void CheckKnockBackDirection()
         {
+            // Check player and enemy position to determine knockback direction
             if(_player.position.x < transform.position.x && Movement.FacingDirection == 1)
                 Rb.velocity = new Vector2(knockBackDirection.x  * Movement.FacingDirection, knockBackDirection.y);
             else if(_player.position.x < transform.position.x && Movement.FacingDirection == -1)
