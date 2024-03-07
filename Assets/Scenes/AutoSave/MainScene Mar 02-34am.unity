@@ -3854,7 +3854,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.1
+  near clip plane: 2
   far clip plane: 1000
   field of view: 60
   orthographic: 1
@@ -4245,7 +4245,7 @@ GameObject:
   m_Component:
   - component: {fileID: 905312889}
   - component: {fileID: 905312890}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: TrailRenderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5896,7 +5896,7 @@ MonoBehaviour:
   m_Lens:
     FieldOfView: 60
     OrthographicSize: 3
-    NearClipPlane: 0.1
+    NearClipPlane: 2
     FarClipPlane: 1000
     Dutch: 0
     ModeOverride: 1

@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using Enemy.EnemyStats;
+using HitStop;
 using Player.Data;
 using Player.PlayerStates.SuperStates;
 using UnityEngine;

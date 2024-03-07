@@ -7,8 +7,10 @@ namespace Player.PlayerStates.SubStates
 {
     public class PlayerFocusSwordState : PlayerAbilityState
     {
+        private bool _focusSwordInput;
         private bool _focusSwordInputStop;
-
+        private Vector2 _focusSwordPositionInput;
+        
         public PlayerFocusSwordState(Player.PlayerStateMachine.Player player, PlayerStateMachine.PlayerStateMachine stateMachine, 
             PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName) {}
 
@@ -36,9 +38,11 @@ namespace Player.PlayerStates.SubStates
             {
                 if (IsHolding)
                 {
+                    _focusSwordInput = Player.InputHandler.FocusSwordInput;
                     _focusSwordInputStop = Player.InputHandler.FocusSwordInputStop;
+                    _focusSwordPositionInput = Player.InputHandler.FocusSwordPositionInput;
+                    
                     Player.Stats.MakeInvincible(true);
-  
                     
                     FocusSword();
                     
@@ -48,7 +52,9 @@ namespace Player.PlayerStates.SubStates
                         Player.Stats.MakeInvincible(true);
                         
                         IsHolding = false;
-                        ClearFocusSword();
+                        Time.timeScale = 1f;
+                        //StartTime = Time.time;
+                        //ClearFocusSword();
                     }
                 }
                 else IsAbilityDone = true;

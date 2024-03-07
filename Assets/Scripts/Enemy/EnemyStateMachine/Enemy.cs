@@ -1,5 +1,6 @@
 using System.Collections;
 using Enemy.Data.EnemyDataScript;
+using HitStop;
 using Manager;
 using Player.PlayerStats;
 using Projectile;
