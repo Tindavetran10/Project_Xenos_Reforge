@@ -4067,36 +4067,14 @@ GameObject:
   - component: {fileID: 733966263}
   - component: {fileID: 733966262}
   - component: {fileID: 733966261}
-  - component: {fileID: 733966260}
+  - component: {fileID: 733966264}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!64 &733966260
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 733966259}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+  m_IsActive: 1
 --- !u!23 &733966261
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4155,13 +4133,34 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 733966259}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: -0.7071068, w: 0}
-  m_LocalPosition: {x: 0.965, y: -0.766, z: 0}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 2.849, y: -0.614, z: -0}
   m_LocalScale: {x: 0.048, y: 0.048, z: 0.048}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: -180}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!65 &733966264
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 733966259}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 9.420144, y: 2.0983215e-13, z: 9.484087}
+  m_Center: {x: -0.010736908, y: -1.13027704e-13, z: 0.00023981556}
 --- !u!1 &868268283
 GameObject:
   m_ObjectHideFlags: 0
@@ -7748,8 +7747,8 @@ SceneRoots:
   - {fileID: 1016751827}
   - {fileID: 1511033363}
   - {fileID: 2065506061}
-  - {fileID: 1659646613}
   - {fileID: 1426757534}
   - {fileID: 2121983359}
   - {fileID: 1334558918}
   - {fileID: 733966263}
+  - {fileID: 1659646613}
