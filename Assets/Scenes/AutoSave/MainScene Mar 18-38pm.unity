@@ -3153,6 +3153,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 208357469}
   m_CullTransparentMesh: 1
+--- !u!1 &283137359
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 283137361}
+  - component: {fileID: 283137360}
+  m_Layer: 0
+  m_Name: EnemyManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &283137360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 283137359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c87725bbeef34c08b89a5ea83c6b2508, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 500916821}
+  EnemyStats: {fileID: 2075767548}
+--- !u!4 &283137361
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 283137359}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 18.11467, y: 2.812666, z: -0.056500837}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &299494324
 GameObject:
   m_ObjectHideFlags: 0
@@ -3608,6 +3654,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8023768704517463784, guid: 72d76bd6fe11d484989b5e0c7f67b212, type: 3}
   m_PrefabInstance: {fileID: 500916817}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &500916821 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3508060986822370213, guid: 72d76bd6fe11d484989b5e0c7f67b212, type: 3}
+  m_PrefabInstance: {fileID: 500916817}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef50f335d79c419b96ee2d215e6c882f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &512114776
 GameObject:
   m_ObjectHideFlags: 0
@@ -6593,11 +6650,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 449245017320754560, guid: d1cbc3c17c5ef0a4282b51ba830fce88, type: 3}
       propertyPath: maxHealth.baseValue
-      value: 250
+      value: 450
+      objectReference: {fileID: 0}
+    - target: {fileID: 449245017320754560, guid: d1cbc3c17c5ef0a4282b51ba830fce88, type: 3}
+      propertyPath: poiseResetTime.baseValue
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 449245017320754560, guid: d1cbc3c17c5ef0a4282b51ba830fce88, type: 3}
       propertyPath: maxPoiseResistance.baseValue
-      value: 1
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 1449306727033440726, guid: d1cbc3c17c5ef0a4282b51ba830fce88, type: 3}
       propertyPath: m_AnchorMax.x
@@ -7961,6 +8022,7 @@ SceneRoots:
   - {fileID: 2130064666}
   - {fileID: 1438370056}
   - {fileID: 1514338268}
+  - {fileID: 283137361}
   - {fileID: 5356939205450122130}
   - {fileID: 5439743303823314559}
   - {fileID: 55957625}

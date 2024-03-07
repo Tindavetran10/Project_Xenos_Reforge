@@ -14,7 +14,7 @@ namespace Enemy.EnemySpecific.Ronin
         public EnemyRoninLookForPlayerState LookForPlayerState { get; private set; }
         public EnemyRoninMeleeAttackState MeleeAttackState { get; private set; }
         private EnemyRoninStunState StunState { get; set; }
-        private EnemyRoninDeathState DeathState { get; set; }
+        public EnemyRoninDeathState DeathState { get; set; }
         #endregion
         
         #region Enemy Data

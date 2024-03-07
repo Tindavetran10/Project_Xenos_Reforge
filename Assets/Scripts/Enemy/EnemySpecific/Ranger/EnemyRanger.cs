@@ -11,7 +11,7 @@ namespace Enemy.EnemySpecific.Ranger
         public EnemyRangerPlayerDetectedState PlayerDetectedState { get; private set; }
         public EnemyRangerLookForPlayerState LookForPlayerState { get; private set; }
         private EnemyRangerStunState StunState { get; set; }
-        private EnemyRangerDeathState DeathState { get; set; }
+        public EnemyRangerDeathState DeathState { get; set; }
         public EnemyRangerRangedAttackState RangedAttackState { get; private set; }
         public EnemyRangerDodgeState DodgeState { get; private set; }
         #endregion

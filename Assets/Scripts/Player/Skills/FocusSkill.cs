@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Enemy.EnemyStats;
 using UnityEngine;
 
 namespace Player.Skills
@@ -23,11 +24,9 @@ namespace Player.Skills
         private readonly List<MousePosition> _mousePositions = new();
         private float _mouseRecordTimer;
         
-        
         protected override void Start () => _trailRenderer = GetComponentInChildren<TrailRenderer>();
         
-        
-
+        // ReSharper disable Unity.PerformanceAnalysis
         public void Slice ()
         {
 			if (Input.GetMouseButton(0))
@@ -93,9 +92,12 @@ namespace Player.Skills
 
 				if (_trailRenderer)
 				{
-					var trailPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-					trailPosition.z = -9.0f;
-					_trailRenderer.transform.position = trailPosition;
+					if (Camera.main != null)
+					{
+						var trailPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+						trailPosition.z = -9.0f;
+						_trailRenderer.transform.position = trailPosition;
+					}
 				}
 			}
 			else _mousePositions.Clear();
@@ -137,6 +139,5 @@ namespace Player.Skills
 	        _mousePositions.Clear();
 	        _trailRenderer.Clear();
         }
-        
     }
 }

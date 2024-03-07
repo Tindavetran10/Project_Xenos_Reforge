@@ -3535,15 +3535,15 @@ PrefabInstance:
       objectReference: {fileID: 2075767548}
     - target: {fileID: 6797114104800770406, guid: 72d76bd6fe11d484989b5e0c7f67b212, type: 3}
       propertyPath: maxHealth.baseValue
-      value: 500
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 6797114104800770406, guid: 72d76bd6fe11d484989b5e0c7f67b212, type: 3}
       propertyPath: poiseResetTime.baseValue
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6797114104800770406, guid: 72d76bd6fe11d484989b5e0c7f67b212, type: 3}
       propertyPath: maxPoiseResistance.baseValue
-      value: 200
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 7938535068231186915, guid: 72d76bd6fe11d484989b5e0c7f67b212, type: 3}
       propertyPath: m_AnchorMax.x
