@@ -168,6 +168,7 @@ MonoBehaviour:
   rb: {fileID: 7355708973613269164}
   canMove: 1
   flipped: 0
+  hitStopDuration: 0.1
 --- !u!95 &8519247556538966520
 Animator:
   serializedVersion: 5

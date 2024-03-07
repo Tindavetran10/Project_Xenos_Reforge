@@ -44,6 +44,7 @@ namespace Player.Data
         public float standColliderHeight;
 
         [Header("Primary Attack State")] 
+        public float hitStopDuration;
         public LayerMask whatIsEnemy;
         public float comboWindow;
         public int numberOfAttacks;
@@ -57,6 +58,7 @@ namespace Player.Data
         
         [Header("Counter Attack State")]
         public float counterAttackDuration;
+        
     }
 }
 

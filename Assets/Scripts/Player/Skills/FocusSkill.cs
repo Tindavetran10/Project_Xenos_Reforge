@@ -135,7 +135,6 @@ namespace Player.Skills
 					}
 				}
 			}
-
 			_slicedSpriteInfo.Clear();
 		}
         

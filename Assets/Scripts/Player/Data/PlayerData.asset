@@ -65,3 +65,4 @@ MonoBehaviour:
     height: 0.72
   focusSwordDuration: 10
   counterAttackDuration: 0.08
+  hitStopDuration: 0.1

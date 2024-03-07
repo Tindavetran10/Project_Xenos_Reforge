@@ -15,12 +15,17 @@ namespace Player.PlayerStates.SubStates
         private static readonly int Counter = Animator.StringToHash("comboCounter");
         #endregion
         
+        private HitStopController _hitStopController;
+        
         public PlayerPrimaryAttackState(global::Player.PlayerStateMachine.Player player, global::Player.PlayerStateMachine.PlayerStateMachine stateMachine, 
             PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName) {}
         
         public override void Enter()
         {
             base.Enter();
+            
+            _hitStopController = HitStopController.Instance;
+            
             IsHolding = false;
             StartTime = Time.time;
             Player.InputHandler.UseAttackInput();
@@ -111,6 +116,7 @@ namespace Player.PlayerStates.SubStates
                 if (hit.GetComponent<Enemy.EnemyStateMachine.Enemy>() != null)
                 {
                     var target = hit.GetComponentInChildren<EnemyStats>();
+                    _hitStopController.HitStop(PlayerData.hitStopDuration);
                     Player.Stats.DoDamage(target);
                 }
             }

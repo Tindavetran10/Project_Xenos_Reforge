@@ -43,11 +43,14 @@ namespace Enemy.EnemyStateMachine
         public float attackCoolDown;
         #endregion
         
+        private HitStopController _hitStopController;
+        
         private Transform _player;
         
         protected override void Awake() {
             base.Awake();
             StateMachine = new EnemyStateMachine();
+            _hitStopController = HitStopController.Instance;
         }
 
         protected override void Update() {
@@ -83,6 +86,7 @@ namespace Enemy.EnemyStateMachine
                 if(hit.GetComponent<Player.PlayerStateMachine.Player>() != null)
                 {
                     var target = hit.GetComponentInChildren<PlayerStats>();
+                    _hitStopController.HitStop(enemyData.hitStopDuration);
                     Stats.DoDamage(target);
                 }
             }

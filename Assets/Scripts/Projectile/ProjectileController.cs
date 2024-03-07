@@ -14,8 +14,12 @@ namespace Projectile
         [SerializeField] private bool canMove;
         [SerializeField] private bool flipped;
 
+        private HitStopController _hitStopController;
+        [SerializeField] private float hitStopDuration;
         private CharacterStats _characterStats;
         
+        private void Start() => _hitStopController = HitStopController.Instance;
+
         private void Update()
         {
             if(canMove)
@@ -33,6 +37,7 @@ namespace Projectile
             if (collision.gameObject.layer == LayerMask.NameToLayer(targetLayerName))
             {
                 _characterStats.DoDamage(collision.GetComponentInChildren<CharacterStats>());
+                _hitStopController.HitStop(hitStopDuration);
                 ProjectileInteraction(collision);
             }
             else if(collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
