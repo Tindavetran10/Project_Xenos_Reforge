@@ -43,15 +43,14 @@ namespace Enemy.EnemyStateMachine
         [HideInInspector] public float lastTimeAttacked;
         public float attackCoolDown;
         #endregion
-        
-        private HitStopController _hitStopController;
+
+        protected HitStopController _hitStopController;
         
         private Transform _player;
         
         protected override void Awake() {
             base.Awake();
             StateMachine = new EnemyStateMachine();
-            _hitStopController = HitStopController.Instance;
         }
 
         protected override void Update() {

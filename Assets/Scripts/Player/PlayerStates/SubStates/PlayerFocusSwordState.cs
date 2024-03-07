@@ -2,6 +2,7 @@ using Manager;
 using Player.Data;
 using Player.PlayerStates.SuperStates;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Player.PlayerStates.SubStates
 {
@@ -44,6 +45,8 @@ namespace Player.PlayerStates.SubStates
                     
                     Player.Stats.MakeInvincible(true);
                     
+                    //if(CanSlice()) FocusSword();
+                    
                     FocusSword();
                     
                     // If a certain amount of real-time (from the start time point to the maxHoldTime point)
@@ -54,7 +57,7 @@ namespace Player.PlayerStates.SubStates
                         IsHolding = false;
                         Time.timeScale = 1f;
                         //StartTime = Time.time;
-                        //ClearFocusSword();
+                        ClearFocusSword();
                     }
                 }
                 else IsAbilityDone = true;
@@ -67,6 +70,23 @@ namespace Player.PlayerStates.SubStates
             Player.Stats.MakeInvincible(false);
             Debug.Log("Exit Focus Sword State");
         }
+
+        /*private bool CanSlice()
+        {
+            Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(_focusSwordPositionInput, new Vector2(0.1f, 0.1f), 
+                0f, PlayerData.whatIsEnemy);
+
+            foreach (var hit in collider2Ds)
+            {
+                if (hit.GetComponent<Enemy.EnemyStateMachine.Enemy>() != null)
+                {
+                    var target = hit.GetComponentInChildren<Enemy.EnemyStateMachine.Enemy>();
+                    if (target.CanBeStunned())
+                        return true;
+                }
+            }
+            return false;
+        }*/
 
         private static void FocusSword() => SkillManager.Instance.Focus.Slice();
         private static void ClearFocusSword() => SkillManager.Instance.Focus.ClearMousePositions();
