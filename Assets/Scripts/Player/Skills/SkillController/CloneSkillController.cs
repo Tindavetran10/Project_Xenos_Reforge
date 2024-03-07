@@ -127,6 +127,5 @@ namespace Player.Skills.SkillController
                     transform.Rotate(0, 180, 0);
             }
         }
-
     }
 }

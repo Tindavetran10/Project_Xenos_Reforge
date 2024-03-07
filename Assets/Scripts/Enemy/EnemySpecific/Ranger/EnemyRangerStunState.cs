@@ -19,6 +19,8 @@ namespace Enemy.EnemySpecific.Ranger
             {
                 if(IsPlayerInAgroRange)
                     StateMachine.ChangeState(_enemyRanger.PlayerDetectedState);
+                else if(EnemyBase.Stats.IsDead)
+                    StateMachine.ChangeState(_enemyRanger.DeathState);
                 StateMachine.ChangeState(_enemyRanger.LookForPlayerState);
             }
         }

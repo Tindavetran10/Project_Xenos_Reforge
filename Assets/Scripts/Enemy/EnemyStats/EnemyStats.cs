@@ -33,7 +33,11 @@ namespace Enemy.EnemyStats
             PlayerManager.Instance.currency += soulDropAmount.GetValue();
         }
 
-        
+        protected override void Stun()
+        {
+            base.Stun();
+            _enemy.CanBeStunned();
+        }
     }
 }
 

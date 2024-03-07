@@ -9,7 +9,7 @@ namespace Entity
     {
         #region Base Components
         public Transform attackPosition;
-        public Core Core { get; protected set; }
+        public Core Core { get; private set; }
         public Animator Anim { get; private set; }
         public Rigidbody2D Rb { get; private set; }
         public EntityFX FX { get; private set; }

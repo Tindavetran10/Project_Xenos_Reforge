@@ -27,6 +27,7 @@ namespace Enemy.EnemyState.SuperState
             IsGrounded = CollisionSenses.Ground;
             
             PerformCloseRangeAction = EnemyBase.CheckPlayerInCloseRangeAction();
+            PerformLongRangeAction = EnemyBase.CheckPlayerInAgroRange();
         }
         
         public override void Enter()

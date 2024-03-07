@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using _Scripts.Player.Input;
 using UnityEngine;
 
 namespace Player.Skills
@@ -7,6 +8,7 @@ namespace Player.Skills
     {
 	    private List<SpriteSlicer2DSliceInfo> _slicedSpriteInfo = new();
         private TrailRenderer _trailRenderer;
+        private PlayerInputHandler _playerInputHandler;
 
         private struct MousePosition
         {
@@ -23,14 +25,16 @@ namespace Player.Skills
         private readonly List<MousePosition> _mousePositions = new();
         private float _mouseRecordTimer;
         
-        
-        protected override void Start () => _trailRenderer = GetComponentInChildren<TrailRenderer>();
-        
-        
+        protected override void Start ()
+        {
+	        _trailRenderer = GetComponentInChildren<TrailRenderer>();
+	        _playerInputHandler = GetComponentInChildren<PlayerInputHandler>();
+        }
 
+        // ReSharper disable Unity.PerformanceAnalysis
         public void Slice ()
         {
-			if (Input.GetMouseButton(0))
+			if (_playerInputHandler.FocusSwordMouseClick)
 			{
 				// Left mouse button - swipe to cut objects
 				var mousePositionAdded = false;
@@ -93,9 +97,12 @@ namespace Player.Skills
 
 				if (_trailRenderer)
 				{
-					var trailPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-					trailPosition.z = -9.0f;
-					_trailRenderer.transform.position = trailPosition;
+					if (Camera.main != null)
+					{
+						var trailPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+						trailPosition.z = -9.0f;
+						_trailRenderer.transform.position = trailPosition;
+					}
 				}
 			}
 			else _mousePositions.Clear();
@@ -137,6 +144,5 @@ namespace Player.Skills
 	        _mousePositions.Clear();
 	        _trailRenderer.Clear();
         }
-        
     }
 }

@@ -20,7 +20,7 @@ namespace Enemy.EnemySpecific.Ranger
                 if(IsPlayerInAgroRange && !PerformCloseRangeAction)
                     StateMachine.ChangeState(_enemyRanger.RangedAttackState);
                 else if(!IsPlayerInAgroRange)
-                    StateMachine.ChangeState(_enemyRanger.LookForPlayerState);    
+                    StateMachine.ChangeState(_enemyRanger.LookForPlayerState);  
             }
         }
     }

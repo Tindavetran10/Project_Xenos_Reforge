@@ -1,6 +1,5 @@
 using Enemy.EnemyState.StateData;
 using Enemy.EnemyState.SubState;
-using UnityEngine;
 
 namespace Enemy.EnemySpecific.Ronin
 {
@@ -16,9 +15,9 @@ namespace Enemy.EnemySpecific.Ronin
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-            if(PerformCloseRangeAction)
+            if (PerformCloseRangeAction)
                 StateMachine.ChangeState(_enemyRonin.MeleeAttackState);
-            else if(PerformLongRangeAction && !IsDetectingWall)
+            else if (PerformLongRangeAction && !IsDetectingWall)
                 StateMachine.ChangeState(_enemyRonin.ChargeState);
             else if (!IsPlayerInAgroRange)
                 StateMachine.ChangeState(_enemyRonin.LookForPlayerState);

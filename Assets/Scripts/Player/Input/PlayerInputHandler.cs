@@ -20,7 +20,6 @@ namespace _Scripts.Player.Input
         private Vector2 RawMovementInput { get; set; }
         private Vector2 RawDashDirectionInput { get; set; }
         public Vector2Int DashDirectionInput { get; private set; }
-        public Vector2 FocusSwordPositionInput { get; private set; }
         
         public int NormInputX { get; private set; }
         public int NormInputY { get; private set; }
@@ -38,6 +37,7 @@ namespace _Scripts.Player.Input
         public bool AimSwordInput { get; private set; }
         public bool AimSwordInputStop { get; private set; }
         
+        public Vector2 FocusSwordPositionInput { get; private set; }
         public bool FocusSwordInput { get; private set; }
         public bool FocusSwordInputStop { get; private set; }
         public bool FocusSwordMouseClick { get; private set; }

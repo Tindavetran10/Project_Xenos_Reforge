@@ -1,5 +1,7 @@
+using System;
 using Entity;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace StatSystem
 {
@@ -22,20 +24,36 @@ namespace StatSystem
         public Stat maxHealth;
         public Stat armor;
         public Stat evasion;
+        public Stat maxPoiseResistance;
+        public Stat poiseResetTime;
+        public Stat lastPoiseReset;
         
-        public System.Action OnHealthChanged;
-        private bool IsDead { get; set; }
+        public Action OnHealthChanged;
+
+        public bool IsDead { get; private set; }
+        public bool IsStunned { get; set; }
 
         protected bool IsInvincible { get; private set; }
         
         [SerializeField] public int currentHealth;
+        [SerializeField] public int currentPoise;
   
         protected virtual void Start()
         {
             critPower.SetDefaultValue(150);
             currentHealth = GetMaxHealthValue();
+            currentPoise = GetMaxPoiseValue();
 
             _fx = GetComponentInParent<EntityFX>();
+        }
+
+        protected void Update()
+        {
+            if (Time.time >= lastPoiseReset.GetValue() + poiseResetTime.GetValue())
+            {
+                lastPoiseReset.SetDefaultValue((int) Time.time);
+                currentPoise = GetMaxPoiseValue();
+            }
         }
 
         public void DoDamage(CharacterStats targetStats)
@@ -54,24 +72,32 @@ namespace StatSystem
         protected virtual void TakeDamage(int damageAmount)
         {
             DecreaseHealthBy(damageAmount);
+            DecreasePoiseBy(damageAmount);
             
             if(!IsInvincible)
                 _fx.StartCoroutine("FlashFX");
             
-            if (currentHealth <= 0 && !IsDead) 
-                Die();
+            if (currentHealth <= 0 && !IsDead) Die();
+            if (currentPoise <= 0) Stun();
         }
 
         private void DecreaseHealthBy(int damageAmount)
         {
-            if (!IsInvincible)
-                damageAmount = Mathf.RoundToInt(damageAmount * 1.1f);
-            else damageAmount = 0;
+            damageAmount = !IsInvincible ? Mathf.RoundToInt(damageAmount * 1.1f) : 0;
 
             currentHealth -= damageAmount;
             OnHealthChanged?.Invoke();
         }
+        
+        private void DecreasePoiseBy(int poiseAmount)
+        {
+            poiseAmount = !IsInvincible ? Mathf.RoundToInt(poiseAmount * 1.1f) : 0;
+            currentPoise -= poiseAmount;
+        }
+        
+        protected virtual void Stun() => IsStunned = true;
 
+        #region Make an Entity Die
         protected virtual void Die() => IsDead = true;
 
         public void KillEntity()
@@ -79,7 +105,8 @@ namespace StatSystem
             if(!IsDead)
                 Die();
         }
-
+        #endregion
+        
         #region Stat Calculations
         private static int CheckTargetArmor(CharacterStats targetStats, int totalDamage)
         {
@@ -107,6 +134,8 @@ namespace StatSystem
         
         public int GetMaxHealthValue() => 
             maxHealth.GetValue() + vitality.GetValue() * 5;
+
+        private int GetMaxPoiseValue() => maxPoiseResistance.GetValue();
 
         public void MakeInvincible(bool invincible) => IsInvincible = invincible;
         #endregion

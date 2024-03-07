@@ -12,25 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf6d2d4811ea4ee09298abfd59241c72, type: 3}
   m_Name: RangerData
   m_EditorClassIdentifier: 
-  agroDistance: 2
+  agroDistance: 2.03
   closeRangeActionDistance: 0.5
   hitParticle: {fileID: 0}
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 128
-  hitBox:
-  - serializedVersion: 2
-    x: 0.04
-    y: -0.2
-    width: 0.64
-    height: 0.5
-  - serializedVersion: 2
-    x: 0.02
-    y: -0.2
-    width: 0.64
-    height: 0.5
-  - serializedVersion: 2
-    x: 0.04
-    y: -0.2
-    width: 0.64
-    height: 0.5
+  hitBox: []
