@@ -43,6 +43,7 @@ namespace Enemy.EnemySpecific.Ranger
         protected override void Start()
         {
             base.Start();
+
             StateMachine.Initialize(IdleState);
         }
 

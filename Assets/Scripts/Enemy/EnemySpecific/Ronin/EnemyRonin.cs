@@ -44,6 +44,7 @@ namespace Enemy.EnemySpecific.Ronin
         protected override void Start()
         {
             base.Start();
+
             GetComponent<EnemyAnimationToStateMachine>();
             StateMachine.Initialize(IdleState);
         }
