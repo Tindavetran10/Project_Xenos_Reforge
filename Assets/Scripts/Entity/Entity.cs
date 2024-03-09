@@ -12,6 +12,7 @@ namespace Entity
         public Core Core { get; private set; }
         public Animator Anim { get; private set; }
         public Rigidbody2D Rb { get; private set; }
+        public SpriteRenderer SpriteRenderer { get; private set; }
         public EntityFX FX { get; private set; }
         public StatSystem_CharacterStats Stats { get; private set; }
 
@@ -29,6 +30,7 @@ namespace Entity
         {
             Anim = GetComponent<Animator>();
             Rb = GetComponent<Rigidbody2D>();
+            SpriteRenderer = GetComponent<SpriteRenderer>();
             FX = GetComponent<EntityFX>();
             Stats = GetComponentInChildren<StatSystem_CharacterStats>();
             MovementCollider2D = GetComponent<CapsuleCollider2D>();

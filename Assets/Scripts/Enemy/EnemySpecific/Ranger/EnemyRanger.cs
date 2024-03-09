@@ -44,7 +44,7 @@ namespace Enemy.EnemySpecific.Ranger
         protected override void Start()
         {
             base.Start();
-            _hitStopController = HitStopController.Instance;
+            HitStopController = HitStopController.Instance;
             StateMachine.Initialize(IdleState);
         }
 

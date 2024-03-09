@@ -44,7 +44,7 @@ namespace Enemy.EnemyStateMachine
         public float attackCoolDown;
         #endregion
 
-        protected HitStopController _hitStopController;
+        protected HitStopController HitStopController;
         
         private Transform _player;
         
@@ -80,13 +80,13 @@ namespace Enemy.EnemyStateMachine
         public void AttackTrigger()
         {
             var collider2Ds = Physics2D.OverlapCircleAll(attackPosition.position, enemyData.hitBox.Length);
-
+            
             foreach (var hit in collider2Ds)
             {
                 if(hit.GetComponent<Player.PlayerStateMachine.Player>() != null)
                 {
                     var target = hit.GetComponentInChildren<PlayerStats>();
-                    _hitStopController.HitStop(enemyData.hitStopDuration);
+                    HitStopController.HitStop(enemyData.hitStopDuration);
                     Stats.DoDamage(target);
                 }
             }

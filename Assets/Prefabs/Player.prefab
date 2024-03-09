@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 4765437048757195060}
   - component: {fileID: 7849466132785042285}
   - component: {fileID: 6534914590236456289}
+  - component: {fileID: 7708792561113031817}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -230,6 +231,14 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: b81e8179-9177-411a-a2b6-9205de1d5cc4
     m_ActionName: Gameplay/FocusSword[/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 194ce9ff-24e4-4160-8b83-c5ba2435d1a0
+    m_ActionName: Gameplay/FocusSwordMousePos
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9a6f7134-a652-4621-b469-7e4ca68754a6
+    m_ActionName: Gameplay/FocusSwordMouseClick[/Mouse/leftButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -296,6 +305,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitMat: {fileID: 2100000, guid: 6ce42991d0ed2b346bef88913ab1434e, type: 2}
+--- !u!114 &7708792561113031817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 609758280927387184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c643809fe0048d7bd437c6b23f2e709, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ghostTrailPrefab: {fileID: 870388849115093075, guid: b38648e265be0ef4eb6dbae0ad1b52b5, type: 3}
+  delay: 0.01
+  delta: 0.1
+  destroyTime: 0.25
+  color: {r: 0.45023924, g: 0.66775465, b: 0.91194963, a: 0}
+  material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!1 &1257460886284150130
 GameObject:
   m_ObjectHideFlags: 0
@@ -606,7 +633,17 @@ MonoBehaviour:
   evasion:
     baseValue: 10
     modifiers: 
+  maxPoiseResistance:
+    baseValue: 0
+    modifiers: 
+  poiseResetTime:
+    baseValue: 0
+    modifiers: 
+  lastPoiseReset:
+    baseValue: 0
+    modifiers: 
   currentHealth: 0
+  currentPoise: 0
 --- !u!1 &6532948408387991247
 GameObject:
   m_ObjectHideFlags: 0

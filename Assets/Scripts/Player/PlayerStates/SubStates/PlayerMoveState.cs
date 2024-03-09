@@ -16,6 +16,8 @@ namespace Player.PlayerStates.SubStates
             Movement?.CheckIfShouldFlip(XInput);
             // Apply a new velocity to player 
             Movement?.SetVelocityXSmoothDamp(PlayerData.movementVelocity * XInput);
+            
+            _ghostTrailController.enabled = true;
 
             if (IsExitingState) return;
             // Change the player to Idle State when the input is 0

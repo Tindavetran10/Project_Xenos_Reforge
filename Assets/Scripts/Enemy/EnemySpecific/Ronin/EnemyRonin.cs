@@ -46,7 +46,7 @@ namespace Enemy.EnemySpecific.Ronin
         {
             base.Start();
             GetComponent<EnemyAnimationToStateMachine>(); 
-            _hitStopController = HitStopController.Instance;
+            HitStopController = HitStopController.Instance;
             StateMachine.Initialize(IdleState);
         }
 
