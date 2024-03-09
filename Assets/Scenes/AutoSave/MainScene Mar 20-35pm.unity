@@ -240,7 +240,7 @@ MonoBehaviour:
   coolDown: 0
   mouseRecordInterval: 0.05
   maxMousePositions: 5
-  sliceForce: 10
+  sliceForce: 2
   sliceLayer:
     serializedVersion: 2
     m_Bits: 64

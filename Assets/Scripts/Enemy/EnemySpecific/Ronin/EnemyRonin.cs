@@ -50,6 +50,7 @@ namespace Enemy.EnemySpecific.Ronin
             StateMachine.Initialize(IdleState);
         }
 
+        // Only for testing purposes
         protected override void Update()
         {
             base.Update();

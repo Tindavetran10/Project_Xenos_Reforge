@@ -87,9 +87,18 @@ namespace CoreSystem.CoreComponents
         // after some needed calculation
         private void SetFinalVelocity()
         {
-            if (!CanSetVelocity) return;
-            Rb.velocity = _workspace;
-            CurrentVelocity = _workspace;
+            // End function if the rb is static
+            if (Rb.bodyType == RigidbodyType2D.Static)
+            {
+                CanSetVelocity = false;
+                return;
+            }
+
+            if (CanSetVelocity)
+            {
+                Rb.velocity = _workspace;
+                CurrentVelocity = _workspace;
+            }
         }
         
         // Flip the image of character when he want to turn left or right

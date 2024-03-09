@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using _Scripts.Player.Input;
+using System.Linq;
 using UnityEngine;
 
 namespace Player.Skills
@@ -38,10 +38,15 @@ namespace Player.Skills
 			// Record the world position of the mouse every x seconds
 			if (_mouseRecordTimer <= 0.0f)
 			{
-				MousePosition newMousePosition = new MousePosition();
-				newMousePosition.WorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-				newMousePosition.Time = Time.time;
-				_mousePositions.Add(newMousePosition);
+				if (Camera.main != null)
+				{
+					var newMousePosition = new MousePosition
+					{
+						WorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition),
+						Time = Time.time
+					};
+					_mousePositions.Add(newMousePosition);
+				}
 
 				_mouseRecordTimer = mouseRecordInterval;
 				mousePositionAdded = true;
@@ -61,20 +66,21 @@ namespace Player.Skills
 				for (var loop = 0; loop < _mousePositions.Count - 1; loop++)
 				{
 					SpriteSlicer2D.SliceAllSprites(_mousePositions[loop].WorldPosition, 
-						_mousePositions[^1].WorldPosition, true, ref _slicedSpriteInfo, sliceLayer);
+						_mousePositions[^1].WorldPosition, true, 
+						ref _slicedSpriteInfo, sliceLayer);
 
 					if (_slicedSpriteInfo.Count > 0)
 					{
 						// Add some force in the direction of the swipe so that stuff topples over rather than just being
 						// sliced but remaining stationary
-						for (int spriteIndex = 0; spriteIndex < _slicedSpriteInfo.Count; spriteIndex++)
+						foreach (var info in _slicedSpriteInfo)
 						{
-							for (int childSprite = 0; childSprite < _slicedSpriteInfo[spriteIndex].ChildObjects.Count; childSprite++)
+							foreach (var child in info.ChildObjects)
 							{
-								Vector2 sliceDirection = _mousePositions[^1].WorldPosition - _mousePositions[loop].WorldPosition;
+								Vector2 sliceDirection = _mousePositions[^1].WorldPosition 
+								                         - _mousePositions[loop].WorldPosition;
 								sliceDirection.Normalize();
-								_slicedSpriteInfo[spriteIndex].ChildObjects[childSprite].GetComponent<Rigidbody2D>()
-									.AddForce(sliceDirection * sliceForce);
+								child.GetComponent<Rigidbody2D>().AddForce(sliceDirection * sliceForce);
 							}
 						}
 
@@ -89,30 +95,27 @@ namespace Player.Skills
 			// Sliced sprites sharing the same layer as standard Unity sprites could increase the draw call count as
 			// the engine will have to keep swapping between rendering SlicedSprites and Unity Sprites.To avoid this, 
 			// move the newly sliced sprites either forward or back along the z-axis after they are created
-			for(int spriteIndex = 0; spriteIndex < _slicedSpriteInfo.Count; spriteIndex++)
+			foreach (var info in _slicedSpriteInfo)
 			{
-				for(int childSprite = 0; childSprite < _slicedSpriteInfo[spriteIndex].ChildObjects.Count; childSprite++)
+				foreach (var child in info.ChildObjects)
 				{
-					Vector3 spritePosition = _slicedSpriteInfo[spriteIndex].ChildObjects[childSprite].transform.position;
+					var spritePosition = child.transform.position;
 					spritePosition.z = -1.0f;
-					_slicedSpriteInfo[spriteIndex].ChildObjects[childSprite].transform.position = spritePosition;
+					child.transform.position = spritePosition;
 					
 					// Scale the fragments down to half their size
-					_slicedSpriteInfo[spriteIndex].ChildObjects[childSprite].transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+					child.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
 				}
 			}
 
 			if(fadeFragments)
 			{
-				// If we've chosen to fade out fragments once an object is destroyed, add a fade and destroy component
-				for (int spriteIndex = 0; spriteIndex < _slicedSpriteInfo.Count; spriteIndex++)
-				{
-					for (int childSprite = 0; childSprite < _slicedSpriteInfo[spriteIndex].ChildObjects.Count; childSprite++)
-					{
-						if (!_slicedSpriteInfo[spriteIndex].ChildObjects[childSprite].GetComponent<Rigidbody2D>().isKinematic)
-							_slicedSpriteInfo[spriteIndex].ChildObjects[childSprite].AddComponent<FadeAndDestroy>();                    
-					}
-				}
+				// Add a FadeAndDestroy script to each fragment so that they fade out and are destroyed after a few seconds
+				foreach (var child 
+				         in from info in _slicedSpriteInfo 
+				         from child in info.ChildObjects 
+				         where !child.GetComponent<Rigidbody2D>().isKinematic select child)
+					child.AddComponent<FadeAndDestroy>();
 			}
 			_slicedSpriteInfo.Clear();
 		}
@@ -121,9 +124,12 @@ namespace Player.Skills
         {
 	        if(_trailRenderer)
 	        {
-		        var trailPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		        trailPosition.z = -9.0f;
-		        _trailRenderer.transform.position = trailPosition;
+		        if (Camera.main != null)
+		        {
+			        var trailPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			        trailPosition.z = -9.0f;
+			        _trailRenderer.transform.position = trailPosition;
+		        }
 	        }
         }
 

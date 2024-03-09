@@ -61,8 +61,10 @@ namespace Player.PlayerStates.SubStates
         {
             base.AnimationCancelTrigger();
 
+            // Check if any input is pressed during the animation
             foreach (var combatInput in Enum.GetValues(typeof(CombatInputs)).Cast<CombatInputs>())
             {
+                // If any input is pressed, cancel the animation
                 if (Player.InputHandler.NormalAttackInputs[(int)combatInput] ||
                     Player.InputHandler.NormInputX == 1 || Player.InputHandler.NormInputX == -1 ||
                     Player.InputHandler.JumpInput ||

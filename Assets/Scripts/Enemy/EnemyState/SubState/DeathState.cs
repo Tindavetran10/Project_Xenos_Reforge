@@ -1,4 +1,5 @@
 using Enemy.EnemyState.SuperState;
+using UnityEngine;
 
 namespace Enemy.EnemyState.SubState
 {
@@ -11,6 +12,9 @@ namespace Enemy.EnemyState.SubState
         {
             base.Enter();
             Movement?.SetVelocityZero();
+            
+            // Change the rb to static so the enemy doesn't move
+            Movement.Rb.bodyType = RigidbodyType2D.Static;
         }
     }
 }

@@ -136,7 +136,11 @@ namespace Enemy.EnemyStateMachine
         public IEnumerator HitKnockBack()
         {
             Movement.CanSetVelocity = false;
+            
+            //if the rb is static then return
+            if (Rb.bodyType == RigidbodyType2D.Static) yield break;
             CheckKnockBackDirection();
+            
             yield return new WaitForSeconds(knockBackDuration);
             Movement.SetVelocityX(0f);
             Movement.CanSetVelocity = true;
@@ -144,6 +148,8 @@ namespace Enemy.EnemyStateMachine
 
         private void CheckKnockBackDirection()
         {
+            //if the rb is static then return
+            if (Rb.bodyType == RigidbodyType2D.Static) return;
             // Check player and enemy position to determine knockback direction
             if(_player.position.x < transform.position.x && Movement.FacingDirection == 1)
                 Rb.velocity = new Vector2(knockBackDirection.x  * Movement.FacingDirection, knockBackDirection.y);
@@ -153,7 +159,6 @@ namespace Enemy.EnemyStateMachine
                 Rb.velocity = new Vector2(knockBackDirection.x  * -Movement.FacingDirection, knockBackDirection.y);
             else if (_player.position.x > transform.position.x && Movement.FacingDirection == -1)
                 Rb.velocity = new Vector2(knockBackDirection.x  * Movement.FacingDirection, knockBackDirection.y);
-
         }
         #endregion
         
