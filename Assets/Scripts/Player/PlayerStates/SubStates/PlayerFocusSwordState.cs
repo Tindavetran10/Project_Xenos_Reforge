@@ -1,3 +1,4 @@
+using Enemy.EnemyStats;
 using Manager;
 using Player.Data;
 using Player.PlayerStates.SuperStates;
@@ -8,10 +9,9 @@ namespace Player.PlayerStates.SubStates
 {
     public class PlayerFocusSwordState : PlayerAbilityState
     {
-        private bool _focusSwordInput;
         private bool _focusSwordInputStop;
-        private Vector2 _focusSwordPositionInput;
-        
+        private bool _focusSwordMouseClick;
+
         public PlayerFocusSwordState(Player.PlayerStateMachine.Player player, PlayerStateMachine.PlayerStateMachine stateMachine, 
             PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName) {}
 
@@ -21,11 +21,6 @@ namespace Player.PlayerStates.SubStates
             Debug.Log("Enter Focus Sword State");
             
             IsHolding = true;
-            
-            /*// Set the amount of time that allow the player to hold the focus sword input in REAL-TIME
-            Time.timeScale = PlayerData.focusSwordDuration;
-            // Save the StartTime when entering the Dash State without getting affected by Time.timeScale
-            StartTime = Time.unscaledTime;*/
             
             Player.InputHandler.UseFocusSwordInput();
             Movement?.SetVelocityZero();
@@ -39,24 +34,21 @@ namespace Player.PlayerStates.SubStates
             {
                 if (IsHolding)
                 {
-                    _focusSwordInput = Player.InputHandler.FocusSwordInput;
                     _focusSwordInputStop = Player.InputHandler.FocusSwordInputStop;
-                    _focusSwordPositionInput = Player.InputHandler.FocusSwordPositionInput;
+                    _focusSwordMouseClick = Player.InputHandler.FocusSwordMouseClick;
                     
-                    Player.Stats.MakeInvincible(true);
-                    
-                    //if(CanSlice()) FocusSword();
-                    
-                    FocusSword();
-                    
-                    // If a certain amount of real-time (from the start time point to the maxHoldTime point)
-                    if (_focusSwordInputStop)
+                    if(_focusSwordMouseClick)
                     {
                         Player.Stats.MakeInvincible(true);
-                        
+                        FocusSwordTrail();
+                        if(CanSlice()) FocusSwordSlice();
+                    }
+            
+                    if (_focusSwordInputStop)
+                    {
+                        Player.Stats.MakeInvincible(false);
                         IsHolding = false;
                         Time.timeScale = 1f;
-                        //StartTime = Time.time;
                         ClearFocusSword();
                     }
                 }
@@ -71,24 +63,32 @@ namespace Player.PlayerStates.SubStates
             Debug.Log("Exit Focus Sword State");
         }
 
-        /*private bool CanSlice()
-        {
-            Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(_focusSwordPositionInput, new Vector2(0.1f, 0.1f), 
-                0f, PlayerData.whatIsEnemy);
 
-            foreach (var hit in collider2Ds)
+        private bool CanSlice()
+        {
+            if (Camera.main != null)
             {
-                if (hit.GetComponent<Enemy.EnemyStateMachine.Enemy>() != null)
+                var collider2Ds = Physics2D.OverlapBoxAll(Camera.main.ScreenToWorldPoint(Input.mousePosition), 
+                    PlayerData.focusSwordHitBox.size, 0f, PlayerData.whatIsEnemy);
+            
+                foreach (var hit in collider2Ds)
                 {
-                    var target = hit.GetComponentInChildren<Enemy.EnemyStateMachine.Enemy>();
-                    if (target.CanBeStunned())
-                        return true;
+                    if (hit.GetComponent<Enemy.EnemyStateMachine.Enemy>() != null)
+                    {
+                        Debug.Log("Collided with enemy");
+                        var target = hit.GetComponentInChildren<EnemyStats>();
+                        if(target.IsStunned)
+                            return true;
+                    }
                 }
             }
-            return false;
-        }*/
 
-        private static void FocusSword() => SkillManager.Instance.Focus.Slice();
+            return false;
+        }
+
+        
+        private static void FocusSwordSlice() => SkillManager.Instance.Focus.Slice();
+        private static void FocusSwordTrail() => SkillManager.Instance.Focus.Trail();
         private static void ClearFocusSword() => SkillManager.Instance.Focus.ClearMousePositions();
     }
 }

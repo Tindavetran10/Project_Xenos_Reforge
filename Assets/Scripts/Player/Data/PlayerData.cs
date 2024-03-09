@@ -16,7 +16,7 @@ namespace Player.Data
         [Header("Wall Jump State")]
         public float wallJumpVelocity;
         public float wallJumpTime;
-        public Vector2 wallJumpAngle = new Vector2(1, 2);
+        public Vector2 wallJumpAngle = new(1, 2);
 
         [Header("In Air State")]
         public float coyoteTime;
@@ -43,9 +43,11 @@ namespace Player.Data
         public float crouchColliderHeight;
         public float standColliderHeight;
 
+        [Space]
+        public LayerMask whatIsEnemy;
+        
         [Header("Primary Attack State")] 
         public float hitStopDuration;
-        public LayerMask whatIsEnemy;
         public float comboWindow;
         public int numberOfAttacks;
 
@@ -54,7 +56,7 @@ namespace Player.Data
         public Rect[] hitBox;
         
         [Header("Focus Sword State")]
-        public float focusSwordDuration;
+        public Rect focusSwordHitBox;
         
         [Header("Counter Attack State")]
         public float counterAttackDuration;

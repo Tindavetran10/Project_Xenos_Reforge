@@ -28,6 +28,7 @@ namespace Enemy.EnemyState.SubState
             IsStunTimeOver = false;
             _isMovementStopped = false;
             Movement?.SetVelocity(-Movement.FacingDirection * _stateData.stunKnockbackSpeed, _stateData.stunKnockbackAngle);
+            EnemyBase.Stats.IsStunned = true;
             
             EnemyBase.FX.InvokeRepeating("RedColorBlink",0, .1f);
         }
@@ -50,6 +51,7 @@ namespace Enemy.EnemyState.SubState
         {
             base.Exit();
             EnemyBase.FX.Invoke("CancelRedBlink", 0f);
+            EnemyBase.Stats.IsStunned = false;
         }
     }
 }

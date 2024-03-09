@@ -37,7 +37,7 @@ namespace _Scripts.Player.Input
         public bool AimSwordInput { get; private set; }
         public bool AimSwordInputStop { get; private set; }
         
-        public Vector2 FocusSwordPositionInput { get; private set; }
+        public Vector3 FocusSwordPositionInput { get; private set; }
         public bool FocusSwordInput { get; private set; }
         public bool FocusSwordInputStop { get; private set; }
         public bool FocusSwordMouseClick { get; private set; }
@@ -242,7 +242,7 @@ namespace _Scripts.Player.Input
         {
             if (_player != null)
             {
-                FocusSwordPositionInput = context.ReadValue<Vector2>();
+                FocusSwordPositionInput = context.ReadValue<Vector3>();
                 FocusSwordPositionInput = _cam.ScreenToWorldPoint(FocusSwordPositionInput) - transform.position;
             }
         }
