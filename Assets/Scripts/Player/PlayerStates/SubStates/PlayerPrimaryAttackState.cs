@@ -134,10 +134,11 @@ namespace Player.PlayerStates.SubStates
         private void HitParticle(Component hit)
         {
             // Instantiate the hit particle
-            var hitParticleInstance = Object.Instantiate(PlayerData.hitParticle, hit.transform.position, Quaternion.identity);
+            var hitParticleInstance = Object.Instantiate(PlayerData.hitParticle, hit.transform.position 
+                + new Vector3(0f,0.15f,0f), Quaternion.identity);
             
             // Destroy the hit particle after 0.5f
-            Object.Destroy(hitParticleInstance, 0.5f);
+            Object.Destroy(hitParticleInstance, 0.19f);
         }
 
     }

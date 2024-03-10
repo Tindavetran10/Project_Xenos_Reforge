@@ -96,11 +96,24 @@ namespace CoreSystem.CoreComponents
 
             if (CanSetVelocity)
             {
+                // Check if _workspace contains valid values
+                if (!IsValidVector(_workspace))
+                    // If _workspace is invalid, use a fallback velocity
+                    _workspace = CalculateFallbackVelocity();
+
+                // Assign the velocity to the Rigidbody2D
                 Rb.velocity = _workspace;
                 CurrentVelocity = _workspace;
             }
         }
-        
+
+        // Check if a vector contains valid values (no NaN)
+        private static bool IsValidVector(Vector2 vector) => !float.IsNaN(vector.x) && !float.IsNaN(vector.y);
+
+        // Calculate a fallback velocity when _workspace is invalid
+        private static Vector2 CalculateFallbackVelocity() => Vector2.zero;
+
+
         // Flip the image of character when he want to turn left or right
         public void CheckIfShouldFlip(int xInput)
         {
