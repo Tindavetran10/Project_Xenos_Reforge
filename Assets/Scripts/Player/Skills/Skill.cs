@@ -12,7 +12,7 @@ namespace Player.Skills
 
         protected virtual void Start()
         {
-            Player = PlayerManager.Instance.player;
+            Player = PlayerManager.GetInstance().player;
             CheckUnlock();
         }
 

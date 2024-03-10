@@ -1,4 +1,3 @@
-using System.Collections;
 using _Scripts.Player.Input;
 using Manager;
 using Player.Data;

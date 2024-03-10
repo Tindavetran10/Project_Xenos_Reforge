@@ -27,9 +27,9 @@ namespace UI
 
         private void UpdateSoulsUI()
         {
-            if (soulsAmount < PlayerManager.Instance.GetCurrency())
+            if (soulsAmount < PlayerManager.GetInstance().GetCurrency())
                 soulsAmount += Time.deltaTime * increaseRate;
-            else soulsAmount = PlayerManager.Instance.GetCurrency();
+            else soulsAmount = PlayerManager.GetInstance().GetCurrency();
 
             currentSouls.text = ((int) soulsAmount).ToString();
         }

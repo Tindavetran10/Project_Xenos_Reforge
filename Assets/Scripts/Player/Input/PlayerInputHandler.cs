@@ -61,7 +61,7 @@ namespace _Scripts.Player.Input
             NormalAttackInputs = new bool[count];
             NormalAttackInputsStop = new bool[count];
             
-            _player = PlayerManager.Instance.player;
+            _player = PlayerManager.GetInstance().player;
             
             _cam = Camera.main;
         }

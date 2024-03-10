@@ -5,6 +5,7 @@ using HitStop;
 using Player.Data;
 using Player.PlayerStates.SuperStates;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Player.PlayerStates.SubStates
 {
@@ -118,11 +119,26 @@ namespace Player.PlayerStates.SubStates
             {
                 if (hit.GetComponent<Enemy.EnemyStateMachine.Enemy>() != null)
                 {
+                    HitParticle(hit);
+
+                    // Do damage to the enemy stats
                     var target = hit.GetComponentInChildren<EnemyStats>();
-                    _hitStopController.HitStop(PlayerData.hitStopDuration);
                     Player.Stats.DoDamage(target);
+                    
+                    // Activate HitStop Effect
+                    _hitStopController.HitStop(PlayerData.hitStopDuration);
                 }
             }
         }
+
+        private void HitParticle(Component hit)
+        {
+            // Instantiate the hit particle
+            var hitParticleInstance = Object.Instantiate(PlayerData.hitParticle, hit.transform.position, Quaternion.identity);
+            
+            // Destroy the hit particle after 0.5f
+            Object.Destroy(hitParticleInstance, 0.5f);
+        }
+
     }
 }

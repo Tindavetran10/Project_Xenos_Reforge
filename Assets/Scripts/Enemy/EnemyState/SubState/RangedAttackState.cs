@@ -1,6 +1,5 @@
 using Enemy.EnemyState.StateData;
 using Enemy.EnemyState.SuperState;
-using UnityEngine;
 
 namespace Enemy.EnemyState.SubState
 {
@@ -16,7 +15,7 @@ namespace Enemy.EnemyState.SubState
         {
             base.Enter();
             EnemyBase.isAnimationFinished = false;
-            EnemyBase.SpecialAttackTrigger();
+            EnemyBase.RangeAttackTrigger();
         }
     }
 }

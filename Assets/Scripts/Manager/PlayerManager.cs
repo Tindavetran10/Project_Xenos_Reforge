@@ -14,10 +14,23 @@ namespace Manager
         
         private void Awake()
         {
-            if (Instance != null)
-                Destroy(Instance.gameObject);
-            else Instance = this;
+            // Check if an instance already exists
+            if (Instance != null && Instance != this)
+            {
+                // If so, destroy this instance
+                Destroy(gameObject);
+                return;
+            }
+
+            // Set the instance to this object
+            Instance = this;
+
+            // Make sure this object persists between scenes
+            DontDestroyOnLoad(gameObject);
         }
+        
+        // Method to get the instance
+        public static PlayerManager GetInstance() => Instance;
 
         public bool HaveEnoughSoul(int price)
         {

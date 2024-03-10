@@ -1,3 +1,4 @@
+using System.Linq;
 using Enemy.EnemyStats;
 using Manager;
 using Player.Data;
@@ -69,25 +70,25 @@ namespace Player.PlayerStates.SubStates
             {
                 var collider2Ds = Physics2D.OverlapBoxAll(Camera.main.ScreenToWorldPoint(Input.mousePosition), 
                     PlayerData.focusSwordHitBox.size, 0f, PlayerData.whatIsEnemy);
-            
-                foreach (var hit in collider2Ds)
-                {
-                    if (hit.GetComponent<Enemy.EnemyStateMachine.Enemy>() != null)
-                    {
-                        Debug.Log("Collided with enemy");
-                        var target = hit.GetComponentInChildren<EnemyStats>();
-                        if(target.IsStunned)
-                            return true;
-                    }
-                }
+                
+                return (from hit 
+                    in collider2Ds 
+                    where hit.GetComponent<Enemy.EnemyStateMachine.Enemy>() != null 
+                    select hit.GetComponentInChildren<EnemyStats>()).Any(target => target.IsStunned);
             }
-
             return false;
         }
 
         
-        private static void FocusSwordSlice() => SkillManager.Instance.Focus.Slice();
         private static void FocusSwordTrail() => SkillManager.Instance.Focus.Trail();
+        private static void FocusSwordSlice()
+        {
+            SkillManager.Instance.Focus.Slice();
+            FocusSwordFragment();
+        }
+
+        private static void FocusSwordFragment() => SkillManager.Instance.Focus.Fragments();
+
         private static void ClearFocusSword() => SkillManager.Instance.Focus.ClearMousePositions();
     }
 }

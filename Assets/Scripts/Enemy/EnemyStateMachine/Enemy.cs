@@ -59,7 +59,7 @@ namespace Enemy.EnemyStateMachine
             StateMachine.CurrentState.LogicUpdate();
             
             Anim.SetFloat(YVelocity, Movement.Rb.velocity.y);
-            _player = PlayerManager.Instance.player.transform;
+            _player = PlayerManager.GetInstance().player.transform;
         }
         
         protected override void FixedUpdate()
@@ -79,20 +79,35 @@ namespace Enemy.EnemyStateMachine
         #region Animator Function
         public void AttackTrigger()
         {
+            // Check if the player is in range
             var collider2Ds = Physics2D.OverlapCircleAll(attackPosition.position, enemyData.hitBox.Length);
             
             foreach (var hit in collider2Ds)
             {
                 if(hit.GetComponent<Player.PlayerStateMachine.Player>() != null)
                 {
+                    HitParticle(hit);
+
+                    // Do damage to the player stats
                     var target = hit.GetComponentInChildren<PlayerStats>();
-                    HitStopController.HitStop(enemyData.hitStopDuration);
                     Stats.DoDamage(target);
+                    
+                    // Activate HitStop Effect
+                    HitStopController.HitStop(enemyData.hitStopDuration);
                 }
             }
         }
-        
-        public void SpecialAttackTrigger()
+
+        private void HitParticle(Component hit)
+        {
+            // Instantiate Hit Particle
+            var hitParticleInstance = Instantiate(enemyData.hitParticle, hit.transform.position, Quaternion.identity);
+            
+            // Destroy the hit particle prefab after 0.5f
+            Destroy(hitParticleInstance, 0.5f);
+        }
+
+        public void RangeAttackTrigger()
         {
             var newProjectile = Instantiate(enemyProjectile, 
                 attackPosition.position, Quaternion.identity);

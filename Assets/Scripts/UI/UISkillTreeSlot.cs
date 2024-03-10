@@ -32,7 +32,7 @@ namespace UI
         private void Start()
         {
             _skillImage = GetComponent<Image>();
-            _ui = GetComponentInParent<global::UI.UI>();
+            _ui = GetComponentInParent<UI>();
             
             _skillImage.color = lockedSkillColor;
             
@@ -41,7 +41,7 @@ namespace UI
 
         private void UnlockSkillSlot()
         {
-            if(PlayerManager.Instance.HaveEnoughSoul(skillCost) == false)
+            if(PlayerManager.GetInstance().HaveEnoughSoul(skillCost) == false)
                 return;
             
             if (shouldBeUnlocked.Any(t => t.unlocked == false))

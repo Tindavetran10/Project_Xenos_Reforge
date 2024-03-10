@@ -36,7 +36,6 @@ namespace Player.Data
         public float dashVelocity;
         public float drag;
         public float dashEndYMultiplier;
-        public float distBetweenAfterImages;
 
         [Header("Crouch State")]
         public float crouchMovementVelocity;
@@ -47,6 +46,7 @@ namespace Player.Data
         public LayerMask whatIsEnemy;
         
         [Header("Primary Attack State")] 
+        public GameObject hitParticle;
         public float hitStopDuration;
         public float comboWindow;
         public int numberOfAttacks;

@@ -89,9 +89,7 @@ namespace Player.Skills
 					}
 				}
 			}
-
-			Trail();
-
+			
 			// Sliced sprites sharing the same layer as standard Unity sprites could increase the draw call count as
 			// the engine will have to keep swapping between rendering SlicedSprites and Unity Sprites.To avoid this, 
 			// move the newly sliced sprites either forward or back along the z-axis after they are created
@@ -107,18 +105,22 @@ namespace Player.Skills
 					child.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
 				}
 			}
-
-			if(fadeFragments)
-			{
-				// Add a FadeAndDestroy script to each fragment so that they fade out and are destroyed after a few seconds
-				foreach (var child 
-				         in from info in _slicedSpriteInfo 
-				         from child in info.ChildObjects 
-				         where !child.GetComponent<Rigidbody2D>().isKinematic select child)
-					child.AddComponent<FadeAndDestroy>();
-			}
+			
 			_slicedSpriteInfo.Clear();
 		}
+
+        public void Fragments()
+        {
+	        if(fadeFragments)
+	        {
+		        // Add a FadeAndDestroy script to each fragment so that they fade out and are destroyed after a few seconds
+		        foreach (var child 
+		                 in from info in _slicedSpriteInfo 
+		                 from child in info.ChildObjects 
+		                 where !child.GetComponent<Rigidbody2D>().isKinematic select child)
+			        child.AddComponent<FadeAndDestroy>();
+	        }
+        }
 
         public void Trail()
         {

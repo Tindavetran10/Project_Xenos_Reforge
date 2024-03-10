@@ -31,16 +31,26 @@ namespace Player.GhostTrail_Effect
             }
         }
 
-        public void CreateGhostTrail()
+        private void CreateGhostTrail()
         {
-            GameObject currentGhostTrail = Instantiate(ghostTrailPrefab, transform.position, transform.rotation);
+            // Create a new ghost trail 
+            // Instantiate the ghostTrailPrefab and set the position and rotation to the player
+            var playerTransform = transform;
+            GameObject currentGhostTrail = Instantiate(ghostTrailPrefab, playerTransform.position, playerTransform.rotation);
+            
+            // Set the scale of the ghost trail to the player scale
             currentGhostTrail.transform.localScale = _player.transform.localScale;
+            // Destroy the ghost trail after a certain amount of time
             Destroy(currentGhostTrail, destroyTime);
             
+            // Set the sprite and color of the ghost trail
             _spriteRenderer = currentGhostTrail.GetComponent<SpriteRenderer>();
+            
+            // Set the sprite and color of the ghost trail
             _spriteRenderer.sprite = _player.SpriteRenderer.sprite;
             _spriteRenderer.color = color;
             
+            // Set the material of the ghost trail
             if(material != null) _spriteRenderer.material = material;
         }
     }

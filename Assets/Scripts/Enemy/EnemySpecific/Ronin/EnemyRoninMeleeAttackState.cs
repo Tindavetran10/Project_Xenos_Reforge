@@ -7,8 +7,6 @@ namespace Enemy.EnemySpecific.Ronin
     {
         private readonly EnemyRonin _enemyRonin;
         
-        
-
         public EnemyRoninMeleeAttackState(EnemyStateMachine.Enemy enemyBase, 
             EnemyStateMachine.EnemyStateMachine stateMachine, string animBoolName, D_MeleeAttackState stateData, 
             EnemyRonin enemyRonin) : base(enemyBase, stateMachine, animBoolName, stateData) =>

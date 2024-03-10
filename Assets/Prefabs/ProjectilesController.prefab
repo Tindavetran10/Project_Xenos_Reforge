@@ -162,7 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a220b7958826e64a9ead4b8fa0ee3c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 4
+  damage: 10
   targetLayerName: Player
   xVelocity: 3
   rb: {fileID: 7355708973613269164}
