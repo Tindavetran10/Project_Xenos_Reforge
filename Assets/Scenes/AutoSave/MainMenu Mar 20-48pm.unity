@@ -3064,6 +3064,7 @@ MonoBehaviour:
   brightnessSlider: {fileID: 0}
   brightnessTextValue: {fileID: 0}
   defaultBrightness: 1
+  resolutionDropdown: {fileID: 0}
 --- !u!1 &548880339
 GameObject:
   m_ObjectHideFlags: 0
