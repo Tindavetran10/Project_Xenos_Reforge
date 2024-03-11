@@ -71,12 +71,13 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 4096
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -89,6 +90,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -101,6 +103,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -369,18 +372,18 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Low Stairs Tileset_8: -328709533
-      Low Stairs Tileset_1: 1662639978
-      Low Stairs Tileset_4: -1337724669
-      Low Stairs Tileset_11: 603848833
-      Low Stairs Tileset_9: -633356497
-      Low Stairs Tileset_7: 1139569048
-      Low Stairs Tileset_3: 664154637
-      Low Stairs Tileset_2: -1782379729
-      Low Stairs Tileset_10: -416951971
-      Low Stairs Tileset_6: -1454359258
-      Low Stairs Tileset_5: 1449281712
       Low Stairs Tileset_0: -257717192
+      Low Stairs Tileset_1: 1662639978
+      Low Stairs Tileset_10: -416951971
+      Low Stairs Tileset_11: 603848833
+      Low Stairs Tileset_2: -1782379729
+      Low Stairs Tileset_3: 664154637
+      Low Stairs Tileset_4: -1337724669
+      Low Stairs Tileset_5: 1449281712
+      Low Stairs Tileset_6: -1454359258
+      Low Stairs Tileset_7: 1139569048
+      Low Stairs Tileset_8: -328709533
+      Low Stairs Tileset_9: -633356497
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

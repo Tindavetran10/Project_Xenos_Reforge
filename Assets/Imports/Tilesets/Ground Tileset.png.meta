@@ -71,12 +71,13 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -89,6 +90,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -101,6 +103,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -432,21 +435,21 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Ground Tileset_2: 275752712
-      Ground Tileset_7: -337603980
-      Ground Tileset_10: 1951508312
       Ground Tileset_0: 1383112822
-      Ground Tileset_4: -332355867
-      Ground Tileset_5: 791664570
-      Ground Tileset_8: -889969057
-      Ground Tileset_9: 2032819257
-      Ground Tileset_14: 969839082
+      Ground Tileset_1: -585531158
+      Ground Tileset_10: 1951508312
       Ground Tileset_11: -269782344
       Ground Tileset_12: 582587050
-      Ground Tileset_1: -585531158
       Ground Tileset_13: 568576729
+      Ground Tileset_14: 969839082
+      Ground Tileset_2: 275752712
       Ground Tileset_3: -49061333
+      Ground Tileset_4: -332355867
+      Ground Tileset_5: 791664570
       Ground Tileset_6: 249949183
+      Ground Tileset_7: -337603980
+      Ground Tileset_8: -889969057
+      Ground Tileset_9: 2032819257
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
