@@ -14520,8 +14520,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "If an Enemy is  Stunned,  Hold F and  Mouse to enter the  Focus state.
-    \nSwipe the mouse through the enemy for an instant kill."
+  m_text: 'Hold F and '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5536243b62838ae4d99fdc28a1cdcade, type: 2}
   m_sharedMaterial: {fileID: 8584473261113578765, guid: 5536243b62838ae4d99fdc28a1cdcade, type: 2}
@@ -14548,8 +14547,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 36
+  m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -14560,7 +14559,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 100.99
+  m_lineSpacing: 0
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -15186,7 +15185,6 @@ GameObject:
   - component: {fileID: 849097764}
   - component: {fileID: 849097763}
   - component: {fileID: 849097765}
-  - component: {fileID: 849097766}
   m_Layer: 0
   m_Name: UITrigger
   m_TagString: Untagged
@@ -15362,8 +15360,6 @@ MonoBehaviour:
   - {fileID: 974686631}
   - {fileID: 319325994}
   - {fileID: 81721714}
-  - {fileID: 305064174}
-  - {fileID: 1857403289}
   currentIndex: 0
 --- !u!61 &849097763
 BoxCollider2D:
@@ -15499,51 +15495,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 5.6805496, y: 2.1052217}
-  m_EdgeRadius: 0
---- !u!61 &849097766
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 849097756}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 70.15656, y: -10.545763}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 12.921326, y: 1.8057976}
   m_EdgeRadius: 0
 --- !u!1 &868268283
 GameObject:
@@ -17273,7 +17224,7 @@ Transform:
   m_GameObject: {fileID: 1426757531}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 77.59, y: -11.6, z: -0.083625585}
+  m_LocalPosition: {x: 35.34, y: 5.32, z: -0.083625585}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -19013,7 +18964,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1857403290
 RectTransform:
   m_ObjectHideFlags: 0
@@ -19031,8 +18982,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 23.5, y: 228}
-  m_SizeDelta: {x: 1675, y: 280}
+  m_AnchoredPosition: {x: 46, y: 205.5}
+  m_SizeDelta: {x: 550, y: 145}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1857403291
 MonoBehaviour:
@@ -20229,8 +20180,8 @@ SceneRoots:
   - {fileID: 5439743303823314559}
   - {fileID: 835349732}
   - {fileID: 55957625}
+  - {fileID: 1426757534}
   - {fileID: 1334558918}
   - {fileID: 2100783005}
   - {fileID: 849097761}
-  - {fileID: 1426757534}
   - {fileID: 1659646613}

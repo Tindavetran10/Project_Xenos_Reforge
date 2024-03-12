@@ -21,7 +21,7 @@ namespace Player.PlayerStates.SuperStates
         private bool _focusSwordInput;
         private bool _counterAttackInput;
 
-        protected GhostTrailController _ghostTrailController;
+        protected GhostTrailController GhostTrailController;
         
         protected PlayerGroundedState(global::Player.PlayerStateMachine.Player player, global::Player.PlayerStateMachine.PlayerStateMachine stateMachine, 
             PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName){}
@@ -43,8 +43,8 @@ namespace Player.PlayerStates.SuperStates
         public override void Enter()
         {
             base.Enter();
-            _ghostTrailController = Player.GhostTrailController;
-            _ghostTrailController.enabled = false;
+            GhostTrailController = Player.GhostTrailController;
+            GhostTrailController.enabled = false;
             
             // When the player standing on the ground,
             // reset the number of jumps and dashes that he can make

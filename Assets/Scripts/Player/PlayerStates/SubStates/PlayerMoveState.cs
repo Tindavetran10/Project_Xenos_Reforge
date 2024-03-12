@@ -17,7 +17,7 @@ namespace Player.PlayerStates.SubStates
             // Apply a new velocity to player 
             Movement?.SetVelocityXSmoothDamp(PlayerData.movementVelocity * XInput);
             
-            _ghostTrailController.enabled = true;
+            GhostTrailController.enabled = true;
 
             if (IsExitingState) return;
             // Change the player to Idle State when the input is 0

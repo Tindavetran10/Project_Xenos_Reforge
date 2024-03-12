@@ -9,7 +9,7 @@ namespace Player.PlayerStates.SubStates
         
         public override void Enter() {
             base.Enter();
-            _ghostTrailController.enabled = false;
+            GhostTrailController.enabled = false;
             Movement?.SetVelocityX(0f);
         }
 

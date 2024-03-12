@@ -17,10 +17,7 @@ namespace UI
                 continueButton.SetActive(false);
         }
 
-        public void ContinueGame()
-        {
-            StartCoroutine(LoadScreenWithAfterEffect(1.5f));
-        }
+        public void ContinueGame() => StartCoroutine(LoadScreenWithAfterEffect(1.5f));
 
         public void NewGame()
         {
