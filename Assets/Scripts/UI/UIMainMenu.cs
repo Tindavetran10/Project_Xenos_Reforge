@@ -41,6 +41,8 @@ namespace UI
 
         private void Start()
         {
+            AudioManager.instance.Play("MainMenu");
+
             resolutions = Screen.resolutions;
             resolutionDropdown.ClearOptions();
 
