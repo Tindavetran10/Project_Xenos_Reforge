@@ -36,6 +36,7 @@ namespace UI
         {
             fadeScreen.FadeOut();
             yield return new WaitForSeconds(delay);
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             SceneManager.LoadScene(sceneName);
         }
     }

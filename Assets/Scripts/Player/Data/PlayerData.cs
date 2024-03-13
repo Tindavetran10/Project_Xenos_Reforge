@@ -9,6 +9,7 @@ namespace Player.Data
         public float movementVelocity;
         public float smoothInputSpeed;
 
+        
         [Header("Jump State")]
         public float jumpVelocity;
         public int amountOfJumps;
