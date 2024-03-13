@@ -21518,7 +21518,7 @@ PrefabInstance:
     - target: {fileID: 7132973460614558976, guid: e005ddc5c3a0c094e8deb192c36818f6, type: 3}
       propertyPath: tutorialUIs
       value: 
-      objectReference: {fileID: 1857403289}
+      objectReference: {fileID: 1941138640}
     - target: {fileID: 8508322260291220392, guid: e005ddc5c3a0c094e8deb192c36818f6, type: 3}
       propertyPath: m_Size.x
       value: 13.124676
@@ -21543,6 +21543,11 @@ PrefabInstance:
 --- !u!4 &1941138639 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5340686563793319850, guid: e005ddc5c3a0c094e8deb192c36818f6, type: 3}
+  m_PrefabInstance: {fileID: 1941138638}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1941138640 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5165716195757748519, guid: e005ddc5c3a0c094e8deb192c36818f6, type: 3}
   m_PrefabInstance: {fileID: 1941138638}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1967437713
