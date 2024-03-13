@@ -3508,9 +3508,6 @@ MonoBehaviour:
   volumeTextValue: {fileID: 1374178307}
   volumeSlider: {fileID: 740654610}
   defaultVolume: 1
-  brightnessSlider: {fileID: 0}
-  brightnessTextValue: {fileID: 0}
-  defaultBrightness: 1
 --- !u!1 &548880339
 GameObject:
   m_ObjectHideFlags: 0
