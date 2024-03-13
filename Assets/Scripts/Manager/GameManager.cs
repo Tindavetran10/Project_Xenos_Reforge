@@ -37,7 +37,8 @@ namespace Manager
             checkpoints = FindObjectsByType<Checkpoint>(FindObjectsSortMode.InstanceID);
             
             // Get the player's transform
-            _player = PlayerManager.Instance.player.transform;
+            //_player = PlayerManager.Instance.player.transform;
+            _player = PlayerManager.GetInstance().player.transform;
         }
 
         // Restart the current scene
@@ -81,7 +82,7 @@ namespace Manager
         // Save game data to the provided GameData object
         public void SaveData(ref GameData data)
         {
-            data.playerHealth = PlayerManager.Instance.playerHealth;
+            data.playerHealth = PlayerManager.GetInstance().playerHealth;
             data.playerPosition = _player.position;
             
             // Find the closest checkpoint and save its ID

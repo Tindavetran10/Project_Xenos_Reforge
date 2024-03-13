@@ -1,7 +1,7 @@
-using System.Collections;
 using _Scripts.Player.Input;
 using Manager;
 using Player.Data;
+using Player.GhostTrail_Effect;
 using Player.PlayerStates.SubStates;
 using UnityEngine;
 
@@ -12,7 +12,7 @@ namespace Player.PlayerStateMachine
         #region State Variables
         // By declaring the state machine, we can access all the function
         // including changing or initializing different states
-        public PlayerStateMachine StateMachine { get; private set; }
+        private PlayerStateMachine StateMachine { get; set; }
         
         public PlayerIdleState IdleState { get; private set; }
         public PlayerMoveState MoveState { get; private set; }
@@ -41,8 +41,9 @@ namespace Player.PlayerStateMachine
         public Transform DashDirectionIndicator { get; private set; }
         #endregion
         
-        #region Other Variables
+        #region Others
         private Vector2 _workspace;
+        public GhostTrailController GhostTrailController { get; private set; }
         public SkillManager Skill { get; private set; }
         #endregion
 
@@ -83,6 +84,9 @@ namespace Player.PlayerStateMachine
             InputHandler = GetComponent<PlayerInputHandler>();
             DashDirectionIndicator = transform.Find("DashDirectionIndicator");
             MovementCollider2D = GetComponent<CapsuleCollider2D>();
+            
+            GhostTrailController = GetComponent<GhostTrailController>();
+            
             StateMachine.Initialize(IdleState);
         }
 

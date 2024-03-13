@@ -78,7 +78,6 @@ namespace Player.PlayerStateMachine
           public virtual void SetFlipActive(){}
           public virtual void SetFlipInactive(){}
           public virtual void AttackTrigger(){}
-          
           #endregion
      }
 }

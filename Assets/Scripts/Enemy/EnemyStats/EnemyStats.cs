@@ -30,7 +30,7 @@ namespace Enemy.EnemyStats
             
             // From the Entity
             _enemy.Die();
-            PlayerManager.Instance.currency += soulDropAmount.GetValue();
+            PlayerManager.GetInstance().currency += soulDropAmount.GetValue();
         }
 
         protected override void Stun()

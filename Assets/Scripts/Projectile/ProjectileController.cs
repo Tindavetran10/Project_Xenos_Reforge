@@ -1,3 +1,4 @@
+using HitStop;
 using StatSystem;
 using UnityEngine;
 
@@ -14,8 +15,12 @@ namespace Projectile
         [SerializeField] private bool canMove;
         [SerializeField] private bool flipped;
 
+        private HitStopController _hitStopController;
+        [SerializeField] private float hitStopDuration;
         private CharacterStats _characterStats;
         
+        private void Start() => _hitStopController = HitStopController.Instance;
+
         private void Update()
         {
             if(canMove)
@@ -30,30 +35,34 @@ namespace Projectile
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
+            // Decide if the projectile should interact with the game object it collided with base on the layer
             if (collision.gameObject.layer == LayerMask.NameToLayer(targetLayerName))
             {
+                // If the projectile collided with a character, do damage and apply hit stop
                 _characterStats.DoDamage(collision.GetComponentInChildren<CharacterStats>());
-                ProjectileInteraction(collision);
+                _hitStopController.HitStop(hitStopDuration);
+                ProjectileInteraction();
             }
             else if(collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
-                ProjectileInteraction(collision);
+                ProjectileInteraction();
         }
-
-        private void ProjectileInteraction(Component collision)
+        
+        private void ProjectileInteraction()
         {
             GetComponent<CapsuleCollider2D>().enabled = false;
             canMove = false;
             rb.isKinematic = true;
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
-            transform.parent = collision.transform;
             
             Destroy(gameObject);
         }
 
         public void FlipProjectile()
         {
+            // If the projectile is already flipped, return
             if(flipped) return;
 
+            // Flip the projectile and change the target layer
             xVelocity *= -1;
             flipped = true;
             transform.Rotate(0, 180, 0);

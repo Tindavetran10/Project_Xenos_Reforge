@@ -1,9 +1,11 @@
 using System;
 using System.Linq;
 using Enemy.EnemyStats;
+using HitStop;
 using Player.Data;
 using Player.PlayerStates.SuperStates;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Player.PlayerStates.SubStates
 {
@@ -15,12 +17,17 @@ namespace Player.PlayerStates.SubStates
         private static readonly int Counter = Animator.StringToHash("comboCounter");
         #endregion
         
+        private HitStopController _hitStopController;
+        
         public PlayerPrimaryAttackState(global::Player.PlayerStateMachine.Player player, global::Player.PlayerStateMachine.PlayerStateMachine stateMachine, 
             PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName) {}
         
         public override void Enter()
         {
             base.Enter();
+            
+            _hitStopController = HitStopController.Instance;
+            
             IsHolding = false;
             StartTime = Time.time;
             Player.InputHandler.UseAttackInput();
@@ -55,8 +62,10 @@ namespace Player.PlayerStates.SubStates
         {
             base.AnimationCancelTrigger();
 
+            // Check if any input is pressed during the animation
             foreach (var combatInput in Enum.GetValues(typeof(CombatInputs)).Cast<CombatInputs>())
             {
+                // If any input is pressed, cancel the animation
                 if (Player.InputHandler.NormalAttackInputs[(int)combatInput] ||
                     Player.InputHandler.NormInputX == 1 || Player.InputHandler.NormInputX == -1 ||
                     Player.InputHandler.JumpInput ||
@@ -103,17 +112,34 @@ namespace Player.PlayerStates.SubStates
             Offset.Set(playerPosition.x + PlayerData.hitBox[ComboCounter].center.x * Movement.FacingDirection,
                 playerPosition.y + PlayerData.hitBox[ComboCounter].center.y);
             
-            Collider2D[] collider2Ds = Physics2D.OverlapBoxAll(Offset, PlayerData.hitBox[ComboCounter].size, 
+            var collider2Ds = Physics2D.OverlapBoxAll(Offset, PlayerData.hitBox[ComboCounter].size, 
                 0f, PlayerData.whatIsEnemy);
 
             foreach (var hit in collider2Ds)
             {
                 if (hit.GetComponent<Enemy.EnemyStateMachine.Enemy>() != null)
                 {
+                    HitParticle(hit);
+
+                    // Do damage to the enemy stats
                     var target = hit.GetComponentInChildren<EnemyStats>();
                     Player.Stats.DoDamage(target);
+                    
+                    // Activate HitStop Effect
+                    _hitStopController.HitStop(PlayerData.hitStopDuration);
                 }
             }
         }
+
+        private void HitParticle(Component hit)
+        {
+            // Instantiate the hit particle
+            var hitParticleInstance = Object.Instantiate(PlayerData.hitParticle, hit.transform.position 
+                + new Vector3(0f,0.15f,0f), Quaternion.identity);
+            
+            // Destroy the hit particle after 0.5f
+            Object.Destroy(hitParticleInstance, 0.19f);
+        }
+
     }
 }

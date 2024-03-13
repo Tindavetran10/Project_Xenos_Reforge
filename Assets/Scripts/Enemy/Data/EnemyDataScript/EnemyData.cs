@@ -13,5 +13,7 @@ namespace Enemy.Data.EnemyDataScript
         public LayerMask whatIsPlayer;
         
         public Rect[] hitBox;
+        
+        public float hitStopDuration;
     }
 }

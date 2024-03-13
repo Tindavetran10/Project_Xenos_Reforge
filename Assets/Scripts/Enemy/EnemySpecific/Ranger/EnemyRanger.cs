@@ -1,4 +1,5 @@
 using Enemy.EnemyState.StateData;
+using HitStop;
 using UnityEngine;
 
 namespace Enemy.EnemySpecific.Ranger
@@ -43,7 +44,7 @@ namespace Enemy.EnemySpecific.Ranger
         protected override void Start()
         {
             base.Start();
-
+            HitStopController = HitStopController.Instance;
             StateMachine.Initialize(IdleState);
         }
 

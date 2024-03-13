@@ -30,13 +30,14 @@ MonoBehaviour:
   dashVelocity: 10
   drag: 10
   dashEndYMultiplier: 0.25
-  distBetweenAfterImages: 0.5
   crouchMovementVelocity: 1
   crouchColliderHeight: 0.31
   standColliderHeight: 0.63
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 64
+  hitParticle: {fileID: 1863761919128430433, guid: 9c8a5fa9197e6f940b84fd965e7236ae, type: 3}
+  hitStopDuration: 0.1
   comboWindow: 1
   numberOfAttacks: 3
   attackVelocity:
@@ -63,5 +64,10 @@ MonoBehaviour:
     y: -0.34
     width: 1.16
     height: 0.72
-  focusSwordDuration: 10
+  focusSwordHitBox:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 5
+    height: 1
   counterAttackDuration: 0.08

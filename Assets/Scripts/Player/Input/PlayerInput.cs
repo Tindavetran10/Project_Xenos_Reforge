@@ -130,7 +130,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""name"": ""FocusSwordMousePos"",
                     ""type"": ""Value"",
                     ""id"": ""194ce9ff-24e4-4160-8b83-c5ba2435d1a0"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""expectedControlType"": ""Vector3"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
@@ -368,23 +368,23 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""9daffda3-0b23-445b-bc83-820b649181f5"",
-                    ""path"": ""<Mouse>/position"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""FocusSwordMousePos"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""8297f5ba-0438-42da-9ace-faa621e84a67"",
                     ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""FocusSwordMouseClick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d71d5bb6-28e0-48f0-9f40-fe15af5f9f41"",
+                    ""path"": ""<TrackedDevice>/devicePosition"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FocusSwordMousePos"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }

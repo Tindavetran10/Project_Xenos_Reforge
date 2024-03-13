@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf6d2d4811ea4ee09298abfd59241c72, type: 3}
   m_Name: RoninData
   m_EditorClassIdentifier: 
-  agroDistance: 1.5
-  closeRangeActionDistance: 0.45
-  hitParticle: {fileID: 0}
+  agroDistance: 2.5
+  closeRangeActionDistance: 0.5
+  hitParticle: {fileID: 6295126450887491221, guid: fd83a35383a0bd04d9cb5978676eed01, type: 3}
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 128
@@ -34,3 +34,4 @@ MonoBehaviour:
     y: -0.2
     width: 0.64
     height: 0.5
+  hitStopDuration: 0.1

@@ -1,5 +1,6 @@
 using Enemy.EnemyState.StateData;
 using Enemy.Intermediaries;
+using HitStop;
 using UnityEngine;
 
 namespace Enemy.EnemySpecific.Ronin
@@ -14,7 +15,7 @@ namespace Enemy.EnemySpecific.Ronin
         public EnemyRoninLookForPlayerState LookForPlayerState { get; private set; }
         public EnemyRoninMeleeAttackState MeleeAttackState { get; private set; }
         private EnemyRoninStunState StunState { get; set; }
-        public EnemyRoninDeathState DeathState { get; set; }
+        public EnemyRoninDeathState DeathState { get; private set; }
         #endregion
         
         #region Enemy Data
@@ -44,11 +45,12 @@ namespace Enemy.EnemySpecific.Ronin
         protected override void Start()
         {
             base.Start();
-
-            GetComponent<EnemyAnimationToStateMachine>();
+            GetComponent<EnemyAnimationToStateMachine>(); 
+            HitStopController = HitStopController.Instance;
             StateMachine.Initialize(IdleState);
         }
 
+        // Only for testing purposes
         protected override void Update()
         {
             base.Update();

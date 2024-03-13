@@ -71,12 +71,13 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 4096
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -89,6 +90,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -101,6 +103,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -663,32 +666,32 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      High Stairs Tileset_12: 365401299
-      High Stairs Tileset_2: -1429289187
-      High Stairs Tileset_1: 1026347561
-      High Stairs Tileset_22: 454935044
-      High Stairs Tileset_15: 549432922
-      High Stairs Tileset_6: 901505489
-      High Stairs Tileset_11: -938375294
-      High Stairs Tileset_7: 585191425
-      High Stairs Tileset_5: -615856866
-      High Stairs Tileset_10: 1914470781
-      High Stairs Tileset_19: -1003200657
-      High Stairs Tileset_16: -88151949
-      High Stairs Tileset_8: -458870391
-      High Stairs Tileset_14: -1193852647
-      High Stairs Tileset_24: -150767185
-      High Stairs Tileset_3: -501836606
-      High Stairs Tileset_17: 1297701426
       High Stairs Tileset_0: 317554194
-      High Stairs Tileset_4: -79278287
-      High Stairs Tileset_9: -1232367765
+      High Stairs Tileset_1: 1026347561
+      High Stairs Tileset_10: 1914470781
+      High Stairs Tileset_11: -938375294
+      High Stairs Tileset_12: 365401299
       High Stairs Tileset_13: -1871566132
-      High Stairs Tileset_20: 382324713
-      High Stairs Tileset_23: -616784056
-      High Stairs Tileset_25: 2005627913
-      High Stairs Tileset_21: 1777516637
+      High Stairs Tileset_14: -1193852647
+      High Stairs Tileset_15: 549432922
+      High Stairs Tileset_16: -88151949
+      High Stairs Tileset_17: 1297701426
       High Stairs Tileset_18: -879651940
+      High Stairs Tileset_19: -1003200657
+      High Stairs Tileset_2: -1429289187
+      High Stairs Tileset_20: 382324713
+      High Stairs Tileset_21: 1777516637
+      High Stairs Tileset_22: 454935044
+      High Stairs Tileset_23: -616784056
+      High Stairs Tileset_24: -150767185
+      High Stairs Tileset_25: 2005627913
+      High Stairs Tileset_3: -501836606
+      High Stairs Tileset_4: -79278287
+      High Stairs Tileset_5: -615856866
+      High Stairs Tileset_6: 901505489
+      High Stairs Tileset_7: 585191425
+      High Stairs Tileset_8: -458870391
+      High Stairs Tileset_9: -1232367765
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
