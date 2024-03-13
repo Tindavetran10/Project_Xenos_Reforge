@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: RoninIdleData
   m_EditorClassIdentifier: 
   minIdleTime: 1
-  maxIdleTime: 1.1
+  maxIdleTime: 1.01

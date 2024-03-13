@@ -28,15 +28,9 @@ public class ShowTutorialUI : MonoBehaviour
                 StartCoroutine(SlowDownGame());
             }
             // If the player press parry button, continue the game
-            else if(ContinueForParryTutorial())
-            {
-                Time.timeScale = 1;
-            }
+            else if(ContinueForParryTutorial()) Time.timeScale = 1;
         }
     }
-    
-    
-    
     
     private bool ContinueForParryTutorial() => _player.InputHandler.CounterInput;
     

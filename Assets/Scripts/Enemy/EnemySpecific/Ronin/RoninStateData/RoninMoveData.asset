@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54da746d4e5546e4983c99c4b24a8525, type: 3}
   m_Name: RoninMoveData
   m_EditorClassIdentifier: 
-  movementSpeed: 1
+  movementSpeed: 1.5
   minMoveTime: 1
-  maxMoveTime: 2
+  maxMoveTime: 1.5
