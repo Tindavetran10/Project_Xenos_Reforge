@@ -27,6 +27,9 @@ namespace Enemy.EnemyState.SuperState
             IsDetectingLedge = CollisionSenses.LedgeVertical;
             IsDetectingWall = CollisionSenses.WallFront;
             IsGrounded = CollisionSenses.Ground;
+
+            IsAttacked = EnemyBase.isAttacked;
+            IsGetAttackedTimeOver = EnemyBase.isGetAttackedTimeOver;
             
             PerformCloseRangeAction = EnemyBase.CheckPlayerInCloseRangeAction();
             PerformLongRangeAction = EnemyBase.CheckPlayerInAgroRange();

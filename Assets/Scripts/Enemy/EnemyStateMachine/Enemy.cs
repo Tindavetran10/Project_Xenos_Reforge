@@ -5,6 +5,7 @@ using Manager;
 using Player.PlayerStats;
 using Projectile;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Enemy.EnemyStateMachine
 {
@@ -44,6 +45,9 @@ namespace Enemy.EnemyStateMachine
         public float attackCoolDown;
         #endregion
 
+        public bool isAttacked;
+        public bool isGetAttackedTimeOver;
+        
         protected HitStopController HitStopController;
         private Transform _player;
         

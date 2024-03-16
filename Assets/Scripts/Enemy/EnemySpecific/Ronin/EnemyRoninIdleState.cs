@@ -16,7 +16,7 @@ namespace Enemy.EnemySpecific.Ronin
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-            if (IsPlayerInAgroRange && !IsDetectingLedge)
+            if (PerformLongRangeAction && !IsDetectingLedge)
             {
                 Movement?.Flip();
                 StateMachine.ChangeState(_enemyRonin.MoveState);
