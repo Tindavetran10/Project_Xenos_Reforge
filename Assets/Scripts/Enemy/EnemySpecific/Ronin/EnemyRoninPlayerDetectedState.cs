@@ -19,7 +19,7 @@ namespace Enemy.EnemySpecific.Ronin
                 StateMachine.ChangeState(_enemyRonin.MeleeAttackState);
             else if (PerformLongRangeAction && !IsDetectingWall)
                 StateMachine.ChangeState(_enemyRonin.ChargeState);
-            else if (!IsPlayerInAgroRange)
+            else if (!PerformLongRangeAction)
                 StateMachine.ChangeState(_enemyRonin.LookForPlayerState);
             else if (!IsDetectingLedge)
             {

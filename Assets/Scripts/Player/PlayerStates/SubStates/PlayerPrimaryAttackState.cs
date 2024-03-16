@@ -117,13 +117,15 @@ namespace Player.PlayerStates.SubStates
 
             foreach (var hit in collider2Ds)
             {
-                if (hit.GetComponent<Enemy.EnemyStateMachine.Enemy>() != null)
+                var enemyComponent = hit.GetComponent<Enemy.EnemyStateMachine.Enemy>();
+                if (enemyComponent != null)
                 {
                     HitParticle(hit);
-
+                    
                     // Do damage to the enemy stats
                     var target = hit.GetComponentInChildren<EnemyStats>();
-                    Player.Stats.DoDamage(target);
+                    if(target!=null)
+                        Player.Stats.DoDamage(target);
                     
                     // Activate HitStop Effect
                     _hitStopController.HitStop(PlayerData.hitStopDuration);

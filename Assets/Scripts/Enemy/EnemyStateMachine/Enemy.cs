@@ -45,7 +45,6 @@ namespace Enemy.EnemyStateMachine
         #endregion
 
         protected HitStopController HitStopController;
-        
         private Transform _player;
         
         protected override void Awake() {
@@ -70,11 +69,13 @@ namespace Enemy.EnemyStateMachine
         
         public void BattleStateFlipControl()
         {
-            if (_player.position.x > transform.position.x && Movement.FacingDirection == -1)
-                Movement.Flip();
-            else if (_player.position.x < transform.position.x && Movement.FacingDirection == 1)
-                Movement.Flip();
+            // Determine if the player is to the left (-1) or right (1) of the enemy
+            var playerDirectionRelativeToEnemy = _player.position.x > transform.position.x ? 1 : -1;
+
+            // If the player is on the opposite side of the enemy's facing direction, flip the enemy
+            if (playerDirectionRelativeToEnemy != Movement.FacingDirection) Movement.Flip();
         }
+
 
         #region Animator Function
         public void AttackTrigger()
@@ -84,13 +85,15 @@ namespace Enemy.EnemyStateMachine
             
             foreach (var hit in collider2Ds)
             {
-                if(hit.GetComponent<Player.PlayerStateMachine.Player>() != null)
+                var playerComponent = hit.GetComponent<Player.PlayerStateMachine.Player>();
+                if(playerComponent != null)
                 {
                     HitParticle(hit);
 
                     // Do damage to the player stats
                     var target = hit.GetComponentInChildren<PlayerStats>();
-                    Stats.DoDamage(target);
+                    if(target != null)
+                        Stats.DoDamage(target);
                     
                     // Activate HitStop Effect
                     HitStopController.HitStop(enemyData.hitStopDuration);

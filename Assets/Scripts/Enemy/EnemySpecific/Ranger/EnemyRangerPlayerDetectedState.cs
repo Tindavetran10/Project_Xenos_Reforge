@@ -24,7 +24,7 @@ namespace Enemy.EnemySpecific.Ranger
             }
             else if(PerformLongRangeAction && !CanAttack())
                 StateMachine.ChangeState(_enemyRanger.RangedAttackState);
-            else if (!IsPlayerInAgroRange) StateMachine.ChangeState(_enemyRanger.LookForPlayerState);
+            else if (!PerformLongRangeAction) StateMachine.ChangeState(_enemyRanger.LookForPlayerState);
         }
 
         private bool CanAttack()

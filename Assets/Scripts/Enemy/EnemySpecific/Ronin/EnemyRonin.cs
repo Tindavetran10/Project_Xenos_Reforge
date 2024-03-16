@@ -15,6 +15,7 @@ namespace Enemy.EnemySpecific.Ronin
         public EnemyRoninLookForPlayerState LookForPlayerState { get; private set; }
         public EnemyRoninMeleeAttackState MeleeAttackState { get; private set; }
         private EnemyRoninStunState StunState { get; set; }
+        public EnemyRoninGetAttackedState GetAttackedState { get; private set; }
         public EnemyRoninDeathState DeathState { get; private set; }
         #endregion
         
@@ -27,6 +28,7 @@ namespace Enemy.EnemySpecific.Ronin
         [SerializeField] protected D_LookForPlayerState lookForPlayerStateData;
         [SerializeField] protected D_MeleeAttackState meleeAttackStateData;
         [SerializeField] protected D_StunState stunStateData;
+        [SerializeField] protected D_GetAttacked getAttackedStateData;
         #endregion
         
         protected override void Awake()
@@ -39,12 +41,14 @@ namespace Enemy.EnemySpecific.Ronin
             LookForPlayerState = new EnemyRoninLookForPlayerState(this, StateMachine, "lookForPlayer", lookForPlayerStateData, this);
             MeleeAttackState = new EnemyRoninMeleeAttackState(this, StateMachine, "meleeAttack", meleeAttackStateData, this);
             StunState = new EnemyRoninStunState(this, StateMachine, "stun", stunStateData, this);
+            GetAttackedState = new EnemyRoninGetAttackedState(this, StateMachine, "getAttacked", getAttackedStateData, this);
             DeathState = new EnemyRoninDeathState(this, StateMachine, "die", this);
         }
         
         protected override void Start()
         {
             base.Start();
+            
             GetComponent<EnemyAnimationToStateMachine>(); 
             HitStopController = HitStopController.Instance;
             StateMachine.Initialize(IdleState);
@@ -55,7 +59,7 @@ namespace Enemy.EnemySpecific.Ronin
         {
             base.Update();
             if(Input.GetKeyDown(KeyCode.U))
-                StateMachine.ChangeState(StunState);
+                StateMachine.ChangeState(GetAttackedState);
         }
 
         public override bool CanBeStunned()

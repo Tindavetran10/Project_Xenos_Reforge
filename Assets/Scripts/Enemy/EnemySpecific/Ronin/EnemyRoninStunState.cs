@@ -19,7 +19,7 @@ namespace Enemy.EnemySpecific.Ronin
             {
                 if(PerformCloseRangeAction)
                     StateMachine.ChangeState(_enemyRonin.MeleeAttackState);
-                else if(IsPlayerInAgroRange)
+                else if(PerformLongRangeAction)
                     StateMachine.ChangeState(_enemyRonin.ChargeState);
                 else if(EnemyBase.Stats.IsDead)
                     StateMachine.ChangeState(_enemyRonin.DeathState);

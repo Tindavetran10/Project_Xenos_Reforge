@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fd46c4317d1433ca4a52d0327c50487, type: 3}
   m_Name: RoninMeleeAttackStateData
   m_EditorClassIdentifier: 
-  comboTotal: 0
+  comboTotal: 2

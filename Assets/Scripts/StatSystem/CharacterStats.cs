@@ -29,7 +29,7 @@ namespace StatSystem
         public Stat lastPoiseReset;
         
         public Action OnHealthChanged;
-
+        
         public bool IsDead { get; private set; }
         public bool IsStunned { get; set; }
 

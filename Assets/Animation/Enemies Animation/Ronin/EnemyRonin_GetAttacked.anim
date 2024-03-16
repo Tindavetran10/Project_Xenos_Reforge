@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: EnemyRonin_GetHit
+  m_Name: EnemyRonin_GetAttacked
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -24,22 +24,22 @@ AnimationClip:
       value: {fileID: -1337475381, guid: cdc5a10af155f5c40a75b8a0430bae50, type: 3}
     - time: 0.06666667
       value: {fileID: -2011166283, guid: cdc5a10af155f5c40a75b8a0430bae50, type: 3}
-    - time: 0.13333334
+    - time: 0.11666667
       value: {fileID: 1364692891, guid: cdc5a10af155f5c40a75b8a0430bae50, type: 3}
-    - time: 0.2
+    - time: 0.18333334
       value: {fileID: 457886283, guid: cdc5a10af155f5c40a75b8a0430bae50, type: 3}
-    - time: 0.26666668
+    - time: 0.21666667
       value: {fileID: -701772719, guid: cdc5a10af155f5c40a75b8a0430bae50, type: 3}
-    - time: 0.33333334
+    - time: 0.26666668
       value: {fileID: -42145084, guid: cdc5a10af155f5c40a75b8a0430bae50, type: 3}
-    - time: 0.4
+    - time: 0.33333334
       value: {fileID: -1580241327, guid: cdc5a10af155f5c40a75b8a0430bae50, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
     flags: 2
-  m_SampleRate: 15
+  m_SampleRate: 60
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -68,7 +68,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.46666667
+    m_StopTime: 0.35000002
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
