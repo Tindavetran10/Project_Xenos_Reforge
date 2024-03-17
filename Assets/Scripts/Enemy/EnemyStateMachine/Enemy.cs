@@ -13,7 +13,8 @@ namespace Enemy.EnemyStateMachine
         #region Components
         [Header("Enemy Data")]
         public EnemyData enemyData;
-        protected EnemyStateMachine StateMachine;
+
+        public EnemyStateMachine StateMachine;
         #endregion
         
         #region Ranged Attack Properties
@@ -145,6 +146,8 @@ namespace Enemy.EnemyStateMachine
             return false;
         }
         #endregion
+        
+        public virtual bool ChangeGetAttackedState() => Stats.IsAttacked;
 
         #region KnockBack Function
         public void DamageImpact() => StartCoroutine(nameof(HitKnockBack));

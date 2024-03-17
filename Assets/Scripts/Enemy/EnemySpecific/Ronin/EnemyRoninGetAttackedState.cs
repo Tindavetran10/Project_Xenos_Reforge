@@ -16,11 +16,21 @@ namespace Enemy.EnemySpecific.Ronin
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-            if(!PerformLongRangeAction) 
-                StateMachine.ChangeState(_enemyRonin.LookForPlayerState);
-            else if(PerformLongRangeAction)
-                StateMachine.ChangeState(_enemyRonin.PlayerDetectedState);
-            else StateMachine.ChangeState(_enemyRonin.IdleState);
+            if (IsGetAttackedTimeOver)
+            {
+                if(PerformCloseRangeAction)
+                    StateMachine.ChangeState(_enemyRonin.MeleeAttackState);
+                else if(PerformLongRangeAction)
+                    StateMachine.ChangeState(_enemyRonin.ChargeState);
+                else if(EnemyBase.Stats.IsDead)
+                    StateMachine.ChangeState(_enemyRonin.DeathState);
+                else
+                {
+                    _enemyRonin.LookForPlayerState.SetTurnImmediately(true);
+                    StateMachine.ChangeState(_enemyRonin.LookForPlayerState);
+                }
+                
+            }
             
         }
     }

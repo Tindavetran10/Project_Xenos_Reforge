@@ -38,6 +38,12 @@ namespace Enemy.EnemyStats
             base.Stun();
             _enemy.TryCloseCounterAttackWindow();
         }
+
+        protected override void Attacked()
+        {
+            base.Attacked();
+            _enemy.ChangeGetAttackedState();
+        }
     }
 }
 

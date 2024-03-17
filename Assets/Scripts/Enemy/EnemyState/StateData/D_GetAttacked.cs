@@ -6,5 +6,9 @@ namespace Enemy.EnemyState.StateData
     public class D_GetAttacked : ScriptableObject
     {
         public float getAttackedTime;
+        
+        public float getAttackedKnockbackTime = 0.2f;
+        public float getAttackedKnockbackSpeed = 20f;
+        public Vector2 getAttackedKnockbackAngle;
     }
 }
