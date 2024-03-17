@@ -30,13 +30,14 @@ namespace StatSystem
         public Stat lastPoiseReset;
         #endregion
         
+        // Used to change the health bar value
         public Action OnHealthChanged;
         
         public bool IsDead { get; private set; }
         public bool IsStunned { get; set; }
         public bool IsAttacked { get; set; }
 
-        protected bool IsInvincible { get; private set; }
+        private bool IsInvincible { get; set; }
         
         [SerializeField] public int currentHealth;
         [SerializeField] public int currentPoise;
@@ -77,7 +78,6 @@ namespace StatSystem
             DecreaseHealthBy(damageAmount);
             DecreasePoiseBy(damageAmount);
             
-            
             if(!IsInvincible)
             {
                 _fx.StartCoroutine("FlashFX");
@@ -87,23 +87,31 @@ namespace StatSystem
             if (currentHealth <= 0 && !IsDead) Die();
             if (currentPoise <= 0) Stun();
         }
+        protected virtual void Stun() => IsStunned = true;
+        protected virtual void Attacked() => IsAttacked = true;
+
+        #region Main Calculations for Health and Poise
+        private int CalculateAdjustedAmount(int amount) => 
+            IsInvincible ? 0 : Mathf.RoundToInt(amount * 1.1f);
 
         private void DecreaseHealthBy(int damageAmount)
         {
-            damageAmount = !IsInvincible ? Mathf.RoundToInt(damageAmount * 1.1f) : 0;
-            currentHealth -= damageAmount;
-            OnHealthChanged?.Invoke();
+            var adjustedHealth = CalculateAdjustedAmount(damageAmount);
+            
+            if (adjustedHealth > 0)
+            {
+                currentHealth -= adjustedHealth;
+                OnHealthChanged?.Invoke();
+            }
         }
         
         private void DecreasePoiseBy(int poiseAmount)
         {
-            poiseAmount = !IsInvincible ? Mathf.RoundToInt(poiseAmount * 1.1f) : 0;
-            currentPoise -= poiseAmount;
+            var adjustedPoise = CalculateAdjustedAmount(poiseAmount);
+            if (adjustedPoise > 0) currentPoise -= adjustedPoise;
         }
+        #endregion
         
-        protected virtual void Stun() => IsStunned = true;
-        protected virtual void Attacked() => IsAttacked = true;
-
         #region Make an Entity Die
         protected virtual void Die() => IsDead = true;
 
@@ -114,7 +122,7 @@ namespace StatSystem
         }
         #endregion
         
-        // No need to care for now
+        // No need to care if we finish the inventory system
         #region Stat Calculations
         private static int CheckTargetArmor(CharacterStats targetStats, int totalDamage)
         {

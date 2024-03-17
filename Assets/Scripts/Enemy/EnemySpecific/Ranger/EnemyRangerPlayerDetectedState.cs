@@ -22,9 +22,12 @@ namespace Enemy.EnemySpecific.Ranger
                     StateMachine.ChangeState(_enemyRanger.DodgeState);
                 else if(!CanAttack()) StateMachine.ChangeState(_enemyRanger.RangedAttackState);
             }
-            else if(PerformLongRangeAction && !CanAttack())
-                StateMachine.ChangeState(_enemyRanger.RangedAttackState);
-            else if (!PerformLongRangeAction) StateMachine.ChangeState(_enemyRanger.LookForPlayerState);
+            else switch (PerformLongRangeAction)
+            {
+                case true when !CanAttack():
+                    StateMachine.ChangeState(_enemyRanger.RangedAttackState); break;
+                case false: StateMachine.ChangeState(_enemyRanger.LookForPlayerState); break;
+            }
         }
 
         private bool CanAttack()

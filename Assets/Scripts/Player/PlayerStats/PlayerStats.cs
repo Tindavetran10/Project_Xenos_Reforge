@@ -11,17 +11,7 @@ namespace Player.PlayerStats
             base.Start();
             _player = GetComponentInParent<Player.PlayerStateMachine.Player>();
         }
-
-        protected override void TakeDamage(int damageAmount)
-        {
-            base.TakeDamage(damageAmount);
-            if(IsInvincible)
-                return;
-            
-            //_player.DamageImpact();
-        }
         
-
         protected override void Die()
         {
             base.Die();

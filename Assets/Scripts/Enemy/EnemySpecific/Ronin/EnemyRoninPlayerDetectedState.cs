@@ -15,16 +15,25 @@ namespace Enemy.EnemySpecific.Ronin
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-            if (PerformCloseRangeAction)
-                StateMachine.ChangeState(_enemyRonin.MeleeAttackState);
-            else if (PerformLongRangeAction && !IsDetectingWall)
-                StateMachine.ChangeState(_enemyRonin.ChargeState);
-            else if (!PerformLongRangeAction)
-                StateMachine.ChangeState(_enemyRonin.LookForPlayerState);
-            else if (!IsDetectingLedge)
+            switch (PerformLongRangeAction)
             {
-                Movement?.Flip();
-                StateMachine.ChangeState(_enemyRonin.MoveState);
+                case false:
+                    StateMachine.ChangeState(_enemyRonin.LookForPlayerState);
+                    break;
+                case true when !IsDetectingWall:
+                    StateMachine.ChangeState(_enemyRonin.ChargeState);
+                    break;
+                default:
+                {
+                    if (PerformCloseRangeAction)
+                        StateMachine.ChangeState(_enemyRonin.MeleeAttackState);
+                    else if (!IsDetectingLedge)
+                    {
+                        Movement?.Flip();
+                        StateMachine.ChangeState(_enemyRonin.MoveState);
+                    }
+                    break;
+                }
             }
         }
     }

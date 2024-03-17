@@ -149,8 +149,18 @@ MonoBehaviour:
   evasion:
     baseValue: 0
     modifiers: 
+  maxPoiseResistance:
+    baseValue: 0
+    modifiers: 
+  poiseResetTime:
+    baseValue: 0
+    modifiers: 
+  lastPoiseReset:
+    baseValue: 0
+    modifiers: 
   currentHealth: 0
-  soulDropAmount:
+  currentPoise: 0
+  energyDropAmount:
     baseValue: 0
     modifiers: 
 --- !u!1 &3838201593175999416
@@ -378,7 +388,6 @@ MonoBehaviour:
   enemyData: {fileID: 11400000, guid: 18cea04d101bb3f4b86ce161143ec357, type: 2}
   projectileSpeed: 7
   enemyProjectile: {fileID: 1847536841587570730, guid: d92138e9a08efbd45a23e0c84ffda344, type: 3}
-  canBeStunned: 0
   counterImage: {fileID: 7318371381478718878}
   knockBackDirection: {x: 0, y: 0}
   knockBackDuration: 0
@@ -392,6 +401,7 @@ MonoBehaviour:
   stunStateData: {fileID: 11400000, guid: 7ef4aed535fd7394c980aa7775c6136b, type: 2}
   rangedAttackStateData: {fileID: 11400000, guid: 62c2a5a659037da49accfc6cf39b8162, type: 2}
   dodgeStateData: {fileID: 11400000, guid: 4d55837419595f74f905c6877b268c2c, type: 2}
+  getAttackedStateData: {fileID: 11400000, guid: 2890e6f9221ef514b9e25397858abc05, type: 2}
 --- !u!114 &4722988909138325090
 MonoBehaviour:
   m_ObjectHideFlags: 0

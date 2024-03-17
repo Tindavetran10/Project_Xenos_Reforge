@@ -108,27 +108,29 @@ namespace Player.PlayerStates.SubStates
 
             var playerTransform = Player.attackPosition.transform;
             var playerPosition = playerTransform.position;
+            var hitBoxCenter = PlayerData.hitBox[ComboCounter].center;
+            var hitBoxSize = PlayerData.hitBox[ComboCounter].size;
 
-            Offset.Set(playerPosition.x + PlayerData.hitBox[ComboCounter].center.x * Movement.FacingDirection,
-                playerPosition.y + PlayerData.hitBox[ComboCounter].center.y);
+            var offset = new Vector2(playerPosition.x + hitBoxCenter.x * Movement.FacingDirection,
+                playerPosition.y + hitBoxCenter.y);
             
-            var collider2Ds = Physics2D.OverlapBoxAll(Offset, PlayerData.hitBox[ComboCounter].size, 
-                0f, PlayerData.whatIsEnemy);
+            var collider2Ds = Physics2D.OverlapBoxAll(offset, hitBoxSize, 0f, PlayerData.whatIsEnemy); 
 
-            foreach (var hit in collider2Ds)
+            foreach (var hit in collider2Ds) ProcessHit(hit);
+        }
+
+        private void ProcessHit(Component hit)
+        {
+            var enemyComponent = hit.GetComponent<Enemy.EnemyStateMachine.Enemy>();
+            if(enemyComponent == null) return;
+            
+            HitParticle(hit);
+            
+            var target = hit.GetComponentInChildren<EnemyStats>();
+            if(target!=null)
             {
-                var enemyComponent = hit.GetComponent<Enemy.EnemyStateMachine.Enemy>();
-                if (enemyComponent != null)
-                {
-                    HitParticle(hit);
-                    // Do damage to the enemy stats
-                    var target = hit.GetComponentInChildren<EnemyStats>();
-                    if(target!=null)
-                        Player.Stats.DoDamage(target);
-                    
-                    // Activate HitStop Effect
-                    _hitStopController.HitStop(PlayerData.hitStopDuration);
-                }
+                Player.Stats.DoDamage(target);
+                _hitStopController.HitStop(PlayerData.hitStopDuration);
             }
         }
 

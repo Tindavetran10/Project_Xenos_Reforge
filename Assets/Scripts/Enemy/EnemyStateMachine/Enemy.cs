@@ -13,8 +13,7 @@ namespace Enemy.EnemyStateMachine
         #region Components
         [Header("Enemy Data")]
         public EnemyData enemyData;
-
-        public EnemyStateMachine StateMachine;
+        protected EnemyStateMachine StateMachine;
         #endregion
         
         #region Ranged Attack Properties
@@ -24,8 +23,7 @@ namespace Enemy.EnemyStateMachine
         #endregion
 
         #region Counter and Stunned Mechanic
-        private bool canBeStunned;
-        public bool CanBeStunned => canBeStunned;
+        private bool CanBeStunned { get; set; }
         [SerializeField] public GameObject counterImage;
         #endregion
         
@@ -42,6 +40,7 @@ namespace Enemy.EnemyStateMachine
         #endregion
 
         #region Attack Cooldown
+        [Space][Header("Attack Cooldown Mechanics")] 
         [HideInInspector] public float lastTimeAttacked;
         public float attackCoolDown;
         #endregion
@@ -84,22 +83,21 @@ namespace Enemy.EnemyStateMachine
         {
             // Check if the player is in range
             var collider2Ds = Physics2D.OverlapCircleAll(attackPosition.position, enemyData.hitBox.Length);
-            
-            foreach (var hit in collider2Ds)
-            {
-                var playerComponent = hit.GetComponent<Player.PlayerStateMachine.Player>();
-                if(playerComponent != null)
-                {
-                    HitParticle(hit);
+            foreach (var hit in collider2Ds) ProcessHit(hit);
+        }
 
-                    // Do damage to the player stats
-                    var target = hit.GetComponentInChildren<PlayerStats>();
-                    if(target != null)
-                        Stats.DoDamage(target);
-                    
-                    // Activate HitStop Effect
-                    HitStopController.HitStop(enemyData.hitStopDuration);
-                }
+        private void ProcessHit(Component hit)
+        {
+            var playerComponent = hit.GetComponent<Player.PlayerStateMachine.Player>();
+            if(playerComponent == null) return;
+            
+            HitParticle(hit);
+            
+            var target = hit.GetComponentInChildren<PlayerStats>();
+            if(target!=null)
+            {
+                Stats.DoDamage(target);
+                HitStopController.HitStop(enemyData.hitStopDuration);
             }
         }
 
@@ -130,7 +128,7 @@ namespace Enemy.EnemyStateMachine
 
         private void SetCanBeStunned(bool state)
         {
-            canBeStunned = state;
+            CanBeStunned = state;
             counterImage.SetActive(state);
         }
         public void OpenCounterAttackWindow() => SetCanBeStunned(true);
@@ -138,7 +136,7 @@ namespace Enemy.EnemyStateMachine
 
         public virtual bool TryCloseCounterAttackWindow()
         {
-            if (canBeStunned)
+            if (CanBeStunned)
             {
                 CloseCounterAttackWindow();
                 return true;

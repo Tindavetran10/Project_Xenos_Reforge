@@ -93,7 +93,7 @@ namespace Enemy.EnemySpecific.Ronin
             }
             
             foreach (var item in enemyData.hitBox) 
-                Gizmos.DrawWireCube(attackPosition.transform.position + (Vector3)item.center, item.size);
+                Gizmos.DrawWireSphere(attackPosition.transform.position + (Vector3)item.center, item.size.x);
         }
 
         
