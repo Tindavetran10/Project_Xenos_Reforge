@@ -170,17 +170,15 @@ namespace Enemy.EnemyStateMachine
 
         private void CheckKnockBackDirection()
         {
-            //if the rb is static then return
+            // Early return if the Rigidbody is static, as it cannot be moved.
             if (Rb.bodyType == RigidbodyType2D.Static) return;
-            // Check player and enemy position to determine knockback direction
-            if(_player.position.x < transform.position.x && Movement.FacingDirection == 1)
-                Rb.velocity = new Vector2(knockBackDirection.x  * Movement.FacingDirection, knockBackDirection.y);
-            else if(_player.position.x < transform.position.x && Movement.FacingDirection == -1)
-                Rb.velocity = new Vector2(knockBackDirection.x  * -Movement.FacingDirection, knockBackDirection.y);
-            else if(_player.position.x > transform.position.x && Movement.FacingDirection == 1) 
-                Rb.velocity = new Vector2(knockBackDirection.x  * -Movement.FacingDirection, knockBackDirection.y);
-            else if (_player.position.x > transform.position.x && Movement.FacingDirection == -1)
-                Rb.velocity = new Vector2(knockBackDirection.x  * Movement.FacingDirection, knockBackDirection.y);
+
+            // Determine if the player is on the left (-1) or right (1) of the enemy
+            var playerDirectionRelativeToEnemy = _player.position.x < transform.position.x ? -1 : 1;
+
+            // Apply knockback in the opposite direction of where the player is relative to the enemy
+            Rb.velocity = new Vector2(knockBackDirection.x * -playerDirectionRelativeToEnemy, knockBackDirection.y);
+
         }
         #endregion
         
