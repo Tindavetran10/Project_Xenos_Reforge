@@ -6,6 +6,8 @@ namespace Enemy.EnemyState.SubState
 {
     public class GetAttackedState : BattleState
     {
+        protected bool IsGetAttackedTimeOver;
+        
         private readonly D_GetAttacked _stateData;
         
         protected GetAttackedState(EnemyStateMachine.Enemy enemyBase, EnemyStateMachine.EnemyStateMachine stateMachine,
@@ -17,7 +19,6 @@ namespace Enemy.EnemyState.SubState
         {
             base.Enter();
             IsGetAttackedTimeOver = false;
-            IsAttacked = true;
         }
 
         public override void LogicUpdate()
@@ -26,13 +27,6 @@ namespace Enemy.EnemyState.SubState
             if (Time.time >= StartTime + _stateData.getAttackedTime) 
                 IsGetAttackedTimeOver = true;
             
-            if(IsGetAttackedTimeOver) IsAttacked = false;
-        }
-
-        public override void Exit()
-        {
-            base.Exit();
-            IsAttacked = false;
         }
     }
 }

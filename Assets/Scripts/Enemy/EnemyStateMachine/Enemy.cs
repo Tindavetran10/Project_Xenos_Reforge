@@ -5,7 +5,6 @@ using Manager;
 using Player.PlayerStats;
 using Projectile;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Enemy.EnemyStateMachine
 {
@@ -24,7 +23,8 @@ namespace Enemy.EnemyStateMachine
         #endregion
 
         #region Counter and Stunned Mechanic
-        [HideInInspector] public bool canBeStunned;
+        private bool canBeStunned;
+        public bool CanBeStunned => canBeStunned;
         [SerializeField] public GameObject counterImage;
         #endregion
         
@@ -44,9 +44,6 @@ namespace Enemy.EnemyStateMachine
         [HideInInspector] public float lastTimeAttacked;
         public float attackCoolDown;
         #endregion
-
-        public bool isAttacked;
-        public bool isGetAttackedTimeOver;
         
         protected HitStopController HitStopController;
         private Transform _player;
@@ -129,19 +126,16 @@ namespace Enemy.EnemyStateMachine
         #endregion
         
         #region CounterAttack Window
-        public void OpenCounterAttackWindow()
-        {
-            canBeStunned = true;
-            counterImage.SetActive(true);
-        }
 
-        public void CloseCounterAttackWindow()
+        private void SetCanBeStunned(bool state)
         {
-            canBeStunned = false;
-            counterImage.SetActive(false);
+            canBeStunned = state;
+            counterImage.SetActive(state);
         }
+        public void OpenCounterAttackWindow() => SetCanBeStunned(true);
+        public void CloseCounterAttackWindow() => SetCanBeStunned(false);
 
-        public virtual bool CanBeStunned()
+        public virtual bool TryCloseCounterAttackWindow()
         {
             if (canBeStunned)
             {

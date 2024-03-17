@@ -14,8 +14,6 @@ namespace Enemy.EnemyState.SuperState
         protected int _comboCounter;
         protected int _comboWindow;
         
-        protected bool IsAttacked;
-        protected bool IsGetAttackedTimeOver;
         
         protected static readonly int ComboCounter = Animator.StringToHash("comboCounter");
         protected BattleState(global::Enemy.EnemyStateMachine.Enemy enemyBase, EnemyStateMachine.EnemyStateMachine stateMachine, 
@@ -27,9 +25,6 @@ namespace Enemy.EnemyState.SuperState
             IsDetectingLedge = CollisionSenses.LedgeVertical;
             IsDetectingWall = CollisionSenses.WallFront;
             IsGrounded = CollisionSenses.Ground;
-
-            IsAttacked = EnemyBase.isAttacked;
-            IsGetAttackedTimeOver = EnemyBase.isGetAttackedTimeOver;
             
             PerformCloseRangeAction = EnemyBase.CheckPlayerInCloseRangeAction();
             PerformLongRangeAction = EnemyBase.CheckPlayerInAgroRange();

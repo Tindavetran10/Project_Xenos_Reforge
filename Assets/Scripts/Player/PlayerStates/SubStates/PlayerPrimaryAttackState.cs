@@ -121,8 +121,6 @@ namespace Player.PlayerStates.SubStates
                 if (enemyComponent != null)
                 {
                     HitParticle(hit);
-                    enemyComponent.isAttacked = !enemyComponent.isGetAttackedTimeOver;
-                    
                     // Do damage to the enemy stats
                     var target = hit.GetComponentInChildren<EnemyStats>();
                     if(target!=null)

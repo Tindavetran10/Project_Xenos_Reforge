@@ -36,7 +36,7 @@ namespace Enemy.EnemyStats
         protected override void Stun()
         {
             base.Stun();
-            _enemy.CanBeStunned();
+            _enemy.TryCloseCounterAttackWindow();
         }
     }
 }

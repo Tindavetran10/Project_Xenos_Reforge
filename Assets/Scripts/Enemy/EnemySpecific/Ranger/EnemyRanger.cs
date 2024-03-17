@@ -48,9 +48,9 @@ namespace Enemy.EnemySpecific.Ranger
             StateMachine.Initialize(IdleState);
         }
 
-        public override bool CanBeStunned()
+        public override bool TryCloseCounterAttackWindow()
         {
-            if (!base.CanBeStunned()) return false;
+            if (!base.TryCloseCounterAttackWindow()) return false;
             StateMachine.ChangeState(StunState);
             return true;
         }
