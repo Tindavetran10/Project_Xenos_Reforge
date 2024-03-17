@@ -85,9 +85,18 @@ namespace StatSystem
             }
 
             if (currentHealth <= 0 && !IsDead) Die();
-            if (currentPoise <= 0) Stun();
+            if (currentPoise <= 0)
+            {
+                StunCloseRange();
+                StunLongRange();
+            }
         }
-        protected virtual void Stun() => IsStunned = true;
+        
+        // Function to Stun the entity that has close range attack
+        protected virtual void StunCloseRange() => IsStunned = true;
+        
+        // Function to Stun the entity that has long range attack
+        protected virtual void StunLongRange() => IsStunned = true;
         protected virtual void Attacked() => IsAttacked = true;
 
         #region Main Calculations for Health and Poise

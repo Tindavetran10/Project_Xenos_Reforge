@@ -146,6 +146,7 @@ namespace Enemy.EnemyStateMachine
         #endregion
         
         public virtual bool ChangeGetAttackedState() => Stats.IsAttacked;
+        public virtual bool ChangeStunState() => Stats.IsStunned;
 
         #region KnockBack Function
         public void DamageImpact() => StartCoroutine(nameof(HitKnockBack));

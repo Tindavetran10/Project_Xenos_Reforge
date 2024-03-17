@@ -35,10 +35,16 @@ namespace Enemy.EnemyStats
             PlayerManager.GetInstance().currency += energyDropAmount.GetValue();
         }
 
-        protected override void Stun()
+        protected override void StunCloseRange()
         {
-            base.Stun();
+            base.StunCloseRange();
             _enemy.TryCloseCounterAttackWindow();
+        }
+        
+        protected override void StunLongRange()
+        {
+            base.StunLongRange();
+            _enemy.ChangeStunState();
         }
         
         protected override void Attacked()

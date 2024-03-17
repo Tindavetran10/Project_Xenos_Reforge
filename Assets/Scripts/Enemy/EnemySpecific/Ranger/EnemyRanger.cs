@@ -50,13 +50,14 @@ namespace Enemy.EnemySpecific.Ranger
             HitStopController = HitStopController.Instance;
             StateMachine.Initialize(IdleState);
         }
-
-        public override bool TryCloseCounterAttackWindow()
+        
+        public override bool ChangeStunState()
         {
-            if (!base.TryCloseCounterAttackWindow()) return false;
+            if (!base.ChangeStunState()) return false;
             StateMachine.ChangeState(StunState);
             return true;
         }
+        
         public override void Die()
         {
             base.Die();

@@ -3734,7 +3734,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6797114104800770406, guid: 72d76bd6fe11d484989b5e0c7f67b212, type: 3}
       propertyPath: maxPoiseResistance.baseValue
-      value: 150
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 7938535068231186915, guid: 72d76bd6fe11d484989b5e0c7f67b212, type: 3}
       propertyPath: m_AnchorMax.x
@@ -5558,6 +5558,11 @@ MonoBehaviour:
   skillTreeUI: {fileID: 0}
   inGameUI: {fileID: 0}
   skillToolTip: {fileID: 0}
+--- !u!1 &1373202587 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4719573184135024241, guid: d1cbc3c17c5ef0a4282b51ba830fce88, type: 3}
+  m_PrefabInstance: {fileID: 1693758287}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1412544783
 GameObject:
   m_ObjectHideFlags: 0
@@ -6872,7 +6877,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 449245017320754560, guid: d1cbc3c17c5ef0a4282b51ba830fce88, type: 3}
       propertyPath: maxHealth.baseValue
-      value: 800
+      value: 450
       objectReference: {fileID: 0}
     - target: {fileID: 449245017320754560, guid: d1cbc3c17c5ef0a4282b51ba830fce88, type: 3}
       propertyPath: poiseResetTime.baseValue
@@ -6983,13 +6988,61 @@ PrefabInstance:
     - {fileID: 8205901340128841466, guid: d1cbc3c17c5ef0a4282b51ba830fce88, type: 3}
     - {fileID: 8574769506681192672, guid: d1cbc3c17c5ef0a4282b51ba830fce88, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4719573184135024241, guid: d1cbc3c17c5ef0a4282b51ba830fce88, type: 3}
+      insertIndex: 3
+      addedObject: {fileID: 1693758289}
   m_SourcePrefab: {fileID: 100100000, guid: d1cbc3c17c5ef0a4282b51ba830fce88, type: 3}
 --- !u!4 &1693758288 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1953629075662701394, guid: d1cbc3c17c5ef0a4282b51ba830fce88, type: 3}
   m_PrefabInstance: {fileID: 1693758287}
   m_PrefabAsset: {fileID: 0}
+--- !u!61 &1693758289
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1373202587}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.025669098, y: 0.028968126}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.275}
+    oldSize: {x: 0.75, y: 0.75}
+    newSize: {x: 0.75, y: 0.75}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.2828369, y: 0.42898852}
+  m_EdgeRadius: 0
 --- !u!1 &1916801377
 GameObject:
   m_ObjectHideFlags: 0

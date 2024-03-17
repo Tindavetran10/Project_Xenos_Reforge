@@ -75,6 +75,7 @@ namespace Enemy.EnemySpecific.Ronin
             StateMachine.ChangeState(GetAttackedState);
             return true;
         }
+        
 
         public override void Die()
         {

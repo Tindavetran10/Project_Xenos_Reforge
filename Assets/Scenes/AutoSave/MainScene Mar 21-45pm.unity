@@ -3734,7 +3734,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6797114104800770406, guid: 72d76bd6fe11d484989b5e0c7f67b212, type: 3}
       propertyPath: maxPoiseResistance.baseValue
-      value: 150
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 7938535068231186915, guid: 72d76bd6fe11d484989b5e0c7f67b212, type: 3}
       propertyPath: m_AnchorMax.x
@@ -6880,7 +6880,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 449245017320754560, guid: d1cbc3c17c5ef0a4282b51ba830fce88, type: 3}
       propertyPath: maxPoiseResistance.baseValue
-      value: 200
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1449306727033440726, guid: d1cbc3c17c5ef0a4282b51ba830fce88, type: 3}
       propertyPath: m_AnchorMax.x
