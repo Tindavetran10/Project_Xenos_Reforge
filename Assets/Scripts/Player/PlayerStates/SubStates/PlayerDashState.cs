@@ -64,7 +64,7 @@ namespace Player.PlayerStates.SubStates
                 HandleDashInput();
                 
                 // Automatically make the character dash when out of the holding time
-                if(!IsHolding) PerformDash();
+                if(!IsHolding) PerformDashAutomatically();
             }
         }
         
@@ -119,7 +119,7 @@ namespace Player.PlayerStates.SubStates
         }
         
         
-        private void PerformDash()
+        private void PerformDashAutomatically()
         {
             Movement?.SetVelocity(PlayerData.dashVelocity, _dashDirection);
 
