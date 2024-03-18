@@ -91,7 +91,7 @@ namespace Enemy.EnemyStateMachine
             var playerComponent = hit.GetComponent<Player.PlayerStateMachine.Player>();
             if(playerComponent == null) return;
             
-            HitParticle(hit);
+            HitParticle(hit, enemyData.hitParticle);
             
             var target = hit.GetComponentInChildren<PlayerStats>();
             if(target!=null)
@@ -100,16 +100,7 @@ namespace Enemy.EnemyStateMachine
                 HitStopController.HitStop(enemyData.hitStopDuration);
             }
         }
-
-        private void HitParticle(Component hit)
-        {
-            // Instantiate Hit Particle
-            var hitParticleInstance = Instantiate(enemyData.hitParticle, hit.transform.position, Quaternion.identity);
-            
-            // Destroy the hit particle prefab after 0.5f
-            Destroy(hitParticleInstance, 0.5f);
-        }
-
+        
         public void RangeAttackTrigger()
         {
             var newProjectile = Instantiate(enemyProjectile, 

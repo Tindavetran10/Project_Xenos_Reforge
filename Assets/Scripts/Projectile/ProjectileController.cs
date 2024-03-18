@@ -6,7 +6,7 @@ namespace Projectile
 {
     public class ProjectileController : MonoBehaviour
     {
-        [SerializeField] private int damage;
+        //[SerializeField] private int damage;
         [SerializeField] private string targetLayerName = "Player";
 
         [SerializeField] private float xVelocity;
@@ -36,6 +36,7 @@ namespace Projectile
         {
             if(canMove)
                 rb.velocity = new Vector2(xVelocity, rb.velocity.y);
+            targetLayer = LayerMask.NameToLayer(targetLayerName);
         }
 
         public void SetUpProjectile(float speed, CharacterStats characterStats)
@@ -64,13 +65,24 @@ namespace Projectile
             else if(collisionLayer == groundLayer)
                 ProjectileInteraction();
         }
+
+        private void StopProjectileMovement()
+        {
+            if (rb != null)
+            {
+                rb.velocity = Vector2.zero;
+                rb.isKinematic = true;
+                rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            }
+        }
         
         private void ProjectileInteraction()
         {
-            projectileCollider2D.enabled = false;
+            if(projectileCollider2D != null)
+                projectileCollider2D.enabled = false;
+            
             canMove = false;
-            rb.isKinematic = true;
-            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            StopProjectileMovement();
             
             Destroy(gameObject);
         }

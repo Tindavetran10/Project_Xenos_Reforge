@@ -32,6 +32,7 @@ namespace StatSystem
         
         // Used to change the health bar value
         public Action OnHealthChanged;
+        public event Action<CharacterStats> OnDeath; 
         
         public bool IsDead { get; private set; }
         public bool IsStunned { get; set; }
@@ -122,7 +123,12 @@ namespace StatSystem
         #endregion
         
         #region Make an Entity Die
-        protected virtual void Die() => IsDead = true;
+        protected virtual void Die()
+        {
+            IsDead = true;
+            OnDeath?.Invoke(this);
+            Debug.Log($"{gameObject.name} has died.");
+        }
 
         public void KillEntity()
         {

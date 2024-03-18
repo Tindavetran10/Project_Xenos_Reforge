@@ -39,6 +39,16 @@ namespace Entity
         protected virtual void Update() {}
 
         protected virtual void FixedUpdate() {}
+
+        public void HitParticle(Component hit, GameObject data)
+        {
+            // Instantiate the hit particle
+            var hitParticleInstance = Instantiate(data, hit.transform.position 
+                                                        + new Vector3(0f,0.15f,0f), Quaternion.identity);
+            
+            // Destroy the hit particle after 0.5f
+            Destroy(hitParticleInstance, 0.19f);
+        }
         
         public virtual void Die(){}
     }

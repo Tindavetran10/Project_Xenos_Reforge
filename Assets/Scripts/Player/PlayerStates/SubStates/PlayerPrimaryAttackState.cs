@@ -124,7 +124,7 @@ namespace Player.PlayerStates.SubStates
             var enemyComponent = hit.GetComponent<Enemy.EnemyStateMachine.Enemy>();
             if(enemyComponent == null) return;
             
-            HitParticle(hit);
+            Player.HitParticle(hit, PlayerData.hitParticle);
             
             var target = hit.GetComponentInChildren<EnemyStats>();
             if(target!=null)
@@ -134,15 +134,6 @@ namespace Player.PlayerStates.SubStates
             }
         }
 
-        private void HitParticle(Component hit)
-        {
-            // Instantiate the hit particle
-            var hitParticleInstance = Object.Instantiate(PlayerData.hitParticle, hit.transform.position 
-                + new Vector3(0f,0.15f,0f), Quaternion.identity);
-            
-            // Destroy the hit particle after 0.5f
-            Object.Destroy(hitParticleInstance, 0.19f);
-        }
-
+        
     }
 }
