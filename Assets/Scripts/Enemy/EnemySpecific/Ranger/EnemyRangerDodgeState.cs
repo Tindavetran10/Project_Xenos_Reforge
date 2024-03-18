@@ -17,9 +17,9 @@ namespace Enemy.EnemySpecific.Ranger
             base.LogicUpdate();
             if (IsDodgeOver)
             {
-                if(IsPlayerInAgroRange && !PerformCloseRangeAction)
+                if(PerformLongRangeAction && !PerformCloseRangeAction)
                     StateMachine.ChangeState(_enemyRanger.RangedAttackState);
-                else if(!IsPlayerInAgroRange)
+                else if(!PerformLongRangeAction)
                     StateMachine.ChangeState(_enemyRanger.LookForPlayerState);  
             }
         }

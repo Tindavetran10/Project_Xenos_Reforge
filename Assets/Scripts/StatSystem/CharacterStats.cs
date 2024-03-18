@@ -8,7 +8,8 @@ namespace StatSystem
     public class CharacterStats : MonoBehaviour
     {
         private EntityFX _fx;
-        
+
+        #region Stat System
         [Header("Major stats")]
         public Stat strength; // 1 point increase damage and critical power by 1%
         public Stat agility; // 1 point increase evasion and critical chance by 1%
@@ -27,13 +28,16 @@ namespace StatSystem
         public Stat maxPoiseResistance;
         public Stat poiseResetTime;
         public Stat lastPoiseReset;
+        #endregion
         
+        // Used to change the health bar value
         public Action OnHealthChanged;
-
+        
         public bool IsDead { get; private set; }
         public bool IsStunned { get; set; }
+        public bool IsAttacked { get; set; }
 
-        protected bool IsInvincible { get; private set; }
+        private bool IsInvincible { get; set; }
         
         [SerializeField] public int currentHealth;
         [SerializeField] public int currentPoise;
@@ -75,28 +79,48 @@ namespace StatSystem
             DecreasePoiseBy(damageAmount);
             
             if(!IsInvincible)
+            {
                 _fx.StartCoroutine("FlashFX");
-            
+                Attacked();
+            }
+
             if (currentHealth <= 0 && !IsDead) Die();
-            if (currentPoise <= 0) Stun();
+            if (currentPoise <= 0)
+            {
+                StunCloseRange();
+                StunLongRange();
+            }
         }
+        
+        // Function to Stun the entity that has close range attack
+        protected virtual void StunCloseRange() => IsStunned = true;
+        
+        // Function to Stun the entity that has long range attack
+        protected virtual void StunLongRange() => IsStunned = true;
+        protected virtual void Attacked() => IsAttacked = true;
+
+        #region Main Calculations for Health and Poise
+        private int CalculateAdjustedAmount(int amount) => 
+            IsInvincible ? 0 : Mathf.RoundToInt(amount * 1.1f);
 
         private void DecreaseHealthBy(int damageAmount)
         {
-            damageAmount = !IsInvincible ? Mathf.RoundToInt(damageAmount * 1.1f) : 0;
-
-            currentHealth -= damageAmount;
-            OnHealthChanged?.Invoke();
+            var adjustedHealth = CalculateAdjustedAmount(damageAmount);
+            
+            if (adjustedHealth > 0)
+            {
+                currentHealth -= adjustedHealth;
+                OnHealthChanged?.Invoke();
+            }
         }
         
         private void DecreasePoiseBy(int poiseAmount)
         {
-            poiseAmount = !IsInvincible ? Mathf.RoundToInt(poiseAmount * 1.1f) : 0;
-            currentPoise -= poiseAmount;
+            var adjustedPoise = CalculateAdjustedAmount(poiseAmount);
+            if (adjustedPoise > 0) currentPoise -= adjustedPoise;
         }
+        #endregion
         
-        protected virtual void Stun() => IsStunned = true;
-
         #region Make an Entity Die
         protected virtual void Die() => IsDead = true;
 
@@ -107,6 +131,7 @@ namespace StatSystem
         }
         #endregion
         
+        // No need to care if we finish the inventory system
         #region Stat Calculations
         private static int CheckTargetArmor(CharacterStats targetStats, int totalDamage)
         {

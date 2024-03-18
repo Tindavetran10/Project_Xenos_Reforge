@@ -20,14 +20,17 @@ namespace Enemy.EnemySpecific.Ranger
             {
                 if(Time.time > _enemyRanger.DodgeState.StartTime + _enemyRanger.dodgeStateData.dodgeCooldown)
                     StateMachine.ChangeState(_enemyRanger.DodgeState);
-                else if(!CanAttack()) StateMachine.ChangeState(_enemyRanger.RangedAttackState);
+                else if(!CannotAttack()) StateMachine.ChangeState(_enemyRanger.RangedAttackState);
             }
-            else if(PerformLongRangeAction && !CanAttack())
-                StateMachine.ChangeState(_enemyRanger.RangedAttackState);
-            else if (!IsPlayerInAgroRange) StateMachine.ChangeState(_enemyRanger.LookForPlayerState);
+            else switch (PerformLongRangeAction)
+            {
+                case true when !CannotAttack():
+                    StateMachine.ChangeState(_enemyRanger.RangedAttackState); break;
+                case false: StateMachine.ChangeState(_enemyRanger.LookForPlayerState); break;
+            }
         }
 
-        private bool CanAttack()
+        private bool CannotAttack()
         {
             if (Time.time > _enemyRanger.lastTimeAttacked + _enemyRanger.attackCoolDown)
             {

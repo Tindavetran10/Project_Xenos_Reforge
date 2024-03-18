@@ -22,7 +22,7 @@ namespace Enemy.EnemySpecific.Ronin
                 StateMachine.ChangeState(_enemyRonin.LookForPlayerState);
             else if (IsChargeTimeOver)
             {
-                if(IsPlayerInAgroRange)
+                if(PerformLongRangeAction)
                     StateMachine.ChangeState(_enemyRonin.PlayerDetectedState);
                 else StateMachine.ChangeState(_enemyRonin.LookForPlayerState);
             }

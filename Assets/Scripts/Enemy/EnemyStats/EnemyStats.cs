@@ -1,26 +1,28 @@
 using Manager;
 using StatSystem;
+using UnityEngine;
 
 namespace Enemy.EnemyStats
 {
     public class EnemyStats : CharacterStats
     {
         private global::Enemy.EnemyStateMachine.Enemy _enemy;
-        public Stat soulDropAmount;
+        public Stat energyDropAmount;
         
         protected override void Start()
         {
-            soulDropAmount.SetDefaultValue(100);
-            
             base.Start();
+            energyDropAmount.SetDefaultValue(100);
+            
             _enemy = GetComponentInParent<Enemy.EnemyStateMachine.Enemy>();
         }
 
         protected override void TakeDamage(int damageAmount)
         {
             base.TakeDamage(damageAmount);
-            GetComponentInParent<Enemy.EnemyStateMachine.Enemy>().DamageImpact();
-           _enemy.DamageImpact();
+            if(_enemy!= null)
+                _enemy.DamageImpact();
+            else Debug.LogWarning("EnemyStats: _enemy is null when trying to apply damage impact.");
         }
 
         protected override void Die()
@@ -30,13 +32,25 @@ namespace Enemy.EnemyStats
             
             // From the Entity
             _enemy.Die();
-            PlayerManager.GetInstance().currency += soulDropAmount.GetValue();
+            PlayerManager.GetInstance().currency += energyDropAmount.GetValue();
         }
 
-        protected override void Stun()
+        protected override void StunCloseRange()
         {
-            base.Stun();
-            _enemy.CanBeStunned();
+            base.StunCloseRange();
+            _enemy.TryCloseCounterAttackWindow();
+        }
+        
+        protected override void StunLongRange()
+        {
+            base.StunLongRange();
+            _enemy.ChangeStunState();
+        }
+        
+        protected override void Attacked()
+        {
+            base.Attacked();
+            _enemy.ChangeGetAttackedState();
         }
     }
 }

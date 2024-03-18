@@ -23,7 +23,7 @@ namespace Enemy.EnemyStateMachine
         #endregion
 
         #region Counter and Stunned Mechanic
-        [HideInInspector] public bool canBeStunned;
+        private bool CanBeStunned { get; set; }
         [SerializeField] public GameObject counterImage;
         #endregion
         
@@ -40,12 +40,12 @@ namespace Enemy.EnemyStateMachine
         #endregion
 
         #region Attack Cooldown
+        [Space][Header("Attack Cooldown Mechanics")] 
         [HideInInspector] public float lastTimeAttacked;
         public float attackCoolDown;
         #endregion
-
-        protected HitStopController HitStopController;
         
+        protected HitStopController HitStopController;
         private Transform _player;
         
         protected override void Awake() {
@@ -70,31 +70,34 @@ namespace Enemy.EnemyStateMachine
         
         public void BattleStateFlipControl()
         {
-            if (_player.position.x > transform.position.x && Movement.FacingDirection == -1)
-                Movement.Flip();
-            else if (_player.position.x < transform.position.x && Movement.FacingDirection == 1)
-                Movement.Flip();
+            // Determine if the player is to the left (-1) or right (1) of the enemy
+            var playerDirectionRelativeToEnemy = _player.position.x > transform.position.x ? 1 : -1;
+
+            // If the player is on the opposite side of the enemy's facing direction, flip the enemy
+            if (playerDirectionRelativeToEnemy != Movement.FacingDirection) Movement.Flip();
         }
+
 
         #region Animator Function
         public void AttackTrigger()
         {
             // Check if the player is in range
             var collider2Ds = Physics2D.OverlapCircleAll(attackPosition.position, enemyData.hitBox.Length);
-            
-            foreach (var hit in collider2Ds)
-            {
-                if(hit.GetComponent<Player.PlayerStateMachine.Player>() != null)
-                {
-                    HitParticle(hit);
+            foreach (var hit in collider2Ds) ProcessHit(hit);
+        }
 
-                    // Do damage to the player stats
-                    var target = hit.GetComponentInChildren<PlayerStats>();
-                    Stats.DoDamage(target);
-                    
-                    // Activate HitStop Effect
-                    HitStopController.HitStop(enemyData.hitStopDuration);
-                }
+        private void ProcessHit(Component hit)
+        {
+            var playerComponent = hit.GetComponent<Player.PlayerStateMachine.Player>();
+            if(playerComponent == null) return;
+            
+            HitParticle(hit);
+            
+            var target = hit.GetComponentInChildren<PlayerStats>();
+            if(target!=null)
+            {
+                Stats.DoDamage(target);
+                HitStopController.HitStop(enemyData.hitStopDuration);
             }
         }
 
@@ -122,21 +125,18 @@ namespace Enemy.EnemyStateMachine
         #endregion
         
         #region CounterAttack Window
-        public void OpenCounterAttackWindow()
-        {
-            canBeStunned = true;
-            counterImage.SetActive(true);
-        }
 
-        public void CloseCounterAttackWindow()
+        private void SetCanBeStunned(bool state)
         {
-            canBeStunned = false;
-            counterImage.SetActive(false);
+            CanBeStunned = state;
+            counterImage.SetActive(state);
         }
+        public void OpenCounterAttackWindow() => SetCanBeStunned(true);
+        public void CloseCounterAttackWindow() => SetCanBeStunned(false);
 
-        public virtual bool CanBeStunned()
+        public virtual bool TryCloseCounterAttackWindow()
         {
-            if (canBeStunned)
+            if (CanBeStunned)
             {
                 CloseCounterAttackWindow();
                 return true;
@@ -144,6 +144,9 @@ namespace Enemy.EnemyStateMachine
             return false;
         }
         #endregion
+        
+        public virtual bool ChangeGetAttackedState() => Stats.IsAttacked;
+        public virtual bool ChangeStunState() => Stats.IsStunned;
 
         #region KnockBack Function
         public void DamageImpact() => StartCoroutine(nameof(HitKnockBack));
@@ -163,17 +166,15 @@ namespace Enemy.EnemyStateMachine
 
         private void CheckKnockBackDirection()
         {
-            //if the rb is static then return
+            // Early return if the Rigidbody is static, as it cannot be moved.
             if (Rb.bodyType == RigidbodyType2D.Static) return;
-            // Check player and enemy position to determine knockback direction
-            if(_player.position.x < transform.position.x && Movement.FacingDirection == 1)
-                Rb.velocity = new Vector2(knockBackDirection.x  * Movement.FacingDirection, knockBackDirection.y);
-            else if(_player.position.x < transform.position.x && Movement.FacingDirection == -1)
-                Rb.velocity = new Vector2(knockBackDirection.x  * -Movement.FacingDirection, knockBackDirection.y);
-            else if(_player.position.x > transform.position.x && Movement.FacingDirection == 1) 
-                Rb.velocity = new Vector2(knockBackDirection.x  * -Movement.FacingDirection, knockBackDirection.y);
-            else if (_player.position.x > transform.position.x && Movement.FacingDirection == -1)
-                Rb.velocity = new Vector2(knockBackDirection.x  * Movement.FacingDirection, knockBackDirection.y);
+
+            // Determine if the player is on the left (-1) or right (1) of the enemy
+            var playerDirectionRelativeToEnemy = _player.position.x < transform.position.x ? -1 : 1;
+
+            // Apply knockback in the opposite direction of where the player is relative to the enemy
+            Rb.velocity = new Vector2(knockBackDirection.x * -playerDirectionRelativeToEnemy, knockBackDirection.y);
+
         }
         #endregion
         

@@ -17,7 +17,7 @@ namespace Enemy.EnemySpecific.Ranger
             base.LogicUpdate();
             if (IsStunTimeOver)
             {
-                if(IsPlayerInAgroRange)
+                if(PerformLongRangeAction)
                     StateMachine.ChangeState(_enemyRanger.PlayerDetectedState);
                 else if(EnemyBase.Stats.IsDead)
                     StateMachine.ChangeState(_enemyRanger.DeathState);

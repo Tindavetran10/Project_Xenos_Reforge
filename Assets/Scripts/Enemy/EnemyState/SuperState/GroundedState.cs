@@ -4,10 +4,11 @@ namespace Enemy.EnemyState.SuperState
 {
     public class GroundedState : global::Enemy.EnemyStateMachine.EnemyState
     {
-        protected bool IsPlayerInAgroRange;
         protected bool IsDetectingLedge;
         protected bool IsDetectingWall;
         
+        protected bool PerformLongRangeAction;
+
         private Movement _movement;
         private CollisionSenses _collisionSenses;
         
@@ -17,9 +18,11 @@ namespace Enemy.EnemyState.SuperState
         protected override void DoChecks()
         {
             base.DoChecks();
-            IsPlayerInAgroRange = EnemyBase.CheckPlayerInAgroRange();
             IsDetectingLedge = CollisionSenses.LedgeVertical;
             IsDetectingWall = CollisionSenses.WallFront;
+            
+            EnemyBase.CheckPlayerInCloseRangeAction();
+            PerformLongRangeAction = EnemyBase.CheckPlayerInAgroRange();
         }
     }
 }

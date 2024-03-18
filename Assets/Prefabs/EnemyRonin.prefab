@@ -341,6 +341,7 @@ MonoBehaviour:
   lookForPlayerStateData: {fileID: 11400000, guid: 3e19c77ba14c8914a851a5856bd2b816, type: 2}
   meleeAttackStateData: {fileID: 11400000, guid: e01219a2be3991248ae7b25b63ff3f22, type: 2}
   stunStateData: {fileID: 11400000, guid: 4a7e572965f2ed6449cc6aad16afc57d, type: 2}
+  getAttackedStateData: {fileID: 11400000, guid: b410849299b119e479309c31c01e0fa2, type: 2}
 --- !u!114 &9017884175519967266
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -149,8 +149,18 @@ MonoBehaviour:
   evasion:
     baseValue: 0
     modifiers: 
+  maxPoiseResistance:
+    baseValue: 0
+    modifiers: 
+  poiseResetTime:
+    baseValue: 0
+    modifiers: 
+  lastPoiseReset:
+    baseValue: 0
+    modifiers: 
   currentHealth: 0
-  soulDropAmount:
+  currentPoise: 0
+  energyDropAmount:
     baseValue: 0
     modifiers: 
 --- !u!1 &3838201593175999416
@@ -195,6 +205,7 @@ GameObject:
   - component: {fileID: 1953629075662701394}
   - component: {fileID: 2184830889305301475}
   - component: {fileID: 2978250728884502623}
+  - component: {fileID: 5875327519038019605}
   - component: {fileID: 7983805379921350770}
   - component: {fileID: 6113694608111919682}
   - component: {fileID: 4223666032094539201}
@@ -314,6 +325,51 @@ CapsuleCollider2D:
   m_Offset: {x: 0.025988579, y: 0.017149687}
   m_Size: {x: 0.28220558, y: 0.44679976}
   m_Direction: 0
+--- !u!61 &5875327519038019605
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4719573184135024241}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.025669098, y: 0.028968126}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.275}
+    oldSize: {x: 0.75, y: 0.75}
+    newSize: {x: 0.75, y: 0.75}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.2828369, y: 0.42898852}
+  m_EdgeRadius: 0
 --- !u!50 &7983805379921350770
 Rigidbody2D:
   serializedVersion: 4
@@ -378,7 +434,6 @@ MonoBehaviour:
   enemyData: {fileID: 11400000, guid: 18cea04d101bb3f4b86ce161143ec357, type: 2}
   projectileSpeed: 7
   enemyProjectile: {fileID: 1847536841587570730, guid: d92138e9a08efbd45a23e0c84ffda344, type: 3}
-  canBeStunned: 0
   counterImage: {fileID: 7318371381478718878}
   knockBackDirection: {x: 0, y: 0}
   knockBackDuration: 0
@@ -392,6 +447,7 @@ MonoBehaviour:
   stunStateData: {fileID: 11400000, guid: 7ef4aed535fd7394c980aa7775c6136b, type: 2}
   rangedAttackStateData: {fileID: 11400000, guid: 62c2a5a659037da49accfc6cf39b8162, type: 2}
   dodgeStateData: {fileID: 11400000, guid: 4d55837419595f74f905c6877b268c2c, type: 2}
+  getAttackedStateData: {fileID: 11400000, guid: 2890e6f9221ef514b9e25397858abc05, type: 2}
 --- !u!114 &4722988909138325090
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -50,7 +50,7 @@ namespace Player.PlayerStates.SubStates
                     
                     if (hit.GetComponent<Enemy.EnemyStateMachine.Enemy>() != null)
                     {
-                        if(hit.GetComponent<Enemy.EnemyStateMachine.Enemy>().CanBeStunned())
+                        if(hit.GetComponent<Enemy.EnemyStateMachine.Enemy>().TryCloseCounterAttackWindow())
                             SuccessfulCounterAttack(); 
                     }
                 }
