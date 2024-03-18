@@ -58,6 +58,13 @@ namespace Enemy.EnemySpecific.Ranger
             return true;
         }
         
+        public override bool ChangeGetAttackedState()
+        {
+            if (!base.ChangeGetAttackedState()) return false;
+            StateMachine.ChangeState(GetAttackedState);
+            return true;
+        }
+        
         public override void Die()
         {
             base.Die();
