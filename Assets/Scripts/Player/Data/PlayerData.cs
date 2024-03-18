@@ -37,6 +37,7 @@ namespace Player.Data
         public float dashVelocity;
         public float drag;
         public float dashEndYMultiplier;
+        public float dashCoolDown;
 
         [Header("Crouch State")]
         public float crouchMovementVelocity;

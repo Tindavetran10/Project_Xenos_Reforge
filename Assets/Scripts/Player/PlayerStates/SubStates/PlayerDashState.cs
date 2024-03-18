@@ -6,6 +6,10 @@ namespace Player.PlayerStates.SubStates
 {
     public class PlayerDashState : PlayerAbilityState
     {
+        private bool CanDash { get; set; }
+        
+        private float lastDashTime;
+        
         private bool _dashInputStop;
         private Vector2 _dashDirection;
         private Vector2 _dashDirectionInput;
@@ -19,6 +23,8 @@ namespace Player.PlayerStates.SubStates
         public override void Enter()
         {
             base.Enter();
+
+            CanDash = false;
             
             Player.Stats.MakeInvincible(true);
             
@@ -98,13 +104,22 @@ namespace Player.PlayerStates.SubStates
                     Movement?.SetVelocity(PlayerData.dashVelocity, _dashDirection);
                     
                     // After the amount of Dash Time, stop the player
-                    if (!(Time.time >= StartTime + PlayerData.dashTime)) return;
-                    Player.Rb.drag = 0f;
-                    IsAbilityDone = true;
-                    
-                    Player.Stats.MakeInvincible(true);
+                    if (Time.time >= StartTime + PlayerData.dashTime)
+                    {
+                        Player.Rb.drag = 0f;
+                        IsAbilityDone = true;
+                        lastDashTime = Time.time;
+
+                        Player.Stats.MakeInvincible(true);
+                    }
                 }
             }
         }
+        
+        public bool CheckIfCanDash() {
+            return CanDash && Time.time >= lastDashTime + PlayerData.dashCoolDown;
+        }
+
+        public void ResetCanDash() => CanDash = true;
     }
 }

@@ -49,6 +49,7 @@ namespace Player.PlayerStates.SuperStates
             // When the player standing on the ground,
             // reset the number of jumps and dashes that he can make
             Player.JumpState.ResetAmountOfJumpsLeft();
+            Player.DashState.ResetCanDash();
         }
 
         public override void LogicUpdate()
@@ -92,7 +93,7 @@ namespace Player.PlayerStates.SuperStates
                 StateMachine.ChangeState(Player.InAirState);
             }
             // Change to Dash State if there is dashInput and the dash has been cooled down
-            else if (_dashInput && !IsTouchingCeiling)
+            else if (_dashInput && Player.DashState.CheckIfCanDash() && !IsTouchingCeiling)
                 StateMachine.ChangeState(Player.DashState);
         }
     }
