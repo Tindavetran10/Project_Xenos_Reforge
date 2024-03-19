@@ -11,6 +11,7 @@ namespace UI
         [SerializeField] private GameObject endText;
         [SerializeField] private GameObject winText;
         [SerializeField] private GameObject restartButton;
+        
         [Space]
         
         [SerializeField] private GameObject skillTreeUI;

@@ -30,7 +30,7 @@ MonoBehaviour:
   dashVelocity: 10
   drag: 10
   dashEndYMultiplier: 0.25
-  dashCoolDown: 1
+  dashCoolDown: 0.5
   crouchMovementVelocity: 1
   crouchColliderHeight: 0.31
   standColliderHeight: 0.63

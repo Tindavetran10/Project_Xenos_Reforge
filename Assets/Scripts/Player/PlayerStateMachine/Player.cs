@@ -3,6 +3,7 @@ using Manager;
 using Player.Data;
 using Player.GhostTrail_Effect;
 using Player.PlayerStates.SubStates;
+using UnityEditorInternal;
 using UnityEngine;
 
 namespace Player.PlayerStateMachine
@@ -75,7 +76,7 @@ namespace Player.PlayerStateMachine
             AimSwordState = new PlayerAimSwordState(this, StateMachine, playerData, "aimSword");
             FocusSwordState = new PlayerFocusSwordState(this, StateMachine, playerData, "focusSword");
         }
-
+        
         protected override void Start()
         {
             base.Start();
