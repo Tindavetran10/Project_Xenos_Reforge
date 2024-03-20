@@ -231,10 +231,6 @@ MonoBehaviour:
     m_ActionName: Gameplay/Dash[/Keyboard/shift]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: f906c3fe-223b-4592-b2c8-1d80a7f906c4
-    m_ActionName: Gameplay/Pause[/Keyboard/tab]
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: 70a58268-18a6-45a6-999c-87cacc566f8b
     m_ActionName: Gameplay/DashDirection[/Mouse/position]
   - m_PersistentCalls:
@@ -273,42 +269,6 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: c86b39fa-1fc0-41e7-8798-eb91c2270aeb
     m_ActionName: UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 70e2c610-c547-4bbf-8070-fa58a3509d8e
-    m_ActionName: UI/Submit[/Keyboard/enter]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 9fc85e92-3522-4ac6-a465-a2afb65fe765
-    m_ActionName: UI/Cancel[/Keyboard/escape]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 25c36bd7-9cce-4574-b476-bf4701a11dd1
-    m_ActionName: UI/Point[/Mouse/position]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: c94d6d01-bc38-4b49-adb6-dde70fca8b17
-    m_ActionName: UI/Click[/Mouse/leftButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 6cd2f5f7-40bc-4dc8-81af-51b520274f03
-    m_ActionName: UI/ScrollWheel[/Mouse/scroll]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 0b3392f5-dc1b-474d-9224-1bb993c0c212
-    m_ActionName: UI/MiddleClick[/Mouse/middleButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 7930f5ba-2910-42ed-b5a1-19d6598c8c61
-    m_ActionName: UI/RightClick[/Mouse/rightButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: aab8c633-161e-4692-8472-99ba3c5d156c
-    m_ActionName: UI/TrackedDevicePosition
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: c695d786-4840-4b84-bb9f-5f597a0430fd
-    m_ActionName: UI/TrackedDeviceOrientation
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay

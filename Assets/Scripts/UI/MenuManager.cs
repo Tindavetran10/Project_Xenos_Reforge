@@ -1,5 +1,4 @@
 using System.Collections;
-using _Scripts.Player.Input;
 using Manager;
 using UnityEngine;
 
@@ -35,13 +34,13 @@ namespace UI
         {
             _player = PlayerManager.GetInstance().player;
             
-            SwitchTo(skillTreeUI);
+            //SwitchTo(skillTreeUI);
             //fadeScreen.gameObject.SetActive(true);
         }
 
         private void Start()
         {
-            SwitchTo(inGameUI);
+            //SwitchTo(inGameUI);
         }
         
         public void SwitchTo(GameObject menu)
