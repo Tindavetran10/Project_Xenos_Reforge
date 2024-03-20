@@ -282,9 +282,31 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""6e8d5dcb-25af-4e64-95e4-131dced047b9"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""id"": ""229b377e-2e57-4c44-9a3d-0df1e534e8cc"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": ""Press(pressPoint=1.5,behavior=2)"",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""NormalAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9827aab2-87f4-4aa7-ac67-715c6bd65be8"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": ""Press(behavior=2)"",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""NormalAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d8520807-f502-41eb-be82-b41538006f86"",
+                    ""path"": ""<Keyboard>/j"",
+                    ""interactions"": ""Press(behavior=2)"",
                     ""processors"": """",
                     ""groups"": ""KeyboardMouse"",
                     ""action"": ""NormalAttack"",
@@ -315,23 +337,23 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""81267fba-db40-4afd-ab9d-387e09d31570"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""CounterAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""a028b6d7-ee0e-4864-98bd-60de0d209c3e"",
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KeyboardMouse"",
                     ""action"": ""AimSword"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""f1ec7618-5cf0-4dac-9298-c089ca787024"",
-                    ""path"": ""<Keyboard>/f"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""KeyboardMouse"",
-                    ""action"": ""FocusSword"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -373,9 +395,20 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""id"": ""b8f01521-66e9-43e6-a4c4-bef64f6daf06"",
                     ""path"": ""<Gamepad>/leftStick"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""StickDeadzone"",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f1ec7618-5cf0-4dac-9298-c089ca787024"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""FocusSword"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
