@@ -1,33 +1,51 @@
 using System.Collections;
+using _Scripts.Player.Input;
 using Manager;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace UI
 {
-    public class UI : MonoBehaviour
+    public class MenuManager : MonoBehaviour
     {
+        private bool menuInput;
+        
+        [SerializeField] private GameObject mainMenuFirst;
+        
         [Header("End screen")]
         [SerializeField] private UIFadeScreen fadeScreen;
         [SerializeField] private GameObject endText;
         [SerializeField] private GameObject winText;
         [SerializeField] private GameObject restartButton;
+
+        [Space] 
         
-        [Space]
-        
+        [SerializeField] private GameObject inventoryUI;
         [SerializeField] private GameObject skillTreeUI;
+        [SerializeField] private GameObject mapUI;
+        [SerializeField] private GameObject craftUI;
+        [SerializeField] private GameObject settingsUI;
         [SerializeField] private GameObject inGameUI;
         
         public UISkillToolTip skillToolTip;
+
+        private Player.PlayerStateMachine.Player _player;
         
         // we need this to assign events on skill tree slots before we assign events on skill scripts
         private void Awake()
         {
+            _player = PlayerManager.GetInstance().player;
+            //menuInput = PlayerInputHandler.GetInstance().MenuInput;
+            
             SwitchTo(skillTreeUI);
             //fadeScreen.gameObject.SetActive(true);
         }
 
-        private void Start() => SwitchTo(inGameUI);
-
+        private void Start()
+        {
+            SwitchTo(inGameUI);
+        }
+        
         public void SwitchTo(GameObject menu)
         {
             // Register every child object and switch it off by default
@@ -57,6 +75,7 @@ namespace UI
 
             SwitchTo(menu);
         }
+        
 
         private void CheckForInGameUI()
         {
@@ -66,16 +85,25 @@ namespace UI
                     && transform.GetChild(i).GetComponent<UIFadeScreen>() == null)
                     return;
             }
-
             SwitchTo(inGameUI);
         }
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.K))
+            /*if (Input.GetKeyDown(KeyCode.K))
                 SwitchWithKeyTo(skillTreeUI);
-            else if (Input.GetKeyDown(KeyCode.Escape)) 
-                SwitchWithKeyTo(inGameUI);
+            else if (Input.GetKeyDown(KeyCode.I))
+                SwitchWithKeyTo(inventoryUI);
+            else if (Input.GetKeyDown(KeyCode.M))
+                SwitchWithKeyTo(mapUI);
+            else if (Input.GetKeyDown(KeyCode.C))
+                SwitchWithKeyTo(craftUI);
+            else if (Input.GetKeyDown(KeyCode.O))
+                SwitchWithKeyTo(settingsUI);*/
+
+            if (menuInput)
+                settingsUI.SetActive(true);
+                
         }
 
         public void SwitchOnEndScreen()

@@ -5,7 +5,7 @@ namespace Manager
 {
     public class PlayerManager : MonoBehaviour, ISaveManager
     {
-        public static PlayerManager Instance;
+        private static PlayerManager _instance;
         public Player.PlayerStateMachine.Player player;
 
         public int currency;
@@ -15,7 +15,7 @@ namespace Manager
         private void Awake()
         {
             // Check if an instance already exists
-            if (Instance != null && Instance != this)
+            if (_instance != null && _instance != this)
             {
                 // If so, destroy this instance
                 Destroy(gameObject);
@@ -23,14 +23,14 @@ namespace Manager
             }
 
             // Set the instance to this object
-            Instance = this;
+            _instance = this;
 
             // Make sure this object persists between scenes
             DontDestroyOnLoad(gameObject);
         }
         
         // Method to get the instance
-        public static PlayerManager GetInstance() => Instance;
+        public static PlayerManager GetInstance() => _instance;
 
         public bool HaveEnoughSoul(int price)
         {
