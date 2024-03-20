@@ -4593,7 +4593,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &571214208
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9842,31 +9842,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6900757262804847941, guid: d3c59ee5e474a7d41b505da6b5ae51bf, type: 3}
       propertyPath: m_ActionEvents.Array.size
-      value: 14
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 6900757262804847941, guid: d3c59ee5e474a7d41b505da6b5ae51bf, type: 3}
       propertyPath: m_ActionEvents.Array.data[11].m_ActionId
       value: b81e8179-9177-411a-a2b6-9205de1d5cc4
       objectReference: {fileID: 0}
     - target: {fileID: 6900757262804847941, guid: d3c59ee5e474a7d41b505da6b5ae51bf, type: 3}
-      propertyPath: m_ActionEvents.Array.data[12].m_ActionId
-      value: c585e348-a1e1-4019-af95-848c6487b2bf
-      objectReference: {fileID: 0}
-    - target: {fileID: 6900757262804847941, guid: d3c59ee5e474a7d41b505da6b5ae51bf, type: 3}
-      propertyPath: m_ActionEvents.Array.data[13].m_ActionId
-      value: c86b39fa-1fc0-41e7-8798-eb91c2270aeb
-      objectReference: {fileID: 0}
-    - target: {fileID: 6900757262804847941, guid: d3c59ee5e474a7d41b505da6b5ae51bf, type: 3}
       propertyPath: m_ActionEvents.Array.data[11].m_ActionName
       value: Gameplay/FocusSword[/Keyboard/f]
-      objectReference: {fileID: 0}
-    - target: {fileID: 6900757262804847941, guid: d3c59ee5e474a7d41b505da6b5ae51bf, type: 3}
-      propertyPath: m_ActionEvents.Array.data[12].m_ActionName
-      value: Gameplay/Menu[/Keyboard/escape]
-      objectReference: {fileID: 0}
-    - target: {fileID: 6900757262804847941, guid: d3c59ee5e474a7d41b505da6b5ae51bf, type: 3}
-      propertyPath: m_ActionEvents.Array.data[13].m_ActionName
-      value: UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
       objectReference: {fileID: 0}
     - target: {fileID: 7708792561113031817, guid: d3c59ee5e474a7d41b505da6b5ae51bf, type: 3}
       propertyPath: delay
@@ -10023,5 +10007,5 @@ SceneRoots:
   - {fileID: 2065506061}
   - {fileID: 1426757534}
   - {fileID: 2121983359}
-  - {fileID: 96422900}
   - {fileID: 1659646613}
+  - {fileID: 96422900}

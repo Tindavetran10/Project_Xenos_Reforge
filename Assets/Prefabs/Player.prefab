@@ -191,8 +191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0360412e19ec88f4782c9f17e5f308c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputGameplayHoldTime: 0
-  inputUIHoldTime: 0
+  inputHoldTime: 0.1
 --- !u!114 &6900757262804847941
 MonoBehaviour:
   m_ObjectHideFlags: 0

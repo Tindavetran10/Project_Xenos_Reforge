@@ -25,7 +25,7 @@ namespace Player.PlayerStates.SubStates
             _aimSwordInputStop = Player.InputHandler.AimSwordInputStop;
             
             ThrowSlash();
-            Movement?.SetVelocityX(1f * Movement.FacingDirection);
+            Movement?.SetVelocityX(2f * Movement.FacingDirection);
         }
 
         public override void LogicUpdate()
