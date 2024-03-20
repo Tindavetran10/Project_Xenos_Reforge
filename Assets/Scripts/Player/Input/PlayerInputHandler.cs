@@ -37,7 +37,6 @@ namespace _Scripts.Player.Input
         public bool FocusSwordInputStop { get; private set; }
         public bool FocusSwordMouseClick { get; private set; }
         
-        
         public bool CounterInput { get; private set; }
         public bool CounterInputStop { get; private set; }
         
@@ -160,8 +159,6 @@ namespace _Scripts.Player.Input
             }
             if (context.canceled) JumpInputStop = true;
         }
-
-
         
         public void OnFocusSword(InputAction.CallbackContext context)
         {
@@ -278,7 +275,6 @@ namespace _Scripts.Player.Input
         public void UseAimSwordInput() => AimSwordInput = false;
         public void UseFocusSwordInput() => FocusSwordInput = false;
         public void UseCounterInput() => CounterInput = false;
-        
     }
 }
 
