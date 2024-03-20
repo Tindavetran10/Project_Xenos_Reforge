@@ -2,7 +2,6 @@ using System.Collections;
 using _Scripts.Player.Input;
 using Manager;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 namespace UI
 {
@@ -35,7 +34,6 @@ namespace UI
         private void Awake()
         {
             _player = PlayerManager.GetInstance().player;
-            //menuInput = PlayerInputHandler.GetInstance().MenuInput;
             
             SwitchTo(skillTreeUI);
             //fadeScreen.gameObject.SetActive(true);
@@ -100,9 +98,10 @@ namespace UI
                 SwitchWithKeyTo(craftUI);
             else if (Input.GetKeyDown(KeyCode.O))
                 SwitchWithKeyTo(settingsUI);*/
+            
 
             if (menuInput)
-                settingsUI.SetActive(true);
+                mainMenuFirst.SetActive(true);
                 
         }
 
