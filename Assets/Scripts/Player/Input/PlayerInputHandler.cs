@@ -11,10 +11,6 @@ namespace _Scripts.Player.Input
         private PlayerInput _playerInput;
         private global::Player.PlayerStateMachine.Player _player;
         private Camera _cam;
-
-        // Events for handling pause and resume actions
-        public event Action OnPauseEvent;
-        public event Action OnResumeEvent;
         
         // Properties to store raw and normalized input values
         private Vector2 RawMovementInput { get; set; }
@@ -27,7 +23,6 @@ namespace _Scripts.Player.Input
         // Properties to track various input states
         public bool JumpInput { get; private set; }
         public bool JumpInputStop { get; private set; }
-        public bool GrabInput { get; private set; }
         public bool DashInput { get; private set; }
         public bool DashInputStop { get; private set; }
         
@@ -36,8 +31,8 @@ namespace _Scripts.Player.Input
         
         public bool AimSwordInput { get; private set; }
         public bool AimSwordInputStop { get; private set; }
-        
-        public Vector3 FocusSwordPositionInput { get; private set; }
+
+        private Vector3 FocusSwordPositionInput { get; set; }
         public bool FocusSwordInput { get; private set; }
         public bool FocusSwordInputStop { get; private set; }
         public bool FocusSwordMouseClick { get; private set; }
@@ -114,37 +109,7 @@ namespace _Scripts.Player.Input
             if (Time.time >= _counterInputStartTime + inputHoldTime)
                 CounterInput = false;
         }
-
-        // Enable input actions when the script is enabled
-        private void OnEnable()
-        {
-            if (_playerInput != null) return;
-
-            // Create a new instance of the PlayerInput asset
-            _playerInput = new PlayerInput();
-
-            // Set up callbacks for gameplay and UI actions
-            _playerInput.Gameplay.SetCallbacks(this);
-            _playerInput.UI.SetCallbacks(this);
-
-            // Set initial input mode to Gameplay
-            SetGameplay();
-        }
-
-        // Set input mode to Gameplay
-        private void SetGameplay()
-        {
-            _playerInput.Gameplay.Enable();
-            _playerInput.UI.Disable();
-        }
-
-        // Set input mode to UI
-        private void SetUI()
-        {
-            _playerInput.Gameplay.Disable();
-            _playerInput.UI.Enable();
-        }
-
+        
         // Callback for movement input
         public void OnMovement(InputAction.CallbackContext context)
         {
@@ -164,13 +129,6 @@ namespace _Scripts.Player.Input
                 _jumpInputStartTime = Time.time;
             }
             if (context.canceled) JumpInputStop = true;
-        }
-
-        // Callback for grab input
-        public void OnGrab(InputAction.CallbackContext context)
-        {
-            if (context.started) GrabInput = true;
-            if (context.canceled) GrabInput = false;
         }
         
         public void OnFocusSword(InputAction.CallbackContext context)
@@ -197,6 +155,7 @@ namespace _Scripts.Player.Input
             else if (context.canceled) DashInputStop = true;
         }
         
+
         // Callback for normal attack input
         public void OnNormalAttack(InputAction.CallbackContext context)
         {
@@ -252,7 +211,7 @@ namespace _Scripts.Player.Input
             if(context.started) FocusSwordMouseClick = true;
             if(context.canceled) FocusSwordMouseClick = false;
         }
-
+        
         // Callback for dash direction input
         public void OnDashDirection(InputAction.CallbackContext context)
         {
@@ -263,21 +222,15 @@ namespace _Scripts.Player.Input
                 DashDirectionInput = Vector2Int.RoundToInt(RawDashDirectionInput.normalized);
             }
         }
-
-        // Callback for pause input
-        public void OnPause(InputAction.CallbackContext context)
+        
+        public void OnMenu(InputAction.CallbackContext context)
         {
-            if (context.phase != InputActionPhase.Performed) return;
-            OnPauseEvent?.Invoke();
-            SetUI();
+            throw new NotImplementedException();
         }
-
-        // Callback for resume input
-        public void OnResume(InputAction.CallbackContext context)
+        
+        public void OnNavigate(InputAction.CallbackContext context)
         {
-            if (context.phase != InputActionPhase.Performed) return;
-            OnResumeEvent?.Invoke();
-            SetGameplay();
+            throw new NotImplementedException();
         }
 
         // Utility method to consume jump input
@@ -289,6 +242,7 @@ namespace _Scripts.Player.Input
         public void UseAimSwordInput() => AimSwordInput = false;
         public void UseFocusSwordInput() => FocusSwordInput = false;
         public void UseCounterInput() => CounterInput = false;
+        
     }
 }
 
