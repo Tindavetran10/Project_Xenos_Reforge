@@ -9,7 +9,6 @@ namespace _Scripts.Player.Input
     public class PlayerInputHandler : ScriptableObject, PlayerInput.IGameplayActions, PlayerInput.IUIActions
     {
         public Transform PlayerTransform { get; set;}
-        
         private PlayerInput _playerInput;
         private Camera _cam;
 
@@ -246,8 +245,54 @@ namespace _Scripts.Player.Input
             DashDirectionInput = Vector2Int.RoundToInt(RawDashDirectionInput.normalized);
         }
         #endregion
-        
+
+        #region UI Input
         public void OnNavigate(InputAction.CallbackContext context)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void OnSubmit(InputAction.CallbackContext context)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void OnCancel(InputAction.CallbackContext context)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void OnPoint(InputAction.CallbackContext context)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void OnClick(InputAction.CallbackContext context)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void OnScrollWheel(InputAction.CallbackContext context)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void OnMiddleClick(InputAction.CallbackContext context)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void OnRightClick(InputAction.CallbackContext context)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void OnTrackedDevicePosition(InputAction.CallbackContext context)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void OnTrackedDeviceOrientation(InputAction.CallbackContext context)
         {
             throw new NotImplementedException();
         }
@@ -269,6 +314,7 @@ namespace _Scripts.Player.Input
                 SetGameplay();
             }
         }
+        #endregion
 
         #region Use Input
         public void UseJumpInput() => JumpInput = false;

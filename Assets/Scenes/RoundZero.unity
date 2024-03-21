@@ -17694,6 +17694,68 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1953629075662701394, guid: d1cbc3c17c5ef0a4282b51ba830fce88, type: 3}
   m_PrefabInstance: {fileID: 1227916989}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1271899154
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1271899155}
+  m_Layer: 0
+  m_Name: --------------MANAGER-----------------
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1271899155
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1271899154}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 9.09765, y: -14.677785, z: -0.045543753}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1360756897
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1360756898}
+  m_Layer: 0
+  m_Name: --------------CHARACTERS-----------------
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1360756898
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1360756897}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 9.09765, y: -14.677785, z: -0.045543753}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1426757531
 GameObject:
   m_ObjectHideFlags: 0
@@ -20106,13 +20168,15 @@ SceneRoots:
   - {fileID: 868268285}
   - {fileID: 2130064666}
   - {fileID: 1899262751}
+  - {fileID: 1271899155}
   - {fileID: 1438370056}
   - {fileID: 1514338268}
+  - {fileID: 55957625}
   - {fileID: 5356939205450122130}
-  - {fileID: 1489356174}
+  - {fileID: 1360756898}
   - {fileID: 5439743303823314559}
   - {fileID: 835349732}
-  - {fileID: 55957625}
+  - {fileID: 1489356174}
   - {fileID: 2100783005}
   - {fileID: 849097761}
   - {fileID: 1426757534}
