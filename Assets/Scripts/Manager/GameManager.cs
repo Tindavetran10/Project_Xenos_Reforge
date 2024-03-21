@@ -36,6 +36,7 @@ namespace Manager
         // Called after Awake, used for initialization
         private void Start()
         {
+            AudioManager.instance.Play("InGame");
             // Find all Checkpoint objects in the scene
             checkpoints = FindObjectsByType<Checkpoint>(FindObjectsSortMode.InstanceID);
             
