@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 4232899052664523797}
   - component: {fileID: 1752484794573637887}
   - component: {fileID: 9122337023420919378}
-  - component: {fileID: 4765437048757195060}
   - component: {fileID: 6900757262804847941}
   - component: {fileID: 7849466132785042285}
   - component: {fileID: 6534914590236456289}
@@ -179,19 +178,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &4765437048757195060
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 609758280927387184}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0360412e19ec88f4782c9f17e5f308c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inputHoldTime: 0.1
 --- !u!114 &6900757262804847941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,6 +255,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: c86b39fa-1fc0-41e7-8798-eb91c2270aeb
     m_ActionName: UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 821752c9-225e-4664-b165-60619badf7ae
+    m_ActionName: UI/MenuClose[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: KeyboardMouse
   m_DefaultActionMap: Gameplay
@@ -287,6 +277,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackPosition: {fileID: 4408137957903308106}
+  playerInputHandler: {fileID: 11400000, guid: ae5a6636a828cae41b2d83556dac0a7d, type: 2}
+  playerTransform: {fileID: 2310988032342799380}
   playerData: {fileID: 11400000, guid: 1a10f74d2848e0e4cbebbd5868cfd22c, type: 2}
 --- !u!114 &6534914590236456289
 MonoBehaviour:

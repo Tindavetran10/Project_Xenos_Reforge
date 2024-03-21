@@ -19,9 +19,9 @@ namespace Player.PlayerStates.SubStates
             base.Enter();
             IsHolding = true;
             StartTime = Time.time;
-            Player.InputHandler.UseCounterInput();
+            Player.playerInputHandler.UseCounterInput();
 
-            _counterInputStop = Player.InputHandler.CounterInputStop;
+            _counterInputStop = Player.playerInputHandler.CounterInputStop;
             Player.Anim.SetBool(CounterAttack, false);
             Movement?.SetVelocityX(0f);
         }

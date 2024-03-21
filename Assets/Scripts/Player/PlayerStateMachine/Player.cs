@@ -3,7 +3,6 @@ using Manager;
 using Player.Data;
 using Player.GhostTrail_Effect;
 using Player.PlayerStates.SubStates;
-using UnityEditorInternal;
 using UnityEngine;
 
 namespace Player.PlayerStateMachine
@@ -38,7 +37,10 @@ namespace Player.PlayerStateMachine
         #endregion
 
         #region Components
-        public PlayerInputHandler InputHandler { get; private set; }
+        //public PlayerInputHandler InputHandler { get; private set; }
+        [SerializeField] public PlayerInputHandler playerInputHandler;
+        public Transform playerTransform;
+        
         public Transform DashDirectionIndicator { get; private set; }
         #endregion
         
@@ -82,7 +84,12 @@ namespace Player.PlayerStateMachine
             base.Start();
             Skill = SkillManager.Instance;
             
-            InputHandler = GetComponent<PlayerInputHandler>();
+            //playerInputHandler = GetComponent<PlayerInputHandler>();
+            
+            if(playerInputHandler != null)
+                playerInputHandler.PlayerTransform = playerTransform;
+            
+            
             DashDirectionIndicator = transform.Find("DashDirectionIndicator");
             MovementCollider2D = GetComponent<CapsuleCollider2D>();
             
@@ -98,6 +105,7 @@ namespace Player.PlayerStateMachine
             base.Update();
             Core.LogicUpdate();
             StateMachine.CurrentState.LogicUpdate();
+            playerInputHandler.CheckAllInputHoldTimes();
         }
         protected override void FixedUpdate()
         {

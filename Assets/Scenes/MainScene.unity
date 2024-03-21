@@ -3221,7 +3221,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 219389234}
-  - component: {fileID: 219389235}
   m_Layer: 0
   m_Name: InputHandler
   m_TagString: Untagged
@@ -3244,19 +3243,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 55957625}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &219389235
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 219389233}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0360412e19ec88f4782c9f17e5f308c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inputHoldTime: 0
 --- !u!1 &239872280
 GameObject:
   m_ObjectHideFlags: 0
@@ -4530,7 +4516,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AssetsPPU: 64
-  m_RefResolutionX: 633
+  m_RefResolutionX: 630
   m_RefResolutionY: 360
   m_UpscaleRT: 0
   m_PixelSnapping: 0
@@ -7934,6 +7920,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8c9f50d6d7cefc43841a42fb3491a1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerInputHandler: {fileID: 11400000, guid: ae5a6636a828cae41b2d83556dac0a7d, type: 2}
+  settingsMenu: {fileID: 571214207}
   checkpoints: []
   closestCheckpointId: 
 --- !u!4 &1438370056
