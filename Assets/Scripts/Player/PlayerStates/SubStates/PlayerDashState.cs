@@ -29,7 +29,7 @@ namespace Player.PlayerStates.SubStates
             Player.Stats.MakeInvincible(true);
             
             // Identify the dash Input
-            Player.InputHandler.UseDashInput();
+            Player.playerInputHandler.UseDashInput();
 
             // Check the player whether holding the dash input or not
             IsHolding = true;
@@ -89,8 +89,8 @@ namespace Player.PlayerStates.SubStates
         
         private void UpdateDashDirection()
         {
-            _dashDirectionInput = Player.InputHandler.DashDirectionInput;
-            _dashInputStop = Player.InputHandler.DashInputStop;
+            _dashDirectionInput = Player.playerInputHandler.DashDirectionInput;
+            _dashInputStop = Player.playerInputHandler.DashInputStop;
 
             if (_dashDirectionInput != Vector2.zero) _dashDirection = _dashDirectionInput.normalized;
                     

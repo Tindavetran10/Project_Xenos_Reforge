@@ -1,18 +1,19 @@
 using System;
-using Manager;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace _Scripts.Player.Input
 {
     // This class handles player input using the Unity Input System
-    public class PlayerInputHandler : MonoBehaviour, PlayerInput.IGameplayActions, PlayerInput.IUIActions
+    [CreateAssetMenu(menuName = "PlayerInputHandler")]
+    public class PlayerInputHandler : ScriptableObject, PlayerInput.IGameplayActions, PlayerInput.IUIActions
     {
+        public Transform PlayerTransform { get; set;}
+        
         private PlayerInput _playerInput;
-        private global::Player.PlayerStateMachine.Player _player;
         private Camera _cam;
 
-        #region Bool Input for Gameplay
+        #region BoolCheck Input for Gameplay
         private Vector2 RawMovementInput { get; set; }
         private Vector2 RawDashDirectionInput { get; set; }
         public Vector2Int DashDirectionInput { get; private set; }
@@ -40,9 +41,8 @@ namespace _Scripts.Player.Input
         public bool CounterInput { get; private set; }
         public bool CounterInputStop { get; private set; }
         #endregion
-        // Properties to store raw and normalized input values
-        
-        
+
+        #region Input Holdtime for Gameplay
         [SerializeField] private float inputHoldTime;
         private float _jumpInputStartTime;
         private float _dashInputStartTime;
@@ -50,50 +50,48 @@ namespace _Scripts.Player.Input
         private float _attackInputsStartTime;
         private float _aimSwordInputStartTime;
         private float _focusSwordInputStartTime;
+        #endregion
+
+        #region Events
+        public event Action MenuOpenEvent;
+        public event Action MenuCloseEvent; 
+        #endregion
 
         private void OnEnable()
         {
             if (_playerInput != null) return;
-
             // Create a new instance of the PlayerInput asset
             _playerInput = new PlayerInput();
 
             // Set up callbacks for gameplay and UI actions
             _playerInput.Gameplay.SetCallbacks(this);
             _playerInput.UI.SetCallbacks(this);
+            
+            var count = Enum.GetValues(typeof(CombatInputs)).Length;
+            NormalAttackInputs = new bool[count];
+            NormalAttackInputsStop = new bool[count];
+            
+            _cam = Camera.main;
 
             // Set initial input mode to Gameplay
             SetGameplay();
         }
-
-        // Set input mode to Gameplay
+        
         private void SetGameplay()
         {
             _playerInput.Gameplay.Enable();
             _playerInput.UI.Disable();
         }
-
-        // Set input mode to UI
+        
         private void SetUI()
         {
             _playerInput.Gameplay.Disable();
             _playerInput.UI.Enable();
         }
-        
-        private void Start()
+
+        #region Check for Gameplay Input
+        public void CheckAllInputHoldTimes()
         {
-            var count = Enum.GetValues(typeof(CombatInputs)).Length;
-            NormalAttackInputs = new bool[count];
-            NormalAttackInputsStop = new bool[count];
-            
-            _player = PlayerManager.GetInstance().player;
-            
-            _cam = Camera.main;
-        }
-        
-        private void Update()
-        {
-            // Check and update input hold times
             CheckJumpInputHoldTime();
             CheckDashInputHoldTime();
             CheckAttackInputsHoldTime();
@@ -101,8 +99,8 @@ namespace _Scripts.Player.Input
             CheckFocusSwordInputHoldTime();
             CheckCounterInputHoldTime();
         }
-
-        #region Check for Gameplay Input
+        
+        
         // Check if the jump input has been held for a certain duration
         private void CheckJumpInputHoldTime()
         {
@@ -230,11 +228,8 @@ namespace _Scripts.Player.Input
         }
         public void OnFocusSwordMousePos(InputAction.CallbackContext context)
         {
-            if (_player != null)
-            {
-                FocusSwordPositionInput = context.ReadValue<Vector3>();
-                FocusSwordPositionInput = _cam.ScreenToWorldPoint(FocusSwordPositionInput) - transform.position;
-            }
+            FocusSwordPositionInput = context.ReadValue<Vector3>();
+            FocusSwordPositionInput = _cam.ScreenToWorldPoint(FocusSwordPositionInput);
         }
 
         public void OnFocusSwordMouseClick(InputAction.CallbackContext context)
@@ -242,30 +237,37 @@ namespace _Scripts.Player.Input
             if(context.started) FocusSwordMouseClick = true;
             if(context.canceled) FocusSwordMouseClick = false;
         }
-
         
-
         // Callback for dash direction input
         public void OnDashDirection(InputAction.CallbackContext context)
         {
-            if (_player != null)
-            {
-                RawDashDirectionInput = context.ReadValue<Vector2>();
-                RawDashDirectionInput = _cam.ScreenToWorldPoint(RawDashDirectionInput) - transform.position;
-                DashDirectionInput = Vector2Int.RoundToInt(RawDashDirectionInput.normalized);
-            }
+            RawDashDirectionInput = context.ReadValue<Vector2>();
+            RawDashDirectionInput = _cam.ScreenToWorldPoint(RawDashDirectionInput) - PlayerTransform.position;
+            DashDirectionInput = Vector2Int.RoundToInt(RawDashDirectionInput.normalized);
         }
         #endregion
-       
-        
-        public void OnMenu(InputAction.CallbackContext context)
-        {
-            throw new NotImplementedException();
-        }
         
         public void OnNavigate(InputAction.CallbackContext context)
         {
             throw new NotImplementedException();
+        }
+
+        public void OnMenuOpen(InputAction.CallbackContext context)
+        {
+            if(context.phase == InputActionPhase.Performed)
+            {
+                MenuOpenEvent?.Invoke();
+                SetUI();
+            }
+        }
+        
+        public void OnMenuClose(InputAction.CallbackContext context)
+        {
+            if(context.phase == InputActionPhase.Performed)
+            {
+                MenuCloseEvent?.Invoke();
+                SetGameplay();
+            }
         }
 
         #region Use Input

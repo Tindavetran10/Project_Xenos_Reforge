@@ -1,8 +1,8 @@
 using System.Collections;
-using Manager;
+using UI;
 using UnityEngine;
 
-namespace UI
+namespace Manager
 {
     public class MenuManager : MonoBehaviour
     {

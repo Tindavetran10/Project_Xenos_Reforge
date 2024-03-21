@@ -21,8 +21,8 @@ namespace Player.PlayerStates.SubStates
             IsHolding = false;
             StartTime = Time.time;
 
-            Player.InputHandler.UseAimSwordInput();
-            _aimSwordInputStop = Player.InputHandler.AimSwordInputStop;
+            Player.playerInputHandler.UseAimSwordInput();
+            _aimSwordInputStop = Player.playerInputHandler.AimSwordInputStop;
             
             ThrowSlash();
             Movement?.SetVelocityX(2f * Movement.FacingDirection);

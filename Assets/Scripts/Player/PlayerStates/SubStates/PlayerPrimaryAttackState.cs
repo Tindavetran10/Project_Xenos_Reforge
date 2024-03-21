@@ -5,7 +5,6 @@ using HitStop;
 using Player.Data;
 using Player.PlayerStates.SuperStates;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
 namespace Player.PlayerStates.SubStates
 {
@@ -30,7 +29,7 @@ namespace Player.PlayerStates.SubStates
             
             IsHolding = false;
             StartTime = Time.time;
-            Player.InputHandler.UseAttackInput();
+            Player.playerInputHandler.UseAttackInput();
             
             if (ComboCounter >= PlayerData.numberOfAttacks || Time.time >= _lastTimeAttacked + PlayerData.comboWindow)
                 ComboCounter = 0;
@@ -66,10 +65,10 @@ namespace Player.PlayerStates.SubStates
             foreach (var combatInput in Enum.GetValues(typeof(CombatInputs)).Cast<CombatInputs>())
             {
                 // If any input is pressed, cancel the animation
-                if (Player.InputHandler.NormalAttackInputs[(int)combatInput] ||
-                    Player.InputHandler.NormInputX == 1 || Player.InputHandler.NormInputX == -1 ||
-                    Player.InputHandler.JumpInput ||
-                    Player.InputHandler.DashInput)
+                if (Player.playerInputHandler.NormalAttackInputs[(int)combatInput] ||
+                    Player.playerInputHandler.NormInputX == 1 || Player.playerInputHandler.NormInputX == -1 ||
+                    Player.playerInputHandler.JumpInput ||
+                    Player.playerInputHandler.DashInput)
                 {
                     IsAnimationCancel = true;
                     break; // Exit the loop if any condition is met
@@ -92,7 +91,7 @@ namespace Player.PlayerStates.SubStates
         public override void SetFlipActive()
         {
             base.SetFlipActive();
-            Movement.CheckIfShouldFlip(Player.InputHandler.NormInputX);
+            Movement.CheckIfShouldFlip(Player.playerInputHandler.NormInputX);
         }
 
         public override void SetFlipInactive()
@@ -133,7 +132,5 @@ namespace Player.PlayerStates.SubStates
                 _hitStopController.HitStop(PlayerData.hitStopDuration);
             }
         }
-
-        
     }
 }

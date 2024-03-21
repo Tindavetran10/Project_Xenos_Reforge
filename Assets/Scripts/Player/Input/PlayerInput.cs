@@ -127,7 +127,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Menu"",
+                    ""name"": ""MenuOpen"",
                     ""type"": ""Button"",
                     ""id"": ""c585e348-a1e1-4019-af95-848c6487b2bf"",
                     ""expectedControlType"": ""Button"",
@@ -386,7 +386,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KeyboardMouse"",
-                    ""action"": ""Menu"",
+                    ""action"": ""MenuOpen"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -422,6 +422,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""name"": ""Navigate"",
                     ""type"": ""Button"",
                     ""id"": ""c86b39fa-1fc0-41e7-8798-eb91c2270aeb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MenuClose"",
+                    ""type"": ""Button"",
+                    ""id"": ""821752c9-225e-4664-b165-60619badf7ae"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -527,6 +536,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""Navigate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""37bfa731-8d06-422d-b769-59fed59a5b3e"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MenuClose"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -569,10 +589,11 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Gameplay_FocusSword = m_Gameplay.FindAction("FocusSword", throwIfNotFound: true);
         m_Gameplay_FocusSwordMousePos = m_Gameplay.FindAction("FocusSwordMousePos", throwIfNotFound: true);
         m_Gameplay_FocusSwordMouseClick = m_Gameplay.FindAction("FocusSwordMouseClick", throwIfNotFound: true);
-        m_Gameplay_Menu = m_Gameplay.FindAction("Menu", throwIfNotFound: true);
+        m_Gameplay_MenuOpen = m_Gameplay.FindAction("MenuOpen", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
+        m_UI_MenuClose = m_UI.FindAction("MenuClose", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -645,7 +666,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_FocusSword;
     private readonly InputAction m_Gameplay_FocusSwordMousePos;
     private readonly InputAction m_Gameplay_FocusSwordMouseClick;
-    private readonly InputAction m_Gameplay_Menu;
+    private readonly InputAction m_Gameplay_MenuOpen;
     public struct GameplayActions
     {
         private @PlayerInput m_Wrapper;
@@ -661,7 +682,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @FocusSword => m_Wrapper.m_Gameplay_FocusSword;
         public InputAction @FocusSwordMousePos => m_Wrapper.m_Gameplay_FocusSwordMousePos;
         public InputAction @FocusSwordMouseClick => m_Wrapper.m_Gameplay_FocusSwordMouseClick;
-        public InputAction @Menu => m_Wrapper.m_Gameplay_Menu;
+        public InputAction @MenuOpen => m_Wrapper.m_Gameplay_MenuOpen;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -704,9 +725,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @FocusSwordMouseClick.started += instance.OnFocusSwordMouseClick;
             @FocusSwordMouseClick.performed += instance.OnFocusSwordMouseClick;
             @FocusSwordMouseClick.canceled += instance.OnFocusSwordMouseClick;
-            @Menu.started += instance.OnMenu;
-            @Menu.performed += instance.OnMenu;
-            @Menu.canceled += instance.OnMenu;
+            @MenuOpen.started += instance.OnMenuOpen;
+            @MenuOpen.performed += instance.OnMenuOpen;
+            @MenuOpen.canceled += instance.OnMenuOpen;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -744,9 +765,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @FocusSwordMouseClick.started -= instance.OnFocusSwordMouseClick;
             @FocusSwordMouseClick.performed -= instance.OnFocusSwordMouseClick;
             @FocusSwordMouseClick.canceled -= instance.OnFocusSwordMouseClick;
-            @Menu.started -= instance.OnMenu;
-            @Menu.performed -= instance.OnMenu;
-            @Menu.canceled -= instance.OnMenu;
+            @MenuOpen.started -= instance.OnMenuOpen;
+            @MenuOpen.performed -= instance.OnMenuOpen;
+            @MenuOpen.canceled -= instance.OnMenuOpen;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -769,11 +790,13 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_UI;
     private List<IUIActions> m_UIActionsCallbackInterfaces = new List<IUIActions>();
     private readonly InputAction m_UI_Navigate;
+    private readonly InputAction m_UI_MenuClose;
     public struct UIActions
     {
         private @PlayerInput m_Wrapper;
         public UIActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Navigate => m_Wrapper.m_UI_Navigate;
+        public InputAction @MenuClose => m_Wrapper.m_UI_MenuClose;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -786,6 +809,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Navigate.started += instance.OnNavigate;
             @Navigate.performed += instance.OnNavigate;
             @Navigate.canceled += instance.OnNavigate;
+            @MenuClose.started += instance.OnMenuClose;
+            @MenuClose.performed += instance.OnMenuClose;
+            @MenuClose.canceled += instance.OnMenuClose;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
@@ -793,6 +819,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Navigate.started -= instance.OnNavigate;
             @Navigate.performed -= instance.OnNavigate;
             @Navigate.canceled -= instance.OnNavigate;
+            @MenuClose.started -= instance.OnMenuClose;
+            @MenuClose.performed -= instance.OnMenuClose;
+            @MenuClose.canceled -= instance.OnMenuClose;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -841,10 +870,11 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnFocusSword(InputAction.CallbackContext context);
         void OnFocusSwordMousePos(InputAction.CallbackContext context);
         void OnFocusSwordMouseClick(InputAction.CallbackContext context);
-        void OnMenu(InputAction.CallbackContext context);
+        void OnMenuOpen(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
         void OnNavigate(InputAction.CallbackContext context);
+        void OnMenuClose(InputAction.CallbackContext context);
     }
 }
