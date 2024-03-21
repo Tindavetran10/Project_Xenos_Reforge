@@ -11,8 +11,8 @@ namespace _Scripts.Player.Input
         private PlayerInput _playerInput;
         private global::Player.PlayerStateMachine.Player _player;
         private Camera _cam;
-        
-        // Properties to store raw and normalized input values
+
+        #region Bool Input for Gameplay
         private Vector2 RawMovementInput { get; set; }
         private Vector2 RawDashDirectionInput { get; set; }
         public Vector2Int DashDirectionInput { get; private set; }
@@ -31,14 +31,16 @@ namespace _Scripts.Player.Input
         
         public bool AimSwordInput { get; private set; }
         public bool AimSwordInputStop { get; private set; }
-        
-        public Vector3 FocusSwordPositionInput { get; private set; }
+
+        private Vector3 FocusSwordPositionInput { get; set; }
         public bool FocusSwordInput { get; private set; }
         public bool FocusSwordInputStop { get; private set; }
         public bool FocusSwordMouseClick { get; private set; }
         
         public bool CounterInput { get; private set; }
         public bool CounterInputStop { get; private set; }
+        #endregion
+        // Properties to store raw and normalized input values
         
         
         [SerializeField] private float inputHoldTime;
@@ -49,6 +51,35 @@ namespace _Scripts.Player.Input
         private float _aimSwordInputStartTime;
         private float _focusSwordInputStartTime;
 
+        private void OnEnable()
+        {
+            if (_playerInput != null) return;
+
+            // Create a new instance of the PlayerInput asset
+            _playerInput = new PlayerInput();
+
+            // Set up callbacks for gameplay and UI actions
+            _playerInput.Gameplay.SetCallbacks(this);
+            _playerInput.UI.SetCallbacks(this);
+
+            // Set initial input mode to Gameplay
+            SetGameplay();
+        }
+
+        // Set input mode to Gameplay
+        private void SetGameplay()
+        {
+            _playerInput.Gameplay.Enable();
+            _playerInput.UI.Disable();
+        }
+
+        // Set input mode to UI
+        private void SetUI()
+        {
+            _playerInput.Gameplay.Disable();
+            _playerInput.UI.Enable();
+        }
+        
         private void Start()
         {
             var count = Enum.GetValues(typeof(CombatInputs)).Length;
@@ -59,7 +90,7 @@ namespace _Scripts.Player.Input
             
             _cam = Camera.main;
         }
-
+        
         private void Update()
         {
             // Check and update input hold times
@@ -71,6 +102,7 @@ namespace _Scripts.Player.Input
             CheckCounterInputHoldTime();
         }
 
+        #region Check for Gameplay Input
         // Check if the jump input has been held for a certain duration
         private void CheckJumpInputHoldTime()
         {
@@ -108,38 +140,9 @@ namespace _Scripts.Player.Input
             if (Time.time >= _counterInputStartTime + inputHoldTime)
                 CounterInput = false;
         }
-
-        // Enable input actions when the script is enabled
-        private void OnEnable()
-        {
-            if (_playerInput != null) return;
-
-            // Create a new instance of the PlayerInput asset
-            _playerInput = new PlayerInput();
-
-            // Set up callbacks for gameplay and UI actions
-            _playerInput.Gameplay.SetCallbacks(this);
-            _playerInput.UI.SetCallbacks(this);
-
-            // Set initial input mode to Gameplay
-            SetGameplay();
-        }
-
-        // Set input mode to Gameplay
-        private void SetGameplay()
-        {
-            _playerInput.Gameplay.Enable();
-            _playerInput.UI.Disable();
-        }
-
-        // Set input mode to UI
-        private void SetUI()
-        {
-            _playerInput.Gameplay.Disable();
-            _playerInput.UI.Enable();
-        }
-
-        // Callback for movement input
+        #endregion
+        
+        #region Gameplay Input
         public void OnMovement(InputAction.CallbackContext context)
         {
             RawMovementInput = context.ReadValue<Vector2>();
@@ -252,9 +255,8 @@ namespace _Scripts.Player.Input
                 DashDirectionInput = Vector2Int.RoundToInt(RawDashDirectionInput.normalized);
             }
         }
-
-        // Callback for pause input
-        
+        #endregion
+       
         
         public void OnMenu(InputAction.CallbackContext context)
         {
@@ -266,15 +268,14 @@ namespace _Scripts.Player.Input
             throw new NotImplementedException();
         }
 
-        // Utility method to consume jump input
+        #region Use Input
         public void UseJumpInput() => JumpInput = false;
-
-        // Utility method to consume dash input
         public void UseDashInput() => DashInput = false;
         public void UseAttackInput() => NormalAttackInputs[(int)CombatInputs.Normal] = false;
         public void UseAimSwordInput() => AimSwordInput = false;
         public void UseFocusSwordInput() => FocusSwordInput = false;
         public void UseCounterInput() => CounterInput = false;
+        #endregion
     }
 }
 
