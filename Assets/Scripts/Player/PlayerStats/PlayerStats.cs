@@ -25,7 +25,7 @@ namespace Player.PlayerStats
         protected override void Die()
         {
             base.Die();
-            _player.Die();
+            _player.Fie();
         }
     }
 }
