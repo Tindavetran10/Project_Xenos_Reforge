@@ -12,7 +12,7 @@ namespace _Scripts.Player.Input
         private PlayerInput _playerInput;
         private Camera _cam;
 
-        #region BoolCheck Input for Gameplay
+        #region Input for Gameplay
         private Vector2 RawMovementInput { get; set; }
         private Vector2 RawDashDirectionInput { get; set; }
         public Vector2Int DashDirectionInput { get; private set; }
@@ -39,8 +39,6 @@ namespace _Scripts.Player.Input
         
         public bool CounterInput { get; private set; }
         public bool CounterInputStop { get; private set; }
-
-        public bool MenuOpenClose { get; private set; }
         #endregion
 
         #region Input Holdtime for Gameplay
@@ -53,15 +51,15 @@ namespace _Scripts.Player.Input
         private float _focusSwordInputStartTime;
         #endregion
 
-        #region Events
+        #region Events for UI
         public event Action MenuOpenEvent;
-        public event Action MenuCloseEvent; 
+        public event Action MenuCloseEvent;
         #endregion
 
         private void OnEnable()
         {
-            if (_playerInput != null) return;
             // Create a new instance of the PlayerInput asset
+            if (_playerInput != null) return;
             _playerInput = new PlayerInput();
 
             // Set up callbacks for gameplay and UI actions
@@ -77,7 +75,8 @@ namespace _Scripts.Player.Input
             // Set initial input mode to Gameplay
             SetGameplay();
         }
-        
+
+        #region Change Input Action Map
         private void SetGameplay()
         {
             _playerInput.Gameplay.Enable();
@@ -89,6 +88,7 @@ namespace _Scripts.Player.Input
             _playerInput.Gameplay.Disable();
             _playerInput.UI.Enable();
         }
+        #endregion
 
         #region Check for Gameplay Input
         public void CheckAllInputHoldTimes()
@@ -172,8 +172,7 @@ namespace _Scripts.Player.Input
             }
             else if (context.canceled) FocusSwordInputStop = true;
         }
-
-
+        
         // Callback for dash input
         public void OnDash(InputAction.CallbackContext context)
         {
@@ -246,59 +245,7 @@ namespace _Scripts.Player.Input
             RawDashDirectionInput = _cam.ScreenToWorldPoint(RawDashDirectionInput) - PlayerTransform.position;
             DashDirectionInput = Vector2Int.RoundToInt(RawDashDirectionInput.normalized);
         }
-        #endregion
-
-        #region UI Input
-        public void OnNavigate(InputAction.CallbackContext context)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void OnSubmit(InputAction.CallbackContext context)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void OnCancel(InputAction.CallbackContext context)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void OnPoint(InputAction.CallbackContext context)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void OnClick(InputAction.CallbackContext context)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void OnScrollWheel(InputAction.CallbackContext context)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void OnMiddleClick(InputAction.CallbackContext context)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void OnRightClick(InputAction.CallbackContext context)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void OnTrackedDevicePosition(InputAction.CallbackContext context)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void OnTrackedDeviceOrientation(InputAction.CallbackContext context)
-        {
-            throw new NotImplementedException();
-        }
-
+        
         public void OnMenuOpen(InputAction.CallbackContext context)
         {
             if(context.phase == InputActionPhase.Performed)
@@ -307,6 +254,24 @@ namespace _Scripts.Player.Input
                 SetUI();
             }
         }
+        #endregion
+
+        #region UI Input
+        public void OnNavigate(InputAction.CallbackContext context) {}
+
+        public void OnSubmit(InputAction.CallbackContext context){}
+
+        public void OnCancel(InputAction.CallbackContext context){}
+
+        public void OnPoint(InputAction.CallbackContext context){}
+
+        public void OnClick(InputAction.CallbackContext context){}
+
+        public void OnScrollWheel(InputAction.CallbackContext context){}
+
+        public void OnMiddleClick(InputAction.CallbackContext context){}
+
+        public void OnRightClick(InputAction.CallbackContext context){}
         
         public void OnMenuClose(InputAction.CallbackContext context)
         {
