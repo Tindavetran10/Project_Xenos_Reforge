@@ -14,8 +14,7 @@ namespace Manager
 
         // Reference to the player's transform
         private Transform _player;
-
-        [SerializeField] private PlayerInputHandler _playerInputHandler;
+        [SerializeField] private PlayerInputHandler playerInputHandler;
         [SerializeField] private GameObject settingsMenu;
         
 
@@ -43,11 +42,12 @@ namespace Manager
             //_player = PlayerManager.Instance.player.transform;
             _player = PlayerManager.GetInstance().player.transform;
 
-            _playerInputHandler.MenuOpenEvent += HandleMenuOpen;
-            _playerInputHandler.MenuCloseEvent += HandleMenuClose;
+            playerInputHandler.MenuOpenEvent += HandleMenuOpen;
+            playerInputHandler.MenuCloseEvent += HandleMenuClose;
         }
 
         private void HandleMenuOpen() => settingsMenu.SetActive(true);
+
         private void HandleMenuClose() => settingsMenu.SetActive(false);
 
         // Restart the current scene
