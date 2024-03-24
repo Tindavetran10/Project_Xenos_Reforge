@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 4232899052664523797}
   - component: {fileID: 1752484794573637887}
   - component: {fileID: 9122337023420919378}
-  - component: {fileID: 6900757262804847941}
   - component: {fileID: 7849466132785042285}
   - component: {fileID: 6534914590236456289}
   - component: {fileID: 7708792561113031817}
@@ -178,92 +177,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &6900757262804847941
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 609758280927387184}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 0a97245f1a2941ad882b940122462f03, type: 3}
-  m_NotificationBehavior: 2
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 5fe99a74-209b-4c08-a1c2-f8769178cafb
-    m_ActionName: Gameplay/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 4030cd18-e9aa-43d9-b459-e0af013dd791
-    m_ActionName: Gameplay/Jump[/Keyboard/space]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 674ada48-48a0-44f2-8dd6-cbfe87553e6e
-    m_ActionName: Gameplay/Dash[/Keyboard/shift]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 70a58268-18a6-45a6-999c-87cacc566f8b
-    m_ActionName: Gameplay/DashDirection[/Mouse/position]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 89e21b66-98b7-4e20-9b78-57fc73efa886
-    m_ActionName: Gameplay/NormalAttack[/Mouse/leftButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: f0def381-6163-4baf-922d-ad2136ffba97
-    m_ActionName: Gameplay/HeavyAttack[/Mouse/rightButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: a3dfcdad-6dda-4118-812b-e2c871e5c3c6
-    m_ActionName: Gameplay/CounterAttack[/Keyboard/q]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: c5f9e136-0c10-4ed9-8983-2837bd32d328
-    m_ActionName: Gameplay/AimSword[/Keyboard/e]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: b81e8179-9177-411a-a2b6-9205de1d5cc4
-    m_ActionName: Gameplay/FocusSword[/Keyboard/f]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 194ce9ff-24e4-4160-8b83-c5ba2435d1a0
-    m_ActionName: Gameplay/FocusSwordMousePos
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 9a6f7134-a652-4621-b469-7e4ca68754a6
-    m_ActionName: Gameplay/FocusSwordMouseClick[/Mouse/leftButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: c585e348-a1e1-4019-af95-848c6487b2bf
-    m_ActionName: Gameplay/Menu[/Keyboard/escape]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: c86b39fa-1fc0-41e7-8798-eb91c2270aeb
-    m_ActionName: UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 821752c9-225e-4664-b165-60619badf7ae
-    m_ActionName: UI/MenuClose[/Keyboard/escape]
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: KeyboardMouse
-  m_DefaultActionMap: Gameplay
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!114 &7849466132785042285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -277,9 +190,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackPosition: {fileID: 4408137957903308106}
+  playerData: {fileID: 11400000, guid: 1a10f74d2848e0e4cbebbd5868cfd22c, type: 2}
   playerInputHandler: {fileID: 11400000, guid: ae5a6636a828cae41b2d83556dac0a7d, type: 2}
   playerTransform: {fileID: 2310988032342799380}
-  playerData: {fileID: 11400000, guid: 1a10f74d2848e0e4cbebbd5868cfd22c, type: 2}
 --- !u!114 &6534914590236456289
 MonoBehaviour:
   m_ObjectHideFlags: 0

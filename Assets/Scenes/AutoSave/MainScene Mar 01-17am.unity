@@ -370,6 +370,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coolDown: 0
+  mouseWorldPos: {x: 0, y: 0, z: 0}
   mouseRecordInterval: 0.05
   maxMousePositions: 5
   sliceForce: 10

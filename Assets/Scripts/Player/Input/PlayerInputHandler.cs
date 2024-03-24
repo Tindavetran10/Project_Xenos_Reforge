@@ -39,6 +39,8 @@ namespace _Scripts.Player.Input
         
         public bool CounterInput { get; private set; }
         public bool CounterInputStop { get; private set; }
+
+        public bool MenuOpenClose { get; private set; }
         #endregion
 
         #region Input Holdtime for Gameplay

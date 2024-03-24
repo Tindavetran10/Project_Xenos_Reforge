@@ -53,14 +53,7 @@ namespace Enemy.EnemySpecific.Ronin
             HitStopController = HitStopController.Instance;
             StateMachine.Initialize(IdleState);
         }
-
-        // Only for testing purposes
-        protected override void Update()
-        {
-            base.Update();
-            if(Input.GetKeyDown(KeyCode.U))
-                StateMachine.ChangeState(GetAttackedState);
-        }
+        
 
         public override bool TryCloseCounterAttackWindow()
         {

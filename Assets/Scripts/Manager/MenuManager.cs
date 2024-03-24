@@ -87,21 +87,8 @@ namespace Manager
 
         private void Update()
         {
-            /*if (Input.GetKeyDown(KeyCode.K))
-                SwitchWithKeyTo(skillTreeUI);
-            else if (Input.GetKeyDown(KeyCode.I))
-                SwitchWithKeyTo(inventoryUI);
-            else if (Input.GetKeyDown(KeyCode.M))
-                SwitchWithKeyTo(mapUI);
-            else if (Input.GetKeyDown(KeyCode.C))
-                SwitchWithKeyTo(craftUI);
-            else if (Input.GetKeyDown(KeyCode.O))
-                SwitchWithKeyTo(settingsUI);*/
-            
-
             if (menuInput)
                 mainMenuFirst.SetActive(true);
-                
         }
 
         public void SwitchOnEndScreen()

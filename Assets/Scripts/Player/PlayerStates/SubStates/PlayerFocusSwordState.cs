@@ -68,7 +68,7 @@ namespace Player.PlayerStates.SubStates
         {
             if (Camera.main != null)
             {
-                var collider2Ds = Physics2D.OverlapBoxAll(Camera.main.ScreenToWorldPoint(Input.mousePosition), 
+                var collider2Ds = Physics2D.OverlapBoxAll(Player.Skill.Focus.mouseWorldPos, 
                     PlayerData.focusSwordHitBox.size, 0f, PlayerData.whatIsEnemy);
                 
                 return (from hit 

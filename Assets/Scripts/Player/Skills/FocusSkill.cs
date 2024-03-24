@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Player.Skills
 {
@@ -10,6 +11,10 @@ namespace Player.Skills
         private TrailRenderer _trailRenderer;
         
         #region Mouse Input
+
+        private Vector3 mousePos;
+        public Vector3 mouseWorldPos;
+        
         private struct MousePosition
         {
             public Vector3 WorldPosition;
@@ -28,6 +33,20 @@ namespace Player.Skills
         
         protected override void Start () => _trailRenderer = GetComponentInChildren<TrailRenderer>();
 
+        protected override void Update()
+        {
+	        base.Update();
+	        if (Mouse.current.leftButton.IsPressed())
+	        {
+		        mousePos = Mouse.current.position.ReadValue();
+		        if (Camera.main != null)
+		        {
+			        mousePos.z = Camera.main.nearClipPlane;
+			        mouseWorldPos = Camera.main.ScreenToWorldPoint(mousePos);
+		        }
+	        }
+        }
+
         // ReSharper disable Unity.PerformanceAnalysis
         public void Slice ()
         {
@@ -42,7 +61,7 @@ namespace Player.Skills
 				{
 					var newMousePosition = new MousePosition
 					{
-						WorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition),
+						WorldPosition = mouseWorldPos,
 						Time = Time.time
 					};
 					_mousePositions.Add(newMousePosition);
@@ -128,7 +147,7 @@ namespace Player.Skills
 	        {
 		        if (Camera.main != null)
 		        {
-			        var trailPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			        var trailPosition = mouseWorldPos;
 			        trailPosition.z = -9.0f;
 			        _trailRenderer.transform.position = trailPosition;
 		        }
