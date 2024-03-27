@@ -38,7 +38,7 @@ namespace StatSystem
         public bool IsStunned { get; set; }
         public bool IsAttacked { get; set; }
 
-        private bool IsInvincible { get; set; }
+        public bool IsInvincible { get; set; }
         
         [SerializeField] public int currentHealth;
         [SerializeField] public int currentPoise;

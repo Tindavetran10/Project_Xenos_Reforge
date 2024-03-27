@@ -8,13 +8,14 @@ namespace _Scripts.Player.Input
     [CreateAssetMenu(menuName = "PlayerInputHandler")]
     public class InputManager : ScriptableObject, PlayerInput.IGameplayActions, PlayerInput.IUIActions
     {
-        private static InputManager _instance;
+        public static InputManager Instance;
         
+        public static PlayerInput PlayerInput;
         public Transform PlayerTransform { get; set;}
-        private static PlayerInput _playerInput;
         private Camera _cam;
 
         #region Input for Gameplay
+
         private Vector2 RawMovementInput { get; set; }
         private Vector2 RawDashDirectionInput { get; set; }
         public Vector2Int DashDirectionInput { get; private set; }
@@ -59,22 +60,23 @@ namespace _Scripts.Player.Input
         public event Action MenuOpenEvent;
         public event Action MenuCloseEvent;
         #endregion
-
+        
+        
         private void Awake()
         {
-            if (_instance == null)
-                _instance = this;
+            if (Instance == null)
+                Instance = this;
         }
         
         private void OnEnable()
         {
             // Create a new instance of the PlayerInput asset
-            if (_playerInput != null) return;
-            _playerInput = new PlayerInput();
+            if (PlayerInput != null) return;
+            PlayerInput = new PlayerInput();
 
             // Set up callbacks for gameplay and UI actions
-            _playerInput.Gameplay.SetCallbacks(this);
-            _playerInput.UI.SetCallbacks(this);
+            PlayerInput.Gameplay.SetCallbacks(this);
+            PlayerInput.UI.SetCallbacks(this);
             
             var count = Enum.GetValues(typeof(CombatInputs)).Length;
             NormalAttackInputs = new bool[count];
@@ -87,16 +89,16 @@ namespace _Scripts.Player.Input
         }
 
         #region Change Input Action Map
-        private static void SetGameplay()
+        public static void SetGameplay()
         {
-            _playerInput.Gameplay.Enable();
-            _playerInput.UI.Disable();
+            PlayerInput.Gameplay.Enable();
+            PlayerInput.UI.Disable();
         }
         
-        private static void SetUI()
+        public static void SetUI()
         {
-            _playerInput.Gameplay.Disable();
-            _playerInput.UI.Enable();
+            PlayerInput.Gameplay.Disable();
+            PlayerInput.UI.Enable();
         }
         #endregion
 
@@ -155,6 +157,7 @@ namespace _Scripts.Player.Input
         public void OnMovement(InputAction.CallbackContext context)
         {
             RawMovementInput = context.ReadValue<Vector2>();
+            
             // Get the inputs that change x axis and y axis value from the player  
             NormInputX = Mathf.RoundToInt(RawMovementInput.x);
             NormInputY = Mathf.RoundToInt(RawMovementInput.y);
@@ -251,7 +254,7 @@ namespace _Scripts.Player.Input
         // Callback for dash direction input
         public void OnDashDirection(InputAction.CallbackContext context)
         {
-            RawDashDirectionInput = context.ReadValue<Vector2>();
+            RawDashDirectionInput= context.ReadValue<Vector2>();
             RawDashDirectionInput = _cam.ScreenToWorldPoint(RawDashDirectionInput) - PlayerTransform.position;
             DashDirectionInput = Vector2Int.RoundToInt(RawDashDirectionInput.normalized);
         }
@@ -282,7 +285,10 @@ namespace _Scripts.Player.Input
         public void OnMiddleClick(InputAction.CallbackContext context){}
 
         public void OnRightClick(InputAction.CallbackContext context){}
-        
+        public void OnTrackedDevicePosition(InputAction.CallbackContext context) {}
+
+        public void OnTrackedDeviceOrientation(InputAction.CallbackContext context) {}
+
         public void OnMenuClose(InputAction.CallbackContext context)
         {
             if(context.phase == InputActionPhase.Performed)
