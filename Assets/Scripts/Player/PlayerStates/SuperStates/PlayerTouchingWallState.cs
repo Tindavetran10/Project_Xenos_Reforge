@@ -37,9 +37,9 @@ namespace Player.PlayerStates.SuperStates
         {
             base.LogicUpdate();
 
-            _xInput = Player.InputHandler.NormInputX;
-            YInput = Player.InputHandler.NormInputY;
-            _jumpInput = Player.InputHandler.JumpInput;
+            _xInput = Player.inputManager.NormInputX;
+            YInput = Player.inputManager.NormInputY;
+            _jumpInput = Player.inputManager.JumpInput;
 
             if (_jumpInput)
             {

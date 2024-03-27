@@ -31,8 +31,6 @@ namespace Enemy.EnemyState.SubState
                 IsMoveTimeOver = true;
             
             Movement?.SetVelocityX(_stateData.movementSpeed * Movement.FacingDirection);
-            
-            
         }
         
         private void SetRandomMoveTime() => 

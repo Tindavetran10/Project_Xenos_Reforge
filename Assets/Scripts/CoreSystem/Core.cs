@@ -21,7 +21,7 @@ namespace CoreSystem
                 _coreComponents.Add(component);
         }
 
-        public T GetCoreComponent<T>() where T : CoreComponent
+        private T GetCoreComponent<T>() where T : CoreComponent
         {
             var comp = _coreComponents.OfType<T>().FirstOrDefault();
 

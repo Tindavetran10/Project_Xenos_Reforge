@@ -5,7 +5,6 @@ using HitStop;
 using Player.Data;
 using Player.PlayerStates.SuperStates;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
 namespace Player.PlayerStates.SubStates
 {
@@ -30,7 +29,7 @@ namespace Player.PlayerStates.SubStates
             
             IsHolding = false;
             StartTime = Time.time;
-            Player.InputHandler.UseAttackInput();
+            Player.inputManager.UseAttackInput();
             
             if (ComboCounter >= PlayerData.numberOfAttacks || Time.time >= _lastTimeAttacked + PlayerData.comboWindow)
                 ComboCounter = 0;
@@ -66,10 +65,10 @@ namespace Player.PlayerStates.SubStates
             foreach (var combatInput in Enum.GetValues(typeof(CombatInputs)).Cast<CombatInputs>())
             {
                 // If any input is pressed, cancel the animation
-                if (Player.InputHandler.NormalAttackInputs[(int)combatInput] ||
-                    Player.InputHandler.NormInputX == 1 || Player.InputHandler.NormInputX == -1 ||
-                    Player.InputHandler.JumpInput ||
-                    Player.InputHandler.DashInput)
+                if (Player.inputManager.NormalAttackInputs[(int)combatInput] ||
+                    Player.inputManager.NormInputX == 1 || Player.inputManager.NormInputX == -1 ||
+                    Player.inputManager.JumpInput ||
+                    Player.inputManager.DashInput)
                 {
                     IsAnimationCancel = true;
                     break; // Exit the loop if any condition is met
@@ -92,7 +91,7 @@ namespace Player.PlayerStates.SubStates
         public override void SetFlipActive()
         {
             base.SetFlipActive();
-            Movement.CheckIfShouldFlip(Player.InputHandler.NormInputX);
+            Movement.CheckIfShouldFlip(Player.inputManager.NormInputX);
         }
 
         public override void SetFlipInactive()
@@ -108,38 +107,30 @@ namespace Player.PlayerStates.SubStates
 
             var playerTransform = Player.attackPosition.transform;
             var playerPosition = playerTransform.position;
+            var hitBoxCenter = PlayerData.hitBox[ComboCounter].center;
+            var hitBoxSize = PlayerData.hitBox[ComboCounter].size;
 
-            Offset.Set(playerPosition.x + PlayerData.hitBox[ComboCounter].center.x * Movement.FacingDirection,
-                playerPosition.y + PlayerData.hitBox[ComboCounter].center.y);
+            var offset = new Vector2(playerPosition.x + hitBoxCenter.x * Movement.FacingDirection,
+                playerPosition.y + hitBoxCenter.y);
             
-            var collider2Ds = Physics2D.OverlapBoxAll(Offset, PlayerData.hitBox[ComboCounter].size, 
-                0f, PlayerData.whatIsEnemy);
+            var collider2Ds = Physics2D.OverlapBoxAll(offset, hitBoxSize, 0f, PlayerData.whatIsEnemy); 
 
-            foreach (var hit in collider2Ds)
+            foreach (var hit in collider2Ds) ProcessHit(hit);
+        }
+
+        private void ProcessHit(Component hit)
+        {
+            var enemyComponent = hit.GetComponent<Enemy.EnemyStateMachine.Enemy>();
+            if(enemyComponent == null) return;
+            
+            Entity.Entity.HitParticle(hit, PlayerData.hitParticle);
+            
+            var target = hit.GetComponentInChildren<EnemyStats>();
+            if(target!=null)
             {
-                if (hit.GetComponent<Enemy.EnemyStateMachine.Enemy>() != null)
-                {
-                    HitParticle(hit);
-
-                    // Do damage to the enemy stats
-                    var target = hit.GetComponentInChildren<EnemyStats>();
-                    Player.Stats.DoDamage(target);
-                    
-                    // Activate HitStop Effect
-                    _hitStopController.HitStop(PlayerData.hitStopDuration);
-                }
+                Player.Stats.DoDamage(target);
+                _hitStopController.HitStop(PlayerData.hitStopDuration);
             }
         }
-
-        private void HitParticle(Component hit)
-        {
-            // Instantiate the hit particle
-            var hitParticleInstance = Object.Instantiate(PlayerData.hitParticle, hit.transform.position 
-                + new Vector3(0f,0.15f,0f), Quaternion.identity);
-            
-            // Destroy the hit particle after 0.5f
-            Object.Destroy(hitParticleInstance, 0.19f);
-        }
-
     }
 }

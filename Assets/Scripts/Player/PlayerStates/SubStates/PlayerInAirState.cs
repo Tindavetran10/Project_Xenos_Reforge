@@ -72,10 +72,10 @@ namespace Player.PlayerStates.SubStates
             CheckWallJumpCoyoteTime();
         
             // Get the input values from the PlayerInputHandler class
-            _xInput = Player.InputHandler.NormInputX;
-            _jumpInput = Player.InputHandler.JumpInput;
-            _jumpInputStop = Player.InputHandler.JumpInputStop;
-            _dashInput = Player.InputHandler.DashInput;
+            _xInput = Player.inputManager.NormInputX;
+            _jumpInput = Player.inputManager.JumpInput;
+            _jumpInputStop = Player.inputManager.JumpInputStop;
+            _dashInput = Player.inputManager.DashInput;
         
             CheckJumpMultiplier();
             
@@ -112,7 +112,7 @@ namespace Player.PlayerStates.SubStates
                 StateMachine.ChangeState(Player.WallSlideState);
             
             // Change to Dash State if the dash has been cooled down
-            else if (_dashInput)
+            else if (_dashInput && Player.DashState.CheckIfCanDash())
                 StateMachine.ChangeState(Player.DashState);
             else
             {

@@ -15,7 +15,7 @@ namespace Enemy.EnemySpecific.Ronin
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-            if(IsPlayerInAgroRange)
+            if(PerformLongRangeAction)
                 StateMachine.ChangeState(_enemyRonin.PlayerDetectedState);
             else if (IsAllTurnsTimeDone)
                 StateMachine.ChangeState(_enemyRonin.MoveState);

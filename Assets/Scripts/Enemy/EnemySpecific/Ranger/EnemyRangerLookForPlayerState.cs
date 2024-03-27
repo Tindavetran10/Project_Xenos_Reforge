@@ -15,7 +15,7 @@ namespace Enemy.EnemySpecific.Ranger
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-            if(IsPlayerInAgroRange)
+            if(PerformLongRangeAction)
                 StateMachine.ChangeState(_enemyRanger.PlayerDetectedState);
             else if (IsAllTurnsTimeDone)
                 StateMachine.ChangeState(_enemyRanger.MoveState);

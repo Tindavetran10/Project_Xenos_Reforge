@@ -21,11 +21,11 @@ namespace Player.PlayerStates.SubStates
             IsHolding = false;
             StartTime = Time.time;
 
-            Player.InputHandler.UseAimSwordInput();
-            _aimSwordInputStop = Player.InputHandler.AimSwordInputStop;
+            Player.inputManager.UseAimSwordInput();
+            _aimSwordInputStop = Player.inputManager.AimSwordInputStop;
             
             ThrowSlash();
-            Movement?.SetVelocityX(1f * Movement.FacingDirection);
+            Movement?.SetVelocityX(2f * Movement.FacingDirection);
         }
 
         public override void LogicUpdate()

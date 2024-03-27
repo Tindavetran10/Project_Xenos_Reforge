@@ -16,7 +16,7 @@ namespace Enemy.EnemySpecific.Ranger
         {
             base.LogicUpdate();
 
-            if (IsPlayerInAgroRange)
+            if (PerformLongRangeAction)
                 StateMachine.ChangeState(_enemyRanger.PlayerDetectedState);
             else if (!IsDetectingLedge || IsDetectingWall || IsMoveTimeOver)
             {

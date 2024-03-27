@@ -12,9 +12,10 @@ namespace Enemy.EnemySpecific.Ranger
         public EnemyRangerPlayerDetectedState PlayerDetectedState { get; private set; }
         public EnemyRangerLookForPlayerState LookForPlayerState { get; private set; }
         private EnemyRangerStunState StunState { get; set; }
-        public EnemyRangerDeathState DeathState { get; set; }
+        public EnemyRangerDeathState DeathState { get; private set; }
         public EnemyRangerRangedAttackState RangedAttackState { get; private set; }
         public EnemyRangerDodgeState DodgeState { get; private set; }
+        public EnemyRangerGetAttackedState GetAttackedState { get; private set; }
         #endregion
         
         #region Enemy Data
@@ -26,6 +27,7 @@ namespace Enemy.EnemySpecific.Ranger
         [SerializeField] protected D_StunState stunStateData;
         [SerializeField] protected D_RangedAttackState rangedAttackStateData;
         [SerializeField] public D_DodgeState dodgeStateData;
+        [SerializeField] public D_GetAttacked getAttackedStateData;
         #endregion
         
         protected override void Awake()
@@ -39,6 +41,7 @@ namespace Enemy.EnemySpecific.Ranger
             DeathState = new EnemyRangerDeathState(this, StateMachine, "die", this);
             RangedAttackState = new EnemyRangerRangedAttackState(this, StateMachine, "shoot", rangedAttackStateData, this);
             DodgeState = new EnemyRangerDodgeState(this, StateMachine, "dodge", dodgeStateData, this);
+            GetAttackedState = new EnemyRangerGetAttackedState(this, StateMachine, "getAttacked", getAttackedStateData, this);
         }
         
         protected override void Start()
@@ -47,13 +50,21 @@ namespace Enemy.EnemySpecific.Ranger
             HitStopController = HitStopController.Instance;
             StateMachine.Initialize(IdleState);
         }
-
-        public override bool CanBeStunned()
+        
+        public override bool ChangeStunState()
         {
-            if (!base.CanBeStunned()) return false;
+            if (!base.ChangeStunState()) return false;
             StateMachine.ChangeState(StunState);
             return true;
         }
+        
+        public override bool ChangeGetAttackedState()
+        {
+            if (!base.ChangeGetAttackedState()) return false;
+            StateMachine.ChangeState(GetAttackedState);
+            return true;
+        }
+        
         public override void Die()
         {
             base.Die();

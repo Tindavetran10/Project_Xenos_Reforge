@@ -49,6 +49,7 @@ namespace Player.PlayerStates.SuperStates
             // When the player standing on the ground,
             // reset the number of jumps and dashes that he can make
             Player.JumpState.ResetAmountOfJumpsLeft();
+            Player.DashState.ResetCanDash();
         }
 
         public override void LogicUpdate()
@@ -56,15 +57,15 @@ namespace Player.PlayerStates.SuperStates
             base.LogicUpdate();
 
             // Get the input values from the PlayerInputHandler class
-            XInput = Player.InputHandler.NormInputX;
-            YInput = Player.InputHandler.NormInputY;
-            _jumpInput =Player.InputHandler.JumpInput;
-            _dashInput = Player.InputHandler.DashInput;
+            XInput = Player.inputManager.NormInputX;
+            YInput = Player.inputManager.NormInputY;
+            _jumpInput =Player.inputManager.JumpInput;
+            _dashInput = Player.inputManager.DashInput;
             
-            _normalAttackInput = Player.InputHandler.NormalAttackInputs[(int)CombatInputs.Normal];
-            _aimSwordInput = Player.InputHandler.AimSwordInput;
-            _focusSwordInput = Player.InputHandler.FocusSwordInput;
-            _counterAttackInput = Player.InputHandler.CounterInput;
+            _normalAttackInput = Player.inputManager.NormalAttackInputs[(int)CombatInputs.Normal];
+            _aimSwordInput = Player.inputManager.AimSwordInput;
+            _focusSwordInput = Player.inputManager.FocusSwordInput;
+            _counterAttackInput = Player.inputManager.CounterInput;
             
             if(_focusSwordInput && !IsTouchingCeiling)
                 StateMachine.ChangeState(Player.FocusSwordState);
@@ -92,7 +93,7 @@ namespace Player.PlayerStates.SuperStates
                 StateMachine.ChangeState(Player.InAirState);
             }
             // Change to Dash State if there is dashInput and the dash has been cooled down
-            else if (_dashInput && !IsTouchingCeiling)
+            else if (_dashInput && Player.DashState.CheckIfCanDash() && !IsTouchingCeiling)
                 StateMachine.ChangeState(Player.DashState);
         }
     }

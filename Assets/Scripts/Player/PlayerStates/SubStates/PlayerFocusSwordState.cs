@@ -22,7 +22,7 @@ namespace Player.PlayerStates.SubStates
             
             IsHolding = true;
             
-            Player.InputHandler.UseFocusSwordInput();
+            Player.inputManager.UseFocusSwordInput();
             Movement?.SetVelocityZero();
         }
 
@@ -34,8 +34,8 @@ namespace Player.PlayerStates.SubStates
             {
                 if (IsHolding)
                 {
-                    _focusSwordInputStop = Player.InputHandler.FocusSwordInputStop;
-                    _focusSwordMouseClick = Player.InputHandler.FocusSwordMouseClick;
+                    _focusSwordInputStop = Player.inputManager.FocusSwordInputStop;
+                    _focusSwordMouseClick = Player.inputManager.FocusSwordMouseClick;
                     
                     if(_focusSwordMouseClick)
                     {
@@ -68,7 +68,7 @@ namespace Player.PlayerStates.SubStates
         {
             if (Camera.main != null)
             {
-                var collider2Ds = Physics2D.OverlapBoxAll(Camera.main.ScreenToWorldPoint(Input.mousePosition), 
+                var collider2Ds = Physics2D.OverlapBoxAll(Player.Skill.Focus.mouseWorldPos, 
                     PlayerData.focusSwordHitBox.size, 0f, PlayerData.whatIsEnemy);
                 
                 return (from hit 

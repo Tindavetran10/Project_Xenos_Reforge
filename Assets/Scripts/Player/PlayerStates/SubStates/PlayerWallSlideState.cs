@@ -13,9 +13,8 @@ namespace Player.PlayerStates.SubStates
         {
             base.LogicUpdate();
             
-            if (!IsExitingState) {
+            if (!IsExitingState) 
                 Movement?.SetVelocityY(-PlayerData.wallSlideVelocity);
-            }
         }
     }
 }

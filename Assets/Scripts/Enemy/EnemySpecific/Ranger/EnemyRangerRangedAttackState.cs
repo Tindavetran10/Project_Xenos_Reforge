@@ -17,7 +17,7 @@ namespace Enemy.EnemySpecific.Ranger
             base.LogicUpdate();
             if (_enemyRanger.isAnimationFinished)
             {
-                if(IsPlayerInAgroRange)
+                if(PerformLongRangeAction)
                     StateMachine.ChangeState(_enemyRanger.PlayerDetectedState);
                 else StateMachine.ChangeState(_enemyRanger.LookForPlayerState);
             }

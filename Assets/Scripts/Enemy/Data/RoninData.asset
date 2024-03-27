@@ -20,18 +20,18 @@ MonoBehaviour:
     m_Bits: 128
   hitBox:
   - serializedVersion: 2
-    x: 0.04
-    y: -0.2
-    width: 0.64
-    height: 0.5
-  - serializedVersion: 2
-    x: 0.02
-    y: -0.2
-    width: 0.64
-    height: 0.5
+    x: 0.12
+    y: -0.08
+    width: 0.36
+    height: 0.4
   - serializedVersion: 2
     x: 0.04
-    y: -0.2
-    width: 0.64
-    height: 0.5
+    y: -0.08
+    width: 0.36
+    height: 0.4
+  - serializedVersion: 2
+    x: 0.34
+    y: -0.08
+    width: 0.36
+    height: 0.4
   hitStopDuration: 0.1

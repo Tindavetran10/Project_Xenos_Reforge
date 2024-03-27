@@ -15,6 +15,7 @@ namespace Enemy.EnemySpecific.Ronin
         public EnemyRoninLookForPlayerState LookForPlayerState { get; private set; }
         public EnemyRoninMeleeAttackState MeleeAttackState { get; private set; }
         private EnemyRoninStunState StunState { get; set; }
+        public EnemyRoninGetAttackedState GetAttackedState { get; private set; }
         public EnemyRoninDeathState DeathState { get; private set; }
         #endregion
         
@@ -27,6 +28,7 @@ namespace Enemy.EnemySpecific.Ronin
         [SerializeField] protected D_LookForPlayerState lookForPlayerStateData;
         [SerializeField] protected D_MeleeAttackState meleeAttackStateData;
         [SerializeField] protected D_StunState stunStateData;
+        [SerializeField] protected D_GetAttacked getAttackedStateData;
         #endregion
         
         protected override void Awake()
@@ -39,31 +41,34 @@ namespace Enemy.EnemySpecific.Ronin
             LookForPlayerState = new EnemyRoninLookForPlayerState(this, StateMachine, "lookForPlayer", lookForPlayerStateData, this);
             MeleeAttackState = new EnemyRoninMeleeAttackState(this, StateMachine, "meleeAttack", meleeAttackStateData, this);
             StunState = new EnemyRoninStunState(this, StateMachine, "stun", stunStateData, this);
+            GetAttackedState = new EnemyRoninGetAttackedState(this, StateMachine, "getAttacked", getAttackedStateData, this);
             DeathState = new EnemyRoninDeathState(this, StateMachine, "die", this);
         }
         
         protected override void Start()
         {
             base.Start();
+            
             GetComponent<EnemyAnimationToStateMachine>(); 
             HitStopController = HitStopController.Instance;
             StateMachine.Initialize(IdleState);
         }
+        
 
-        // Only for testing purposes
-        protected override void Update()
+        public override bool TryCloseCounterAttackWindow()
         {
-            base.Update();
-            if(Input.GetKeyDown(KeyCode.U))
-                StateMachine.ChangeState(StunState);
-        }
-
-        public override bool CanBeStunned()
-        {
-            if (!base.CanBeStunned()) return false;
+            if (!base.TryCloseCounterAttackWindow()) return false;
             StateMachine.ChangeState(StunState);
             return true;
         }
+
+        public override bool ChangeGetAttackedState()
+        {
+            if (!base.ChangeGetAttackedState()) return false;
+            StateMachine.ChangeState(GetAttackedState);
+            return true;
+        }
+        
 
         public override void Die()
         {
@@ -82,7 +87,7 @@ namespace Enemy.EnemySpecific.Ronin
             }
             
             foreach (var item in enemyData.hitBox) 
-                Gizmos.DrawWireCube(attackPosition.transform.position + (Vector3)item.center, item.size);
+                Gizmos.DrawWireSphere(attackPosition.transform.position + (Vector3)item.center, item.size.x);
         }
 
         

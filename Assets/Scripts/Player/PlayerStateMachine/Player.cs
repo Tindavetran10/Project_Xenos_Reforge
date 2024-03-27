@@ -4,6 +4,7 @@ using Player.Data;
 using Player.GhostTrail_Effect;
 using Player.PlayerStates.SubStates;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Player.PlayerStateMachine
 {
@@ -37,7 +38,10 @@ namespace Player.PlayerStateMachine
         #endregion
 
         #region Components
-        public PlayerInputHandler InputHandler { get; private set; }
+        //public PlayerInputHandler InputHandler { get; private set; }
+        [SerializeField] public InputManager inputManager;
+        public Transform playerTransform;
+        
         public Transform DashDirectionIndicator { get; private set; }
         #endregion
         
@@ -75,13 +79,18 @@ namespace Player.PlayerStateMachine
             AimSwordState = new PlayerAimSwordState(this, StateMachine, playerData, "aimSword");
             FocusSwordState = new PlayerFocusSwordState(this, StateMachine, playerData, "focusSword");
         }
-
+        
         protected override void Start()
         {
             base.Start();
             Skill = SkillManager.Instance;
             
-            InputHandler = GetComponent<PlayerInputHandler>();
+            //playerInputHandler = GetComponent<PlayerInputHandler>();
+            
+            if(inputManager != null)
+                inputManager.PlayerTransform = playerTransform;
+            
+            
             DashDirectionIndicator = transform.Find("DashDirectionIndicator");
             MovementCollider2D = GetComponent<CapsuleCollider2D>();
             
@@ -97,6 +106,7 @@ namespace Player.PlayerStateMachine
             base.Update();
             Core.LogicUpdate();
             StateMachine.CurrentState.LogicUpdate();
+            inputManager.CheckAllInputHoldTimes();
         }
         protected override void FixedUpdate()
         {

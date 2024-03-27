@@ -18,7 +18,7 @@ namespace Enemy.EnemySpecific.Ronin
 
             if (_enemyRonin.isAnimationFinished)
             {
-                if(IsPlayerInAgroRange)
+                if(PerformLongRangeAction)
                     StateMachine.ChangeState(_enemyRonin.PlayerDetectedState);
                 else StateMachine.ChangeState(_enemyRonin.LookForPlayerState);
             }

@@ -19,9 +19,9 @@ namespace Player.PlayerStates.SubStates
             base.Enter();
             IsHolding = true;
             StartTime = Time.time;
-            Player.InputHandler.UseCounterInput();
+            Player.inputManager.UseCounterInput();
 
-            _counterInputStop = Player.InputHandler.CounterInputStop;
+            _counterInputStop = Player.inputManager.CounterInputStop;
             Player.Anim.SetBool(CounterAttack, false);
             Movement?.SetVelocityX(0f);
         }
@@ -50,7 +50,7 @@ namespace Player.PlayerStates.SubStates
                     
                     if (hit.GetComponent<Enemy.EnemyStateMachine.Enemy>() != null)
                     {
-                        if(hit.GetComponent<Enemy.EnemyStateMachine.Enemy>().CanBeStunned())
+                        if(hit.GetComponent<Enemy.EnemyStateMachine.Enemy>().TryCloseCounterAttackWindow())
                             SuccessfulCounterAttack(); 
                     }
                 }
