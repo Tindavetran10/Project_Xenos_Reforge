@@ -14,8 +14,7 @@ namespace Manager
 
         // Reference to the player's transform
         private Transform _player;
-        [SerializeField] private InputManager inputManager;
-        [SerializeField] private GameObject settingsMenu;
+        
         
 
         // Array of Checkpoint objects in the scene
@@ -41,14 +40,8 @@ namespace Manager
             // Get the player's transform
             //_player = PlayerManager.Instance.player.transform;
             _player = PlayerManager.GetInstance().player.transform;
-
-            inputManager.MenuOpenEvent += HandleMenuOpen;
-            inputManager.MenuCloseEvent += HandleMenuClose;
         }
-
-        private void HandleMenuOpen() => settingsMenu.SetActive(true);
-        private void HandleMenuClose() => settingsMenu.SetActive(false);
-
+        
         // Restart the current scene
         public static void RestartScene()
         {
