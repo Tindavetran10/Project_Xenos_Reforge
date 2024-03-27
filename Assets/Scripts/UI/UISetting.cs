@@ -30,13 +30,14 @@ public class UISetting : MonoBehaviour
 
     private int _qualityLevel;
     private bool _isFullScreen;
-    private float _brightnessLevel;
+    static float _brightnessLevel = 1f;
     AutoExposure exposure;
 
 
     public TMP_Dropdown resolutionDropdown;
     private Resolution[] resolutions;
 
+    static float _v=5f;
 
     // Start is called before the first frame update
     void Start()
@@ -91,6 +92,8 @@ public class UISetting : MonoBehaviour
         {
             exposure.keyValue.value = .05f;
         }
+
+
         _brightnessLevel = exposure.keyValue.value;
         brightnessTextValue.text = brightness.ToString("0.0");
     }
@@ -165,5 +168,11 @@ public class UISetting : MonoBehaviour
 
             GraphicsApply();
         }
+    }
+
+    private void Update()
+    {
+        if (exposure.keyValue.value != _brightnessLevel)
+            exposure.keyValue.value = _brightnessLevel;
     }
 }
