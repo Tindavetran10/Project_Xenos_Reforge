@@ -18,7 +18,7 @@ namespace Player.PlayerStates.SubStates
         public override void Enter()
         {
             base.Enter();
-            Player.playerInputHandler.UseJumpInput();
+            Player.inputManager.UseJumpInput();
             Player.JumpState.ResetAmountOfJumpsLeft();
             Movement?.SetVelocity(PlayerData.wallJumpVelocity, PlayerData.wallJumpAngle, _wallJumpDirection);
             Movement?.CheckIfShouldFlip(_wallJumpDirection);

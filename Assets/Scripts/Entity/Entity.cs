@@ -40,7 +40,7 @@ namespace Entity
 
         protected virtual void FixedUpdate() {}
 
-        public void HitParticle(Component hit, GameObject data)
+        public static void HitParticle(Component hit, GameObject data)
         {
             // Instantiate the hit particle
             var hitParticleInstance = Instantiate(data, hit.transform.position 

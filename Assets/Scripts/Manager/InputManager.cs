@@ -6,10 +6,12 @@ namespace _Scripts.Player.Input
 {
     // This class handles player input using the Unity Input System
     [CreateAssetMenu(menuName = "PlayerInputHandler")]
-    public class PlayerInputHandler : ScriptableObject, PlayerInput.IGameplayActions, PlayerInput.IUIActions
+    public class InputManager : ScriptableObject, PlayerInput.IGameplayActions, PlayerInput.IUIActions
     {
+        private static InputManager _instance;
+        
         public Transform PlayerTransform { get; set;}
-        private PlayerInput _playerInput;
+        private static PlayerInput _playerInput;
         private Camera _cam;
 
         #region Input for Gameplay
@@ -39,6 +41,8 @@ namespace _Scripts.Player.Input
         
         public bool CounterInput { get; private set; }
         public bool CounterInputStop { get; private set; }
+        
+        public bool MenuOpenInput { get; private set; }
         #endregion
 
         #region Input Holdtime for Gameplay
@@ -56,6 +60,12 @@ namespace _Scripts.Player.Input
         public event Action MenuCloseEvent;
         #endregion
 
+        private void Awake()
+        {
+            if (_instance == null)
+                _instance = this;
+        }
+        
         private void OnEnable()
         {
             // Create a new instance of the PlayerInput asset
@@ -77,13 +87,13 @@ namespace _Scripts.Player.Input
         }
 
         #region Change Input Action Map
-        private void SetGameplay()
+        private static void SetGameplay()
         {
             _playerInput.Gameplay.Enable();
             _playerInput.UI.Disable();
         }
         
-        private void SetUI()
+        private static void SetUI()
         {
             _playerInput.Gameplay.Disable();
             _playerInput.UI.Enable();

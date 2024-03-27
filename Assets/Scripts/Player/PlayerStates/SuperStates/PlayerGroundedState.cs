@@ -57,15 +57,15 @@ namespace Player.PlayerStates.SuperStates
             base.LogicUpdate();
 
             // Get the input values from the PlayerInputHandler class
-            XInput = Player.playerInputHandler.NormInputX;
-            YInput = Player.playerInputHandler.NormInputY;
-            _jumpInput =Player.playerInputHandler.JumpInput;
-            _dashInput = Player.playerInputHandler.DashInput;
+            XInput = Player.inputManager.NormInputX;
+            YInput = Player.inputManager.NormInputY;
+            _jumpInput =Player.inputManager.JumpInput;
+            _dashInput = Player.inputManager.DashInput;
             
-            _normalAttackInput = Player.playerInputHandler.NormalAttackInputs[(int)CombatInputs.Normal];
-            _aimSwordInput = Player.playerInputHandler.AimSwordInput;
-            _focusSwordInput = Player.playerInputHandler.FocusSwordInput;
-            _counterAttackInput = Player.playerInputHandler.CounterInput;
+            _normalAttackInput = Player.inputManager.NormalAttackInputs[(int)CombatInputs.Normal];
+            _aimSwordInput = Player.inputManager.AimSwordInput;
+            _focusSwordInput = Player.inputManager.FocusSwordInput;
+            _counterAttackInput = Player.inputManager.CounterInput;
             
             if(_focusSwordInput && !IsTouchingCeiling)
                 StateMachine.ChangeState(Player.FocusSwordState);

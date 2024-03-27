@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0360412e19ec88f4782c9f17e5f308c6, type: 3}
-  m_Name: PlayerInputHandlerSO
+  m_Name: InputManagerSO
   m_EditorClassIdentifier: 
   inputHoldTime: 0.1

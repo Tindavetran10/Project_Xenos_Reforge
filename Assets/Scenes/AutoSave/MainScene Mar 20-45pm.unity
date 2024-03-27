@@ -10991,10 +10991,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: ae5a6636a828cae41b2d83556dac0a7d, type: 2}
     - target: {fileID: 7849466132785042285, guid: d3c59ee5e474a7d41b505da6b5ae51bf, type: 3}
-      propertyPath: inputManager
-      value: 
-      objectReference: {fileID: 11400000, guid: ae5a6636a828cae41b2d83556dac0a7d, type: 2}
-    - target: {fileID: 7849466132785042285, guid: d3c59ee5e474a7d41b505da6b5ae51bf, type: 3}
       propertyPath: knockBackDuration
       value: 0.1
       objectReference: {fileID: 0}

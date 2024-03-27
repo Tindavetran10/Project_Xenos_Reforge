@@ -22,7 +22,7 @@ namespace Player.PlayerStates.SubStates
             
             IsHolding = true;
             
-            Player.playerInputHandler.UseFocusSwordInput();
+            Player.inputManager.UseFocusSwordInput();
             Movement?.SetVelocityZero();
         }
 
@@ -34,8 +34,8 @@ namespace Player.PlayerStates.SubStates
             {
                 if (IsHolding)
                 {
-                    _focusSwordInputStop = Player.playerInputHandler.FocusSwordInputStop;
-                    _focusSwordMouseClick = Player.playerInputHandler.FocusSwordMouseClick;
+                    _focusSwordInputStop = Player.inputManager.FocusSwordInputStop;
+                    _focusSwordMouseClick = Player.inputManager.FocusSwordMouseClick;
                     
                     if(_focusSwordMouseClick)
                     {

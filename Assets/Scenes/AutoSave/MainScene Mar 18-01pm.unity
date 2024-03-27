@@ -509,7 +509,7 @@ MonoBehaviour:
   skillTreeUI: {fileID: 1573652266}
   mapUI: {fileID: 1041284115}
   craftUI: {fileID: 1239974002}
-  optionsUI: {fileID: 0}
+  settingsUI: {fileID: 571214207}
   inGameUI: {fileID: 0}
   skillToolTip: {fileID: 0}
 --- !u!1 &121101724
@@ -569,7 +569,7 @@ MonoBehaviour:
   skillTreeUI: {fileID: 1573652266}
   mapUI: {fileID: 1041284115}
   craftUI: {fileID: 1239974002}
-  optionsUI: {fileID: 0}
+  settingsUI: {fileID: 571214207}
   inGameUI: {fileID: 0}
   skillToolTip: {fileID: 0}
 --- !u!1 &157761389
@@ -3755,7 +3755,7 @@ GameObject:
   - component: {fileID: 421139960}
   - component: {fileID: 421139959}
   m_Layer: 5
-  m_Name: Options
+  m_Name: Settings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4553,7 +4553,7 @@ GameObject:
   - component: {fileID: 566976877}
   - component: {fileID: 566976876}
   m_Layer: 5
-  m_Name: Options
+  m_Name: Settings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4684,7 +4684,7 @@ GameObject:
   - component: {fileID: 571214210}
   - component: {fileID: 571214209}
   m_Layer: 5
-  m_Name: Options
+  m_Name: Settings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4896,7 +4896,7 @@ GameObject:
   - component: {fileID: 604161706}
   - component: {fileID: 604161705}
   m_Layer: 5
-  m_Name: Options
+  m_Name: Settings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5618,7 +5618,7 @@ GameObject:
   - component: {fileID: 859862890}
   - component: {fileID: 859862889}
   m_Layer: 5
-  m_Name: Options
+  m_Name: Settings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7837,7 +7837,7 @@ GameObject:
   - component: {fileID: 1404994042}
   - component: {fileID: 1404994041}
   m_Layer: 5
-  m_Name: Options
+  m_Name: Settings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8516,7 +8516,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: OPTIONS
+  m_text: 'SETTINGS
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5536243b62838ae4d99fdc28a1cdcade, type: 2}
   m_sharedMaterial: {fileID: 8584473261113578765, guid: 5536243b62838ae4d99fdc28a1cdcade, type: 2}
@@ -10988,10 +10990,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7849466132785042285, guid: d3c59ee5e474a7d41b505da6b5ae51bf, type: 3}
       propertyPath: InputManager
-      value: 
-      objectReference: {fileID: 11400000, guid: ae5a6636a828cae41b2d83556dac0a7d, type: 2}
-    - target: {fileID: 7849466132785042285, guid: d3c59ee5e474a7d41b505da6b5ae51bf, type: 3}
-      propertyPath: inputManager
       value: 
       objectReference: {fileID: 11400000, guid: ae5a6636a828cae41b2d83556dac0a7d, type: 2}
     - target: {fileID: 7849466132785042285, guid: d3c59ee5e474a7d41b505da6b5ae51bf, type: 3}

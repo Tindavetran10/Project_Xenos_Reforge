@@ -24,7 +24,7 @@ namespace UI
                 tutorialUIs.SetActive(true);
         }
     
-        private bool ContinueForParryTutorial() => _player.playerInputHandler.CounterInput;
+        private bool ContinueForParryTutorial() => _player.inputManager.CounterInput;
     
         private IEnumerator SlowDownGame()
         {
