@@ -19,6 +19,7 @@ namespace UI
         
         private void Start()
         {
+            
             if (playerStats != null)
                 playerStats.OnHealthChanged += UpdateHealthUI;
         }
