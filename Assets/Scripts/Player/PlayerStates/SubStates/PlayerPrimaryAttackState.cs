@@ -29,7 +29,7 @@ namespace Player.PlayerStates.SubStates
             
             IsHolding = false;
             StartTime = Time.time;
-            Player.playerInputHandler.UseAttackInput();
+            Player.inputManager.UseAttackInput();
             
             if (ComboCounter >= PlayerData.numberOfAttacks || Time.time >= _lastTimeAttacked + PlayerData.comboWindow)
                 ComboCounter = 0;
@@ -65,10 +65,10 @@ namespace Player.PlayerStates.SubStates
             foreach (var combatInput in Enum.GetValues(typeof(CombatInputs)).Cast<CombatInputs>())
             {
                 // If any input is pressed, cancel the animation
-                if (Player.playerInputHandler.NormalAttackInputs[(int)combatInput] ||
-                    Player.playerInputHandler.NormInputX == 1 || Player.playerInputHandler.NormInputX == -1 ||
-                    Player.playerInputHandler.JumpInput ||
-                    Player.playerInputHandler.DashInput)
+                if (Player.inputManager.NormalAttackInputs[(int)combatInput] ||
+                    Player.inputManager.NormInputX == 1 || Player.inputManager.NormInputX == -1 ||
+                    Player.inputManager.JumpInput ||
+                    Player.inputManager.DashInput)
                 {
                     IsAnimationCancel = true;
                     break; // Exit the loop if any condition is met
@@ -91,7 +91,7 @@ namespace Player.PlayerStates.SubStates
         public override void SetFlipActive()
         {
             base.SetFlipActive();
-            Movement.CheckIfShouldFlip(Player.playerInputHandler.NormInputX);
+            Movement.CheckIfShouldFlip(Player.inputManager.NormInputX);
         }
 
         public override void SetFlipInactive()
@@ -123,7 +123,7 @@ namespace Player.PlayerStates.SubStates
             var enemyComponent = hit.GetComponent<Enemy.EnemyStateMachine.Enemy>();
             if(enemyComponent == null) return;
             
-            Player.HitParticle(hit, PlayerData.hitParticle);
+            Entity.Entity.HitParticle(hit, PlayerData.hitParticle);
             
             var target = hit.GetComponentInChildren<EnemyStats>();
             if(target!=null)

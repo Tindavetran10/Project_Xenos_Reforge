@@ -72,10 +72,10 @@ namespace Player.PlayerStates.SubStates
             CheckWallJumpCoyoteTime();
         
             // Get the input values from the PlayerInputHandler class
-            _xInput = Player.playerInputHandler.NormInputX;
-            _jumpInput = Player.playerInputHandler.JumpInput;
-            _jumpInputStop = Player.playerInputHandler.JumpInputStop;
-            _dashInput = Player.playerInputHandler.DashInput;
+            _xInput = Player.inputManager.NormInputX;
+            _jumpInput = Player.inputManager.JumpInput;
+            _jumpInputStop = Player.inputManager.JumpInputStop;
+            _dashInput = Player.inputManager.DashInput;
         
             CheckJumpMultiplier();
             

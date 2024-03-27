@@ -1,4 +1,5 @@
 using System.Collections;
+using _Scripts.Player.Input;
 using UI;
 using UnityEngine;
 
@@ -6,9 +7,7 @@ namespace Manager
 {
     public class MenuManager : MonoBehaviour
     {
-        private bool menuInput;
-        
-        [SerializeField] private GameObject mainMenuFirst;
+        [SerializeField] private InputManager inputManager;
         
         [Header("End screen")]
         [SerializeField] private UIFadeScreen fadeScreen;
@@ -16,14 +15,16 @@ namespace Manager
         [SerializeField] private GameObject winText;
         [SerializeField] private GameObject restartButton;
 
-        [Space] 
-        
+        [Space]
+
+        #region Tab UI system
         [SerializeField] private GameObject inventoryUI;
         [SerializeField] private GameObject skillTreeUI;
         [SerializeField] private GameObject mapUI;
         [SerializeField] private GameObject craftUI;
-        [SerializeField] private GameObject settingsUI;
+        [SerializeField] private GameObject optionsUI;
         [SerializeField] private GameObject inGameUI;
+        #endregion
         
         public UISkillToolTip skillToolTip;
 
@@ -38,11 +39,22 @@ namespace Manager
             //fadeScreen.gameObject.SetActive(true);
         }
 
-        private void Start()
+        private void Update()
         {
-            //SwitchTo(inGameUI);
+            if (inputManager.MenuOpenInput)
+            {
+                if (!PauseManager.Instance.IsPaused)
+                    Pause();
+            }
+            else Unpause();
         }
-        
+
+        #region Pause/Unpause Function
+        private static void Pause() => PauseManager.Instance.PauseGame();
+        private static void Unpause() => PauseManager.Instance.UnpauseGame();
+        #endregion
+
+        #region Old Function
         public void SwitchTo(GameObject menu)
         {
             // Register every child object and switch it off by default
@@ -59,21 +71,7 @@ namespace Manager
             if (GameManager.Instance != null) 
                 GameManager.PauseGame(menu != inGameUI);
         }
-
-        private void SwitchWithKeyTo(GameObject menu)
-        {
-            if (menu != null && menu.activeSelf)
-            {
-                menu.SetActive(false);
-                Time.timeScale = 0;
-                CheckForInGameUI();
-                return;
-            }
-
-            SwitchTo(menu);
-        }
         
-
         private void CheckForInGameUI()
         {
             for (var i = 0; i < transform.childCount; i++)
@@ -84,13 +82,7 @@ namespace Manager
             }
             SwitchTo(inGameUI);
         }
-
-        private void Update()
-        {
-            if (menuInput)
-                mainMenuFirst.SetActive(true);
-        }
-
+        
         public void SwitchOnEndScreen()
         {
             fadeScreen.FadeOut();
@@ -120,5 +112,6 @@ namespace Manager
         }
         
         public void RestartGameButton() => GameManager.RestartScene();
+        #endregion
     }
 }

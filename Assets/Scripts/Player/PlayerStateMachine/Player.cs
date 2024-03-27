@@ -4,6 +4,7 @@ using Player.Data;
 using Player.GhostTrail_Effect;
 using Player.PlayerStates.SubStates;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Player.PlayerStateMachine
 {
@@ -38,7 +39,7 @@ namespace Player.PlayerStateMachine
 
         #region Components
         //public PlayerInputHandler InputHandler { get; private set; }
-        [SerializeField] public PlayerInputHandler playerInputHandler;
+        [SerializeField] public InputManager inputManager;
         public Transform playerTransform;
         
         public Transform DashDirectionIndicator { get; private set; }
@@ -86,8 +87,8 @@ namespace Player.PlayerStateMachine
             
             //playerInputHandler = GetComponent<PlayerInputHandler>();
             
-            if(playerInputHandler != null)
-                playerInputHandler.PlayerTransform = playerTransform;
+            if(inputManager != null)
+                inputManager.PlayerTransform = playerTransform;
             
             
             DashDirectionIndicator = transform.Find("DashDirectionIndicator");
@@ -105,7 +106,7 @@ namespace Player.PlayerStateMachine
             base.Update();
             Core.LogicUpdate();
             StateMachine.CurrentState.LogicUpdate();
-            playerInputHandler.CheckAllInputHoldTimes();
+            inputManager.CheckAllInputHoldTimes();
         }
         protected override void FixedUpdate()
         {
