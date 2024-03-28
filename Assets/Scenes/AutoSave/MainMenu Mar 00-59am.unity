@@ -4795,27 +4795,11 @@ PrefabInstance:
     - target: {fileID: 6967751348476317341, guid: 6c25d6e3cc8837c47b0f6be01f55f127, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 512475918}
-    - target: {fileID: 6967751348476317341, guid: 6c25d6e3cc8837c47b0f6be01f55f127, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ResetButton
-      objectReference: {fileID: 0}
-    - target: {fileID: 6967751348476317341, guid: 6c25d6e3cc8837c47b0f6be01f55f127, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UISetting, Assembly-CSharp
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 521200927}
     - target: {fileID: 7168850017644431121, guid: 6c25d6e3cc8837c47b0f6be01f55f127, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 512475918}
-    - target: {fileID: 7168850017644431121, guid: 6c25d6e3cc8837c47b0f6be01f55f127, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GraphicsApply
-      objectReference: {fileID: 0}
-    - target: {fileID: 7168850017644431121, guid: 6c25d6e3cc8837c47b0f6be01f55f127, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UISetting, Assembly-CSharp
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 521200927}
     - target: {fileID: 7531237292558380707, guid: 6c25d6e3cc8837c47b0f6be01f55f127, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -4849,14 +4833,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
       objectReference: {fileID: 521200927}
-    - target: {fileID: 869144505808516301, guid: d58830860405ec346a422887d412c210, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 869144505808516301, guid: d58830860405ec346a422887d412c210, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1770763357648146447, guid: d58830860405ec346a422887d412c210, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -4940,42 +4916,10 @@ PrefabInstance:
     - target: {fileID: 3242122540188992205, guid: d58830860405ec346a422887d412c210, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 512475918}
-    - target: {fileID: 3242122540188992205, guid: d58830860405ec346a422887d412c210, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: VolumeApply
-      objectReference: {fileID: 0}
-    - target: {fileID: 3242122540188992205, guid: d58830860405ec346a422887d412c210, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UISetting, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 4025798301248010777, guid: d58830860405ec346a422887d412c210, type: 3}
-      propertyPath: m_Color.b
-      value: 0.2754717
-      objectReference: {fileID: 0}
-    - target: {fileID: 4025798301248010777, guid: d58830860405ec346a422887d412c210, type: 3}
-      propertyPath: m_Color.g
-      value: 0.2754717
-      objectReference: {fileID: 0}
-    - target: {fileID: 4025798301248010777, guid: d58830860405ec346a422887d412c210, type: 3}
-      propertyPath: m_Color.r
-      value: 0.2754717
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 521200927}
     - target: {fileID: 4717572230719105682, guid: d58830860405ec346a422887d412c210, type: 3}
       propertyPath: m_Name
       value: SoundSettingMenu_Dialog
-      objectReference: {fileID: 0}
-    - target: {fileID: 4717572230719105682, guid: d58830860405ec346a422887d412c210, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5968817826658482864, guid: d58830860405ec346a422887d412c210, type: 3}
-      propertyPath: m_Value
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5968817826658482864, guid: d58830860405ec346a422887d412c210, type: 3}
-      propertyPath: m_MaxValue
-      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5968817826658482864, guid: d58830860405ec346a422887d412c210, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -4992,27 +4936,7 @@ PrefabInstance:
     - target: {fileID: 8765770037746077588, guid: d58830860405ec346a422887d412c210, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 512475918}
-    - target: {fileID: 8765770037746077588, guid: d58830860405ec346a422887d412c210, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ResetButton
-      objectReference: {fileID: 0}
-    - target: {fileID: 8765770037746077588, guid: d58830860405ec346a422887d412c210, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UISetting, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 9124761945329791900, guid: d58830860405ec346a422887d412c210, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 9124761945329791900, guid: d58830860405ec346a422887d412c210, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9124761945329791900, guid: d58830860405ec346a422887d412c210, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0.4
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 521200927}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
