@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Linq;
-using _Scripts.Player.Input;
 using SaveSystem;
 using UnityEngine;
 using UnityEngine.SceneManagement;

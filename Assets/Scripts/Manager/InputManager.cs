@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 namespace _Scripts.Player.Input
@@ -8,9 +9,9 @@ namespace _Scripts.Player.Input
     [CreateAssetMenu(menuName = "PlayerInputHandler")]
     public class InputManager : ScriptableObject, PlayerInput.IGameplayActions, PlayerInput.IUIActions
     {
-        public static InputManager Instance;
-        
-        public static PlayerInput PlayerInput;
+        private static InputManager _instance;
+
+        private static PlayerInput _playerInput;
         public Transform PlayerTransform { get; set;}
         private Camera _cam;
 
@@ -42,8 +43,6 @@ namespace _Scripts.Player.Input
         
         public bool CounterInput { get; private set; }
         public bool CounterInputStop { get; private set; }
-        
-        public bool MenuOpenInput { get; private set; }
         #endregion
 
         #region Input Holdtime for Gameplay
@@ -57,51 +56,48 @@ namespace _Scripts.Player.Input
         #endregion
 
         #region Events for UI
-        public event Action MenuOpenEvent;
-        public event Action MenuCloseEvent;
+        public event UnityAction MenuOpenEvent;
+        public event UnityAction MenuCloseEvent;
         #endregion
         
         
         private void Awake()
         {
-            if (Instance == null)
-                Instance = this;
+            if (_instance == null)
+                _instance = this;
         }
         
         private void OnEnable()
         {
             // Create a new instance of the PlayerInput asset
-            if (PlayerInput != null) return;
-            PlayerInput = new PlayerInput();
+            if (_playerInput != null) return;
+            _playerInput = new PlayerInput();
 
             // Set up callbacks for gameplay and UI actions
-            PlayerInput.Gameplay.SetCallbacks(this);
-            PlayerInput.UI.SetCallbacks(this);
+            _playerInput.Gameplay.SetCallbacks(this);
+            _playerInput.UI.SetCallbacks(this);
+            
+            SetGameplay();
             
             var count = Enum.GetValues(typeof(CombatInputs)).Length;
             NormalAttackInputs = new bool[count];
             NormalAttackInputsStop = new bool[count];
             
             _cam = Camera.main;
-
-            // Set initial input mode to Gameplay
-            SetGameplay();
         }
 
-        #region Change Input Action Map
-        public static void SetGameplay()
+        public void SetGameplay()
         {
-            PlayerInput.Gameplay.Enable();
-            PlayerInput.UI.Disable();
+            _playerInput.Gameplay.Enable();
+            _playerInput.UI.Disable();
         }
         
-        public static void SetUI()
+        public void SetUI()
         {
-            PlayerInput.Gameplay.Disable();
-            PlayerInput.UI.Enable();
+            _playerInput.Gameplay.Disable();
+            _playerInput.UI.Enable();
         }
-        #endregion
-
+        
         #region Check for Gameplay Input
         public void CheckAllInputHoldTimes()
         {

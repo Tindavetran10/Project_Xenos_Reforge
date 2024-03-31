@@ -5,30 +5,33 @@ namespace Manager
 {
     public class PauseManager : MonoBehaviour
     {
-        public static PauseManager Instance;
-        
-        public bool IsPaused { get; private set; }
+        private static PauseManager _instance;
 
+        [SerializeField] private InputManager inputManager;
+        [SerializeField] private GameObject optionsMenu;
+        
         private void Awake()
         {
-            if (Instance == null)
-                Instance = this;
+            if (_instance == null)
+                _instance = this;
         }
 
-        public void PauseGame()
+        private void Start()
         {
-            IsPaused = true;
+            inputManager.MenuOpenEvent += HandlePause;
+            inputManager.MenuCloseEvent += HandleResume;
+        }
+
+        private void HandlePause()
+        {
+            optionsMenu.SetActive(true);
             Time.timeScale = 0f;
-
-            InputManager.SetUI();
         }
 
-        public void UnpauseGame()
+        private void HandleResume()
         {
-            IsPaused = false;
+            optionsMenu.SetActive(false);
             Time.timeScale = 1f;
-            
-            InputManager.SetGameplay();
         }
     }
 }

@@ -28,30 +28,7 @@ namespace Manager
         #endregion
         
         public UISkillToolTip skillToolTip;
-
-        private void Start()
-        {
-            inputManager.MenuOpenEvent += HandleMenuOpen;
-            inputManager.MenuCloseEvent += HandleMenuClose;
-        }
         
-        private void HandleMenuOpen() => optionsMenu.SetActive(true);
-        private void HandleMenuClose() => optionsMenu.SetActive(false);
-
-        private void Update()
-        {
-            if (inputManager.MenuOpenInput)
-            {
-                if (!PauseManager.Instance.IsPaused)
-                    Pause();
-            }
-            else Unpause();
-        }
-
-        #region Pause/Unpause Function
-        private static void Pause() => PauseManager.Instance.PauseGame();
-        private static void Unpause() => PauseManager.Instance.UnpauseGame();
-        #endregion
 
         #region Old Function
         public void SwitchTo(GameObject menu)
