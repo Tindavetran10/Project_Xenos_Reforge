@@ -285,10 +285,7 @@ namespace _Scripts.Player.Input
         public void OnMiddleClick(InputAction.CallbackContext context){}
 
         public void OnRightClick(InputAction.CallbackContext context){}
-        public void OnTrackedDevicePosition(InputAction.CallbackContext context) {}
-
-        public void OnTrackedDeviceOrientation(InputAction.CallbackContext context) {}
-
+        
         public void OnMenuClose(InputAction.CallbackContext context)
         {
             if(context.phase == InputActionPhase.Performed)
