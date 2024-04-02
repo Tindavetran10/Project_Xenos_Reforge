@@ -58,6 +58,14 @@ namespace _Scripts.Player.Input
         #region Events for UI
         public event UnityAction MenuOpenEvent;
         public event UnityAction MenuCloseEvent;
+        public event UnityAction InventoryOpenEvent;
+        public event UnityAction InventoryCloseEvent;
+        public event UnityAction SkillTreeOpenEvent;
+        public event UnityAction SkillTreeCloseEvent;
+        public event UnityAction MapOpenEvent;
+        public event UnityAction MapCloseEvent;
+        public event UnityAction CraftingOpenEvent;
+        public event UnityAction CraftingCloseEvent;
         #endregion
         
         
@@ -263,6 +271,43 @@ namespace _Scripts.Player.Input
                 SetUI();
             }
         }
+
+        public void OnInventoryOpen(InputAction.CallbackContext context)
+        {
+            if(context.phase == InputActionPhase.Performed)
+            {
+                InventoryOpenEvent?.Invoke();
+                SetUI();
+            }
+        }
+
+        public void OnSkillTreeOpen(InputAction.CallbackContext context)
+        {
+            if(context.phase == InputActionPhase.Performed)
+            {
+                SkillTreeOpenEvent?.Invoke();
+                SetUI();
+            }
+        }
+
+        public void OnMapOpen(InputAction.CallbackContext context)
+        {
+            if(context.phase == InputActionPhase.Performed)
+            {
+                MapOpenEvent?.Invoke();
+                SetUI();
+            }
+        }
+
+        public void OnCraftingOpen(InputAction.CallbackContext context)
+        {
+            if(context.phase == InputActionPhase.Performed)
+            {
+                CraftingOpenEvent?.Invoke();
+                SetUI();
+            }
+        }
+
         #endregion
 
         #region UI Input
@@ -290,6 +335,43 @@ namespace _Scripts.Player.Input
                 SetGameplay();
             }
         }
+
+        public void OnInventoryClose(InputAction.CallbackContext context)
+        {
+            if(context.phase == InputActionPhase.Performed)
+            {
+                InventoryCloseEvent?.Invoke();
+                SetGameplay();
+            }
+        }
+
+        public void OnSkillTreeClose(InputAction.CallbackContext context)
+        {
+            if(context.phase == InputActionPhase.Performed)
+            {
+                SkillTreeCloseEvent?.Invoke();
+                SetGameplay();
+            }
+        }
+
+        public void OnMapClose(InputAction.CallbackContext context)
+        {
+            if(context.phase == InputActionPhase.Performed)
+            {
+                MapCloseEvent?.Invoke();
+                SetGameplay();
+            }
+        }
+
+        public void OnCraftingClose(InputAction.CallbackContext context)
+        {
+            if(context.phase == InputActionPhase.Performed)
+            {
+                CraftingCloseEvent?.Invoke();
+                SetGameplay();
+            }
+        }
+
         #endregion
 
         #region Use Input

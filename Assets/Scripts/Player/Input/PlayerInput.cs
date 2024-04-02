@@ -134,6 +134,42 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""InventoryOpen"",
+                    ""type"": ""Button"",
+                    ""id"": ""a739f121-eb48-418c-b9ed-e2bd441cafd4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SkillTreeOpen"",
+                    ""type"": ""Button"",
+                    ""id"": ""87e47324-9953-4523-8370-4b1a01d01500"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MapOpen"",
+                    ""type"": ""Button"",
+                    ""id"": ""4a514211-5c2c-4138-8eb2-bd9936749fb3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CraftingOpen"",
+                    ""type"": ""Button"",
+                    ""id"": ""4c041834-9045-4b5a-a513-28321ed18e7a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -444,6 +480,50 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""NormalAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""638be669-e301-47a6-9197-47ee5cdbb65f"",
+                    ""path"": ""<Keyboard>/i"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""InventoryOpen"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""835ea9fd-8be7-45fb-82ca-9f6fc0867eb9"",
+                    ""path"": ""<Keyboard>/v"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""SkillTreeOpen"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4d39fee3-3278-4cda-a009-c36aa44a9997"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""CraftingOpen"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6ca56807-48a0-4d6d-ad80-617f33d1b31f"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""MapOpen"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -527,6 +607,42 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""name"": ""MenuClose"",
                     ""type"": ""Button"",
                     ""id"": ""b515bfcd-38d2-452c-b310-267be2515958"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""InventoryClose"",
+                    ""type"": ""Button"",
+                    ""id"": ""5b26ee0a-b1fb-4668-b446-b940c493dff2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SkillTreeClose"",
+                    ""type"": ""Button"",
+                    ""id"": ""62abc835-41c8-4102-96d9-062c6440573c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MapClose"",
+                    ""type"": ""Button"",
+                    ""id"": ""e7eaaeef-30ed-4ceb-a0bb-5c010e35ae5a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CraftingClose"",
+                    ""type"": ""Button"",
+                    ""id"": ""b1d14cb7-aeb9-450d-b946-4bfb2854a712"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -929,6 +1045,50 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""MenuClose"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f49f7f5d-dd6f-40e0-b6c5-f2d4420d1aac"",
+                    ""path"": ""<Keyboard>/i"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""InventoryClose"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bd60e5a1-efb0-434c-8e99-5bd107dd054e"",
+                    ""path"": ""<Keyboard>/v"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""SkillTreeClose"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c45f8193-eefa-494d-9851-46dbe4a33d39"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""CraftingClose"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""20b3b8b7-a8c7-4d05-b573-038dbc3c1330"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""MapClose"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -994,6 +1154,10 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Gameplay_FocusSwordMousePos = m_Gameplay.FindAction("FocusSwordMousePos", throwIfNotFound: true);
         m_Gameplay_FocusSwordMouseClick = m_Gameplay.FindAction("FocusSwordMouseClick", throwIfNotFound: true);
         m_Gameplay_MenuOpen = m_Gameplay.FindAction("MenuOpen", throwIfNotFound: true);
+        m_Gameplay_InventoryOpen = m_Gameplay.FindAction("InventoryOpen", throwIfNotFound: true);
+        m_Gameplay_SkillTreeOpen = m_Gameplay.FindAction("SkillTreeOpen", throwIfNotFound: true);
+        m_Gameplay_MapOpen = m_Gameplay.FindAction("MapOpen", throwIfNotFound: true);
+        m_Gameplay_CraftingOpen = m_Gameplay.FindAction("CraftingOpen", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1005,6 +1169,10 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_UI_MiddleClick = m_UI.FindAction("MiddleClick", throwIfNotFound: true);
         m_UI_RightClick = m_UI.FindAction("RightClick", throwIfNotFound: true);
         m_UI_MenuClose = m_UI.FindAction("MenuClose", throwIfNotFound: true);
+        m_UI_InventoryClose = m_UI.FindAction("InventoryClose", throwIfNotFound: true);
+        m_UI_SkillTreeClose = m_UI.FindAction("SkillTreeClose", throwIfNotFound: true);
+        m_UI_MapClose = m_UI.FindAction("MapClose", throwIfNotFound: true);
+        m_UI_CraftingClose = m_UI.FindAction("CraftingClose", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1078,6 +1246,10 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_FocusSwordMousePos;
     private readonly InputAction m_Gameplay_FocusSwordMouseClick;
     private readonly InputAction m_Gameplay_MenuOpen;
+    private readonly InputAction m_Gameplay_InventoryOpen;
+    private readonly InputAction m_Gameplay_SkillTreeOpen;
+    private readonly InputAction m_Gameplay_MapOpen;
+    private readonly InputAction m_Gameplay_CraftingOpen;
     public struct GameplayActions
     {
         private @PlayerInput m_Wrapper;
@@ -1094,6 +1266,10 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @FocusSwordMousePos => m_Wrapper.m_Gameplay_FocusSwordMousePos;
         public InputAction @FocusSwordMouseClick => m_Wrapper.m_Gameplay_FocusSwordMouseClick;
         public InputAction @MenuOpen => m_Wrapper.m_Gameplay_MenuOpen;
+        public InputAction @InventoryOpen => m_Wrapper.m_Gameplay_InventoryOpen;
+        public InputAction @SkillTreeOpen => m_Wrapper.m_Gameplay_SkillTreeOpen;
+        public InputAction @MapOpen => m_Wrapper.m_Gameplay_MapOpen;
+        public InputAction @CraftingOpen => m_Wrapper.m_Gameplay_CraftingOpen;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1139,6 +1315,18 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @MenuOpen.started += instance.OnMenuOpen;
             @MenuOpen.performed += instance.OnMenuOpen;
             @MenuOpen.canceled += instance.OnMenuOpen;
+            @InventoryOpen.started += instance.OnInventoryOpen;
+            @InventoryOpen.performed += instance.OnInventoryOpen;
+            @InventoryOpen.canceled += instance.OnInventoryOpen;
+            @SkillTreeOpen.started += instance.OnSkillTreeOpen;
+            @SkillTreeOpen.performed += instance.OnSkillTreeOpen;
+            @SkillTreeOpen.canceled += instance.OnSkillTreeOpen;
+            @MapOpen.started += instance.OnMapOpen;
+            @MapOpen.performed += instance.OnMapOpen;
+            @MapOpen.canceled += instance.OnMapOpen;
+            @CraftingOpen.started += instance.OnCraftingOpen;
+            @CraftingOpen.performed += instance.OnCraftingOpen;
+            @CraftingOpen.canceled += instance.OnCraftingOpen;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -1179,6 +1367,18 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @MenuOpen.started -= instance.OnMenuOpen;
             @MenuOpen.performed -= instance.OnMenuOpen;
             @MenuOpen.canceled -= instance.OnMenuOpen;
+            @InventoryOpen.started -= instance.OnInventoryOpen;
+            @InventoryOpen.performed -= instance.OnInventoryOpen;
+            @InventoryOpen.canceled -= instance.OnInventoryOpen;
+            @SkillTreeOpen.started -= instance.OnSkillTreeOpen;
+            @SkillTreeOpen.performed -= instance.OnSkillTreeOpen;
+            @SkillTreeOpen.canceled -= instance.OnSkillTreeOpen;
+            @MapOpen.started -= instance.OnMapOpen;
+            @MapOpen.performed -= instance.OnMapOpen;
+            @MapOpen.canceled -= instance.OnMapOpen;
+            @CraftingOpen.started -= instance.OnCraftingOpen;
+            @CraftingOpen.performed -= instance.OnCraftingOpen;
+            @CraftingOpen.canceled -= instance.OnCraftingOpen;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -1209,6 +1409,10 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_MiddleClick;
     private readonly InputAction m_UI_RightClick;
     private readonly InputAction m_UI_MenuClose;
+    private readonly InputAction m_UI_InventoryClose;
+    private readonly InputAction m_UI_SkillTreeClose;
+    private readonly InputAction m_UI_MapClose;
+    private readonly InputAction m_UI_CraftingClose;
     public struct UIActions
     {
         private @PlayerInput m_Wrapper;
@@ -1222,6 +1426,10 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @MiddleClick => m_Wrapper.m_UI_MiddleClick;
         public InputAction @RightClick => m_Wrapper.m_UI_RightClick;
         public InputAction @MenuClose => m_Wrapper.m_UI_MenuClose;
+        public InputAction @InventoryClose => m_Wrapper.m_UI_InventoryClose;
+        public InputAction @SkillTreeClose => m_Wrapper.m_UI_SkillTreeClose;
+        public InputAction @MapClose => m_Wrapper.m_UI_MapClose;
+        public InputAction @CraftingClose => m_Wrapper.m_UI_CraftingClose;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1258,6 +1466,18 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @MenuClose.started += instance.OnMenuClose;
             @MenuClose.performed += instance.OnMenuClose;
             @MenuClose.canceled += instance.OnMenuClose;
+            @InventoryClose.started += instance.OnInventoryClose;
+            @InventoryClose.performed += instance.OnInventoryClose;
+            @InventoryClose.canceled += instance.OnInventoryClose;
+            @SkillTreeClose.started += instance.OnSkillTreeClose;
+            @SkillTreeClose.performed += instance.OnSkillTreeClose;
+            @SkillTreeClose.canceled += instance.OnSkillTreeClose;
+            @MapClose.started += instance.OnMapClose;
+            @MapClose.performed += instance.OnMapClose;
+            @MapClose.canceled += instance.OnMapClose;
+            @CraftingClose.started += instance.OnCraftingClose;
+            @CraftingClose.performed += instance.OnCraftingClose;
+            @CraftingClose.canceled += instance.OnCraftingClose;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
@@ -1289,6 +1509,18 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @MenuClose.started -= instance.OnMenuClose;
             @MenuClose.performed -= instance.OnMenuClose;
             @MenuClose.canceled -= instance.OnMenuClose;
+            @InventoryClose.started -= instance.OnInventoryClose;
+            @InventoryClose.performed -= instance.OnInventoryClose;
+            @InventoryClose.canceled -= instance.OnInventoryClose;
+            @SkillTreeClose.started -= instance.OnSkillTreeClose;
+            @SkillTreeClose.performed -= instance.OnSkillTreeClose;
+            @SkillTreeClose.canceled -= instance.OnSkillTreeClose;
+            @MapClose.started -= instance.OnMapClose;
+            @MapClose.performed -= instance.OnMapClose;
+            @MapClose.canceled -= instance.OnMapClose;
+            @CraftingClose.started -= instance.OnCraftingClose;
+            @CraftingClose.performed -= instance.OnCraftingClose;
+            @CraftingClose.canceled -= instance.OnCraftingClose;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -1356,6 +1588,10 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnFocusSwordMousePos(InputAction.CallbackContext context);
         void OnFocusSwordMouseClick(InputAction.CallbackContext context);
         void OnMenuOpen(InputAction.CallbackContext context);
+        void OnInventoryOpen(InputAction.CallbackContext context);
+        void OnSkillTreeOpen(InputAction.CallbackContext context);
+        void OnMapOpen(InputAction.CallbackContext context);
+        void OnCraftingOpen(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
@@ -1368,5 +1604,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnMiddleClick(InputAction.CallbackContext context);
         void OnRightClick(InputAction.CallbackContext context);
         void OnMenuClose(InputAction.CallbackContext context);
+        void OnInventoryClose(InputAction.CallbackContext context);
+        void OnSkillTreeClose(InputAction.CallbackContext context);
+        void OnMapClose(InputAction.CallbackContext context);
+        void OnCraftingClose(InputAction.CallbackContext context);
     }
 }

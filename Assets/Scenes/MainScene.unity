@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 29095782}
   - component: {fileID: 29095781}
   m_Layer: 5
-  m_Name: Inventory
+  m_Name: InventoryBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -495,7 +495,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 96422896}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 794ef4769680407479f518f37a67b1ba, type: 3}
   m_Name: 
@@ -3321,7 +3321,7 @@ GameObject:
   - component: {fileID: 239872283}
   - component: {fileID: 239872282}
   m_Layer: 5
-  m_Name: SkillTree
+  m_Name: SkillTreeBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3589,7 +3589,7 @@ GameObject:
   - component: {fileID: 352120247}
   - component: {fileID: 352120246}
   m_Layer: 5
-  m_Name: Map
+  m_Name: MapBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3757,7 +3757,7 @@ GameObject:
   - component: {fileID: 421139960}
   - component: {fileID: 421139959}
   m_Layer: 5
-  m_Name: Options
+  m_Name: OptionsBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3935,7 +3935,7 @@ GameObject:
   - component: {fileID: 481075132}
   - component: {fileID: 481075131}
   m_Layer: 5
-  m_Name: Craft
+  m_Name: CraftBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4067,7 +4067,7 @@ GameObject:
   - component: {fileID: 483252864}
   - component: {fileID: 483252863}
   m_Layer: 5
-  m_Name: Map
+  m_Name: MapBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4555,7 +4555,7 @@ GameObject:
   - component: {fileID: 566976877}
   - component: {fileID: 566976876}
   m_Layer: 5
-  m_Name: Options
+  m_Name: OptionsBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4686,7 +4686,7 @@ GameObject:
   - component: {fileID: 571214210}
   - component: {fileID: 571214209}
   m_Layer: 5
-  m_Name: Options
+  m_Name: Options Tab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4898,7 +4898,7 @@ GameObject:
   - component: {fileID: 604161706}
   - component: {fileID: 604161705}
   m_Layer: 5
-  m_Name: Options
+  m_Name: OptionsBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5245,7 +5245,7 @@ GameObject:
   - component: {fileID: 812577683}
   - component: {fileID: 812577682}
   m_Layer: 5
-  m_Name: Inventory
+  m_Name: InventoryBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5488,7 +5488,7 @@ GameObject:
   - component: {fileID: 837830008}
   - component: {fileID: 837830007}
   m_Layer: 5
-  m_Name: SkillTree
+  m_Name: SkillTreeBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5620,7 +5620,7 @@ GameObject:
   - component: {fileID: 859862890}
   - component: {fileID: 859862889}
   m_Layer: 5
-  m_Name: Options
+  m_Name: OptionsBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6132,7 +6132,7 @@ GameObject:
   - component: {fileID: 913504362}
   - component: {fileID: 913504361}
   m_Layer: 5
-  m_Name: Inventory
+  m_Name: InventoryBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6430,7 +6430,7 @@ GameObject:
   - component: {fileID: 1041284118}
   - component: {fileID: 1041284117}
   m_Layer: 5
-  m_Name: Map
+  m_Name: Map Tab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6596,7 +6596,7 @@ GameObject:
   - component: {fileID: 1125325512}
   - component: {fileID: 1125325511}
   m_Layer: 5
-  m_Name: Map
+  m_Name: MapBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6871,7 +6871,7 @@ GameObject:
   - component: {fileID: 1239974005}
   - component: {fileID: 1239974004}
   m_Layer: 5
-  m_Name: Craft
+  m_Name: Craft Tab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6949,7 +6949,7 @@ GameObject:
   - component: {fileID: 1255410580}
   - component: {fileID: 1255410579}
   m_Layer: 5
-  m_Name: SkillTree
+  m_Name: SkillTreeBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7081,7 +7081,7 @@ GameObject:
   - component: {fileID: 1258049024}
   - component: {fileID: 1258049023}
   m_Layer: 5
-  m_Name: SkillTree
+  m_Name: SkillTreeBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7249,7 +7249,7 @@ GameObject:
   - component: {fileID: 1338270445}
   - component: {fileID: 1338270444}
   m_Layer: 5
-  m_Name: Map
+  m_Name: MapBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7427,7 +7427,7 @@ GameObject:
   - component: {fileID: 1388292556}
   - component: {fileID: 1388292555}
   m_Layer: 5
-  m_Name: Inventory
+  m_Name: InventoryBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7559,7 +7559,7 @@ GameObject:
   - component: {fileID: 1397222668}
   - component: {fileID: 1397222667}
   m_Layer: 5
-  m_Name: Map
+  m_Name: MapBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7691,7 +7691,7 @@ GameObject:
   - component: {fileID: 1404994042}
   - component: {fileID: 1404994041}
   m_Layer: 5
-  m_Name: Options
+  m_Name: OptionsBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8457,7 +8457,7 @@ GameObject:
   - component: {fileID: 1547200488}
   - component: {fileID: 1547200487}
   m_Layer: 5
-  m_Name: Inventory
+  m_Name: Inventory Tab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8534,7 +8534,7 @@ GameObject:
   - component: {fileID: 1573652269}
   - component: {fileID: 1573652268}
   m_Layer: 5
-  m_Name: Skill Tree
+  m_Name: Skill Tree Tab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8686,7 +8686,7 @@ GameObject:
   - component: {fileID: 1666110432}
   - component: {fileID: 1666110431}
   m_Layer: 5
-  m_Name: Craft
+  m_Name: CraftBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8818,7 +8818,7 @@ GameObject:
   - component: {fileID: 1670585631}
   - component: {fileID: 1670585630}
   m_Layer: 5
-  m_Name: Craft
+  m_Name: CraftBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9279,7 +9279,7 @@ GameObject:
   - component: {fileID: 1752518586}
   - component: {fileID: 1752518585}
   m_Layer: 5
-  m_Name: Craft
+  m_Name: CraftBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9411,7 +9411,7 @@ GameObject:
   - component: {fileID: 1835719791}
   - component: {fileID: 1835719790}
   m_Layer: 5
-  m_Name: Inventory
+  m_Name: InventoryBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9622,7 +9622,7 @@ GameObject:
   - component: {fileID: 1970748110}
   - component: {fileID: 1970748109}
   m_Layer: 5
-  m_Name: Craft
+  m_Name: CraftBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10314,7 +10314,7 @@ GameObject:
   - component: {fileID: 2131685329}
   - component: {fileID: 2131685328}
   m_Layer: 5
-  m_Name: SkillTree
+  m_Name: SkillTreeBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
