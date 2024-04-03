@@ -569,7 +569,7 @@ MonoBehaviour:
   skillTreeUI: {fileID: 1573652266}
   mapUI: {fileID: 1041284115}
   craftUI: {fileID: 1239974002}
-  optionsUI: {fileID: 0}
+  optionsUI: {fileID: 571214207}
   inGameUI: {fileID: 0}
   skillToolTip: {fileID: 0}
 --- !u!1 &157761389
