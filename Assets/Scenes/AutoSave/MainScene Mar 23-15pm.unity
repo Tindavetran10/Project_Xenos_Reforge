@@ -7516,50 +7516,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1338270442}
   m_CullTransparentMesh: 1
---- !u!1 &1347581996
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1347581998}
-  - component: {fileID: 1347581997}
-  m_Layer: 0
-  m_Name: PauseManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1347581997
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1347581996}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46d03e435f3c7204ab388e64ae42753d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1347581998
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1347581996}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.0877137, y: -0.6469805, z: 0.061515525}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1388292553
 GameObject:
   m_ObjectHideFlags: 0
@@ -8150,8 +8106,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8c9f50d6d7cefc43841a42fb3491a1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputManager: {fileID: 11400000, guid: ae5a6636a828cae41b2d83556dac0a7d, type: 2}
-  settingsMenu: {fileID: 571214207}
   checkpoints: []
   closestCheckpointId: 
 --- !u!4 &1438370056
@@ -11173,7 +11127,6 @@ SceneRoots:
   - {fileID: 1514338268}
   - {fileID: 55957625}
   - {fileID: 1115039449}
-  - {fileID: 1347581998}
   - {fileID: 121101725}
   - {fileID: 5356939205450122130}
   - {fileID: 690539520}
