@@ -46,7 +46,7 @@ namespace UI
         
         private void Start()
         {
-            AudioManager.instance.Play("MainMenu");
+            AudioManager.Instance.Play("MainMenu");
 
             /*_brightness.TryGetSettings(out exposure);
 

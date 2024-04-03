@@ -3,18 +3,18 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour {
 
-	public static AudioManager instance;
+	public static AudioManager Instance;
 
 	public Sound[] sounds;
 
 	void Awake ()
 	{
-		if (instance != null)
+		if (Instance != null)
 		{
 			Destroy(gameObject);
 		} else
 		{
-			instance = this;
+			Instance = this;
 			DontDestroyOnLoad(gameObject);
 		}
 
