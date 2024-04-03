@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace CoreSystem
 {
+    // This is the Core class that will hold all the CoreComponents.
     public class Core : MonoBehaviour
     {
         private readonly List<CoreComponent> _coreComponents = new();

@@ -8,14 +8,12 @@ namespace Manager
     public class MenuManager : MonoBehaviour
     {
         [SerializeField] private InputManager inputManager;
-        [SerializeField] private GameObject optionsMenu;
         
         [Header("End screen")]
         [SerializeField] private UIFadeScreen fadeScreen;
         [SerializeField] private GameObject endText;
         [SerializeField] private GameObject winText;
         [SerializeField] private GameObject restartButton;
-
         [Space]
 
         #region Tab UI system
@@ -31,30 +29,52 @@ namespace Manager
 
         private void Start()
         {
-            inputManager.MenuOpenEvent += HandleMenuOpen;
-            inputManager.MenuCloseEvent += HandleMenuClose;
+            // Show the UI like player's Health or score by default, not the menu
+            SwitchTo(inGameUI);
+            RegisterEventHandlers();
+        }
+
+        private void RegisterEventHandlers()
+        {
+            inputManager.OptionsOpenEvent += () => ToggleUIWithKey(optionsUI, true);
+            inputManager.OptionsCloseEvent += () => ToggleUIWithKey(optionsUI, false);
+            
+            inputManager.InventoryOpenEvent += () => ToggleUIWithKey(inventoryUI, true);
+            inputManager.InventoryCloseEvent += () => ToggleUIWithKey(inventoryUI, false);
+
+            inputManager.SkillTreeOpenEvent += () => ToggleUIWithKey(skillTreeUI, true);
+            inputManager.SkillTreeCloseEvent += () => ToggleUIWithKey(skillTreeUI, false);
+            
+            inputManager.MapOpenEvent += () => ToggleUIWithKey(mapUI, true);
+            inputManager.MapCloseEvent += () => ToggleUIWithKey(mapUI, false);
+            
+            inputManager.CraftingOpenEvent += () => ToggleUIWithKey(craftUI, true);
+            inputManager.CraftingCloseEvent += () => ToggleUIWithKey(craftUI, false);
         }
         
-        private void HandleMenuOpen() => optionsMenu.SetActive(true);
-        private void HandleMenuClose() => optionsMenu.SetActive(false);
-
-        private void Update()
+        private static void ToggleUIWithKey(GameObject uiElement, bool isActive)
         {
-            if (inputManager.MenuOpenInput)
+            if (uiElement.activeSelf != isActive)
             {
-                if (!PauseManager.Instance.IsPaused)
-                    Pause();
+                uiElement.SetActive(isActive);
+                Time.timeScale = isActive ? 0f : 1f;
             }
-            else Unpause();
         }
 
-        #region Pause/Unpause Function
-        private static void Pause() => PauseManager.Instance.PauseGame();
-        private static void Unpause() => PauseManager.Instance.UnpauseGame();
-        #endregion
-
         #region Old Function
-        public void SwitchTo(GameObject menu)
+        public void SwitchWithKey(GameObject tabUI)
+        {
+            // If the current tab is active, switch it off
+            if (tabUI != null && tabUI.activeSelf)
+            {
+                tabUI.SetActive(false);
+                CheckForInGameUI();
+                return;
+            }
+            SwitchTo(tabUI);
+        }
+        
+        public void SwitchTo(GameObject tabUI)
         {
             // Register every child object and switch it off by default
             for (var i = 0; i < transform.childCount; i++)
@@ -65,10 +85,10 @@ namespace Manager
                     transform.GetChild(i).gameObject.SetActive(false);
             }
 
-            if(menu != null) menu.SetActive(true);
+            if(tabUI != null) tabUI.SetActive(true);
 
             if (GameManager.Instance != null) 
-                GameManager.PauseGame(menu != inGameUI);
+                GameManager.PauseGame(tabUI != inGameUI);
         }
         
         private void CheckForInGameUI()
