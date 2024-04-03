@@ -105,7 +105,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "MenuOpen",
+                    "name": "OptionsOpen",
                     "type": "Button",
                     "id": "c585e348-a1e1-4019-af95-848c6487b2bf",
                     "expectedControlType": "Button",
@@ -400,7 +400,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardMouse",
-                    "action": "MenuOpen",
+                    "action": "OptionsOpen",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -582,7 +582,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "MenuClose",
+                    "name": "OptionsClose",
                     "type": "Button",
                     "id": "b515bfcd-38d2-452c-b310-267be2515958",
                     "expectedControlType": "Button",
@@ -1019,8 +1019,8 @@
                     "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "MenuClose",
+                    "groups": "KeyboardMouse",
+                    "action": "OptionsClose",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

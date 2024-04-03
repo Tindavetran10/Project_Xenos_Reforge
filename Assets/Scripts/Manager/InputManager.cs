@@ -56,8 +56,9 @@ namespace _Scripts.Player.Input
         #endregion
 
         #region Events for UI
-        public event UnityAction MenuOpenEvent;
-        public event UnityAction MenuCloseEvent;
+        public event UnityAction MenuClickEvent;
+        public event UnityAction OptionsOpenEvent;
+        public event UnityAction OptionsCloseEvent;
         public event UnityAction InventoryOpenEvent;
         public event UnityAction InventoryCloseEvent;
         public event UnityAction SkillTreeOpenEvent;
@@ -263,11 +264,11 @@ namespace _Scripts.Player.Input
             DashDirectionInput = Vector2Int.RoundToInt(RawDashDirectionInput.normalized);
         }
         
-        public void OnMenuOpen(InputAction.CallbackContext context)
+        public void OnOptionsOpen(InputAction.CallbackContext context)
         {
             if(context.phase == InputActionPhase.Performed)
             {
-                MenuOpenEvent?.Invoke();
+                OptionsOpenEvent?.Invoke();
                 SetUI();
             }
         }
@@ -307,7 +308,14 @@ namespace _Scripts.Player.Input
                 SetUI();
             }
         }
-
+        public void OnPoint(InputAction.CallbackContext context)
+        {
+            if (context.phase == InputActionPhase.Performed)
+            {
+                MenuClickEvent?.Invoke();
+                SetUI();
+            }
+        }
         #endregion
 
         #region UI Input
@@ -317,7 +325,6 @@ namespace _Scripts.Player.Input
 
         public void OnCancel(InputAction.CallbackContext context){}
 
-        public void OnPoint(InputAction.CallbackContext context){}
 
         public void OnClick(InputAction.CallbackContext context){}
 
@@ -325,13 +332,13 @@ namespace _Scripts.Player.Input
 
         public void OnMiddleClick(InputAction.CallbackContext context){}
 
-        public void OnRightClick(InputAction.CallbackContext context){}
+        public void OnRightClick(InputAction.CallbackContext context) {}
         
-        public void OnMenuClose(InputAction.CallbackContext context)
+        public void OnOptionsClose(InputAction.CallbackContext context)
         {
             if(context.phase == InputActionPhase.Performed)
             {
-                MenuCloseEvent?.Invoke();
+                OptionsCloseEvent?.Invoke();
                 SetGameplay();
             }
         }
@@ -371,7 +378,6 @@ namespace _Scripts.Player.Input
                 SetGameplay();
             }
         }
-
         #endregion
 
         #region Use Input

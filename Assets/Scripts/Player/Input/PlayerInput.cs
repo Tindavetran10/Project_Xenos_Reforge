@@ -127,7 +127,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""MenuOpen"",
+                    ""name"": ""OptionsOpen"",
                     ""type"": ""Button"",
                     ""id"": ""c585e348-a1e1-4019-af95-848c6487b2bf"",
                     ""expectedControlType"": ""Button"",
@@ -422,7 +422,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KeyboardMouse"",
-                    ""action"": ""MenuOpen"",
+                    ""action"": ""OptionsOpen"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -604,7 +604,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""MenuClose"",
+                    ""name"": ""OptionsClose"",
                     ""type"": ""Button"",
                     ""id"": ""b515bfcd-38d2-452c-b310-267be2515958"",
                     ""expectedControlType"": ""Button"",
@@ -1041,8 +1041,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""MenuClose"",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""OptionsClose"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1153,7 +1153,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Gameplay_FocusSword = m_Gameplay.FindAction("FocusSword", throwIfNotFound: true);
         m_Gameplay_FocusSwordMousePos = m_Gameplay.FindAction("FocusSwordMousePos", throwIfNotFound: true);
         m_Gameplay_FocusSwordMouseClick = m_Gameplay.FindAction("FocusSwordMouseClick", throwIfNotFound: true);
-        m_Gameplay_MenuOpen = m_Gameplay.FindAction("MenuOpen", throwIfNotFound: true);
+        m_Gameplay_OptionsOpen = m_Gameplay.FindAction("OptionsOpen", throwIfNotFound: true);
         m_Gameplay_InventoryOpen = m_Gameplay.FindAction("InventoryOpen", throwIfNotFound: true);
         m_Gameplay_SkillTreeOpen = m_Gameplay.FindAction("SkillTreeOpen", throwIfNotFound: true);
         m_Gameplay_MapOpen = m_Gameplay.FindAction("MapOpen", throwIfNotFound: true);
@@ -1168,7 +1168,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_UI_ScrollWheel = m_UI.FindAction("ScrollWheel", throwIfNotFound: true);
         m_UI_MiddleClick = m_UI.FindAction("MiddleClick", throwIfNotFound: true);
         m_UI_RightClick = m_UI.FindAction("RightClick", throwIfNotFound: true);
-        m_UI_MenuClose = m_UI.FindAction("MenuClose", throwIfNotFound: true);
+        m_UI_OptionsClose = m_UI.FindAction("OptionsClose", throwIfNotFound: true);
         m_UI_InventoryClose = m_UI.FindAction("InventoryClose", throwIfNotFound: true);
         m_UI_SkillTreeClose = m_UI.FindAction("SkillTreeClose", throwIfNotFound: true);
         m_UI_MapClose = m_UI.FindAction("MapClose", throwIfNotFound: true);
@@ -1245,7 +1245,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_FocusSword;
     private readonly InputAction m_Gameplay_FocusSwordMousePos;
     private readonly InputAction m_Gameplay_FocusSwordMouseClick;
-    private readonly InputAction m_Gameplay_MenuOpen;
+    private readonly InputAction m_Gameplay_OptionsOpen;
     private readonly InputAction m_Gameplay_InventoryOpen;
     private readonly InputAction m_Gameplay_SkillTreeOpen;
     private readonly InputAction m_Gameplay_MapOpen;
@@ -1265,7 +1265,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @FocusSword => m_Wrapper.m_Gameplay_FocusSword;
         public InputAction @FocusSwordMousePos => m_Wrapper.m_Gameplay_FocusSwordMousePos;
         public InputAction @FocusSwordMouseClick => m_Wrapper.m_Gameplay_FocusSwordMouseClick;
-        public InputAction @MenuOpen => m_Wrapper.m_Gameplay_MenuOpen;
+        public InputAction @OptionsOpen => m_Wrapper.m_Gameplay_OptionsOpen;
         public InputAction @InventoryOpen => m_Wrapper.m_Gameplay_InventoryOpen;
         public InputAction @SkillTreeOpen => m_Wrapper.m_Gameplay_SkillTreeOpen;
         public InputAction @MapOpen => m_Wrapper.m_Gameplay_MapOpen;
@@ -1312,9 +1312,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @FocusSwordMouseClick.started += instance.OnFocusSwordMouseClick;
             @FocusSwordMouseClick.performed += instance.OnFocusSwordMouseClick;
             @FocusSwordMouseClick.canceled += instance.OnFocusSwordMouseClick;
-            @MenuOpen.started += instance.OnMenuOpen;
-            @MenuOpen.performed += instance.OnMenuOpen;
-            @MenuOpen.canceled += instance.OnMenuOpen;
+            @OptionsOpen.started += instance.OnOptionsOpen;
+            @OptionsOpen.performed += instance.OnOptionsOpen;
+            @OptionsOpen.canceled += instance.OnOptionsOpen;
             @InventoryOpen.started += instance.OnInventoryOpen;
             @InventoryOpen.performed += instance.OnInventoryOpen;
             @InventoryOpen.canceled += instance.OnInventoryOpen;
@@ -1364,9 +1364,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @FocusSwordMouseClick.started -= instance.OnFocusSwordMouseClick;
             @FocusSwordMouseClick.performed -= instance.OnFocusSwordMouseClick;
             @FocusSwordMouseClick.canceled -= instance.OnFocusSwordMouseClick;
-            @MenuOpen.started -= instance.OnMenuOpen;
-            @MenuOpen.performed -= instance.OnMenuOpen;
-            @MenuOpen.canceled -= instance.OnMenuOpen;
+            @OptionsOpen.started -= instance.OnOptionsOpen;
+            @OptionsOpen.performed -= instance.OnOptionsOpen;
+            @OptionsOpen.canceled -= instance.OnOptionsOpen;
             @InventoryOpen.started -= instance.OnInventoryOpen;
             @InventoryOpen.performed -= instance.OnInventoryOpen;
             @InventoryOpen.canceled -= instance.OnInventoryOpen;
@@ -1408,7 +1408,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_ScrollWheel;
     private readonly InputAction m_UI_MiddleClick;
     private readonly InputAction m_UI_RightClick;
-    private readonly InputAction m_UI_MenuClose;
+    private readonly InputAction m_UI_OptionsClose;
     private readonly InputAction m_UI_InventoryClose;
     private readonly InputAction m_UI_SkillTreeClose;
     private readonly InputAction m_UI_MapClose;
@@ -1425,7 +1425,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @ScrollWheel => m_Wrapper.m_UI_ScrollWheel;
         public InputAction @MiddleClick => m_Wrapper.m_UI_MiddleClick;
         public InputAction @RightClick => m_Wrapper.m_UI_RightClick;
-        public InputAction @MenuClose => m_Wrapper.m_UI_MenuClose;
+        public InputAction @OptionsClose => m_Wrapper.m_UI_OptionsClose;
         public InputAction @InventoryClose => m_Wrapper.m_UI_InventoryClose;
         public InputAction @SkillTreeClose => m_Wrapper.m_UI_SkillTreeClose;
         public InputAction @MapClose => m_Wrapper.m_UI_MapClose;
@@ -1463,9 +1463,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @RightClick.started += instance.OnRightClick;
             @RightClick.performed += instance.OnRightClick;
             @RightClick.canceled += instance.OnRightClick;
-            @MenuClose.started += instance.OnMenuClose;
-            @MenuClose.performed += instance.OnMenuClose;
-            @MenuClose.canceled += instance.OnMenuClose;
+            @OptionsClose.started += instance.OnOptionsClose;
+            @OptionsClose.performed += instance.OnOptionsClose;
+            @OptionsClose.canceled += instance.OnOptionsClose;
             @InventoryClose.started += instance.OnInventoryClose;
             @InventoryClose.performed += instance.OnInventoryClose;
             @InventoryClose.canceled += instance.OnInventoryClose;
@@ -1506,9 +1506,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @RightClick.started -= instance.OnRightClick;
             @RightClick.performed -= instance.OnRightClick;
             @RightClick.canceled -= instance.OnRightClick;
-            @MenuClose.started -= instance.OnMenuClose;
-            @MenuClose.performed -= instance.OnMenuClose;
-            @MenuClose.canceled -= instance.OnMenuClose;
+            @OptionsClose.started -= instance.OnOptionsClose;
+            @OptionsClose.performed -= instance.OnOptionsClose;
+            @OptionsClose.canceled -= instance.OnOptionsClose;
             @InventoryClose.started -= instance.OnInventoryClose;
             @InventoryClose.performed -= instance.OnInventoryClose;
             @InventoryClose.canceled -= instance.OnInventoryClose;
@@ -1587,7 +1587,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnFocusSword(InputAction.CallbackContext context);
         void OnFocusSwordMousePos(InputAction.CallbackContext context);
         void OnFocusSwordMouseClick(InputAction.CallbackContext context);
-        void OnMenuOpen(InputAction.CallbackContext context);
+        void OnOptionsOpen(InputAction.CallbackContext context);
         void OnInventoryOpen(InputAction.CallbackContext context);
         void OnSkillTreeOpen(InputAction.CallbackContext context);
         void OnMapOpen(InputAction.CallbackContext context);
@@ -1603,7 +1603,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnScrollWheel(InputAction.CallbackContext context);
         void OnMiddleClick(InputAction.CallbackContext context);
         void OnRightClick(InputAction.CallbackContext context);
-        void OnMenuClose(InputAction.CallbackContext context);
+        void OnOptionsClose(InputAction.CallbackContext context);
         void OnInventoryClose(InputAction.CallbackContext context);
         void OnSkillTreeClose(InputAction.CallbackContext context);
         void OnMapClose(InputAction.CallbackContext context);

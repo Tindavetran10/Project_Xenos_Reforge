@@ -206,8 +206,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 96422901}
-        m_TargetAssemblyTypeName: UI.UI, Assembly-CSharp
-        m_MethodName: SwitchTo
+        m_TargetAssemblyTypeName: Manager.MenuManager, Assembly-CSharp
+        m_MethodName: SwitchWithKey
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1547200485}
@@ -501,7 +501,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputManager: {fileID: 11400000, guid: ae5a6636a828cae41b2d83556dac0a7d, type: 2}
-  optionsMenu: {fileID: 0}
   fadeScreen: {fileID: 0}
   endText: {fileID: 0}
   winText: {fileID: 0}
@@ -510,7 +509,7 @@ MonoBehaviour:
   skillTreeUI: {fileID: 1573652266}
   mapUI: {fileID: 1041284115}
   craftUI: {fileID: 1239974002}
-  optionsUI: {fileID: 0}
+  optionsUI: {fileID: 571214207}
   inGameUI: {fileID: 0}
   skillToolTip: {fileID: 0}
 --- !u!1 &121101724
@@ -562,7 +561,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputManager: {fileID: 11400000, guid: ae5a6636a828cae41b2d83556dac0a7d, type: 2}
-  optionsMenu: {fileID: 571214207}
   fadeScreen: {fileID: 0}
   endText: {fileID: 0}
   winText: {fileID: 0}
@@ -3391,8 +3389,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 96422901}
-        m_TargetAssemblyTypeName: UI.UI, Assembly-CSharp
-        m_MethodName: SwitchTo
+        m_TargetAssemblyTypeName: Manager.MenuManager, Assembly-CSharp
+        m_MethodName: SwitchWithKey
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1573652266}
@@ -3659,8 +3657,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 96422901}
-        m_TargetAssemblyTypeName: UI.UI, Assembly-CSharp
-        m_MethodName: SwitchTo
+        m_TargetAssemblyTypeName: Manager.MenuManager, Assembly-CSharp
+        m_MethodName: SwitchWithKey
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1041284115}
@@ -3827,8 +3825,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 96422901}
-        m_TargetAssemblyTypeName: UI.UI, Assembly-CSharp
-        m_MethodName: SwitchTo
+        m_TargetAssemblyTypeName: Manager.MenuManager, Assembly-CSharp
+        m_MethodName: SwitchWithKey
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 571214207}
@@ -4005,8 +4003,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 96422901}
-        m_TargetAssemblyTypeName: UI.UI, Assembly-CSharp
-        m_MethodName: SwitchTo
+        m_TargetAssemblyTypeName: Manager.MenuManager, Assembly-CSharp
+        m_MethodName: SwitchWithKey
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1239974002}
@@ -4137,8 +4135,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 96422901}
-        m_TargetAssemblyTypeName: UI.UI, Assembly-CSharp
-        m_MethodName: SwitchTo
+        m_TargetAssemblyTypeName: Manager.MenuManager, Assembly-CSharp
+        m_MethodName: SwitchWithKey
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1041284115}
@@ -4625,8 +4623,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 96422901}
-        m_TargetAssemblyTypeName: UI.UI, Assembly-CSharp
-        m_MethodName: SwitchTo
+        m_TargetAssemblyTypeName: Manager.MenuManager, Assembly-CSharp
+        m_MethodName: SwitchWithKey
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 571214207}
@@ -4968,8 +4966,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 96422901}
-        m_TargetAssemblyTypeName: UI.UI, Assembly-CSharp
-        m_MethodName: SwitchTo
+        m_TargetAssemblyTypeName: Manager.MenuManager, Assembly-CSharp
+        m_MethodName: SwitchWithKey
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 571214207}
@@ -5315,8 +5313,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 96422901}
-        m_TargetAssemblyTypeName: UI.UI, Assembly-CSharp
-        m_MethodName: SwitchTo
+        m_TargetAssemblyTypeName: Manager.MenuManager, Assembly-CSharp
+        m_MethodName: SwitchWithKey
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1547200485}
@@ -5558,8 +5556,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 96422901}
-        m_TargetAssemblyTypeName: UI.UI, Assembly-CSharp
-        m_MethodName: SwitchTo
+        m_TargetAssemblyTypeName: Manager.MenuManager, Assembly-CSharp
+        m_MethodName: SwitchWithKey
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1573652266}
@@ -5690,8 +5688,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 96422901}
-        m_TargetAssemblyTypeName: UI.UI, Assembly-CSharp
-        m_MethodName: SwitchTo
+        m_TargetAssemblyTypeName: Manager.MenuManager, Assembly-CSharp
+        m_MethodName: SwitchWithKey
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 571214207}
@@ -6202,8 +6200,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 96422901}
-        m_TargetAssemblyTypeName: UI.UI, Assembly-CSharp
-        m_MethodName: SwitchTo
+        m_TargetAssemblyTypeName: Manager.MenuManager, Assembly-CSharp
+        m_MethodName: SwitchWithKey
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1547200485}
@@ -6666,8 +6664,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 96422901}
-        m_TargetAssemblyTypeName: UI.UI, Assembly-CSharp
-        m_MethodName: SwitchTo
+        m_TargetAssemblyTypeName: Manager.MenuManager, Assembly-CSharp
+        m_MethodName: SwitchWithKey
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1041284115}
@@ -7019,8 +7017,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 96422901}
-        m_TargetAssemblyTypeName: UI.UI, Assembly-CSharp
-        m_MethodName: SwitchTo
+        m_TargetAssemblyTypeName: Manager.MenuManager, Assembly-CSharp
+        m_MethodName: SwitchWithKey
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1573652266}
@@ -7151,8 +7149,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 96422901}
-        m_TargetAssemblyTypeName: UI.UI, Assembly-CSharp
-        m_MethodName: SwitchTo
+        m_TargetAssemblyTypeName: Manager.MenuManager, Assembly-CSharp
+        m_MethodName: SwitchWithKey
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1573652266}
@@ -7319,8 +7317,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 96422901}
-        m_TargetAssemblyTypeName: UI.UI, Assembly-CSharp
-        m_MethodName: SwitchTo
+        m_TargetAssemblyTypeName: Manager.MenuManager, Assembly-CSharp
+        m_MethodName: SwitchWithKey
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1041284115}
@@ -7368,52 +7366,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1338270442}
   m_CullTransparentMesh: 1
---- !u!1 &1347581996
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1347581998}
-  - component: {fileID: 1347581997}
-  m_Layer: 0
-  m_Name: PauseManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1347581997
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1347581996}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46d03e435f3c7204ab388e64ae42753d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inputManager: {fileID: 11400000, guid: ae5a6636a828cae41b2d83556dac0a7d, type: 2}
-  optionsMenu: {fileID: 571214207}
---- !u!4 &1347581998
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1347581996}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.0877137, y: -0.6469805, z: 0.061515525}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1388292553
 GameObject:
   m_ObjectHideFlags: 0
@@ -7497,8 +7449,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 96422901}
-        m_TargetAssemblyTypeName: UI.UI, Assembly-CSharp
-        m_MethodName: SwitchTo
+        m_TargetAssemblyTypeName: Manager.MenuManager, Assembly-CSharp
+        m_MethodName: SwitchWithKey
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1547200485}
@@ -7629,8 +7581,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 96422901}
-        m_TargetAssemblyTypeName: UI.UI, Assembly-CSharp
-        m_MethodName: SwitchTo
+        m_TargetAssemblyTypeName: Manager.MenuManager, Assembly-CSharp
+        m_MethodName: SwitchWithKey
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1041284115}
@@ -7761,8 +7713,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 96422901}
-        m_TargetAssemblyTypeName: UI.UI, Assembly-CSharp
-        m_MethodName: SwitchTo
+        m_TargetAssemblyTypeName: Manager.MenuManager, Assembly-CSharp
+        m_MethodName: SwitchWithKey
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 571214207}
@@ -8756,8 +8708,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 96422901}
-        m_TargetAssemblyTypeName: UI.UI, Assembly-CSharp
-        m_MethodName: SwitchTo
+        m_TargetAssemblyTypeName: Manager.MenuManager, Assembly-CSharp
+        m_MethodName: SwitchWithKey
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1239974002}
@@ -8888,8 +8840,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 96422901}
-        m_TargetAssemblyTypeName: UI.UI, Assembly-CSharp
-        m_MethodName: SwitchTo
+        m_TargetAssemblyTypeName: Manager.MenuManager, Assembly-CSharp
+        m_MethodName: SwitchWithKey
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1239974002}
@@ -9349,8 +9301,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 96422901}
-        m_TargetAssemblyTypeName: UI.UI, Assembly-CSharp
-        m_MethodName: SwitchTo
+        m_TargetAssemblyTypeName: Manager.MenuManager, Assembly-CSharp
+        m_MethodName: SwitchWithKey
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1239974002}
@@ -9481,8 +9433,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 96422901}
-        m_TargetAssemblyTypeName: UI.UI, Assembly-CSharp
-        m_MethodName: SwitchTo
+        m_TargetAssemblyTypeName: Manager.MenuManager, Assembly-CSharp
+        m_MethodName: SwitchWithKey
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1547200485}
@@ -9692,8 +9644,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 96422901}
-        m_TargetAssemblyTypeName: UI.UI, Assembly-CSharp
-        m_MethodName: SwitchTo
+        m_TargetAssemblyTypeName: Manager.MenuManager, Assembly-CSharp
+        m_MethodName: SwitchWithKey
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1239974002}
@@ -10384,8 +10336,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 96422901}
-        m_TargetAssemblyTypeName: UI.UI, Assembly-CSharp
-        m_MethodName: SwitchTo
+        m_TargetAssemblyTypeName: Manager.MenuManager, Assembly-CSharp
+        m_MethodName: SwitchWithKey
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1573652266}
@@ -11007,7 +10959,6 @@ SceneRoots:
   - {fileID: 1438370056}
   - {fileID: 1514338268}
   - {fileID: 55957625}
-  - {fileID: 1347581998}
   - {fileID: 121101725}
   - {fileID: 5356939205450122130}
   - {fileID: 690539520}

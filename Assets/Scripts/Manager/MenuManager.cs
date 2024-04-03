@@ -23,7 +23,6 @@ namespace Manager
         [SerializeField] private GameObject craftUI;
         [SerializeField] private GameObject optionsUI;
         [SerializeField] private GameObject inGameUI;
-        private GameObject newTabUI = null;
         #endregion
         
         public UISkillToolTip skillToolTip;
@@ -37,20 +36,23 @@ namespace Manager
 
         private void RegisterEventHandlers()
         {
-            inputManager.InventoryOpenEvent += () => ToggleUI(inventoryUI, true);
-            inputManager.InventoryCloseEvent += () => ToggleUI(inventoryUI, false);
+            inputManager.OptionsOpenEvent += () => ToggleUIWithKey(optionsUI, true);
+            inputManager.OptionsCloseEvent += () => ToggleUIWithKey(optionsUI, false);
+            
+            inputManager.InventoryOpenEvent += () => ToggleUIWithKey(inventoryUI, true);
+            inputManager.InventoryCloseEvent += () => ToggleUIWithKey(inventoryUI, false);
 
-            inputManager.SkillTreeOpenEvent += () => ToggleUI(skillTreeUI, true);
-            inputManager.SkillTreeCloseEvent += () => ToggleUI(skillTreeUI, false);
+            inputManager.SkillTreeOpenEvent += () => ToggleUIWithKey(skillTreeUI, true);
+            inputManager.SkillTreeCloseEvent += () => ToggleUIWithKey(skillTreeUI, false);
             
-            inputManager.MapOpenEvent += () => ToggleUI(mapUI, true);
-            inputManager.MapCloseEvent += () => ToggleUI(mapUI, false);
+            inputManager.MapOpenEvent += () => ToggleUIWithKey(mapUI, true);
+            inputManager.MapCloseEvent += () => ToggleUIWithKey(mapUI, false);
             
-            inputManager.CraftingOpenEvent += () => ToggleUI(craftUI, true);
-            inputManager.CraftingCloseEvent += () => ToggleUI(craftUI, false);
+            inputManager.CraftingOpenEvent += () => ToggleUIWithKey(craftUI, true);
+            inputManager.CraftingCloseEvent += () => ToggleUIWithKey(craftUI, false);
         }
         
-        private void ToggleUI(GameObject uiElement, bool isActive)
+        private static void ToggleUIWithKey(GameObject uiElement, bool isActive)
         {
             if (uiElement.activeSelf != isActive)
             {
@@ -60,7 +62,7 @@ namespace Manager
         }
 
         #region Old Function
-        private void SwitchWithKey(GameObject tabUI)
+        public void SwitchWithKey(GameObject tabUI)
         {
             // If the current tab is active, switch it off
             if (tabUI != null && tabUI.activeSelf)
