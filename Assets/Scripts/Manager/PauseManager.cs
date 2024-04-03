@@ -1,3 +1,4 @@
+using _Scripts.Player.Input;
 using UnityEngine;
 
 namespace Manager
@@ -18,12 +19,16 @@ namespace Manager
         {
             IsPaused = true;
             Time.timeScale = 0f;
+
+            InputManager.SetUI();
         }
 
         public void UnpauseGame()
         {
             IsPaused = false;
             Time.timeScale = 1f;
+            
+            InputManager.SetGameplay();
         }
     }
 }

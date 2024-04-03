@@ -91,7 +91,8 @@ namespace Enemy.EnemyStateMachine
             var playerComponent = hit.GetComponent<Player.PlayerStateMachine.Player>();
             if(playerComponent == null) return;
             
-            HitParticle(hit, enemyData.hitParticle);
+            if(!playerComponent.Stats.IsInvincible)
+                HitParticle(hit, enemyData.hitParticle);
             
             var target = hit.GetComponentInChildren<PlayerStats>();
             if(target!=null)

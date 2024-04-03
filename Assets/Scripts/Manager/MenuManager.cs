@@ -8,6 +8,7 @@ namespace Manager
     public class MenuManager : MonoBehaviour
     {
         [SerializeField] private InputManager inputManager;
+        [SerializeField] private GameObject optionsMenu;
         
         [Header("End screen")]
         [SerializeField] private UIFadeScreen fadeScreen;
@@ -28,16 +29,14 @@ namespace Manager
         
         public UISkillToolTip skillToolTip;
 
-        private Player.PlayerStateMachine.Player _player;
-        
-        // we need this to assign events on skill tree slots before we assign events on skill scripts
-        private void Awake()
+        private void Start()
         {
-            _player = PlayerManager.GetInstance().player;
-            
-            //SwitchTo(skillTreeUI);
-            //fadeScreen.gameObject.SetActive(true);
+            inputManager.MenuOpenEvent += HandleMenuOpen;
+            inputManager.MenuCloseEvent += HandleMenuClose;
         }
+        
+        private void HandleMenuOpen() => optionsMenu.SetActive(true);
+        private void HandleMenuClose() => optionsMenu.SetActive(false);
 
         private void Update()
         {
