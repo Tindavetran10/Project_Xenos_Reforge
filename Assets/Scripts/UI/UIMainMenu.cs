@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.Rendering.PostProcessing;
 using NUnit.Framework;
 using System.Collections.Generic;
 
@@ -16,7 +17,7 @@ namespace UI
         [SerializeField] private UIFadeScreen fadeScreen;
 
 
-        [SerializeField] private GameObject comfirmationPrompt;
+        /*[SerializeField] private GameObject comfirmationPrompt;
 
 
         [SerializeField] private TMP_Text volumeTextValue = null;
@@ -27,20 +28,28 @@ namespace UI
         [SerializeField] private Slider brightnessSlider = null;
         [SerializeField] private TMP_Text brightnessTextValue = null;
         [SerializeField] private float defaultBrightness = 1;
+        [SerializeField] PostProcessProfile _brightness;
+        [SerializeField] private PostProcessLayer layer;
         [SerializeField] private TMP_Dropdown qualityDropdown;
         [SerializeField] private Toggle fullScreenToggle;
 
         private int _qualityLevel;
         private bool _isFullScreen;
         private float _brightnessLevel;
+        AutoExposure exposure;
+
 
         public TMP_Dropdown resolutionDropdown;
         private Resolution[] resolutions;
-
+*/
 
         
         private void Start()
         {
+            AudioManager.instance.Play("MainMenu");
+
+            /*_brightness.TryGetSettings(out exposure);
+
             resolutions = Screen.resolutions;
             resolutionDropdown.ClearOptions();
 
@@ -61,7 +70,7 @@ namespace UI
 
             resolutionDropdown.AddOptions(options);
             resolutionDropdown.value = currentResolutionIndex;
-            resolutionDropdown.RefreshShownValue();
+            resolutionDropdown.RefreshShownValue();*/
 
             if(SaveManager.Instance.HasSaveData() == false)
                 continueButton.SetActive(false);
@@ -77,7 +86,7 @@ namespace UI
         }
 
 
-        public void SetVolume(float volume){
+        /*public void SetVolume(float volume){
             AudioListener.volume = volume;
             volumeTextValue.text = volume.ToString("0.0");
         }
@@ -91,7 +100,16 @@ namespace UI
 
 
         public void SetBrightness(float brightness){
-            _brightnessLevel = brightness;
+            //_brightnessLevel = brightness;
+            if(brightness != 0)
+            {
+                exposure.keyValue.value = brightness;
+            }
+            else
+            {
+                exposure.keyValue.value = .05f;
+            }
+            _brightnessLevel = exposure.keyValue.value;
             brightnessTextValue.text = brightness.ToString("0.0");
         }
 
@@ -108,6 +126,7 @@ namespace UI
 
         public void GraphicsApply(){
             PlayerPrefs.SetFloat("masterBrightness", _brightnessLevel);
+            
 
             PlayerPrefs.SetInt("masterQuality", _qualityLevel);
             QualitySettings.SetQualityLevel(_qualityLevel);
@@ -159,7 +178,7 @@ namespace UI
 
                 GraphicsApply();
             }
-        }
+        }*/
 
 
         public void ExitGame()
