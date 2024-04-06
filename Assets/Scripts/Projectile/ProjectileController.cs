@@ -2,6 +2,7 @@ using HitStop;
 using StatSystem;
 using UnityEngine;
 
+
 namespace Projectile
 {
     public class ProjectileController : MonoBehaviour
@@ -76,7 +77,7 @@ namespace Projectile
             }
         }
         
-        private void ProjectileInteraction()
+        public void ProjectileInteraction()
         {
             if(projectileCollider2D != null)
                 projectileCollider2D.enabled = false;

@@ -4,7 +4,9 @@ using HitStop;
 using Manager;
 using Player.PlayerStats;
 using Projectile;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Pool;
 
 namespace Enemy.EnemyStateMachine
 {
@@ -18,6 +20,7 @@ namespace Enemy.EnemyStateMachine
         
         #region Ranged Attack Properties
         [Header("Projectile")]
+        [SerializeField] private bool usedPool;
         [SerializeField] private float projectileSpeed;
         [SerializeField] private GameObject enemyProjectile;
         #endregion
@@ -45,12 +48,25 @@ namespace Enemy.EnemyStateMachine
         public float attackCoolDown;
         #endregion
         
+        private ObjectPool<ProjectileController> _pool;
+        
         protected HitStopController HitStopController;
         private Transform _player;
         
         protected override void Awake() {
             base.Awake();
             StateMachine = new EnemyStateMachine();
+        }
+        
+        protected override void Start()
+        {
+            base.Start();
+            _pool = new ObjectPool<ProjectileController>(() => 
+                    Instantiate(enemyProjectile, attackPosition.position, Quaternion.identity).GetComponent<ProjectileController>(), 
+                shape => shape.gameObject.SetActive(true), 
+                shape => shape.gameObject.SetActive(false), 
+                shape => Destroy(shape.gameObject), 
+                false, 5,10);
         }
 
         protected override void Update() {
@@ -104,7 +120,8 @@ namespace Enemy.EnemyStateMachine
         
         public void RangeAttackTrigger()
         {
-            var newProjectile = Instantiate(enemyProjectile, 
+            //Spawn projectile in front of the enemy   
+            var newProjectile = usedPool ? (Object)_pool.Get() : Instantiate(enemyProjectile, 
                 attackPosition.position, Quaternion.identity);
             newProjectile.GetComponent<ProjectileController>().SetUpProjectile(projectileSpeed * Movement.FacingDirection, Stats);
         }
@@ -117,7 +134,6 @@ namespace Enemy.EnemyStateMachine
         #endregion
         
         #region CounterAttack Window
-
         private void SetCanBeStunned(bool state)
         {
             CanBeStunned = state;
