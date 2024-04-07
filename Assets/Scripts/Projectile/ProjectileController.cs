@@ -2,7 +2,6 @@ using HitStop;
 using StatSystem;
 using UnityEngine;
 
-
 namespace Projectile
 {
     public class ProjectileController : MonoBehaviour
