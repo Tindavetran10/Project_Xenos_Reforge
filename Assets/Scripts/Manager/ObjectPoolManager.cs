@@ -36,15 +36,20 @@ namespace Manager
         
         public static void ReturnObjectToPool(GameObject objectToReturn)
         {
+            // Remove "(Clone)" from the object's name to find the original prefab name
             var goName = objectToReturn.name.Replace("(Clone)", string.Empty);
+            
+            // Find the pool that matches the object's name to return
             var pool = ObjectPools.Find(p => p.LookupString == goName);
             
+            // If no matching pool is found, log a warning and exit the method
             if (pool == null)
             {
                 Debug.LogWarning("Trying to release an object that is not pooled: " + objectToReturn.name);
                 return;
             }
             
+            // Deactivate the object to return and add it to the inactive objects list
             objectToReturn.SetActive(false);
             pool.InactiveObjects.Add(objectToReturn);
         }
@@ -52,7 +57,9 @@ namespace Manager
 
     public class PooledObjectInfo
     {
+        // The name of the object to spawn
         public string LookupString;
+        // List of inactive objects that can be used to spawn new objects
         public readonly List<GameObject> InactiveObjects = new();
     }
 }
