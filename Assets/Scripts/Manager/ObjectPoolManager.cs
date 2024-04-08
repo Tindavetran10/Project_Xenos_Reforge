@@ -8,7 +8,32 @@ namespace Manager
     {
         private static readonly List<PooledObjectInfo> ObjectPools = new();
         
-        public static GameObject SpawnObject(GameObject objectToSpawn, Vector3 spawnPosition, Quaternion spawnRotation)
+        private GameObject _objectPoolEmptyHolder;
+        private static GameObject _particleSystemEmpty;
+        private static GameObject _gameObjectEmpty;
+        public enum PoolType
+        {
+            ParticleSystem, 
+            GameObject,
+            None
+        }
+
+        public static PoolType PoolingType;
+
+        private void Awake() => SetupEmpties();
+
+        private void SetupEmpties()
+        {
+            _objectPoolEmptyHolder = new GameObject("Pooled Objects");
+            
+            _particleSystemEmpty = new GameObject("Particle Systems");
+            _particleSystemEmpty.transform.SetParent(_objectPoolEmptyHolder.transform);
+            
+            _gameObjectEmpty = new GameObject("Game Objects");
+            _gameObjectEmpty.transform.SetParent(_objectPoolEmptyHolder.transform);
+        }
+
+        public static GameObject SpawnObject(GameObject objectToSpawn, Vector3 spawnPosition, Quaternion spawnRotation, PoolType poolType = PoolType.None)
         {
             // Attempt to find the pool that matches the object to spawn. If not, create a new pool
             var pool = ObjectPools.Find(p => p.LookupString == objectToSpawn.name) 
@@ -18,18 +43,31 @@ namespace Manager
             if (!ObjectPools.Contains(pool)) ObjectPools.Add(pool);
 
             // Try to get an inactive object from the pool, if not, instantiate a new one
-            var spawnableObject = pool.InactiveObjects.FirstOrDefault() ?? Instantiate(objectToSpawn, spawnPosition, spawnRotation);
-            
-            // Set the position and rotation of the spawned object to the desired values
-            spawnableObject.transform.position = spawnPosition;
-            spawnableObject.transform.rotation = spawnRotation;
-            
-            // Activate the spawned object so it's visible and can interact with the world
-            spawnableObject.SetActive(true);
-            
-            // Remove the object from the inactive objects list
-            pool.InactiveObjects.Remove(spawnableObject);
+            var spawnableObject = pool.InactiveObjects.FirstOrDefault();
 
+            if (spawnableObject == null)
+            {
+                //Find the parent object to set the object to spawn
+                var parentObject = SetParentObject(poolType);
+                
+                spawnableObject = Instantiate(objectToSpawn, spawnPosition, spawnRotation);
+                
+                if(parentObject != null) 
+                    spawnableObject.transform.SetParent(parentObject.transform);
+            }
+            else
+            {
+                // Set the position and rotation of the spawned object to the desired values
+                spawnableObject.transform.position = spawnPosition;
+                spawnableObject.transform.rotation = spawnRotation;
+                
+                // Activate the spawned object so it's visible and can interact with the world
+                spawnableObject.SetActive(true);
+                
+                // Remove the object from the inactive objects list
+                pool.InactiveObjects.Remove(spawnableObject);
+            }
+            
             // Return the spawned or activated object
             return spawnableObject;
         }
@@ -52,6 +90,17 @@ namespace Manager
             // Deactivate the object to return and add it to the inactive objects list
             objectToReturn.SetActive(false);
             pool.InactiveObjects.Add(objectToReturn);
+        }
+        
+        private static GameObject SetParentObject(PoolType poolType)
+        {
+            return poolType switch
+            {
+                PoolType.ParticleSystem => _particleSystemEmpty,
+                PoolType.GameObject => _gameObjectEmpty,
+                PoolType.None => null,
+                _ => null
+            };
         }
     }
 

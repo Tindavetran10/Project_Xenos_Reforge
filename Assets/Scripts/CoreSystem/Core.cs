@@ -8,21 +8,25 @@ namespace CoreSystem
     // This is the Core class that will hold all the CoreComponents.
     public class Core : MonoBehaviour
     {
+        // The core will have a list of CoreComponents.
         private readonly List<CoreComponent> _coreComponents = new();
     
+        // The LogicUpdate will call the LogicUpdate of all the CoreComponents.
         public void LogicUpdate()
         {
             foreach (var component in _coreComponents) 
                 component.LogicUpdate();
         }
 
+        // The AddComponent will add a CoreComponent to the list
+        // if the component is not already in the list.
         public void AddComponent(CoreComponent component)
         {
             if(!_coreComponents.Contains(component))
                 _coreComponents.Add(component);
         }
 
-        private T GetCoreComponent<T>() where T : CoreComponent
+        /*private T GetCoreComponent<T>() where T : CoreComponent
         {
             var comp = _coreComponents.OfType<T>().FirstOrDefault();
 
@@ -34,11 +38,17 @@ namespace CoreSystem
 
             Debug.LogWarning($"{typeof(T)} not found on {transform.parent.name}");
             return null;
-        }
+        }*/
 
+        // The GetCoreComponent will return the CoreComponent with the specified type from the _coreComponent list.
         public T GetCoreComponent<T>(ref T value) where T : CoreComponent
         {
-            value = GetCoreComponent<T>();
+            /*value = GetCoreComponent<T>();
+            return value;*/
+            
+            value = _coreComponents.OfType<T>().FirstOrDefault() ?? GetComponentInChildren<T>();
+            if (value == null)
+                Debug.LogWarning($"{typeof(T)} not found on {transform.parent.name}");
             return value;
         }
     }

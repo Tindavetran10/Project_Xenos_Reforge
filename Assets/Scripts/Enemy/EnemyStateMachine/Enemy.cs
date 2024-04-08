@@ -119,7 +119,7 @@ namespace Enemy.EnemyStateMachine
         
         public void RangeAttackTrigger()
         {
-            var newProjectile = ObjectPoolManager.SpawnObject(enemyProjectile, attackPosition.position, Quaternion.identity);
+            var newProjectile = ObjectPoolManager.SpawnObject(enemyProjectile, attackPosition.position, Quaternion.identity, ObjectPoolManager.PoolType.GameObject);
             newProjectile.GetComponent<ProjectileController>().SetUpProjectile(projectileSpeed * Movement.FacingDirection, Stats);
         }
         
