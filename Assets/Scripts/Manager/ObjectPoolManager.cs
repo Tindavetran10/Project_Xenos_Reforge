@@ -10,29 +10,27 @@ namespace Manager
         
         public static GameObject SpawnObject(GameObject objectToSpawn, Vector3 spawnPosition, Quaternion spawnRotation)
         {
-            var pool = ObjectPools.Find(p => p.LookupString == objectToSpawn.name);
+            // Attempt to find the pool that matches the object to spawn. If not, create a new pool
+            var pool = ObjectPools.Find(p => p.LookupString == objectToSpawn.name) 
+                       ?? new PooledObjectInfo {LookupString = objectToSpawn.name};
             
-            if (pool == null)
-            {
-                pool = new PooledObjectInfo {LookupString = objectToSpawn.name};
-                ObjectPools.Add(pool);
-            }
+            // If the pool for this object is not in the list, add it
+            if (!ObjectPools.Contains(pool)) ObjectPools.Add(pool);
 
-            var spawnableObject = pool.InactiveObjects.FirstOrDefault();
+            // Try to get an inactive object from the pool, if not, instantiate a new one
+            var spawnableObject = pool.InactiveObjects.FirstOrDefault() ?? Instantiate(objectToSpawn, spawnPosition, spawnRotation);
             
-            if (spawnableObject == null)
-            {
-                spawnableObject = Instantiate(objectToSpawn, spawnPosition, spawnRotation);
-                //pool.InactiveObjects.Add(spawnableObject);
-            }
-            else
-            {
-                spawnableObject.transform.position = spawnPosition;
-                spawnableObject.transform.rotation = spawnRotation;
-                spawnableObject.SetActive(true);
-                pool.InactiveObjects.Remove(spawnableObject);
-            }
+            // Set the position and rotation of the spawned object to the desired values
+            spawnableObject.transform.position = spawnPosition;
+            spawnableObject.transform.rotation = spawnRotation;
+            
+            // Activate the spawned object so it's visible and can interact with the world
+            spawnableObject.SetActive(true);
+            
+            // Remove the object from the inactive objects list
+            pool.InactiveObjects.Remove(spawnableObject);
 
+            // Return the spawned or activated object
             return spawnableObject;
         }
         
@@ -42,12 +40,13 @@ namespace Manager
             var pool = ObjectPools.Find(p => p.LookupString == goName);
             
             if (pool == null)
-                Debug.LogWarning("Trying to release an object that is not pooled: " + objectToReturn.name);
-            else
             {
-                objectToReturn.SetActive(false);
-                pool.InactiveObjects.Add(objectToReturn);
+                Debug.LogWarning("Trying to release an object that is not pooled: " + objectToReturn.name);
+                return;
             }
+            
+            objectToReturn.SetActive(false);
+            pool.InactiveObjects.Add(objectToReturn);
         }
     }
 
