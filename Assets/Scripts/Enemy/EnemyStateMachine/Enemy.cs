@@ -4,9 +4,7 @@ using HitStop;
 using Manager;
 using Player.PlayerStats;
 using Projectile;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Pool;
 
 namespace Enemy.EnemyStateMachine
 {
@@ -48,7 +46,7 @@ namespace Enemy.EnemyStateMachine
         public float attackCoolDown;
         #endregion
         
-        private ObjectPool<ProjectileController> _pool;
+        //private ObjectPool<ProjectileController> _pool;
         
         protected HitStopController HitStopController;
         private Transform _player;
@@ -58,17 +56,6 @@ namespace Enemy.EnemyStateMachine
             StateMachine = new EnemyStateMachine();
         }
         
-        protected override void Start()
-        {
-            base.Start();
-            _pool = new ObjectPool<ProjectileController>(() => 
-                    Instantiate(enemyProjectile, attackPosition.position, Quaternion.identity).GetComponent<ProjectileController>(), 
-                shape => shape.gameObject.SetActive(true), 
-                shape => shape.gameObject.SetActive(false), 
-                shape => Destroy(shape.gameObject), 
-                false, 5,10);
-        }
-
         protected override void Update() {
             base.Update();
             Core.LogicUpdate();
@@ -120,9 +107,7 @@ namespace Enemy.EnemyStateMachine
         
         public void RangeAttackTrigger()
         {
-            //Spawn projectile in front of the enemy   
-            var newProjectile = usedPool ? (Object)_pool.Get() : Instantiate(enemyProjectile, 
-                attackPosition.position, Quaternion.identity);
+            var newProjectile = ObjectPoolManager.SpawnObject(enemyProjectile, attackPosition.position, Quaternion.identity);
             newProjectile.GetComponent<ProjectileController>().SetUpProjectile(projectileSpeed * Movement.FacingDirection, Stats);
         }
         
