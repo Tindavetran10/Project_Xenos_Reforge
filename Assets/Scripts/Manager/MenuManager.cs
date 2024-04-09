@@ -52,28 +52,17 @@ namespace Manager
             inputManager.CraftingCloseEvent += () => ToggleUIWithKey(craftUI, false);
         }
         
-        private static void ToggleUIWithKey(GameObject uiElement, bool isActive)
+        private void ToggleUIWithKey(GameObject uiElement, bool isActive)
         {
-            if (uiElement.activeSelf != isActive)
+            if (uiElement.activeSelf != isActive && uiElement != null)
             {
                 uiElement.SetActive(isActive);
+                CheckForInGameUI();
                 Time.timeScale = isActive ? 0f : 1f;
             }
         }
 
         #region Old Function
-        public void SwitchWithKey(GameObject tabUI)
-        {
-            // If the current tab is active, switch it off
-            if (tabUI != null && tabUI.activeSelf)
-            {
-                tabUI.SetActive(false);
-                CheckForInGameUI();
-                return;
-            }
-            SwitchTo(tabUI);
-        }
-        
         public void SwitchTo(GameObject tabUI)
         {
             // Register every child object and switch it off by default

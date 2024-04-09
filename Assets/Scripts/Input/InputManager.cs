@@ -95,13 +95,13 @@ namespace _Scripts.Player.Input
             _cam = Camera.main;
         }
 
-        public void SetGameplay()
+        private static void SetGameplay()
         {
             _playerInput.Gameplay.Enable();
             _playerInput.UI.Disable();
         }
-        
-        public void SetUI()
+
+        private static void SetUI()
         {
             _playerInput.Gameplay.Disable();
             _playerInput.UI.Enable();
@@ -326,7 +326,11 @@ namespace _Scripts.Player.Input
         public void OnCancel(InputAction.CallbackContext context){}
 
 
-        public void OnClick(InputAction.CallbackContext context){}
+        public void OnClick(InputAction.CallbackContext context)
+        {
+            if (context.phase == InputActionPhase.Performed) 
+                MenuClickEvent?.Invoke();
+        }
 
         public void OnScrollWheel(InputAction.CallbackContext context){}
 
@@ -378,6 +382,11 @@ namespace _Scripts.Player.Input
                 SetGameplay();
             }
         }
+
+        public void OnTrackedDevicePosition(InputAction.CallbackContext context){}
+
+        public void OnTrackedDeviceOrientation(InputAction.CallbackContext context){}
+
         #endregion
 
         #region Use Input
