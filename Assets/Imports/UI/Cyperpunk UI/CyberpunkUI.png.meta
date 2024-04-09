@@ -180,6 +180,69 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: CyberpunkUI_4
+      rect:
+        serializedVersion: 2
+        x: 688
+        y: 872
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ed6cb8c64caba7419bca8e355513e0a
+      internalID: -1512866642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CyberpunkUI_5
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 504
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2307d32d6fa04146a30ca61758ee91c
+      internalID: 1224808967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CyberpunkUI_6
+      rect:
+        serializedVersion: 2
+        x: 496
+        y: 253
+        width: 240
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33586cceead268f44ba5ba58922f317a
+      internalID: -734825292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -195,6 +258,9 @@ TextureImporter:
       CyberpunkUI_1: 1085457576
       CyberpunkUI_2: -663464862
       CyberpunkUI_3: 1750142602
+      CyberpunkUI_4: -1512866642
+      CyberpunkUI_5: 1224808967
+      CyberpunkUI_6: -734825292
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
