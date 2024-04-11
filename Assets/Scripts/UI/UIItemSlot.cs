@@ -35,7 +35,7 @@ namespace UI
             itemText.text = "";
         }
 
-        public void OnPointerDown(PointerEventData eventData)
+        public virtual void OnPointerDown(PointerEventData eventData)
         {
             if (item.data.itemType == ItemType.Equipment)
                 InventoryManager.Instance.EquipItem(item.data);

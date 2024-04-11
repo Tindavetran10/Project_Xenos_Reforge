@@ -93,7 +93,7 @@ namespace InventorySystem_and_Items
             UpdateSlotUI();
         }
 
-        private void UnequipItem(ItemDataEquipment itemToRemove)
+        public void UnequipItem(ItemDataEquipment itemToRemove)
         {
             // If equipment exists in equipment list, remove it
             if(_equipmentDictionary.TryGetValue(itemToRemove, out var existingItem))
