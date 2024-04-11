@@ -85,9 +85,11 @@ MonoBehaviour:
     modifiers: 
   currentHealth: 0
   currentPoise: 0
-  soulDropAmount:
+  energyDropAmount:
     baseValue: 0
     modifiers: 
+  level: 1
+  percentageModifier: 0.4
 --- !u!1 &4278006547242274560
 GameObject:
   m_ObjectHideFlags: 0
@@ -327,7 +329,6 @@ MonoBehaviour:
   enemyData: {fileID: 11400000, guid: 87c16f2acc53e1f4883de0f1a2fa07af, type: 2}
   projectileSpeed: 0
   enemyProjectile: {fileID: 0}
-  canBeStunned: 0
   counterImage: {fileID: 8501139046309401062}
   knockBackDirection: {x: 1, y: 1}
   knockBackDuration: 0.1
