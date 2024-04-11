@@ -57,26 +57,7 @@ namespace InventorySystem_and_Items
             var newEquipment = itemData as ItemDataEquipment;
             var newItem = new InventoryItem(newEquipment);
             
-            ItemDataEquipment oldEquipment = null;
-            
-            // Check if equipment of same type is already equipped
-            foreach (var item 
-                     in _equipmentDictionary.Where(item 
-                         => newEquipment != null && item.Key.equipmentType == newEquipment.equipmentType)) 
-                oldEquipment = item.Key;
-            
-            /*foreach (KeyValuePair<ItemDataEquipment, InventoryItem> item in _equipmentDictionary)
-            {
-                if(newEquipment != null && item.Key.equipmentType == newEquipment.equipmentType) 
-                    itemToRemove = item.Key;
-            }*/
-            
-            // If equipment of same type is already equipped, remove it
-            if(oldEquipment != null)
-            {
-                UnequipItem(oldEquipment);
-                AddItem(oldEquipment);
-            }
+            PreventPlayerEquipWeaponAlreadyEquipped(newEquipment);
 
             // Add new equipment (the same one) to equipment list
             equipment.Add(newItem);
@@ -85,39 +66,80 @@ namespace InventorySystem_and_Items
             if (newEquipment != null)
             {
                 _equipmentDictionary.Add(newEquipment, newItem);
+                
+                // Modify player stats when player equips an equipment
                 newEquipment.AddModifiers();
             }
 
+            // Remove item from inventory when the player equips it
             RemoveItem(itemData);
-            
+            // Update the equipment slot UI
             UpdateSlotUI();
         }
+
+        private void PreventPlayerEquipWeaponAlreadyEquipped(ItemDataEquipment newEquipment)
+        {
+            ItemDataEquipment oldEquipment = null;
+
+            // Check if equipment of same type is already equipped
+            foreach (var item 
+                     in _equipmentDictionary.Where(item 
+                         => newEquipment != null && item.Key.equipmentType == newEquipment.equipmentType)) 
+                oldEquipment = item.Key;
+
+            #region OldCodeForCheckingOldEquipment
+            /*foreach (KeyValuePair<ItemDataEquipment, InventoryItem> item in _equipmentDictionary)
+            {
+                if(newEquipment != null && item.Key.equipmentType == newEquipment.equipmentType)
+                    itemToRemove = item.Key;
+            }*/
+            #endregion
+
+            // If equipment of same type is already equipped, remove the current equipment and add it to inventory
+            // Equip the new equipment from the inventory
+            if(oldEquipment != null)
+            {
+                // Remove the current equipment from equipment list
+                UnequipItem(oldEquipment);
+                
+                // Add the equipment to inventory
+                AddItem(oldEquipment);
+            }
+        }
+
 
         public void UnequipItem(ItemDataEquipment itemToRemove)
         {
             // If equipment exists in equipment list, remove it
             if(_equipmentDictionary.TryGetValue(itemToRemove, out var existingItem))
             {
+                // Remove equipment from equipment list
                 equipment.Remove(existingItem);
+                // Remove equipment from equipment dictionary
                 _equipmentDictionary.Remove(itemToRemove);
+                // Remove modifiers from player stats when player unequipped an equipment
                 itemToRemove.RemoveModifiers();
             }
         }
 
         private void UpdateSlotUI()
         {
-            /*for (var i = 0; i < inventory.Count; i++) 
+            #region OldCodeUpdateSlot
+            /*for (var i = 0; i < inventory.Count; i++)
                 _inventoryItemSlots[i].UpdateSlot(inventory[i]);
-            
-            for (var i = 0; i < material.Count; i++) 
+
+            for (var i = 0; i < material.Count; i++)
                 _materialItemSlots[i].UpdateSlot(material[i]);*/
-            
+            #endregion
+
+            #region OldCodeForCleanUpSlots
             /*for(int i = 0; i < _inventoryItemSlots.Length; i++)
                 _inventoryItemSlots[i].CleanUpSlot();
-            
+
             for(int i = 0; i < _materialItemSlots.Length; i++)
                 _materialItemSlots[i].CleanUpSlot();*/
-
+            #endregion
+            
             ChangeEquipmentItem();
             
             CleanUpSlots(_inventoryItemSlots);
@@ -127,6 +149,7 @@ namespace InventorySystem_and_Items
             UpdateSlots(_materialItemSlots, material);
         }
 
+        #region FunctionsForUpdateSlotUI
         private void ChangeEquipmentItem()
         {
             foreach (var equipmentItem in _equipmentItemSlots)
@@ -149,6 +172,7 @@ namespace InventorySystem_and_Items
             for (var i = 0; i < items.Count; i++) 
                 slots[i].UpdateSlot(items[i]);
         }
+        #endregion
 
         #region AddItemToInventory
         public void AddItem(ItemData newItemData)
@@ -156,7 +180,8 @@ namespace InventorySystem_and_Items
             var collection = newItemData.itemType == ItemType.Equipment ? _inventoryDictionary : _materialDictionary;
             var list = newItemData.itemType == ItemType.Equipment ? inventory : material;
             AddToCollection(newItemData, collection, list);
-            
+
+            #region OldCode
             /*switch (newItemData.itemType)
             {
                 case ItemType.Equipment:
@@ -167,7 +192,7 @@ namespace InventorySystem_and_Items
                     break;
                 default: throw new ArgumentOutOfRangeException();
             }*/
-
+            #endregion
             UpdateSlotUI();
         }
 
@@ -183,8 +208,8 @@ namespace InventorySystem_and_Items
                 collection.Add(newItemData, newItem);
             }
         }
-        
-        
+
+        #region OldCodeForAddToCollection 
         /*private void AddToMaterial(ItemData newItemData)
         {
             if(_materialDictionary.TryGetValue(newItemData, out var existingItem))
@@ -211,15 +236,19 @@ namespace InventorySystem_and_Items
                 _inventoryDictionary.Add(newItemData, newItem);
             }
         }*/
+        
+
+        #endregion
         #endregion
 
         #region RemoveItemFromInventory
-        public void RemoveItem(ItemData itemData)
+        private void RemoveItem(ItemData itemData)
         {
             var collection = itemData.itemType == ItemType.Equipment ? _inventoryDictionary : _materialDictionary;
             var list = itemData.itemType == ItemType.Equipment ? inventory : material;
             RemoveFromCollection(itemData, collection, list);
             
+            #region OldCodeForRemoveFromCollection
             /*// If item exists in inventory, remove stack
             if (_inventoryDictionary.TryGetValue(itemData, out InventoryItem existingItem))
             {
@@ -242,7 +271,7 @@ namespace InventorySystem_and_Items
                 }
                 else existingMaterial.RemoveStack();
             }*/
-            
+            #endregion
             UpdateSlotUI();
         }
         
