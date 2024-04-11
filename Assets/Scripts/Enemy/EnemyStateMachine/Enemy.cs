@@ -15,6 +15,10 @@ namespace Enemy.EnemyStateMachine
         public EnemyData enemyData;
         protected EnemyStateMachine StateMachine;
         #endregion
+
+        #region Close Range Attack Properties
+        private int maxColliders = 10;
+        #endregion
         
         #region Ranged Attack Properties
         [Header("Projectile")]
@@ -52,7 +56,7 @@ namespace Enemy.EnemyStateMachine
             base.Awake();
             StateMachine = new EnemyStateMachine();
         }
-
+        
         protected override void Update() {
             base.Update();
             Core.LogicUpdate();
@@ -81,18 +85,29 @@ namespace Enemy.EnemyStateMachine
         #region Animator Function
         public void AttackTrigger()
         {
-            // Check if the player is in range
-            var collider2Ds = Physics2D.OverlapCircleAll(attackPosition.position, enemyData.hitBox.Length);
-            foreach (var hit in collider2Ds) ProcessHit(hit);
+            // Create a Collider2D array with a size that you think will be enough for your use case
+            var results = new Collider2D[maxColliders];
+
+            // Use OverlapCircleNonAlloc instead of OverlapCircleAll
+            var numColliders = Physics2D.OverlapCircleNonAlloc(attackPosition.position, enemyData.hitBox.Length, results);
+
+            // If the array is full, double the size of the array
+            if (numColliders == results.Length)
+                maxColliders *= 2;
+            // If the array is less than half full, reduce the size of the array
+            else if (numColliders < maxColliders / 2)
+                maxColliders = Mathf.Max(1, maxColliders / 2);
+            
+            // Loop over the number of colliders found
+            for (var i = 0; i < numColliders; i++) ProcessHit(results[i]);
         }
 
         private void ProcessHit(Component hit)
         {
             var playerComponent = hit.GetComponent<Player.PlayerStateMachine.Player>();
-            if(playerComponent == null) return;
-            
-            if(!playerComponent.Stats.IsInvincible)
-                HitParticle(hit, enemyData.hitParticle);
+            if(playerComponent == null || playerComponent.Stats.IsInvincible) return;
+
+            HitParticle(hit, enemyData.hitParticle);
             
             var target = hit.GetComponentInChildren<PlayerStats>();
             if(target!=null)
@@ -104,8 +119,7 @@ namespace Enemy.EnemyStateMachine
         
         public void RangeAttackTrigger()
         {
-            var newProjectile = Instantiate(enemyProjectile, 
-                attackPosition.position, Quaternion.identity);
+            var newProjectile = ObjectPoolManager.SpawnObject(enemyProjectile, attackPosition.position, Quaternion.identity, ObjectPoolManager.PoolType.GameObject);
             newProjectile.GetComponent<ProjectileController>().SetUpProjectile(projectileSpeed * Movement.FacingDirection, Stats);
         }
         
@@ -117,7 +131,6 @@ namespace Enemy.EnemyStateMachine
         #endregion
         
         #region CounterAttack Window
-
         private void SetCanBeStunned(bool state)
         {
             CanBeStunned = state;
@@ -137,9 +150,6 @@ namespace Enemy.EnemyStateMachine
         }
         #endregion
         
-        public virtual bool ChangeGetAttackedState() => Stats.IsAttacked;
-        public virtual bool ChangeStunState() => Stats.IsStunned;
-
         #region KnockBack Function
         public void DamageImpact() => StartCoroutine(nameof(HitKnockBack));
 
@@ -190,5 +200,8 @@ namespace Enemy.EnemyStateMachine
 
         public virtual void OnDrawGizmos() {}
         #endregion
+        
+        public virtual bool ChangeGetAttackedState() => Stats.IsAttacked;
+        public virtual bool ChangeStunState() => Stats.IsStunned;
     }
 }

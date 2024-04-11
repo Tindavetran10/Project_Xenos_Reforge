@@ -1,4 +1,6 @@
+using System.Collections;
 using HitStop;
+using Manager;
 using StatSystem;
 using UnityEngine;
 
@@ -20,10 +22,44 @@ namespace Projectile
         [SerializeField] private float hitStopDuration;
 
         private int targetLayer;
+        private int _collisionLayer;
         private int groundLayer;
         private CharacterStats _characterStats;
         
-        private void Start()
+        private Coroutine _returnToPoolTimerCoroutine;
+
+        private void OnEnable()
+        {
+            if (_returnToPoolTimerCoroutine != null)
+                StopCoroutine(_returnToPoolTimerCoroutine);
+            
+            _returnToPoolTimerCoroutine = StartCoroutine(ReturnToPoolAfterTime());
+            
+            ResetProjectilePropertiesWhenTakingFromPool();
+        }
+
+        private void ResetProjectilePropertiesWhenTakingFromPool()
+        {
+            // Reset the canMove flag and the flipped flag to default values
+            canMove = true;
+            flipped = false;
+            
+            // Reset the target layer to the default value to "Player"
+            targetLayerName = "Player";
+            targetLayer = LayerMask.NameToLayer(targetLayerName);
+            
+            // Reset the projectile collider and the rigidbody to their default values
+            if(projectileCollider2D != null)
+                projectileCollider2D.enabled = true;
+            
+            if(rb != null)
+            {
+                rb.isKinematic = false;
+                rb.constraints = RigidbodyConstraints2D.None;
+            }
+        }
+
+        private void Awake()
         {
             _hitStopController = HitStopController.Instance;
             targetLayer = LayerMask.NameToLayer(targetLayerName);
@@ -38,6 +74,19 @@ namespace Projectile
                 rb.velocity = new Vector2(xVelocity, rb.velocity.y);
             targetLayer = LayerMask.NameToLayer(targetLayerName);
         }
+        
+        private IEnumerator ReturnToPoolAfterTime()
+        {
+            var elapsedTime = 0f;
+            
+            while (elapsedTime < 1f)
+            {
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+            
+            ObjectPoolManager.ReturnObjectToPool(gameObject);
+        }
 
         public void SetUpProjectile(float speed, CharacterStats characterStats)
         {
@@ -47,10 +96,10 @@ namespace Projectile
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            var collisionLayer = collision.gameObject.layer;
-            
+            _collisionLayer = collision.gameObject.layer;
+
             // Decide if the projectile should interact with the game object it collided with base on the layer
-            if (collisionLayer == targetLayer)
+            if (_collisionLayer == targetLayer)
             {
                 var characterStats = collision.GetComponentInChildren<CharacterStats>();
                 
@@ -62,7 +111,7 @@ namespace Projectile
                 }
                 ProjectileInteraction();
             }
-            else if(collisionLayer == groundLayer)
+            else if(_collisionLayer == groundLayer)
                 ProjectileInteraction();
         }
 
@@ -75,7 +124,7 @@ namespace Projectile
                 rb.constraints = RigidbodyConstraints2D.FreezeAll;
             }
         }
-        
+
         private void ProjectileInteraction()
         {
             if(projectileCollider2D != null)
@@ -84,7 +133,7 @@ namespace Projectile
             canMove = false;
             StopProjectileMovement();
             
-            Destroy(gameObject);
+            ObjectPoolManager.ReturnObjectToPool(gameObject);
         }
 
         public void FlipProjectile()
