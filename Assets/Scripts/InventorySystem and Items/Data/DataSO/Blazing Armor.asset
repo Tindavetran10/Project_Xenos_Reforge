@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9ed5d64278a74914ab5a1be465004f57, type: 3}
-  m_Name: Energy Katana
+  m_Name: Blazing Armor
   m_EditorClassIdentifier: 
   itemType: 1
-  itemName: Energy Katana
-  icon: {fileID: 21300000, guid: 67b7d6d417e109748ae1e4a0af050f7a, type: 3}
-  equipmentType: 0
-  strength: 60
-  agility: 0
+  itemName: Blazing Armor
+  icon: {fileID: 21300000, guid: 4f7ad1e94147ddc4c85e35cf399fb492, type: 3}
+  equipmentType: 1
+  strength: 30
+  agility: 5
   intelligence: 0
   vitality: 0
-  damage: 20
+  damage: 10
   critChance: 5
   critPower: 30
   maxHealth: 0

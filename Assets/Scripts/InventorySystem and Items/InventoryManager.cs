@@ -23,9 +23,11 @@ namespace InventorySystem_and_Items
         [Header("Inventory UI")] 
         [SerializeField] private Transform inventorySlotParent;
         [SerializeField] private Transform materialSlotParent;
+        [SerializeField] private Transform equipmentSlotParent;
         
         private UIItemSlot[] _inventoryItemSlots;
         private UIItemSlot[] _materialItemSlots;
+        private UIEquipmentSlot[] _equipmentItemSlots;
         
         private void Awake()
         {
@@ -47,6 +49,7 @@ namespace InventorySystem_and_Items
             
             _inventoryItemSlots = inventorySlotParent.GetComponentsInChildren<UIItemSlot>();
             _materialItemSlots = materialSlotParent.GetComponentsInChildren<UIItemSlot>();
+            _equipmentItemSlots = equipmentSlotParent.GetComponentsInChildren<UIEquipmentSlot>();
         }
 
         public void EquipItem(ItemData itemData)
@@ -79,9 +82,12 @@ namespace InventorySystem_and_Items
             equipment.Add(newItem);
             
             // Add new equipment to equipment dictionary
-            if (newEquipment != null) 
+            if (newEquipment != null)
+            {
                 _equipmentDictionary.Add(newEquipment, newItem);
-            
+                newEquipment.AddModifiers();
+            }
+
             RemoveItem(itemData);
             
             UpdateSlotUI();
@@ -94,6 +100,7 @@ namespace InventorySystem_and_Items
             {
                 equipment.Remove(existingItem);
                 _equipmentDictionary.Remove(itemToRemove);
+                itemToRemove.RemoveModifiers();
             }
         }
 
@@ -110,6 +117,8 @@ namespace InventorySystem_and_Items
             
             for(int i = 0; i < _materialItemSlots.Length; i++)
                 _materialItemSlots[i].CleanUpSlot();*/
+
+            ChangeEquipmentItem();
             
             CleanUpSlots(_inventoryItemSlots);
             CleanUpSlots(_materialItemSlots);
@@ -117,7 +126,18 @@ namespace InventorySystem_and_Items
             UpdateSlots(_inventoryItemSlots, inventory);
             UpdateSlots(_materialItemSlots, material);
         }
-        
+
+        private void ChangeEquipmentItem()
+        {
+            foreach (var equipmentItem in _equipmentItemSlots)
+            {
+                foreach (var item 
+                         in _equipmentDictionary.Where(item 
+                             => item.Key.equipmentType == equipmentItem.slotType)) 
+                    equipmentItem.UpdateSlot(item.Value);
+            }
+        }
+
         private static void CleanUpSlots(IEnumerable<UIItemSlot> slots)
         {
             foreach (var slot in slots) 
@@ -130,7 +150,7 @@ namespace InventorySystem_and_Items
                 slots[i].UpdateSlot(items[i]);
         }
 
-        #region AddItem
+        #region AddItemToInventory
         public void AddItem(ItemData newItemData)
         {
             var collection = newItemData.itemType == ItemType.Equipment ? _inventoryDictionary : _materialDictionary;
@@ -193,7 +213,7 @@ namespace InventorySystem_and_Items
         }*/
         #endregion
 
-        #region RemoveItem
+        #region RemoveItemFromInventory
         public void RemoveItem(ItemData itemData)
         {
             var collection = itemData.itemType == ItemType.Equipment ? _inventoryDictionary : _materialDictionary;
@@ -226,7 +246,7 @@ namespace InventorySystem_and_Items
             UpdateSlotUI();
         }
         
-        private void RemoveFromCollection(ItemData itemData, IDictionary<ItemData, InventoryItem> collection,
+        private static void RemoveFromCollection(ItemData itemData, IDictionary<ItemData, InventoryItem> collection,
             ICollection<InventoryItem> list)
         {
             if (collection.TryGetValue(itemData, out var existingItem))
