@@ -1,4 +1,5 @@
 using System;
+using InventorySystem_and_Items;
 using Manager;
 using StatSystem;
 using UnityEngine;
@@ -8,6 +9,7 @@ namespace Enemy.EnemyStats
     public class EnemyStats : CharacterStats
     {
         private global::Enemy.EnemyStateMachine.Enemy _enemy;
+        private ItemDrop _myDropSystem;
         public Stat energyDropAmount;
         
         [Header("Level details")]
@@ -18,11 +20,13 @@ namespace Enemy.EnemyStats
         
         protected override void Start()
         {
+            energyDropAmount.SetDefaultValue(100);
             ApplyModifierBaseOnLevel();
 
             base.Start();
-            energyDropAmount.SetDefaultValue(100);
+            
             _enemy = GetComponentInParent<Enemy.EnemyStateMachine.Enemy>();
+            _myDropSystem = GetComponentInParent<ItemDrop>();
         }
 
         private void ApplyModifierBaseOnLevel()
@@ -58,7 +62,9 @@ namespace Enemy.EnemyStats
             
             // From the Entity
             _enemy.Die();
+            
             PlayerManager.GetInstance().currency += energyDropAmount.GetValue();
+            _myDropSystem.GenerateDrop();
         }
 
         protected override void StunCloseRange()

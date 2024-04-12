@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Projectile
   - WorldCamera
+  - Item
   layers:
   - Default
   - TransparentFX

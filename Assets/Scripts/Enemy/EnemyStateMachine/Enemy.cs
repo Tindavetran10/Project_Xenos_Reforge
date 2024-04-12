@@ -17,7 +17,7 @@ namespace Enemy.EnemyStateMachine
         #endregion
 
         #region Close Range Attack Properties
-        private int maxColliders = 10;
+        private int _maxColliders = 50;
         #endregion
         
         #region Ranged Attack Properties
@@ -86,17 +86,17 @@ namespace Enemy.EnemyStateMachine
         public void AttackTrigger()
         {
             // Create a Collider2D array with a size that you think will be enough for your use case
-            var results = new Collider2D[maxColliders];
+            var results = new Collider2D[_maxColliders];
 
             // Use OverlapCircleNonAlloc instead of OverlapCircleAll
             var numColliders = Physics2D.OverlapCircleNonAlloc(attackPosition.position, enemyData.hitBox.Length, results);
 
             // If the array is full, double the size of the array
             if (numColliders == results.Length)
-                maxColliders *= 2;
+                _maxColliders *= 2;
             // If the array is less than half full, reduce the size of the array
-            else if (numColliders < maxColliders / 2)
-                maxColliders = Mathf.Max(1, maxColliders / 2);
+            else if (numColliders < _maxColliders / 2)
+                _maxColliders = Mathf.Max(1, _maxColliders / 2);
             
             // Loop over the number of colliders found
             for (var i = 0; i < numColliders; i++) ProcessHit(results[i]);
@@ -119,7 +119,8 @@ namespace Enemy.EnemyStateMachine
         
         public void RangeAttackTrigger()
         {
-            var newProjectile = ObjectPoolManager.SpawnObject(enemyProjectile, attackPosition.position, Quaternion.identity, ObjectPoolManager.PoolType.GameObject);
+            var newProjectile = ObjectPoolManager.SpawnObject(enemyProjectile, attackPosition.position, 
+                Quaternion.identity, ObjectPoolManager.PoolType.GameObject);
             newProjectile.GetComponent<ProjectileController>().SetUpProjectile(projectileSpeed * Movement.FacingDirection, Stats);
         }
         

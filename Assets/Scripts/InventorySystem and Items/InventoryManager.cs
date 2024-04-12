@@ -106,8 +106,7 @@ namespace InventorySystem_and_Items
                 AddItem(oldEquipment);
             }
         }
-
-
+        
         public void UnequipItem(ItemDataEquipment itemToRemove)
         {
             // If equipment exists in equipment list, remove it
@@ -289,5 +288,29 @@ namespace InventorySystem_and_Items
             }
         }
         #endregion
+
+        public bool CanCraft(ItemDataEquipment itemToCraft, List<InventoryItem> requiredMaterials)
+        {
+            List<InventoryItem> materialsToRemove = new List<InventoryItem>();
+            
+            for (int i = 0; i < requiredMaterials.Count; i++)
+            {
+                if(_materialDictionary.TryGetValue(requiredMaterials[i].data, out var materialItem))
+                {
+                    if (materialItem.stackSize < requiredMaterials[i].stackSize)
+                        return false;
+                    materialsToRemove.Add(materialItem);
+                }
+                else return false;
+            }
+
+            for (int i = 0; i < materialsToRemove.Count; i++)
+            {
+                RemoveItem(materialsToRemove[i].data);
+            }
+            
+            AddItem(itemToCraft);
+            return true;
+        }
     }
 }

@@ -107,6 +107,7 @@ GameObject:
   - component: {fileID: 3508060986822370213}
   - component: {fileID: 9017884175519967266}
   - component: {fileID: 3641834877471134073}
+  - component: {fileID: 7714412185132133973}
   m_Layer: 6
   m_Name: EnemyRonin
   m_TagString: Enemy
@@ -334,7 +335,7 @@ MonoBehaviour:
   knockBackDuration: 0.1
   isAnimationFinished: 0
   lastTimeAttacked: 0
-  attackCoolDown: 2
+  attackCoolDown: 0
   idleStateData: {fileID: 11400000, guid: 86814309784c77248bfaca19aa1c0336, type: 2}
   moveStateData: {fileID: 11400000, guid: 2d21c5f8f05484a4da30ec71099f6f43, type: 2}
   playerDetectedStateData: {fileID: 11400000, guid: 77ad649b8a387bd438de526c8ff3db9e, type: 2}
@@ -369,6 +370,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitMat: {fileID: 2100000, guid: 6ce42991d0ed2b346bef88913ab1434e, type: 2}
+--- !u!114 &7714412185132133973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4278006547242274560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc5cb2afd30342a284d5ffe82baa3fd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  possibleItemsDrop: 1
+  possibleDrops:
+  - {fileID: 11400000, guid: 641980b96c4aba54a817894172c08633, type: 2}
+  - {fileID: 11400000, guid: e1be2a23fa74b604db7c7626b835a260, type: 2}
+  - {fileID: 11400000, guid: 548f5b92306788246a3e0e03f00de590, type: 2}
+  dropPrefab: {fileID: 4518001331926125483, guid: c7360d48a9b3d344c9624242d1d13cae, type: 3}
 --- !u!1 &5397513237031634334
 GameObject:
   m_ObjectHideFlags: 0
