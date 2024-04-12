@@ -291,6 +291,46 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: b515bfcd-38d2-452c-b310-267be2515958
     m_ActionName: UI/MenuClose[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a739f121-eb48-418c-b9ed-e2bd441cafd4
+    m_ActionName: Gameplay/InventoryOpen[/Keyboard/i]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 87e47324-9953-4523-8370-4b1a01d01500
+    m_ActionName: Gameplay/SkillTreeOpen[/Keyboard/v]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4a514211-5c2c-4138-8eb2-bd9936749fb3
+    m_ActionName: Gameplay/MapOpen[/Keyboard/m]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4c041834-9045-4b5a-a513-28321ed18e7a
+    m_ActionName: Gameplay/CraftingOpen[/Keyboard/c]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5b26ee0a-b1fb-4668-b446-b940c493dff2
+    m_ActionName: UI/InventoryClose[/Keyboard/i]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 62abc835-41c8-4102-96d9-062c6440573c
+    m_ActionName: UI/SkillTreeClose[/Keyboard/v]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e7eaaeef-30ed-4ceb-a0bb-5c010e35ae5a
+    m_ActionName: UI/MapClose[/Keyboard/m]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b1d14cb7-aeb9-450d-b946-4bfb2854a712
+    m_ActionName: UI/CraftingClose[/Keyboard/c]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6e74b829-6de1-4ff3-9e66-269f7e444cec
+    m_ActionName: UI/TrackedDevicePosition
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 431aa265-4af1-4399-8475-0f13f2d221d1
+    m_ActionName: UI/TrackedDeviceOrientation
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -340,7 +380,7 @@ MonoBehaviour:
   ghostTrailPrefab: {fileID: 870388849115093075, guid: b38648e265be0ef4eb6dbae0ad1b52b5, type: 3}
   delay: 0.01
   destroyTime: 0.25
-  color: {r: 0.45023924, g: 0.66775465, b: 0.91194963, a: 0}
+  color: {r: 0.33421838, g: 0.98742133, b: 0.20183134, a: 1}
   material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!1 &1257460886284150130
 GameObject:

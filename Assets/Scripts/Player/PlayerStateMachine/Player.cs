@@ -4,7 +4,6 @@ using Player.Data;
 using Player.GhostTrail_Effect;
 using Player.PlayerStates.SubStates;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Player.PlayerStateMachine
 {
@@ -33,14 +32,14 @@ namespace Player.PlayerStateMachine
         public PlayerAimSwordState AimSwordState { get; private set; }
         public PlayerFocusSwordState FocusSwordState { get; private set; }
         
-        [Header("Player Data")]
         [SerializeField] private PlayerData playerData;
         #endregion
 
         #region Components
         //public PlayerInputHandler InputHandler { get; private set; }
         [SerializeField] public InputManager inputManager;
-        public Transform playerTransform;
+        
+        [Space] public Transform playerTransform;
         
         public Transform DashDirectionIndicator { get; private set; }
         #endregion

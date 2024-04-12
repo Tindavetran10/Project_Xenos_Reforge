@@ -5,41 +5,30 @@ namespace InventorySystem_and_Items
 {
     public class ItemObject : MonoBehaviour
     {
+        [SerializeField] private Rigidbody2D rb;
         [SerializeField] private ItemData itemData;
-
-        private void OnValidate()
+        
+        private void SetupVisuals()
         {
             if (itemData == null)
                 return;
-            
+
             GetComponent<SpriteRenderer>().sprite = itemData.icon;
             gameObject.name = "Item object - " + itemData.itemName;
         }
         
-        /*private void SetupVisuals()
+        public void SetupItem(ItemData data, Vector2 velocity)
         {
-            if (itemData == null)
-                return;
-
-            GetComponent<SpriteRenderer>().sprite = itemData.itemIcon;
-            gameObject.name = "Item object - " + itemData.itemName;
-        }
-        
-        public void SetupItem(ItemData _itemData, Vector2 _velocity)
-        {
-            itemData = _itemData;
-            rb.velocity = _velocity;
+            itemData = data;
+            rb.velocity = velocity;
 
             SetupVisuals();
-        }*/
+        }
         
-        private void OnTriggerEnter2D(Collider2D collision)
+        public void PickupItem()
         {
-            if (collision.GetComponent<Player.PlayerStateMachine.Player>() != null)
-            {
-                InventoryManager.Instance.AddItem(itemData);
-                Destroy(gameObject);
-            }
+            InventoryManager.Instance.AddItem(itemData);
+            Destroy(gameObject);
         }
     }
 }

@@ -1,3 +1,4 @@
+using Manager;
 using UnityEngine;
 
 namespace Player.GhostTrail_Effect
@@ -6,7 +7,7 @@ namespace Player.GhostTrail_Effect
     {
         public GameObject ghostTrailPrefab;
         public float delay;
-        private float delta;
+        private float _delta;
 
         private PlayerStateMachine.Player _player;
         private SpriteRenderer _spriteRenderer;
@@ -22,11 +23,11 @@ namespace Player.GhostTrail_Effect
 
         private void Update()
         {
-            if(delta > 0)
-                delta -= Time.deltaTime;
+            if(_delta > 0)
+                _delta -= Time.deltaTime;
             else
             {
-                delta = delay;
+                _delta = delay;
                 CreateGhostTrail();
             }
         }
@@ -36,7 +37,9 @@ namespace Player.GhostTrail_Effect
             // Create a new ghost trail 
             // Instantiate the ghostTrailPrefab and set the position and rotation to the player
             var playerTransform = transform;
-            GameObject currentGhostTrail = Instantiate(ghostTrailPrefab, playerTransform.position, playerTransform.rotation);
+            var currentGhostTrail = 
+                ObjectPoolManager.SpawnObject(ghostTrailPrefab, playerTransform.position, playerTransform.rotation, 
+                    ObjectPoolManager.PoolType.GameObject);
             
             // Set the scale of the ghost trail to the player scale
             currentGhostTrail.transform.localScale = _player.transform.localScale;

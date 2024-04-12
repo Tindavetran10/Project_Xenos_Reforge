@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Manager;
 using Player.PlayerStats;
 using StatSystem;
@@ -39,6 +40,11 @@ namespace InventorySystem_and_Items.Data
         public int maxPoiseResistance;
         public int poiseResetTime;
         public int lastPoiseReset;
+        #endregion
+
+        #region Crafting System
+        [Header("Craft Requirements")]
+        public List<InventoryItem> craftingMaterials;
         #endregion
         
         private void ModifyPlayerStats(Action<Stat, int> action)
