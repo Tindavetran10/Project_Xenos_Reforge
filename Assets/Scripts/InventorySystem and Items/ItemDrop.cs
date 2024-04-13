@@ -7,29 +7,32 @@ namespace InventorySystem_and_Items
 {
     public class ItemDrop : MonoBehaviour
     {
-        [SerializeField] private int possibleItemsDrop;
-        [SerializeField] private ItemData[] possibleDrops;
-        private readonly List<ItemData> _dropList = new();
+        [SerializeField] private int maxItemsToDrop;
+        [SerializeField] private ItemData[] itemPool;
+        private readonly List<ItemData> possibleDrop = new();
         
         [SerializeField] private GameObject dropPrefab;
 
         public void GenerateDrop()
         {
-            if (_dropList.Count <= 0)
-                return;
+            if(itemPool.Length == 0) return;
 
-            foreach (var t in possibleDrops)
+            foreach (var itemData in itemPool)
             {
-                if (Random.Range(0, 100) <= t.dropChance) 
-                    _dropList.Add(t);
+                if (itemPool != null && Random.Range(0, 100) < itemData.dropChance) 
+                    possibleDrop.Add(itemData);
             }
 
-            for (var i = 0; i < possibleItemsDrop; i++)
+            for (int i = 0; i < maxItemsToDrop; i++)
             {
-                var randomItem = _dropList[Random.Range(0, _dropList.Count - 1)];
-                
-                _dropList.Remove(randomItem);
-                DropItem(randomItem);
+                if (possibleDrop.Count > 0)
+                {
+                    int randomIndex = Random.Range(0, possibleDrop.Count);
+                    ItemData itemToDrop = possibleDrop[randomIndex];
+                    
+                    DropItem(itemToDrop);
+                    possibleDrop.Remove(itemToDrop);
+                }
             }
         }
 

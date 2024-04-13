@@ -185,6 +185,7 @@ namespace Enemy.EnemyStateMachine
         public override void Die()
         {
             base.Die();
+            Anim.SetBool("die", true);
             Invoke(nameof(DestroyEnemy), 1f);
         }
         private void DestroyEnemy() => Destroy(gameObject);
