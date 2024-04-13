@@ -55,12 +55,12 @@ namespace Enemy.EnemyStats
             else Debug.LogWarning("EnemyStats: _enemy is null when trying to apply damage impact.");
         }
 
-        protected override void Die()
+        protected override void SetFlagDeath()
         {
-            // From Character Stats
-            base.Die();
+            // From Character Stats: Set the flag IsDeath to true
+            base.SetFlagDeath();
             
-            // From the Entity
+            // From the Entity: destroy game object
             _enemy.Die();
             
             PlayerManager.GetInstance().currency += energyDropAmount.GetValue();

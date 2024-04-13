@@ -85,7 +85,7 @@ namespace StatSystem
                 Attacked();
             }
 
-            if (currentHealth <= 0 && !IsDead) Die();
+            if (currentHealth <= 0 && !IsDead) SetFlagDeath();
             if (currentPoise <= 0)
             {
                 StunCloseRange();
@@ -123,7 +123,7 @@ namespace StatSystem
         #endregion
         
         #region Make an Entity Die
-        protected virtual void Die()
+        protected virtual void SetFlagDeath()
         {
             IsDead = true;
             OnDeath?.Invoke(this);
@@ -133,7 +133,7 @@ namespace StatSystem
         public void KillEntity()
         {
             if(!IsDead)
-                Die();
+                SetFlagDeath();
         }
         #endregion
         

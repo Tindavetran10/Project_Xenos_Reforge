@@ -65,11 +65,11 @@ namespace Enemy.EnemySpecific.Ranger
             return true;
         }
         
-        public override void Die()
+        /*public override void Die()
         {
             base.Die();
             StateMachine.ChangeState(DeathState);
-        }
+        }*/
         
         public override void OnDrawGizmos()
         {

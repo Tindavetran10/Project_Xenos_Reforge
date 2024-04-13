@@ -12,9 +12,9 @@ namespace Player.PlayerStats
             _player = GetComponentInParent<Player.PlayerStateMachine.Player>();
         }
         
-        protected override void Die()
+        protected override void SetFlagDeath()
         {
-            base.Die();
+            base.SetFlagDeath();
             _player.Die();
         }
     }
