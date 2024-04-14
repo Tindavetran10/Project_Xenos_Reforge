@@ -1,3 +1,4 @@
+using InventorySystem_and_Items;
 using StatSystem;
 
 namespace Player.PlayerStats
@@ -16,6 +17,8 @@ namespace Player.PlayerStats
         {
             base.SetFlagDeath();
             _player.Die();
+            
+            GetComponentInParent<PlayerItemDrop>()?.GenerateDrop();
         }
     }
 }
