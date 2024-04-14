@@ -13,7 +13,7 @@ namespace UI
             base.OnPointerDown(eventData);
             ItemDataEquipment craftData = item.data as ItemDataEquipment;
 
-            InventoryManager.Instance.CanCraft(craftData, craftData.craftingMaterials);
+            InventoryManager.instance.CanCraft(craftData, craftData.craftingMaterials);
 
         }
     }

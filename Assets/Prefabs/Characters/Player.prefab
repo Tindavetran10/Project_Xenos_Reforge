@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 7849466132785042285}
   - component: {fileID: 6534914590236456289}
   - component: {fileID: 7708792561113031817}
+  - component: {fileID: 4949995153632721344}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -382,6 +383,23 @@ MonoBehaviour:
   destroyTime: 0.25
   color: {r: 0.33421838, g: 0.98742133, b: 0.20183134, a: 1}
   material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+--- !u!114 &4949995153632721344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 609758280927387184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74cc4e3e10f146a5a996b4b1540e0300, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxItemsToDrop: 0
+  itemPool: []
+  dropPrefab: {fileID: 4518001331926125483, guid: c7360d48a9b3d344c9624242d1d13cae, type: 3}
+  chanceToLooseItems: 20
+  chanceToLooseMaterials: 80
 --- !u!1 &1257460886284150130
 GameObject:
   m_ObjectHideFlags: 0

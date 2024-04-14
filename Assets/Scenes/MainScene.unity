@@ -5503,7 +5503,7 @@ PrefabInstance:
       objectReference: {fileID: 2075767548}
     - target: {fileID: 6797114104800770406, guid: 72d76bd6fe11d484989b5e0c7f67b212, type: 3}
       propertyPath: maxHealth.baseValue
-      value: 100
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6797114104800770406, guid: 72d76bd6fe11d484989b5e0c7f67b212, type: 3}
       propertyPath: poiseResetTime.baseValue
@@ -13917,12 +13917,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 913462385684bee4c8a7cb247f364b67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startingEquipments:
+  - {fileID: 11400000, guid: 09d26979382b38c4ca97dad5484e7c73, type: 2}
+  - {fileID: 11400000, guid: 09d26979382b38c4ca97dad5484e7c73, type: 2}
+  - {fileID: 11400000, guid: 548f5b92306788246a3e0e03f00de590, type: 2}
+  - {fileID: 11400000, guid: 548f5b92306788246a3e0e03f00de590, type: 2}
+  - {fileID: 11400000, guid: 548f5b92306788246a3e0e03f00de590, type: 2}
+  - {fileID: 11400000, guid: 641980b96c4aba54a817894172c08633, type: 2}
+  - {fileID: 11400000, guid: 641980b96c4aba54a817894172c08633, type: 2}
+  - {fileID: 11400000, guid: e1be2a23fa74b604db7c7626b835a260, type: 2}
+  - {fileID: 11400000, guid: e1be2a23fa74b604db7c7626b835a260, type: 2}
+  - {fileID: 11400000, guid: e1be2a23fa74b604db7c7626b835a260, type: 2}
   inventory: []
   material: []
   equipment: []
   inventorySlotParent: {fileID: 257996706}
   materialSlotParent: {fileID: 826683675}
   equipmentSlotParent: {fileID: 435267635}
+  loadedItems: []
+  loadedEquipment: []
 --- !u!4 &1758005128
 Transform:
   m_ObjectHideFlags: 0
@@ -17083,6 +17096,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2447583471470350469, guid: d3c59ee5e474a7d41b505da6b5ae51bf, type: 3}
+      propertyPath: itemPool.Array.size
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 2447583471470350469, guid: d3c59ee5e474a7d41b505da6b5ae51bf, type: 3}
+      propertyPath: itemPool.Array.data[6]
+      value: 
+      objectReference: {fileID: 11400000, guid: e1be2a23fa74b604db7c7626b835a260, type: 2}
+    - target: {fileID: 2447583471470350469, guid: d3c59ee5e474a7d41b505da6b5ae51bf, type: 3}
+      propertyPath: itemPool.Array.data[7]
+      value: 
+      objectReference: {fileID: 11400000, guid: e1be2a23fa74b604db7c7626b835a260, type: 2}
+    - target: {fileID: 2447583471470350469, guid: d3c59ee5e474a7d41b505da6b5ae51bf, type: 3}
+      propertyPath: itemPool.Array.data[8]
+      value: 
+      objectReference: {fileID: 11400000, guid: e1be2a23fa74b604db7c7626b835a260, type: 2}
+    - target: {fileID: 2447583471470350469, guid: d3c59ee5e474a7d41b505da6b5ae51bf, type: 3}
+      propertyPath: itemPool.Array.data[9]
+      value: 
+      objectReference: {fileID: 11400000, guid: 548f5b92306788246a3e0e03f00de590, type: 2}
+    - target: {fileID: 2447583471470350469, guid: d3c59ee5e474a7d41b505da6b5ae51bf, type: 3}
+      propertyPath: itemPool.Array.data[10]
+      value: 
+      objectReference: {fileID: 11400000, guid: 548f5b92306788246a3e0e03f00de590, type: 2}
+    - target: {fileID: 2447583471470350469, guid: d3c59ee5e474a7d41b505da6b5ae51bf, type: 3}
+      propertyPath: itemPool.Array.data[11]
+      value: 
+      objectReference: {fileID: 11400000, guid: 548f5b92306788246a3e0e03f00de590, type: 2}
+    - target: {fileID: 2447583471470350469, guid: d3c59ee5e474a7d41b505da6b5ae51bf, type: 3}
+      propertyPath: itemPool.Array.data[12]
+      value: 
+      objectReference: {fileID: 11400000, guid: 548f5b92306788246a3e0e03f00de590, type: 2}
     - target: {fileID: 4408137957903308106, guid: d3c59ee5e474a7d41b505da6b5ae51bf, type: 3}
       propertyPath: m_LocalScale.z
       value: 1

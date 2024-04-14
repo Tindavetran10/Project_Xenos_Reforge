@@ -12,10 +12,10 @@ namespace UI
         public override void OnPointerDown(UnityEngine.EventSystems.PointerEventData eventData)
         {
             // Remove the item from the equipment slot when clicked on the slot Equipment UI
-            InventoryManager.Instance.UnequipItem(item.data as ItemDataEquipment);
+            InventoryManager.instance.UnequipItem(item.data as ItemDataEquipment);
             
             // Add the item back to the inventory 
-            InventoryManager.Instance.AddItem(item.data as ItemDataEquipment);
+            InventoryManager.instance.AddItem(item.data as ItemDataEquipment);
             CleanUpSlot();
         }
     }

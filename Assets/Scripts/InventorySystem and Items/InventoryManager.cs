@@ -9,7 +9,9 @@ namespace InventorySystem_and_Items
     public class InventoryManager : MonoBehaviour
     {
         // Ensure only one instance of InventoryManager exists
-        public static InventoryManager Instance { get; private set; }
+        public static InventoryManager instance;
+        
+        public List<ItemData> startingEquipments;
 
         public List<InventoryItem> inventory;
         private Dictionary<ItemData, InventoryItem> _inventoryDictionary;
@@ -29,11 +31,16 @@ namespace InventorySystem_and_Items
         private UIItemSlot[] _materialItemSlots;
         private UIEquipmentSlot[] _equipmentItemSlots;
         
+        [Header("Database")]
+        public List<InventoryItem> loadedItems;
+        public List<ItemDataEquipment> loadedEquipment;
+        
+        
         private void Awake()
         {
-            if (Instance != null)
-                Destroy(Instance.gameObject);
-            else Instance = this;
+            if (instance != null)
+                Destroy(instance.gameObject);
+            else instance = this;
         }
 
         private void Start()
@@ -50,6 +57,16 @@ namespace InventorySystem_and_Items
             _inventoryItemSlots = inventorySlotParent.GetComponentsInChildren<UIItemSlot>();
             _materialItemSlots = materialSlotParent.GetComponentsInChildren<UIItemSlot>();
             _equipmentItemSlots = equipmentSlotParent.GetComponentsInChildren<UIEquipmentSlot>();
+            
+            AddStartingItems();
+        }
+        
+        private void AddStartingItems()
+        {
+            for (var i = 0; i < startingEquipments.Count; i++)
+            {
+                AddItem(startingEquipments[i]);
+            }
         }
 
         public void EquipItem(ItemData itemData)
@@ -241,7 +258,7 @@ namespace InventorySystem_and_Items
         #endregion
 
         #region RemoveItemFromInventory
-        private void RemoveItem(ItemData itemData)
+        public void RemoveItem(ItemData itemData)
         {
             var collection = itemData.itemType == ItemType.Equipment ? _inventoryDictionary : _materialDictionary;
             var list = itemData.itemType == ItemType.Equipment ? inventory : material;
@@ -293,24 +310,25 @@ namespace InventorySystem_and_Items
         {
             List<InventoryItem> materialsToRemove = new List<InventoryItem>();
             
-            for (int i = 0; i < requiredMaterials.Count; i++)
+            foreach (var requiredMat in requiredMaterials)
             {
-                if(_materialDictionary.TryGetValue(requiredMaterials[i].data, out var materialItem))
+                if(_materialDictionary.TryGetValue(requiredMat.data, out var materialItem))
                 {
-                    if (materialItem.stackSize < requiredMaterials[i].stackSize)
+                    if (materialItem.stackSize < requiredMat.stackSize)
                         return false;
                     materialsToRemove.Add(materialItem);
                 }
                 else return false;
             }
 
-            for (int i = 0; i < materialsToRemove.Count; i++)
-            {
-                RemoveItem(materialsToRemove[i].data);
-            }
+            foreach (var materials in materialsToRemove) 
+                RemoveItem(materials.data);
             
             AddItem(itemToCraft);
             return true;
         }
+        
+        public IEnumerable<InventoryItem> GetEquipmentList() => equipment;
+        public IEnumerable<InventoryItem> GetMaterialList() => material;
     }
 }

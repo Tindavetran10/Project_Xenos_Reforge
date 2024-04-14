@@ -38,7 +38,7 @@ namespace UI
         public virtual void OnPointerDown(PointerEventData eventData)
         {
             if (item.data.itemType == ItemType.Equipment)
-                InventoryManager.Instance.EquipItem(item.data);
+                InventoryManager.instance.EquipItem(item.data);
         }
     }
 }

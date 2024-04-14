@@ -27,7 +27,7 @@ namespace InventorySystem_and_Items
         
         public void PickupItem()
         {
-            InventoryManager.Instance.AddItem(itemData);
+            InventoryManager.instance.AddItem(itemData);
             Destroy(gameObject);
         }
     }
