@@ -1,5 +1,7 @@
+using System;
 using InventorySystem_and_Items;
 using InventorySystem_and_Items.Data;
+using Manager;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -9,9 +11,9 @@ namespace UI
 {
     public class UIItemSlot : MonoBehaviour, IPointerDownHandler
     {
-        [SerializeField] private Image itemImage;
-        [SerializeField] private TextMeshProUGUI itemText;
-
+        [SerializeField] protected Image itemImage;
+        [SerializeField] protected TextMeshProUGUI itemText;
+        
         public InventoryItem item;
         
         public void UpdateSlot(InventoryItem newItem)

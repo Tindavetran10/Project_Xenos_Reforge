@@ -8,13 +8,20 @@ namespace UI
     {
         private void OnEnable() => UpdateSlot(item);
 
+        public void SetupCraftSlot(ItemDataEquipment itemData)
+        {
+            item.data = itemData;
+            itemImage.sprite = itemData.icon;
+            itemText.text = itemData.itemName;
+        }
+        
         public override void OnPointerDown(PointerEventData eventData)
         {
             base.OnPointerDown(eventData);
-            ItemDataEquipment craftData = item.data as ItemDataEquipment;
+            var craftData = item.data as ItemDataEquipment;
 
-            InventoryManager.instance.CanCraft(craftData, craftData.craftingMaterials);
-
+            if (craftData != null) 
+                InventoryManager.instance.CanCraft(craftData, craftData.craftingMaterials);
         }
     }
 }

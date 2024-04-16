@@ -56,7 +56,6 @@ namespace _Scripts.Player.Input
         #endregion
 
         #region Events for UI
-        public event UnityAction MenuClickEvent;
         public event UnityAction OptionsOpenEvent;
         public event UnityAction OptionsCloseEvent;
         public event UnityAction InventoryOpenEvent;
@@ -163,7 +162,7 @@ namespace _Scripts.Player.Input
         {
             RawMovementInput = context.ReadValue<Vector2>();
             
-            // Get the inputs that change x axis and y axis value from the player  
+            // Get the inputs that change x-axis and y-axis value from the player  
             NormInputX = Mathf.RoundToInt(RawMovementInput.x);
             NormInputY = Mathf.RoundToInt(RawMovementInput.y);
         }
@@ -308,14 +307,7 @@ namespace _Scripts.Player.Input
                 SetUI();
             }
         }
-        public void OnPoint(InputAction.CallbackContext context)
-        {
-            if (context.phase == InputActionPhase.Performed)
-            {
-                MenuClickEvent?.Invoke();
-                SetUI();
-            }
-        }
+        public void OnPoint(InputAction.CallbackContext context) {}
         #endregion
 
         #region UI Input
@@ -326,11 +318,7 @@ namespace _Scripts.Player.Input
         public void OnCancel(InputAction.CallbackContext context){}
 
 
-        public void OnClick(InputAction.CallbackContext context)
-        {
-            if (context.phase == InputActionPhase.Performed) 
-                MenuClickEvent?.Invoke();
-        }
+        public void OnClick(InputAction.CallbackContext context) {}
 
         public void OnScrollWheel(InputAction.CallbackContext context){}
 
