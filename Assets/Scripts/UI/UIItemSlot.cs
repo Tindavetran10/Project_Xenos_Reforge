@@ -20,10 +20,10 @@ namespace UI
         
         private void Start()
         {
-            inputManager.PlayerInput.UI.Click.performed += _ =>
+            inputManager.ItemSlotClickEvent += () =>
             {
                 if (IsPointerOverUIObject())
-                    OnClick();
+                    ItemClicked();
             };
         }
 
@@ -75,8 +75,8 @@ namespace UI
             // Return true if the results contain the UIItemSlot's UI element
             return results.Exists(result => result.gameObject == gameObject);
         }
-        
-        public virtual void OnClick()
+
+        protected virtual void ItemClicked()
         {
             if(item == null || item.data == null) return;
             

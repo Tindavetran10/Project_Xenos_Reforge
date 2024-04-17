@@ -24,9 +24,9 @@ namespace UI
                 InventoryManager.instance.CanCraft(craftData, craftData.craftingMaterials);
         }*/
 
-        public override void OnClick()
+        protected override void ItemClicked()
         {
-            base.OnClick();
+            base.ItemClicked();
             if(item == null || item.data == null) return;
             
             var craftData = item.data as ItemDataEquipment;
