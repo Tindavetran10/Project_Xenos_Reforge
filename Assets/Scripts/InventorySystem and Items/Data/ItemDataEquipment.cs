@@ -22,6 +22,7 @@ namespace InventorySystem_and_Items.Data
         public EquipmentType equipmentType;
         
         #region Stat System for Equipment
+        
         [Header("Major stats")]
         public int strength; // 1 point increase damage and critical power by 1%
         public int agility; // 1 point increase evasion and critical chance by 1%
@@ -47,6 +48,8 @@ namespace InventorySystem_and_Items.Data
         public List<InventoryItem> craftingMaterials;
         #endregion
         
+        private int _descriptionLength;
+        
         private void ModifyPlayerStats(Action<Stat, int> action)
         {
             var playerStats = PlayerManager.GetInstance().player.GetComponentInChildren<PlayerStats>();
@@ -71,5 +74,49 @@ namespace InventorySystem_and_Items.Data
         public void AddModifiers() => ModifyPlayerStats((stat, modifier) => stat.AddModifier(modifier));
 
         public void RemoveModifiers() => ModifyPlayerStats((stat, modifier) => stat.RemoveModifier(modifier));
+        
+        public string GetDescription()
+        {
+            Sb.Length = 0;
+            _descriptionLength = 0;
+
+            AddItemDescription(strength, "Strength");
+            AddItemDescription(agility, "Agility");
+            AddItemDescription(intelligence, "Intelligence");
+            AddItemDescription(vitality, "Vitality");
+
+            AddItemDescription(damage, "Damage");
+            AddItemDescription(critChance, "Crit.Chance");
+            AddItemDescription(critPower, "Crit.Power");
+
+            AddItemDescription(maxHealth, "Health");
+            AddItemDescription(evasion, "Evasion");
+            AddItemDescription(armor, "Armor");
+            
+            if (_descriptionLength < 5)
+            {
+                for (int i = 0; i < 5 - _descriptionLength; i++)
+                {
+                    Sb.AppendLine();
+                    Sb.Append("");
+                }
+            }
+            
+            return Sb.ToString();
+        }
+        
+        private void AddItemDescription(int value, string itemNameText)
+        {
+            if (value != 0)
+            {
+                if (Sb.Length > 0)
+                    Sb.AppendLine();
+
+                if (value > 0)
+                    Sb.Append("+ " + value + " " + itemNameText);
+
+                _descriptionLength++;
+            }       
+        }
     }
 }

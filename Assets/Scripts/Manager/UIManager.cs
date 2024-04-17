@@ -26,6 +26,7 @@ namespace Manager
         #endregion
         
         public UISkillToolTip skillToolTip;
+        public UICraftWindow craftWindow;
 
         private void Start()
         {

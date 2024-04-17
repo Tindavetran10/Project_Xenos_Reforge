@@ -1,3 +1,4 @@
+using System.Text;
 using UnityEngine;
 
 namespace InventorySystem_and_Items.Data
@@ -17,5 +18,7 @@ namespace InventorySystem_and_Items.Data
         
         [Range(0, 100)]
         public float dropChance;
+        
+        protected readonly StringBuilder Sb = new();
     }
 }

@@ -1,6 +1,6 @@
 using InventorySystem_and_Items;
 using InventorySystem_and_Items.Data;
-using UnityEngine.EventSystems;
+using Manager;
 
 namespace UI
 {
@@ -10,9 +10,15 @@ namespace UI
 
         public void SetupCraftSlot(ItemDataEquipment itemData)
         {
+            if(itemData== null) return;
+            
             item.data = itemData;
             itemImage.sprite = itemData.icon;
             itemText.text = itemData.itemName;
+            
+            if(itemText.text.Length > 13)
+                itemText.fontSize = (int)(itemText.fontSize * .7f);
+            else itemText.fontSize = 20;
         }
         
         /*public override void OnPointerDown(PointerEventData eventData)
@@ -26,7 +32,7 @@ namespace UI
 
         protected override void ItemClicked()
         {
-            base.ItemClicked();
+            /*base.ItemClicked();
             if(item == null || item.data == null) return;
             
             var craftData = item.data as ItemDataEquipment;
@@ -34,8 +40,8 @@ namespace UI
             if (craftData == null) return;
 
             if (craftData != null) 
-                InventoryManager.instance.CanCraft(craftData, craftData.craftingMaterials);
-            
+                InventoryManager.instance.CanCraft(craftData, craftData.craftingMaterials);*/
+            UIManager.craftWindow.SetupCraftWindow(item.data as ItemDataEquipment);
         }
     }
 }

@@ -127,7 +127,7 @@ TextureImporter:
         height: 14
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 2, y: 0, z: 2, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -264,6 +264,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: CyberpunkUI_8
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 792
+        width: 48
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 1, y: 1, z: 1, w: 1}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e22052a9b6294d64dbdaeaa68882e2c1
+      internalID: -1901541540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -283,6 +304,7 @@ TextureImporter:
       CyberpunkUI_5: 1224808967
       CyberpunkUI_6: -734825292
       CyberpunkUI_7: 1244128202
+      CyberpunkUI_8: -1901541540
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
