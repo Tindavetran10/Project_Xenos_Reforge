@@ -9,8 +9,24 @@ namespace UI
 
         private void OnValidate() => gameObject.name = "Equipment Slot - " + slotType;
 
-        public override void OnPointerDown(UnityEngine.EventSystems.PointerEventData eventData)
+        #region OldCode for Removing Equipment
+        /*public override void OnPointerDown(UnityEngine.EventSystems.PointerEventData eventData)
         {
+            // Remove the item from the equipment slot when clicked on the slot Equipment UI
+            InventoryManager.instance.UnequipItem(item.data as ItemDataEquipment);
+            
+            // Add the item back to the inventory 
+            InventoryManager.instance.AddItem(item.data as ItemDataEquipment);
+            CleanUpSlot();
+        }*/
+        #endregion
+
+        public override void OnClick()
+        {
+            base.OnClick();
+            
+            if(item == null || item.data == null) return;
+            
             // Remove the item from the equipment slot when clicked on the slot Equipment UI
             InventoryManager.instance.UnequipItem(item.data as ItemDataEquipment);
             

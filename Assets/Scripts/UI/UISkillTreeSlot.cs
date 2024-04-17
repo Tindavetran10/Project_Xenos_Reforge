@@ -9,7 +9,7 @@ namespace UI
 {
     public class UISkillTreeSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, ISaveManager
     {
-        private MenuManager _menuManager;
+        private UIManager _uiManager;
         private Image _skillImage;
 
         [SerializeField] private int skillCost;
@@ -32,7 +32,7 @@ namespace UI
         private void Start()
         {
             _skillImage = GetComponent<Image>();
-            _menuManager = GetComponentInParent<MenuManager>();
+            _uiManager = GetComponentInParent<UIManager>();
             
             _skillImage.color = lockedSkillColor;
             
@@ -74,7 +74,7 @@ namespace UI
             else data.skillTree.Add(skillName, unlocked);
         }
         
-        public void OnPointerEnter(PointerEventData eventData) => _menuManager.skillToolTip.ShowToolTip(skillDescription, skillName);
-        public void OnPointerExit(PointerEventData eventData) => _menuManager.skillToolTip.HideToolTip();
+        public void OnPointerEnter(PointerEventData eventData) => _uiManager.skillToolTip.ShowToolTip(skillDescription, skillName);
+        public void OnPointerExit(PointerEventData eventData) => _uiManager.skillToolTip.HideToolTip();
     }
 }

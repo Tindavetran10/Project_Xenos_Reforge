@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Manager
 {
-    public class MenuManager : MonoBehaviour
+    public class UIManager : MonoBehaviour
     {
         [SerializeField] private InputManager inputManager;
         

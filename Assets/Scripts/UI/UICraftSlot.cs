@@ -15,13 +15,27 @@ namespace UI
             itemText.text = itemData.itemName;
         }
         
-        public override void OnPointerDown(PointerEventData eventData)
+        /*public override void OnPointerDown(PointerEventData eventData)
         {
             base.OnPointerDown(eventData);
             var craftData = item.data as ItemDataEquipment;
 
             if (craftData != null) 
                 InventoryManager.instance.CanCraft(craftData, craftData.craftingMaterials);
+        }*/
+
+        public override void OnClick()
+        {
+            base.OnClick();
+            if(item == null || item.data == null) return;
+            
+            var craftData = item.data as ItemDataEquipment;
+
+            if (craftData == null) return;
+
+            if (craftData != null) 
+                InventoryManager.instance.CanCraft(craftData, craftData.craftingMaterials);
+            
         }
     }
 }

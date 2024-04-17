@@ -92,6 +92,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemImage: {fileID: 5461099540558910646}
   itemText: {fileID: 7443621588711936424}
+  inputManager: {fileID: 11400000, guid: ae5a6636a828cae41b2d83556dac0a7d, type: 2}
   item:
     data: {fileID: 11400000, guid: 641980b96c4aba54a817894172c08633, type: 2}
     stackSize: 0
