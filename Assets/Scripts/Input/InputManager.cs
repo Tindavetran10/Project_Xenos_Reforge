@@ -55,7 +55,7 @@ namespace _Scripts.Player.Input
         #endregion
 
         #region Events for UI
-        public event UnityAction ItemSlotClickEvent;
+        public event UnityAction ItemSlotClickEvent = delegate{};
         public event UnityAction OptionsOpenEvent;
         public event UnityAction OptionsCloseEvent;
         public event UnityAction InventoryOpenEvent;

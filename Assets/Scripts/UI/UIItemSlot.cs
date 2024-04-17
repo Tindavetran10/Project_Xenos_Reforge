@@ -2,10 +2,13 @@ using System.Collections.Generic;
 using _Scripts.Player.Input;
 using InventorySystem_and_Items;
 using InventorySystem_and_Items.Data;
+using Manager;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace UI
@@ -15,16 +18,28 @@ namespace UI
         [SerializeField] protected Image itemImage;
         [SerializeField] protected TextMeshProUGUI itemText;
         [SerializeField] private InputManager inputManager;
-        
+
+        protected UIManager UIManager;
         public InventoryItem item;
+        
+        private UnityAction _itemSlotClickAction;
         
         private void Start()
         {
+            UIManager = GetComponentInParent<UIManager>();
+            
             inputManager.ItemSlotClickEvent += () =>
             {
                 if (IsPointerOverUIObject())
                     ItemClicked();
             };
+            
+            inputManager.ItemSlotClickEvent += _itemSlotClickAction;
+        }
+        
+        protected virtual void OnDestroy()
+        {
+            inputManager.ItemSlotClickEvent -= _itemSlotClickAction;
         }
 
         public void UpdateSlot(InventoryItem newItem)
@@ -59,6 +74,10 @@ namespace UI
         
         private bool IsPointerOverUIObject()
         {
+            // Check if the UIItemSlot object has been destroyed
+            if (this == null)
+                return false;
+            
             //Get the mouse position
             var mousePosition = Mouse.current.position.ReadValue();
             
