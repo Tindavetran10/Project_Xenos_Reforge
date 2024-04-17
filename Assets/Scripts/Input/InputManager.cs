@@ -11,7 +11,7 @@ namespace _Scripts.Player.Input
     {
         private static InputManager _instance;
 
-        public PlayerInput PlayerInput;
+        private PlayerInput _playerInput;
         public Transform PlayerTransform { get; set;}
         private Camera _cam;
 
@@ -78,12 +78,12 @@ namespace _Scripts.Player.Input
         private void OnEnable()
         {
             // Create a new instance of the PlayerInput asset
-            if (PlayerInput != null) return;
-            PlayerInput = new PlayerInput();
+            if (_playerInput != null) return;
+            _playerInput = new PlayerInput();
 
             // Set up callbacks for gameplay and UI actions
-            PlayerInput.Gameplay.SetCallbacks(this);
-            PlayerInput.UI.SetCallbacks(this);
+            _playerInput.Gameplay.SetCallbacks(this);
+            _playerInput.UI.SetCallbacks(this);
             
             SetGameplay();
             
@@ -92,18 +92,20 @@ namespace _Scripts.Player.Input
             NormalAttackInputsStop = new bool[count];
             
             _cam = Camera.main;
+            
+            _playerInput.UI.Click.performed += _ => ItemSlotClickEvent?.Invoke();
         }
 
         private void SetGameplay()
         {
-            PlayerInput.Gameplay.Enable();
-            PlayerInput.UI.Disable();
+            _playerInput.Gameplay.Enable();
+            _playerInput.UI.Disable();
         }
 
         private void SetUI()
         {
-            PlayerInput.Gameplay.Disable();
-            PlayerInput.UI.Enable();
+            _playerInput.Gameplay.Disable();
+            _playerInput.UI.Enable();
         }
         
         #region Check for Gameplay Input
@@ -318,11 +320,7 @@ namespace _Scripts.Player.Input
         public void OnCancel(InputAction.CallbackContext context){}
 
 
-        public void OnClick(InputAction.CallbackContext context)
-        {
-            if (context.phase == InputActionPhase.Performed) 
-                ItemSlotClickEvent?.Invoke();
-        }
+        public void OnClick(InputAction.CallbackContext context) {}
 
         public void OnScrollWheel(InputAction.CallbackContext context){}
 

@@ -21,9 +21,9 @@ namespace UI
         }*/
         #endregion
 
-        public override void OnClick()
+        protected override void ItemClicked()
         {
-            base.OnClick();
+            base.ItemClicked();
             
             if(item == null || item.data == null) return;
             
