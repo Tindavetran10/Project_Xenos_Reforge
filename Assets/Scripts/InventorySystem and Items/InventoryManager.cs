@@ -31,11 +31,6 @@ namespace InventorySystem_and_Items
         private UIItemSlot[] _materialItemSlots;
         private UIEquipmentSlot[] _equipmentItemSlots;
         
-        [Header("Database")]
-        public List<InventoryItem> loadedItems;
-        public List<ItemDataEquipment> loadedEquipment;
-        
-        
         private void Awake()
         {
             if (instance != null)
@@ -63,10 +58,8 @@ namespace InventorySystem_and_Items
         
         private void AddStartingItems()
         {
-            for (var i = 0; i < startingEquipments.Count; i++)
-            {
-                AddItem(startingEquipments[i]);
-            }
+            foreach (var startingEquipment in startingEquipments) 
+                AddItem(startingEquipment);
         }
 
         public void EquipItem(ItemData itemData)
@@ -76,7 +69,7 @@ namespace InventorySystem_and_Items
             
             PreventPlayerEquipWeaponAlreadyEquipped(newEquipment);
 
-            // Add new equipment (the same one) to equipment list
+            // Add new equipment (the same one) to the equipment list
             equipment.Add(newItem);
             
             // Add new equipment to equipment dictionary
@@ -84,7 +77,7 @@ namespace InventorySystem_and_Items
             {
                 _equipmentDictionary.Add(newEquipment, newItem);
                 
-                // Modify player stats when player equips an equipment
+                // Modify player stats when player equips equipment
                 newEquipment.AddModifiers();
             }
 
@@ -98,7 +91,7 @@ namespace InventorySystem_and_Items
         {
             ItemDataEquipment oldEquipment = null;
 
-            // Check if equipment of same type is already equipped
+            // Check if equipment of the same type is already equipped
             foreach (var item 
                      in _equipmentDictionary.Where(item 
                          => newEquipment != null && item.Key.equipmentType == newEquipment.equipmentType)) 
@@ -112,7 +105,7 @@ namespace InventorySystem_and_Items
             }*/
             #endregion
 
-            // If equipment of same type is already equipped, remove the current equipment and add it to inventory
+            // If equipment of the same type is already equipped, remove the current equipment and add it to inventory
             // Equip the new equipment from the inventory
             if(oldEquipment != null)
             {
@@ -133,7 +126,7 @@ namespace InventorySystem_and_Items
                 equipment.Remove(existingItem);
                 // Remove equipment from equipment dictionary
                 _equipmentDictionary.Remove(itemToRemove);
-                // Remove modifiers from player stats when player unequipped an equipment
+                // Remove modifiers from player stats when player unequipped equipment
                 itemToRemove.RemoveModifiers();
             }
         }
@@ -308,7 +301,7 @@ namespace InventorySystem_and_Items
 
         public bool CanCraft(ItemDataEquipment itemToCraft, List<InventoryItem> requiredMaterials)
         {
-            List<InventoryItem> materialsToRemove = new List<InventoryItem>();
+            var materialsToRemove = new List<InventoryItem>();
             
             foreach (var requiredMat in requiredMaterials)
             {

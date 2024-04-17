@@ -11,12 +11,11 @@ namespace _Scripts.Player.Input
     {
         private static InputManager _instance;
 
-        private static PlayerInput _playerInput;
+        public PlayerInput PlayerInput;
         public Transform PlayerTransform { get; set;}
         private Camera _cam;
 
         #region Input for Gameplay
-
         private Vector2 RawMovementInput { get; set; }
         private Vector2 RawDashDirectionInput { get; set; }
         public Vector2Int DashDirectionInput { get; private set; }
@@ -56,6 +55,7 @@ namespace _Scripts.Player.Input
         #endregion
 
         #region Events for UI
+        public event UnityAction ItemSlotClickEvent;
         public event UnityAction OptionsOpenEvent;
         public event UnityAction OptionsCloseEvent;
         public event UnityAction InventoryOpenEvent;
@@ -78,12 +78,12 @@ namespace _Scripts.Player.Input
         private void OnEnable()
         {
             // Create a new instance of the PlayerInput asset
-            if (_playerInput != null) return;
-            _playerInput = new PlayerInput();
+            if (PlayerInput != null) return;
+            PlayerInput = new PlayerInput();
 
             // Set up callbacks for gameplay and UI actions
-            _playerInput.Gameplay.SetCallbacks(this);
-            _playerInput.UI.SetCallbacks(this);
+            PlayerInput.Gameplay.SetCallbacks(this);
+            PlayerInput.UI.SetCallbacks(this);
             
             SetGameplay();
             
@@ -94,16 +94,16 @@ namespace _Scripts.Player.Input
             _cam = Camera.main;
         }
 
-        private static void SetGameplay()
+        private void SetGameplay()
         {
-            _playerInput.Gameplay.Enable();
-            _playerInput.UI.Disable();
+            PlayerInput.Gameplay.Enable();
+            PlayerInput.UI.Disable();
         }
 
-        private static void SetUI()
+        private void SetUI()
         {
-            _playerInput.Gameplay.Disable();
-            _playerInput.UI.Enable();
+            PlayerInput.Gameplay.Disable();
+            PlayerInput.UI.Enable();
         }
         
         #region Check for Gameplay Input
@@ -318,7 +318,11 @@ namespace _Scripts.Player.Input
         public void OnCancel(InputAction.CallbackContext context){}
 
 
-        public void OnClick(InputAction.CallbackContext context) {}
+        public void OnClick(InputAction.CallbackContext context)
+        {
+            if (context.phase == InputActionPhase.Performed) 
+                ItemSlotClickEvent?.Invoke();
+        }
 
         public void OnScrollWheel(InputAction.CallbackContext context){}
 
