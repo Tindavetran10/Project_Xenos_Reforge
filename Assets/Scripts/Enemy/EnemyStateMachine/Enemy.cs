@@ -63,7 +63,9 @@ namespace Enemy.EnemyStateMachine
             StateMachine.CurrentState.LogicUpdate();
             
             Anim.SetFloat(YVelocity, Movement.Rb.velocity.y);
-            _player = PlayerManager.GetInstance().player.transform;
+            if(PlayerManager.GetInstance().player != null)
+                _player = PlayerManager.GetInstance().player.transform;
+
         }
         
         protected override void FixedUpdate()
@@ -74,11 +76,22 @@ namespace Enemy.EnemyStateMachine
         
         public void BattleStateFlipControl()
         {
+            /*var playerDirectionRelativeToEnemy = _player.position.x;
             // Determine if the player is to the left (-1) or right (1) of the enemy
-            var playerDirectionRelativeToEnemy = _player.position.x > transform.position.x ? 1 : -1;
+            if (_player.position.x != null) { }
+                playerDirectionRelativeToEnemy = _player.position.x > transform.position.x ? 1 : -1;
 
             // If the player is on the opposite side of the enemy's facing direction, flip the enemy
-            if (playerDirectionRelativeToEnemy != Movement.FacingDirection) Movement.Flip();
+            if (playerDirectionRelativeToEnemy != Movement.FacingDirection) Movement.Flip();*/
+            
+            // Determine if the player is to the left (-1) or right (1) of the enemy
+            if (_player != null)
+            {
+                var playerDirectionRelativeToEnemy = _player.position.x > transform.position.x ? 1 : -1;
+
+                // If the player is on the opposite side of the enemy's facing direction, flip the enemy
+                if (playerDirectionRelativeToEnemy != Movement.FacingDirection) Movement.Flip();
+            }
         }
 
 

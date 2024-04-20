@@ -70,6 +70,14 @@ namespace _Scripts.Player.Input
         #endregion
         
         
+        public void Update()
+        {
+            if(Camera.main != null)
+            {
+                _cam=Camera.main;
+            }
+        }
+
         private void Awake()
         {
             if (_instance == null)
@@ -260,7 +268,9 @@ namespace _Scripts.Player.Input
         public void OnDashDirection(InputAction.CallbackContext context)
         {
             RawDashDirectionInput= context.ReadValue<Vector2>();
-            RawDashDirectionInput = _cam.ScreenToWorldPoint(RawDashDirectionInput) - PlayerTransform.position;
+            if (_cam != null)
+                RawDashDirectionInput = _cam.ScreenToWorldPoint(RawDashDirectionInput) - PlayerTransform.position;
+            
             DashDirectionInput = Vector2Int.RoundToInt(RawDashDirectionInput.normalized);
         }
         
