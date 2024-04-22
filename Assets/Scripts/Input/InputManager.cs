@@ -55,6 +55,7 @@ namespace _Scripts.Player.Input
         #endregion
 
         #region Events for UI
+        public event UnityAction UseFlaskEvent = delegate{};
         public event UnityAction ItemSlotClickEvent = delegate{};
         public event UnityAction OptionsOpenEvent;
         public event UnityAction OptionsCloseEvent;
@@ -309,10 +310,17 @@ namespace _Scripts.Player.Input
                 SetUI();
             }
         }
-        public void OnPoint(InputAction.CallbackContext context) {}
+
+        public void OnUseFlask(InputAction.CallbackContext context)
+        {
+            if(context.phase == InputActionPhase.Performed)
+                UseFlaskEvent?.Invoke();
+        }
+
         #endregion
 
         #region UI Input
+        public void OnPoint(InputAction.CallbackContext context) {}
         public void OnNavigate(InputAction.CallbackContext context) {}
 
         public void OnSubmit(InputAction.CallbackContext context){}

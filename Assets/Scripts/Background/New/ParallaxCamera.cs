@@ -1,29 +1,29 @@
 using UnityEngine;
 
-[ExecuteInEditMode]
-public class ParallaxCamera : MonoBehaviour
+namespace Background.New
 {
-    public delegate void ParallaxCameraDelegate(float deltaMovement);
-    public ParallaxCameraDelegate onCameraTranslate;
-
-    private float oldPosition;
-
-    void Start()
+    [ExecuteInEditMode]
+    public class ParallaxCamera : MonoBehaviour
     {
-        oldPosition = transform.position.x;
-    }
+        public delegate void ParallaxCameraDelegate(float deltaMovement);
+        public ParallaxCameraDelegate OnCameraTranslate;
 
-    void Update()
-    {
-        if (transform.position.x != oldPosition)
+        private float _oldPosition;
+
+        private void Start() => _oldPosition = transform.position.x;
+
+        private void Update()
         {
-            if (onCameraTranslate != null)
+            if (Mathf.Approximately(transform.position.x, _oldPosition))
             {
-                float delta = oldPosition - transform.position.x;
-                onCameraTranslate(delta);
-            }
+                if (OnCameraTranslate != null)
+                {
+                    var delta = _oldPosition - transform.position.x;
+                    OnCameraTranslate(delta);
+                }
 
-            oldPosition = transform.position.x;
+                _oldPosition = transform.position.x;
+            }
         }
     }
 }

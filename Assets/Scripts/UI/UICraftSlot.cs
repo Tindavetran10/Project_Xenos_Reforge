@@ -1,6 +1,4 @@
-using InventorySystem_and_Items;
 using InventorySystem_and_Items.Data;
-using Manager;
 
 namespace UI
 {
@@ -16,8 +14,8 @@ namespace UI
             itemImage.sprite = itemData.icon;
             itemText.text = itemData.itemName;
             
-            if(itemText.text.Length > 13)
-                itemText.fontSize = (int)(itemText.fontSize * .7f);
+            if(itemText.text.Length > 12)
+                itemText.fontSize *= .7f;
             else itemText.fontSize = 20;
         }
         

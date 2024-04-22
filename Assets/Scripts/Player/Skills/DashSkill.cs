@@ -43,6 +43,6 @@ namespace Player.Skills
 
         public void CreateCloneOnDash() =>
             //if(cloneOnDashUnlocked)
-            SkillManager.Instance.Clone.CreateClone(Player.transform);
+            SkillManager.instance.Clone.CreateClone(Player.transform);
     }
 }

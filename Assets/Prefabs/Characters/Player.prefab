@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 4232899052664523797}
   - component: {fileID: 1752484794573637887}
   - component: {fileID: 9122337023420919378}
-  - component: {fileID: 7766984784405888747}
   - component: {fileID: 7849466132785042285}
   - component: {fileID: 6534914590236456289}
   - component: {fileID: 7708792561113031817}
@@ -179,164 +178,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &7766984784405888747
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 609758280927387184}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 0a97245f1a2941ad882b940122462f03, type: 3}
-  m_NotificationBehavior: 2
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 5fe99a74-209b-4c08-a1c2-f8769178cafb
-    m_ActionName: Gameplay/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 4030cd18-e9aa-43d9-b459-e0af013dd791
-    m_ActionName: Gameplay/Jump[/Keyboard/space]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 674ada48-48a0-44f2-8dd6-cbfe87553e6e
-    m_ActionName: Gameplay/Dash[/Keyboard/shift]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 70a58268-18a6-45a6-999c-87cacc566f8b
-    m_ActionName: Gameplay/DashDirection[/Mouse/position]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 89e21b66-98b7-4e20-9b78-57fc73efa886
-    m_ActionName: Gameplay/NormalAttack[/Mouse/leftButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: f0def381-6163-4baf-922d-ad2136ffba97
-    m_ActionName: Gameplay/HeavyAttack[/Mouse/rightButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: a3dfcdad-6dda-4118-812b-e2c871e5c3c6
-    m_ActionName: Gameplay/CounterAttack[/Keyboard/q]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: c5f9e136-0c10-4ed9-8983-2837bd32d328
-    m_ActionName: Gameplay/AimSword[/Keyboard/e]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: b81e8179-9177-411a-a2b6-9205de1d5cc4
-    m_ActionName: Gameplay/FocusSword[/Keyboard/f]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 194ce9ff-24e4-4160-8b83-c5ba2435d1a0
-    m_ActionName: Gameplay/FocusSwordMousePos
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: b81e8179-9177-411a-a2b6-9205de1d5cc4
-    m_ActionName: Gameplay/FocusSword[/Keyboard/f]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: c585e348-a1e1-4019-af95-848c6487b2bf
-    m_ActionName: Gameplay/Menu[/Keyboard/escape]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 9a6f7134-a652-4621-b469-7e4ca68754a6
-    m_ActionName: Gameplay/FocusSwordMouseClick[/Mouse/leftButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 90ebdb49-9377-457e-accf-52a366f9db32
-    m_ActionName: UI/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 48df6f7e-a787-434f-8f8a-9d34ba5b4ab1
-    m_ActionName: UI/Submit[/Keyboard/enter]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: b111ab3a-dbc6-4f84-8ac5-a8fa9c61395e
-    m_ActionName: UI/Cancel[/Keyboard/escape]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: f4db4f8d-a278-4b66-bd96-f3f4faded99d
-    m_ActionName: UI/Point[/Mouse/position]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: ca4013b1-04dd-48a9-bf91-54a460aeefb3
-    m_ActionName: UI/Click[/Mouse/leftButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: a8a59539-f9d5-40b1-aef0-cf38b6619878
-    m_ActionName: UI/ScrollWheel[/Mouse/scroll]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: cc5e91db-9ad8-400f-9ec5-b34363a66f05
-    m_ActionName: UI/MiddleClick[/Mouse/middleButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 225ebabc-011c-463b-952f-e70791e424dc
-    m_ActionName: UI/RightClick[/Mouse/rightButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: b515bfcd-38d2-452c-b310-267be2515958
-    m_ActionName: UI/MenuClose[/Keyboard/escape]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: a739f121-eb48-418c-b9ed-e2bd441cafd4
-    m_ActionName: Gameplay/InventoryOpen[/Keyboard/i]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 87e47324-9953-4523-8370-4b1a01d01500
-    m_ActionName: Gameplay/SkillTreeOpen[/Keyboard/v]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 4a514211-5c2c-4138-8eb2-bd9936749fb3
-    m_ActionName: Gameplay/MapOpen[/Keyboard/m]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 4c041834-9045-4b5a-a513-28321ed18e7a
-    m_ActionName: Gameplay/CraftingOpen[/Keyboard/c]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 5b26ee0a-b1fb-4668-b446-b940c493dff2
-    m_ActionName: UI/InventoryClose[/Keyboard/i]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 62abc835-41c8-4102-96d9-062c6440573c
-    m_ActionName: UI/SkillTreeClose[/Keyboard/v]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: e7eaaeef-30ed-4ceb-a0bb-5c010e35ae5a
-    m_ActionName: UI/MapClose[/Keyboard/m]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: b1d14cb7-aeb9-450d-b946-4bfb2854a712
-    m_ActionName: UI/CraftingClose[/Keyboard/c]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 6e74b829-6de1-4ff3-9e66-269f7e444cec
-    m_ActionName: UI/TrackedDevicePosition
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 431aa265-4af1-4399-8475-0f13f2d221d1
-    m_ActionName: UI/TrackedDeviceOrientation
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Gameplay
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!114 &7849466132785042285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -366,6 +207,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitMat: {fileID: 2100000, guid: 6ce42991d0ed2b346bef88913ab1434e, type: 2}
+  frozenColor: []
+  igniteColor: []
+  shockColor: []
+  igniteFx: {fileID: 0}
+  frozenFx: {fileID: 0}
+  shockFx: {fileID: 0}
 --- !u!114 &7708792561113031817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -710,6 +557,9 @@ MonoBehaviour:
   evasion:
     baseValue: 10
     modifiers: 
+  magicResistance:
+    baseValue: 0
+    modifiers: 
   maxPoiseResistance:
     baseValue: 0
     modifiers: 
@@ -719,6 +569,20 @@ MonoBehaviour:
   lastPoiseReset:
     baseValue: 0
     modifiers: 
+  fireDamage:
+    baseValue: 0
+    modifiers: 
+  iceDamage:
+    baseValue: 0
+    modifiers: 
+  lightningDamage:
+    baseValue: 0
+    modifiers: 
+  isIgnited: 0
+  isFrozen: 0
+  isShocked: 0
+  ailmentsDuration: 4
+  shockStrikePrefab: {fileID: 0}
   currentHealth: 0
   currentPoise: 0
 --- !u!1 &6532948408387991247

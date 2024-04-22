@@ -1,9 +1,9 @@
 using System.Collections;
+using Controller;
 using Enemy.Data.EnemyDataScript;
 using HitStop;
 using Manager;
 using Player.PlayerStats;
-using Projectile;
 using UnityEngine;
 
 namespace Enemy.EnemyStateMachine

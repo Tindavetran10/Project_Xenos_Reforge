@@ -80,15 +80,15 @@ namespace Player.PlayerStates.SubStates
         }
 
         
-        private static void FocusSwordTrail() => SkillManager.Instance.Focus.Trail();
+        private static void FocusSwordTrail() => SkillManager.instance.Focus.Trail();
         private static void FocusSwordSlice()
         {
-            SkillManager.Instance.Focus.Slice();
+            SkillManager.instance.Focus.Slice();
             FocusSwordFragment();
         }
 
-        private static void FocusSwordFragment() => SkillManager.Instance.Focus.Fragments();
+        private static void FocusSwordFragment() => SkillManager.instance.Focus.Fragments();
 
-        private static void ClearFocusSword() => SkillManager.Instance.Focus.ClearMousePositions();
+        private static void ClearFocusSword() => SkillManager.instance.Focus.ClearMousePositions();
     }
 }

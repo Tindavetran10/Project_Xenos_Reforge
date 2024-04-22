@@ -1,44 +1,45 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[ExecuteInEditMode]
-public class ParallaxBackground : MonoBehaviour
+namespace Background.New
 {
-    public ParallaxCamera parallaxCamera;
-    List<ParallaxLayer> parallaxLayers = new List<ParallaxLayer>();
-
-    void Start()
+    [ExecuteInEditMode]
+    public class ParallaxBackground : MonoBehaviour
     {
-        if (parallaxCamera == null)
-            parallaxCamera = Camera.main.GetComponent<ParallaxCamera>();
+        public ParallaxCamera parallaxCamera;
+        private readonly List<ParallaxLayer> _parallaxLayers = new();
 
-        if (parallaxCamera != null)
-            parallaxCamera.onCameraTranslate += Move;
-
-        SetLayers();
-    }
-
-    void SetLayers()
-    {
-        parallaxLayers.Clear();
-
-        for (int i = 0; i < transform.childCount; i++)
+        private void Start()
         {
-            ParallaxLayer layer = transform.GetChild(i).GetComponent<ParallaxLayer>();
+            if (parallaxCamera == null)
+                if (Camera.main != null)
+                    parallaxCamera = Camera.main.GetComponent<ParallaxCamera>();
 
-            if (layer != null)
+            if (parallaxCamera != null)
+                parallaxCamera.OnCameraTranslate += Move;
+
+            SetLayers();
+        }
+
+        private void SetLayers()
+        {
+            _parallaxLayers.Clear();
+
+            for (var i = 0; i < transform.childCount; i++)
             {
-                layer.name = "Layer-" + i;
-                parallaxLayers.Add(layer);
+                var layer = transform.GetChild(i).GetComponent<ParallaxLayer>();
+
+                if (layer != null)
+                {
+                    layer.name = "Layer-" + i;
+                    _parallaxLayers.Add(layer);
+                }
             }
         }
-    }
 
-    void Move(float delta)
-    {
-        foreach (ParallaxLayer layer in parallaxLayers)
+        private void Move(float delta)
         {
-            layer.Move(delta);
+            foreach (var layer in _parallaxLayers) layer.Move(delta);
         }
     }
 }

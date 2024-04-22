@@ -1,16 +1,19 @@
 using UnityEngine;
 
-[ExecuteInEditMode]
-public class ParallaxLayer : MonoBehaviour
+namespace Background.New
 {
-    public float parallaxFactor;
-
-    public void Move(float delta)
+    [ExecuteInEditMode]
+    public class ParallaxLayer : MonoBehaviour
     {
-        Vector3 newPos = transform.localPosition;
-        newPos.x -= delta * parallaxFactor;
+        public float parallaxFactor;
 
-        transform.localPosition = newPos;
+        public void Move(float delta)
+        {
+            var newPos = transform.localPosition;
+            newPos.x -= delta * parallaxFactor;
+
+            transform.localPosition = newPos;
+        }
+
     }
-
 }

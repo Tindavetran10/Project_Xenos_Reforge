@@ -1,14 +1,12 @@
 using System.Collections.Generic;
 using _Scripts.Player.Input;
 using InventorySystem_and_Items;
-using InventorySystem_and_Items.Data;
 using Manager;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace UI
@@ -37,10 +35,7 @@ namespace UI
             inputManager.ItemSlotClickEvent += _itemSlotClickAction;
         }
         
-        protected virtual void OnDestroy()
-        {
-            inputManager.ItemSlotClickEvent -= _itemSlotClickAction;
-        }
+        protected virtual void OnDestroy() => inputManager.ItemSlotClickEvent -= _itemSlotClickAction;
 
         public void UpdateSlot(InventoryItem newItem)
         {
@@ -86,7 +81,7 @@ namespace UI
 
             // Create a pointer event data object
             var eventData = new PointerEventData(EventSystem.current)
-            { position = mousePosition};
+            {position = mousePosition};
 
             // Raycast using the graphics ray-caster and mouse position
             EventSystem.current.RaycastAll(eventData, results);
@@ -99,7 +94,7 @@ namespace UI
         {
             if(item == null || item.data == null) return;
             
-            if (item.data.itemType == ItemType.Equipment)
+            if (item.data.itemType == EnumList.ItemType.Equipment)
                 InventoryManager.instance.EquipItem(item.data);
         }
     }

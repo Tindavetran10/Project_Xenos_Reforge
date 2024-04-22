@@ -62,8 +62,7 @@ namespace CoreSystem.CoreComponents
 		
 		public bool LedgeVertical => Physics2D.Raycast(LedgeCheckVertical.position, Vector2.down, wallCheckDistance, whatIsGround);
 		#endregion
-
-
+		
 		private void OnDrawGizmos()
 		{
 			Gizmos.DrawWireSphere(ceilingCheck.position, groundCheckRadius);

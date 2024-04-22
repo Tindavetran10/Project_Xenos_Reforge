@@ -1,4 +1,5 @@
 using _Scripts.Player.Input;
+using InventorySystem_and_Items;
 using Manager;
 using Player.Data;
 using Player.GhostTrail_Effect;
@@ -82,7 +83,7 @@ namespace Player.PlayerStateMachine
         protected override void Start()
         {
             base.Start();
-            Skill = SkillManager.Instance;
+            Skill = SkillManager.instance;
             
             //playerInputHandler = GetComponent<PlayerInputHandler>();
             
@@ -134,7 +135,7 @@ namespace Player.PlayerStateMachine
 
             center.y += (height - MovementCollider2D.size.y)/2;
             
-            //Change the height of the size of the Collider
+            //Change the height of the Collider
             MovementCollider2D.size = _workspace;
 
             //Change the center point of the Collider

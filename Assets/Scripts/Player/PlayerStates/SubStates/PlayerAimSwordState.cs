@@ -3,7 +3,6 @@ using Player.Data;
 using Player.PlayerStates.SuperStates;
 using UnityEngine;
 
-
 namespace Player.PlayerStates.SubStates
 {
     public class PlayerAimSwordState : PlayerAbilityState
@@ -44,7 +43,7 @@ namespace Player.PlayerStates.SubStates
             /*if(SkillManager.Instance.Slash.slashUnlocked)
                 SkillManager.Instance.Slash.CreateSlash(Movement.FacingDirection);*/
             
-            SkillManager.Instance.Slash.CreateSlash(Movement.FacingDirection);
+            SkillManager.instance.Slash.CreateSlash(Movement.FacingDirection);
         }
     }
 }

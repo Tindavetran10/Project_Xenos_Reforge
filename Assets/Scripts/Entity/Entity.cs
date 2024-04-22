@@ -1,5 +1,6 @@
 using CoreSystem;
 using CoreSystem.CoreComponents;
+using Manager;
 using UnityEngine;
 using StatSystem_CharacterStats = StatSystem.CharacterStats;
 
@@ -43,8 +44,9 @@ namespace Entity
         public static void HitParticle(Component hit, GameObject data)
         {
             // Instantiate the hit particle
-            var hitParticleInstance = Instantiate(data, hit.transform.position 
-                                                        + new Vector3(0f,0.15f,0f), Quaternion.identity);
+            var hitParticleInstance = ObjectPoolManager.SpawnObject(data, 
+                hit.transform.position + new Vector3(0f,0.15f,0f), Quaternion.identity, 
+                ObjectPoolManager.PoolType.GameObject);
             
             // Destroy the hit particle after 0.5f
             Destroy(hitParticleInstance, 0.19f);

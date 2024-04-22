@@ -4,7 +4,7 @@ using Manager;
 using StatSystem;
 using UnityEngine;
 
-namespace Projectile
+namespace Controller
 {
     public class ProjectileController : MonoBehaviour
     {
@@ -13,7 +13,7 @@ namespace Projectile
 
         [SerializeField] private float xVelocity;
         [SerializeField] private Rigidbody2D rb;
-        private CapsuleCollider2D projectileCollider2D;
+        private CapsuleCollider2D _projectileCollider2D;
 
         [SerializeField] private bool canMove;
         [SerializeField] private bool flipped;
@@ -21,9 +21,9 @@ namespace Projectile
         private HitStopController _hitStopController;
         [SerializeField] private float hitStopDuration;
 
-        private int targetLayer;
+        private int _targetLayer;
         private int _collisionLayer;
-        private int groundLayer;
+        private int _groundLayer;
         private CharacterStats _characterStats;
         
         private Coroutine _returnToPoolTimerCoroutine;
@@ -46,11 +46,11 @@ namespace Projectile
             
             // Reset the target layer to the default value to "Player"
             targetLayerName = "Player";
-            targetLayer = LayerMask.NameToLayer(targetLayerName);
+            _targetLayer = LayerMask.NameToLayer(targetLayerName);
             
             // Reset the projectile collider and the rigidbody to their default values
-            if(projectileCollider2D != null)
-                projectileCollider2D.enabled = true;
+            if(_projectileCollider2D != null)
+                _projectileCollider2D.enabled = true;
             
             if(rb != null)
             {
@@ -62,17 +62,17 @@ namespace Projectile
         private void Awake()
         {
             _hitStopController = HitStopController.Instance;
-            targetLayer = LayerMask.NameToLayer(targetLayerName);
-            groundLayer = LayerMask.NameToLayer("Ground");
+            _targetLayer = LayerMask.NameToLayer(targetLayerName);
+            _groundLayer = LayerMask.NameToLayer("Ground");
 
-            projectileCollider2D = GetComponent<CapsuleCollider2D>();
+            _projectileCollider2D = GetComponent<CapsuleCollider2D>();
         }
 
         private void Update()
         {
             if(canMove)
                 rb.velocity = new Vector2(xVelocity, rb.velocity.y);
-            targetLayer = LayerMask.NameToLayer(targetLayerName);
+            _targetLayer = LayerMask.NameToLayer(targetLayerName);
         }
         
         private IEnumerator ReturnToPoolAfterTime()
@@ -99,7 +99,7 @@ namespace Projectile
             _collisionLayer = collision.gameObject.layer;
 
             // Decide if the projectile should interact with the game object it collided with base on the layer
-            if (_collisionLayer == targetLayer)
+            if (_collisionLayer == _targetLayer)
             {
                 var characterStats = collision.GetComponentInChildren<CharacterStats>();
                 
@@ -111,7 +111,7 @@ namespace Projectile
                 }
                 ProjectileInteraction();
             }
-            else if(_collisionLayer == groundLayer)
+            else if(_collisionLayer == _groundLayer)
                 ProjectileInteraction();
         }
 
@@ -127,8 +127,8 @@ namespace Projectile
 
         private void ProjectileInteraction()
         {
-            if(projectileCollider2D != null)
-                projectileCollider2D.enabled = false;
+            if(_projectileCollider2D != null)
+                _projectileCollider2D.enabled = false;
             
             canMove = false;
             StopProjectileMovement();
