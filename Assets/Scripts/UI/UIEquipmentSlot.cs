@@ -5,7 +5,7 @@ namespace UI
 {
     public class UIEquipmentSlot : UIItemSlot
     {
-        public EquipmentType slotType;
+        public EnumList.EquipmentType slotType;
 
         private void OnValidate() => gameObject.name = "Equipment Slot - " + slotType;
 

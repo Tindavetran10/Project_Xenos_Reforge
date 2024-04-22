@@ -5,7 +5,7 @@ using Player.Data;
 using StatSystem;
 using UnityEngine;
 
-namespace Player.Skills.SkillController
+namespace Controller.SkillController
 {
     public class CloneSkillController : MonoBehaviour
     {
@@ -119,7 +119,7 @@ namespace Player.Skills.SkillController
                 }
             }
 
-            // Step 7: If a closest enemy was found, rotate towards it.
+            // Step 7: If the closest enemy was found, rotate towards it.
             if (_closetEnemy != null)
             {
                 // Step 8: Check if the enemy is to the left or right of the current object and rotate accordingly.

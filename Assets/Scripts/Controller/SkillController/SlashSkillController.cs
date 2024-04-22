@@ -1,8 +1,9 @@
 using Enemy.EnemyStats;
+using InventorySystem_and_Items;
 using StatSystem;
 using UnityEngine;
 
-namespace Player.Skills.SkillController
+namespace Controller.SkillController
 {
     public class SlashSkillController : MonoBehaviour
     {
@@ -36,10 +37,20 @@ namespace Player.Skills.SkillController
                 {
                     var target = hit.GetComponentInChildren<EnemyStats>();
                     _stats.DoDamage(target);
+                    
+                    ExecuteWeaponEffectToSkill(hit);
                 }
             }
         }
-        
+
+        private static void ExecuteWeaponEffectToSkill(Collider2D hit)
+        {
+            var equippedWeapon = InventoryManager.instance.GetEquipment(EnumList.EquipmentType.Weapon);
+
+            if (equippedWeapon != null) 
+                equippedWeapon.ExecuteItemEffect(hit.transform);
+        }
+
         private void OnDrawGizmos()
         {
             // Draw a wire sphere in the Scene view to visualize the radius

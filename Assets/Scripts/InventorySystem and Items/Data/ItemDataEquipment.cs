@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using InventorySystem_and_Items.Effects;
 using Manager;
 using Player.PlayerStats;
 using StatSystem;
@@ -7,21 +8,17 @@ using UnityEngine;
 
 namespace InventorySystem_and_Items.Data
 {
-    public enum EquipmentType
-    {
-        Weapon,
-        Armor,
-        Gauntlet,
-        Helmet,
-        Boots
-    }
+    
     
     [CreateAssetMenu(fileName = "New Item Data", menuName = "Data/Equipment")]
     public class ItemDataEquipment : ItemData
     {
-        public EquipmentType equipmentType;
+        public EnumList.EquipmentType equipmentType;
         
         #region Stat System for Equipment
+
+        public float itemCoolDown;
+        public ItemEffect[] itemEffects;
         
         [Header("Major stats")]
         public int strength; // 1 point increase damage and critical power by 1%
@@ -49,6 +46,12 @@ namespace InventorySystem_and_Items.Data
         #endregion
         
         private int _descriptionLength;
+        
+        public void ExecuteItemEffect(Transform enemyPosition)
+        {
+            foreach (var itemEffect in itemEffects) 
+                itemEffect.ExecuteEffect(enemyPosition);
+        }
         
         private void ModifyPlayerStats(Action<Stat, int> action)
         {
@@ -95,7 +98,7 @@ namespace InventorySystem_and_Items.Data
             
             if (_descriptionLength < 5)
             {
-                for (int i = 0; i < 5 - _descriptionLength; i++)
+                for (var i = 0; i < 5 - _descriptionLength; i++)
                 {
                     Sb.AppendLine();
                     Sb.Append("");

@@ -148,6 +148,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "UseFlask",
+                    "type": "Button",
+                    "id": "8c5c6aeb-f92a-45c5-ae2c-b07230244302",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -500,6 +509,17 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "MapOpen",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5c8f4a9b-caa7-468e-a231-6f7d309c8ced",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "UseFlask",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -969,7 +989,7 @@
                     "name": "",
                     "id": "94d3eb9d-d305-4915-a609-7285584e4493",
                     "path": "<Mouse>/leftButton",
-                    "interactions": "",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "Keyboard&Mouse;Keyboard&Mouse",
                     "action": "Click",

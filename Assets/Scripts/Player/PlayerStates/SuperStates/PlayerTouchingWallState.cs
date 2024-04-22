@@ -5,7 +5,7 @@ namespace Player.PlayerStates.SuperStates
 {
     public class PlayerTouchingWallState : PlayerState
     {
-        #region Checks
+        #region Bool Checks
         private bool _isGrounded;
         private bool _isTouchingWall;
         private bool _isTouchingLedge;

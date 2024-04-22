@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using Enemy.EnemyStats;
 using HitStop;
+using InventorySystem_and_Items;
 using Player.Data;
 using Player.PlayerStates.SuperStates;
 using UnityEngine;
@@ -129,8 +130,18 @@ namespace Player.PlayerStates.SubStates
             if(target!=null)
             {
                 Player.Stats.DoDamage(target);
+
+                ExecuteWeaponEffect(target);
+
                 _hitStopController.HitStop(PlayerData.hitStopDuration);
             }
+        }
+
+        private static void ExecuteWeaponEffect(EnemyStats target)
+        {
+            var weaponData = InventoryManager.instance.GetEquipment(EnumList.EquipmentType.Weapon);
+            if (weaponData != null)
+                weaponData.ExecuteItemEffect(target.transform);
         }
     }
 }

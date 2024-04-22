@@ -74,6 +74,9 @@ MonoBehaviour:
   evasion:
     baseValue: 0
     modifiers: 
+  magicResistance:
+    baseValue: 0
+    modifiers: 
   maxPoiseResistance:
     baseValue: 0
     modifiers: 
@@ -83,6 +86,20 @@ MonoBehaviour:
   lastPoiseReset:
     baseValue: 0
     modifiers: 
+  fireDamage:
+    baseValue: 0
+    modifiers: 
+  iceDamage:
+    baseValue: 0
+    modifiers: 
+  lightningDamage:
+    baseValue: 0
+    modifiers: 
+  isIgnited: 0
+  isFrozen: 0
+  isShocked: 0
+  ailmentsDuration: 4
+  shockStrikePrefab: {fileID: 0}
   currentHealth: 0
   currentPoise: 0
   energyDropAmount:
@@ -370,6 +387,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitMat: {fileID: 2100000, guid: 6ce42991d0ed2b346bef88913ab1434e, type: 2}
+  chillColor:
+  - {r: 0.51886785, g: 0.52791864, b: 1, a: 0}
+  igniteColor:
+  - {r: 1, g: 0.5081003, b: 0.040880322, a: 0}
+  - {r: 1, g: 0.627451, b: 0.24705881, a: 0}
+  shockColor:
+  - {r: 1, g: 1, b: 0.51886785, a: 0}
+  igniteFx: {fileID: 0}
+  chillFx: {fileID: 0}
+  shockFx: {fileID: 0}
 --- !u!114 &7714412185132133973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -382,11 +409,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc5cb2afd30342a284d5ffe82baa3fd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  possibleItemsDrop: 1
-  possibleDrops:
-  - {fileID: 11400000, guid: 641980b96c4aba54a817894172c08633, type: 2}
-  - {fileID: 11400000, guid: e1be2a23fa74b604db7c7626b835a260, type: 2}
-  - {fileID: 11400000, guid: 548f5b92306788246a3e0e03f00de590, type: 2}
+  maxItemsToDrop: 0
+  itemPool: []
   dropPrefab: {fileID: 4518001331926125483, guid: c7360d48a9b3d344c9624242d1d13cae, type: 3}
 --- !u!1 &5397513237031634334
 GameObject:

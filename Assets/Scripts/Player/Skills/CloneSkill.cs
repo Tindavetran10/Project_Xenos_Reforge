@@ -1,4 +1,4 @@
-using Player.Skills.SkillController;
+using Controller.SkillController;
 using UnityEngine;
 
 namespace Player.Skills

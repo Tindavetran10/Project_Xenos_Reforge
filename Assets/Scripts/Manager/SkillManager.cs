@@ -6,7 +6,7 @@ namespace Manager
     public class SkillManager : MonoBehaviour
     {
         // Start is called before the first frame update
-        public static SkillManager Instance;
+        public static SkillManager instance;
 
         public DashSkill Dash { get; private set; }
         public CloneSkill Clone { get; private set; }
@@ -16,9 +16,9 @@ namespace Manager
         
         private void Awake()
         {
-            if (Instance != null)
-                Destroy(Instance.gameObject);
-            else Instance = this;
+            if (instance != null)
+                Destroy(instance.gameObject);
+            else instance = this;
         }
 
         private void Start()

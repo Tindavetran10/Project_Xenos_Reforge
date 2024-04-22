@@ -1,11 +1,12 @@
-﻿using Player.Data;
+﻿using InventorySystem_and_Items;
+using Player.Data;
 using Player.GhostTrail_Effect;
 using Player.PlayerStateMachine;
 
 namespace Player.PlayerStates.SuperStates
 {
     // This state will represent all States that happen when the player standing on the ground
-    // All of its function gonna be inherited from all of those States 
+    // All of its function going to be inherited from all of those States 
     public class PlayerGroundedState : PlayerState
     {
         protected int XInput;
@@ -38,7 +39,7 @@ namespace Player.PlayerStates.SuperStates
             }
         }
 
-        // Before entering the specific state that happen on the ground
+        // Before entering the specific state that happens on the ground
         // Player will enter this state first
         public override void Enter()
         {
@@ -50,6 +51,8 @@ namespace Player.PlayerStates.SuperStates
             // reset the number of jumps and dashes that he can make
             Player.JumpState.ResetAmountOfJumpsLeft();
             Player.DashState.ResetCanDash();
+            
+            Player.inputManager.UseFlaskEvent += UseFlask;
         }
 
         public override void LogicUpdate()
@@ -82,7 +85,8 @@ namespace Player.PlayerStates.SuperStates
             else if(_normalAttackInput && !IsTouchingCeiling)
                 StateMachine.ChangeState(Player.PrimaryAttackState);
             
-            // Change to Jump State if there is a jumpInput, the number of jumps is > 0 and he isn't touch the ceiling 
+            // Change to Jump State if there is a jumpInput, the number of jumps is > 0,
+            // and he isn't touch the ceiling 
             else if(_jumpInput && Player.JumpState.CanJump() && !IsTouchingCeiling)
                 StateMachine.ChangeState(Player.JumpState);
             // Change to InAirState if the player isn't standing on the ground
@@ -96,5 +100,13 @@ namespace Player.PlayerStates.SuperStates
             else if (_dashInput && Player.DashState.CheckIfCanDash() && !IsTouchingCeiling)
                 StateMachine.ChangeState(Player.DashState);
         }
+        
+        public override void Exit()
+        {
+            base.Exit();
+            Player.inputManager.UseFlaskEvent -= UseFlask;
+        }
+        
+        private void UseFlask() => InventoryManager.instance.UseFlask();
     }
 }

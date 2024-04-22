@@ -14,7 +14,7 @@ namespace Player.Skills
         
         #region Mouse Input
 
-        private Vector3 mousePos;
+        private Vector3 _mousePos;
         [HideInInspector] public Vector3 mouseWorldPos;
         
         private struct MousePosition
@@ -47,14 +47,13 @@ namespace Player.Skills
 	        base.Update();
 	        if (Mouse.current.leftButton.IsPressed())
 	        {
-		        mousePos = Mouse.current.position.ReadValue();
+		        _mousePos = Mouse.current.position.ReadValue();
 	
-		        mousePos.z = _mainCamera.nearClipPlane;
-		        mouseWorldPos = _mainCamera.ScreenToWorldPoint(mousePos);
+		        _mousePos.z = _mainCamera.nearClipPlane;
+		        mouseWorldPos = _mainCamera.ScreenToWorldPoint(_mousePos);
 	        }
         }
-
-        // ReSharper disable Unity.PerformanceAnalysis
+        
         public void Slice ()
         {
 			// Left mouse button - swipe to cut objects

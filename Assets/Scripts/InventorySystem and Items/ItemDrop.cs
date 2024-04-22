@@ -44,7 +44,7 @@ namespace InventorySystem_and_Items
         {
             var newDrop = ObjectPoolManager.SpawnObject(dropPrefab, transform.position, Quaternion.identity, 
                 ObjectPoolManager.PoolType.GameObject);
-            var randomVelocity = new Vector2(Random.Range(-5, 5), Random.Range(15, 20));
+            var randomVelocity = new Vector2(Random.Range(-5, 5), Random.Range(20, 30));
             
             newDrop.GetComponent<ItemObject>().SetupItem(itemData, randomVelocity);
         }

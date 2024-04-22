@@ -170,6 +170,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UseFlask"",
+                    ""type"": ""Button"",
+                    ""id"": ""8c5c6aeb-f92a-45c5-ae2c-b07230244302"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -522,6 +531,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""MapOpen"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5c8f4a9b-caa7-468e-a231-6f7d309c8ced"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""UseFlask"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -991,7 +1011,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""94d3eb9d-d305-4915-a609-7285584e4493"",
                     ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse;Keyboard&Mouse"",
                     ""action"": ""Click"",
@@ -1203,6 +1223,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Gameplay_SkillTreeOpen = m_Gameplay.FindAction("SkillTreeOpen", throwIfNotFound: true);
         m_Gameplay_MapOpen = m_Gameplay.FindAction("MapOpen", throwIfNotFound: true);
         m_Gameplay_CraftingOpen = m_Gameplay.FindAction("CraftingOpen", throwIfNotFound: true);
+        m_Gameplay_UseFlask = m_Gameplay.FindAction("UseFlask", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1297,6 +1318,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_SkillTreeOpen;
     private readonly InputAction m_Gameplay_MapOpen;
     private readonly InputAction m_Gameplay_CraftingOpen;
+    private readonly InputAction m_Gameplay_UseFlask;
     public struct GameplayActions
     {
         private @PlayerInput m_Wrapper;
@@ -1317,6 +1339,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @SkillTreeOpen => m_Wrapper.m_Gameplay_SkillTreeOpen;
         public InputAction @MapOpen => m_Wrapper.m_Gameplay_MapOpen;
         public InputAction @CraftingOpen => m_Wrapper.m_Gameplay_CraftingOpen;
+        public InputAction @UseFlask => m_Wrapper.m_Gameplay_UseFlask;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1374,6 +1397,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @CraftingOpen.started += instance.OnCraftingOpen;
             @CraftingOpen.performed += instance.OnCraftingOpen;
             @CraftingOpen.canceled += instance.OnCraftingOpen;
+            @UseFlask.started += instance.OnUseFlask;
+            @UseFlask.performed += instance.OnUseFlask;
+            @UseFlask.canceled += instance.OnUseFlask;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -1426,6 +1452,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @CraftingOpen.started -= instance.OnCraftingOpen;
             @CraftingOpen.performed -= instance.OnCraftingOpen;
             @CraftingOpen.canceled -= instance.OnCraftingOpen;
+            @UseFlask.started -= instance.OnUseFlask;
+            @UseFlask.performed -= instance.OnUseFlask;
+            @UseFlask.canceled -= instance.OnUseFlask;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -1655,6 +1684,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnSkillTreeOpen(InputAction.CallbackContext context);
         void OnMapOpen(InputAction.CallbackContext context);
         void OnCraftingOpen(InputAction.CallbackContext context);
+        void OnUseFlask(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

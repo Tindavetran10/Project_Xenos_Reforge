@@ -31,6 +31,10 @@ namespace InventorySystem_and_Items
         private UIItemSlot[] _materialItemSlots;
         private UIEquipmentSlot[] _equipmentItemSlots;
         
+        [Header("Items Cooldown")]
+        private float _lastTimeUsedFlask;
+        
+        
         private void Awake()
         {
             if (instance != null)
@@ -161,11 +165,14 @@ namespace InventorySystem_and_Items
         #region FunctionsForUpdateSlotUI
         private void ChangeEquipmentItem()
         {
+            // Iterate through each UI equipment slot
             foreach (var equipmentItem in _equipmentItemSlots)
             {
+                // For each slot, iterate through the equipment dictionary to find matching items by equipment type
                 foreach (var item 
-                         in _equipmentDictionary.Where(item 
-                             => item.Key.equipmentType == equipmentItem.slotType)) 
+                         in _equipmentDictionary.Where(
+                             item => item.Key.equipmentType == equipmentItem.slotType))
+                    // Update the UI slot with the corresponding item if the equipment types match
                     equipmentItem.UpdateSlot(item.Value);
             }
         }
@@ -186,34 +193,30 @@ namespace InventorySystem_and_Items
         #region AddItemToInventory
         public void AddItem(ItemData newItemData)
         {
-            var collection = newItemData.itemType == ItemType.Equipment ? _inventoryDictionary : _materialDictionary;
-            var list = newItemData.itemType == ItemType.Equipment ? inventory : material;
+            // Determine the appropriate collection and list based on the item type
+            var collection = newItemData.itemType == EnumList.ItemType.Equipment ? _inventoryDictionary : _materialDictionary;
+            var list = newItemData.itemType == EnumList.ItemType.Equipment ? inventory : material;
+            // Add the new item to the determined collection and list
             AddToCollection(newItemData, collection, list);
 
-            #region OldCode
-            /*switch (newItemData.itemType)
-            {
-                case ItemType.Equipment:
-                    AddToInventory(newItemData);
-                    break;
-                case ItemType.Material:
-                    AddToMaterial(newItemData);
-                    break;
-                default: throw new ArgumentOutOfRangeException();
-            }*/
-            #endregion
+            // Update the UI to reflect changes in the inventory or material list
             UpdateSlotUI();
         }
 
         private static void AddToCollection(ItemData newItemData, IDictionary<ItemData, InventoryItem> collection,
             ICollection<InventoryItem> list)
         {
-            if(collection.TryGetValue(newItemData, out var existingItem))
+            // Check if the item already exists in the collection
+            if (collection.TryGetValue(newItemData, out var existingItem))
+                // If the item exists, increase its stack size
                 existingItem.AddStack();
             else
             {
+                // If the item does not exist, create a new InventoryItem
                 var newItem = new InventoryItem(newItemData);
+                // Add the new item to the list
                 list.Add(newItem);
+                // Add the new item to the collection
                 collection.Add(newItemData, newItem);
             }
         }
@@ -245,55 +248,36 @@ namespace InventorySystem_and_Items
                 _inventoryDictionary.Add(newItemData, newItem);
             }
         }*/
-        
-
         #endregion
         #endregion
 
         #region RemoveItemFromInventory
         public void RemoveItem(ItemData itemData)
         {
-            var collection = itemData.itemType == ItemType.Equipment ? _inventoryDictionary : _materialDictionary;
-            var list = itemData.itemType == ItemType.Equipment ? inventory : material;
+            // Determine the appropriate collection and list based on the item's type
+            var collection = itemData.itemType == EnumList.ItemType.Equipment ? _inventoryDictionary : _materialDictionary;
+            var list = itemData.itemType == EnumList.ItemType.Equipment ? inventory : material;
+    
+            // Remove the item from the specified collection and list
             RemoveFromCollection(itemData, collection, list);
-            
-            #region OldCodeForRemoveFromCollection
-            /*// If item exists in inventory, remove stack
-            if (_inventoryDictionary.TryGetValue(itemData, out InventoryItem existingItem))
-            {
-                // If stack size is 1, remove item from inventory
-                if (existingItem.stackSize <= 1)
-                {
-                    inventory.Remove(existingItem);
-                    _inventoryDictionary.Remove(itemData);
-                }
-                // If stack size is greater than 1, remove stack
-                else existingItem.RemoveStack();
-            }
-            
-            if(_materialDictionary.TryGetValue(itemData, out InventoryItem existingMaterial))
-            {
-                if (existingMaterial.stackSize <= 1)
-                {
-                    material.Remove(existingMaterial);
-                    _materialDictionary.Remove(itemData);
-                }
-                else existingMaterial.RemoveStack();
-            }*/
-            #endregion
+    
+            // Update the UI to reflect the changes in the inventory or material list
             UpdateSlotUI();
         }
-        
+
         private static void RemoveFromCollection(ItemData itemData, IDictionary<ItemData, InventoryItem> collection,
             ICollection<InventoryItem> list)
         {
+            // Check if the item exists in the collection
             if (collection.TryGetValue(itemData, out var existingItem))
             {
+                // If the item's stack size is 1, remove it completely from the list and collection
                 if (existingItem.stackSize <= 1)
                 {
                     list.Remove(existingItem);
                     collection.Remove(itemData);
                 }
+                // If the stack size is greater than 1, decrement the stack size by one
                 else existingItem.RemoveStack();
             }
         }
@@ -323,5 +307,36 @@ namespace InventorySystem_and_Items
         
         public IEnumerable<InventoryItem> GetEquipmentList() => equipment;
         public IEnumerable<InventoryItem> GetMaterialList() => material;
+        
+        public ItemDataEquipment GetEquipment(EnumList.EquipmentType equipmentType)
+        {
+            ItemDataEquipment equippedItem = null;
+            
+            foreach (var item 
+                     in _equipmentDictionary.Where(
+                         item => item.Key.equipmentType == equipmentType))
+                equippedItem = item.Key;
+
+            return equippedItem;
+        }
+
+        public void UseFlask()
+        {
+            ItemDataEquipment currentFlask = GetEquipment(EnumList.EquipmentType.Flask);
+            
+            if(currentFlask == null)
+            {
+                Debug.Log("No flask equipped");
+                return;
+            }
+            
+            bool canUseFlask = Time.time > _lastTimeUsedFlask + currentFlask.itemCoolDown;
+            if (canUseFlask)
+            {
+                currentFlask.ExecuteItemEffect(null);
+                _lastTimeUsedFlask = Time.time;
+            }   
+            else Debug.Log("Flask is on cooldown");
+        }
     }
 }
