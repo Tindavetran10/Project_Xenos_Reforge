@@ -10,23 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9ed5d64278a74914ab5a1be465004f57, type: 3}
-  m_Name: Healing Flask
+  m_Name: Blazing Helmet
   m_EditorClassIdentifier: 
   itemType: 1
-  itemName: Healing Flask
-  icon: {fileID: 21300000, guid: d6ac362dc5bd286439de38114da4b57d, type: 3}
+  itemName: Blazing Helmet
+  icon: {fileID: 21300000, guid: 0c5fcb2deb60f88489d462196a4f9321, type: 3}
   dropChance: 0
-  equipmentType: 5
-  itemCoolDown: 15
-  itemEffects:
-  - {fileID: 11400000, guid: 51f8e77fa019cb6468ac71aa84f49048, type: 2}
-  strength: 0
-  agility: 0
+  equipmentType: 3
+  itemCoolDown: 5
+  itemEffects: []
+  strength: 30
+  agility: 5
   intelligence: 0
   vitality: 0
-  damage: 0
-  critChance: 0
-  critPower: 0
+  damage: 10
+  critChance: 5
+  critPower: 30
   maxHealth: 0
   armor: 0
   evasion: 0
@@ -34,7 +33,7 @@ MonoBehaviour:
   poiseResetTime: 0
   lastPoiseReset: 0
   craftingMaterials:
-  - data: {fileID: 11400000, guid: cbf91574ded15034b94361dfdfd685b5, type: 2}
+  - data: {fileID: 11400000, guid: e1be2a23fa74b604db7c7626b835a260, type: 2}
     stackSize: 1
-  - data: {fileID: 11400000, guid: b187afa15cd6f7c4babf1d0db8213980, type: 2}
-    stackSize: 2
+  - data: {fileID: 11400000, guid: 05ffd2269a9f5bc438c3fe1604ddbb93, type: 2}
+    stackSize: 1

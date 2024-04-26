@@ -10,7 +10,8 @@ namespace Enemy.EnemyStats
     {
         private global::Enemy.EnemyStateMachine.Enemy _enemy;
         private ItemDrop _myDropSystem;
-        public Stat energyDropAmount;
+        
+        [Space] public Stat energyDropAmount;
         
         [Header("Level details")]
         [SerializeField] private int level = 1;

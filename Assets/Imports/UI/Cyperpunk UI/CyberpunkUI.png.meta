@@ -294,7 +294,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 6, y: 6, z: 6, w: 6}
       outline: []
       physicsShape: []
@@ -302,6 +302,153 @@ TextureImporter:
       bones: []
       spriteID: a184f0dc61ec6634294655e1ffcc4fa6
       internalID: 1780957009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CyberpunkUI_10
+      rect:
+        serializedVersion: 2
+        x: 461
+        y: 262
+        width: 20
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 3, y: 1, z: 3, w: 1}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5075918e583ec8847b77057878e0dc05
+      internalID: -1124489760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CyberpunkUI_11
+      rect:
+        serializedVersion: 2
+        x: 496
+        y: 344
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 945c87d6c28c1c746b88c561e4200a1e
+      internalID: -892993511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CyberpunkUI_12
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 344
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d769f06e28ba6c64781db483ca185638
+      internalID: 1689782804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CyberpunkUI_13
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 344
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d843a70b05abcc04aa52700a5f2acc81
+      internalID: 1926510134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CyberpunkUI_14
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 344
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b802e5b0ac58544e8091a47384fdbf4
+      internalID: -1905180283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CyberpunkUI_15
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 344
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb83929e4afbbb8468f99cd6dff39071
+      internalID: 783719115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CyberpunkUI_16
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 344
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3f51659101b61a45ba961711f4c5ab8
+      internalID: 385135645
       vertices: []
       indices: 
       edges: []
@@ -319,6 +466,13 @@ TextureImporter:
     nameFileIdTable:
       CyberpunkUI_0: 316980211
       CyberpunkUI_1: 1085457576
+      CyberpunkUI_10: -1124489760
+      CyberpunkUI_11: -892993511
+      CyberpunkUI_12: 1689782804
+      CyberpunkUI_13: 1926510134
+      CyberpunkUI_14: -1905180283
+      CyberpunkUI_15: 783719115
+      CyberpunkUI_16: 385135645
       CyberpunkUI_2: -663464862
       CyberpunkUI_3: 1750142602
       CyberpunkUI_4: -1512866642
