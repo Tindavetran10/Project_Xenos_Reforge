@@ -17,10 +17,10 @@ namespace Entity
         [SerializeField] private Color[] igniteColor;
         [SerializeField] private Color[] shockColor;
         
-        [Header("Ailment particles")]
+        /*[Header("Ailment particles")]
         [SerializeField] private ParticleSystem igniteFx;
         [SerializeField] private ParticleSystem frozenFx;
-        [SerializeField] private ParticleSystem shockFx;
+        [SerializeField] private ParticleSystem shockFx;*/
 
         private void Start()
         {
@@ -56,14 +56,14 @@ namespace Entity
         
         public void FrozenFXFor(float duration)
         {
-            frozenFx.Play();
+            //frozenFx.Play();
             InvokeRepeating(nameof(ChillColorFX), 0, .3f);
             Invoke(nameof(CancelColorChange), duration);
         }
         
         public void ShockFXFor(float duration)
         {
-            shockFx.Play();
+            //shockFx.Play();
             InvokeRepeating(nameof(ShockColorFX), 0, .3f);
             Invoke(nameof(CancelColorChange), duration);
         }

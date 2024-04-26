@@ -47,7 +47,7 @@ namespace Enemy.EnemyStats
             }
         }
 
-        protected override void TakeDamage(int damageAmount)
+        public override void TakeDamage(int damageAmount)
         {
             base.TakeDamage(damageAmount);
             if(_enemy!= null)

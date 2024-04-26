@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
+using Controller;
 using Entity;
+using Manager;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
@@ -53,8 +55,8 @@ namespace StatSystem
         private float _igniteDamageTimer;
         private int _igniteDamage;
         
-        [SerializeField] private GameObject shockStrikePrefab;
-        private int _shockDamage;
+        [SerializeField] private GameObject thunderTransitPrefab;
+        private int _thunderTransitDamage;
         
         // Used to change the health bar value
         public Action OnHealthChanged;
@@ -131,6 +133,7 @@ namespace StatSystem
             totalDamage = CheckTargetArmor(targetStats, totalDamage);
             targetStats.TakeDamage(totalDamage);
             
+            // Apply magic damage on primary attack
             DoMagicalDamage(targetStats);
         }
         
@@ -185,7 +188,7 @@ namespace StatSystem
                 targetStats.SetupIgniteDamage(Mathf.RoundToInt(fireDamage * .2f));
 
             if (canApplyShock)
-                targetStats.SetupShockStrikeDamage(Mathf.RoundToInt(lightningDamage * .1f));
+                targetStats.SetupThunderTransitDamage(Mathf.RoundToInt(lightningDamage * .1f));
 
             targetStats.ApplyAliments(canApplyIgnite, canApplyChill, canApplyShock);
         }
@@ -227,7 +230,7 @@ namespace StatSystem
                     if (GetComponent<Player.PlayerStateMachine.Player>() != null)
                         return;
 
-                    HitNearestTargetWithShockStrike();
+                    HitNearestTargetWithThunderTransit();
                 }
             }
         }
@@ -245,7 +248,7 @@ namespace StatSystem
             }
         }
 
-        private void ApplyShock(bool shock)
+        public void ApplyShock(bool shock)
         {
             if (isShocked)
                 return;
@@ -257,9 +260,9 @@ namespace StatSystem
         }
 
         private void SetupIgniteDamage(int damageValue) => _igniteDamage = damageValue;
-        private void SetupShockStrikeDamage(int damageValue) => _shockDamage = damageValue;
+        private void SetupThunderTransitDamage(int damageValue) => _thunderTransitDamage = damageValue;
         
-        private void HitNearestTargetWithShockStrike()
+        private void HitNearestTargetWithThunderTransit()
         {
             var colliders = Physics2D.OverlapCircleAll(transform.position, 25);
 
@@ -288,12 +291,13 @@ namespace StatSystem
 
             if (closestEnemy != null)
             {
-                var newShockStrike = Instantiate(shockStrikePrefab, transform.position, Quaternion.identity);
-                //newShockStrike.GetComponent<ShockStrike_Controller>().Setup(shockDamage, closestEnemy.GetComponent<CharacterStats>());
+                var newShockStrike = ObjectPoolManager.SpawnObject(thunderTransitPrefab, transform.position, 
+                    Quaternion.identity, ObjectPoolManager.PoolType.ParticleSystem);
+                newShockStrike.GetComponent<ThunderTransitController>().Setup(closestEnemy.GetComponentInChildren<CharacterStats>());
             }
         }
-        
-        protected virtual void TakeDamage(int damageAmount)
+
+        public virtual void TakeDamage(int damageAmount)
         {
             DecreaseHealthBy(damageAmount);
             DecreasePoiseBy(damageAmount);
@@ -334,7 +338,7 @@ namespace StatSystem
             OnHealthChanged?.Invoke();
         }
         
-        private void DecreaseHealthBy(int damageAmount)
+        protected virtual void DecreaseHealthBy(int damageAmount)
         {
             var adjustedHealth = CalculateAdjustedAmount(damageAmount);
             

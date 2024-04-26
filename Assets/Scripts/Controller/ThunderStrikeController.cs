@@ -11,8 +11,8 @@ namespace Controller
         {
             if(collision.GetComponent<Enemy.EnemyStateMachine.Enemy>() != null)
             {
-                var playerStats = PlayerManager.GetInstance().player.GetComponent<PlayerStats>();
-                var enemyTarget = collision.GetComponent<EnemyStats>();
+                var playerStats = PlayerManager.GetInstance().player.GetComponentInChildren<PlayerStats>();
+                var enemyTarget = collision.GetComponentInChildren<EnemyStats>();
                 playerStats.DoMagicalDamage(enemyTarget);
             }
         }

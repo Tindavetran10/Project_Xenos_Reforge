@@ -1,5 +1,3 @@
-using Manager;
-using Player.PlayerStats;
 using UnityEngine;
 
 namespace InventorySystem_and_Items.Effects
@@ -11,17 +9,10 @@ namespace InventorySystem_and_Items.Effects
         [SerializeField] private float healPercent;
         public override void ExecuteEffect(Transform enemyPosition)
         {
-            var playerManager = PlayerManager.GetInstance().player;
-            if (playerManager == null)
+            var (playerManager, playerStats) = GetPlayerManagerAndPlayerStats();
+            if (playerManager == null || playerStats == null)
             {
-                Debug.LogError("PlayerManager instance is null");
-                return;
-            }
-
-            var playerStats = playerManager.GetComponentInChildren<PlayerStats>();
-            if (playerStats == null)
-            {
-                Debug.LogError("PlayerStats component is null");
+                Debug.LogError("PlayerManager or PlayerStats is null");
                 return;
             }
 
