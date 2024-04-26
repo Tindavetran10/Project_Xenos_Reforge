@@ -1,3 +1,4 @@
+using System;
 using InventorySystem_and_Items;
 using InventorySystem_and_Items.Data;
 using TMPro;

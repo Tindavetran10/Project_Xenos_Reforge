@@ -43,10 +43,12 @@ namespace StatSystem
         public Stat lightingDamage;
         #endregion
         
+        [Header("Bool Check for Ailments")]
         public bool isIgnited;
         public bool isFrozen;
         public bool isShocked;
         
+        [Space]
         [SerializeField] private float ailmentsDuration = 4;
         private float _ignitedTimer;
         private float _frozenTimer;
@@ -63,7 +65,7 @@ namespace StatSystem
         public Action OnHealthChanged;
         public event Action<CharacterStats> OnDeath; 
         
-        private Dictionary<GameObject, CharacterStats> _characterStatsCache = new Dictionary<GameObject, CharacterStats>();
+        private readonly Dictionary<GameObject, CharacterStats> _characterStatsCache = new();
         
         public bool IsDead { get; private set; }
         public bool IsStunned { get; set; }
@@ -71,6 +73,7 @@ namespace StatSystem
 
         public bool IsInvincible { get; private set; }
         
+        [Space]
         [SerializeField] public int currentHealth;
         [SerializeField] public int currentPoise;
   

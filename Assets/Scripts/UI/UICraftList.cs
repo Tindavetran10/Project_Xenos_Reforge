@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using InventorySystem_and_Items.Data;
+using Manager;
 using UnityEngine;
 
 namespace UI
@@ -10,24 +11,27 @@ namespace UI
         [SerializeField] private GameObject craftSlotPrefab;
         
         [SerializeField] private List<ItemDataEquipment> craftEquipmentList;
-        [SerializeField] private List<UICraftSlot> craftSlots;
+        //[SerializeField] private List<UICraftSlot> craftSlots;
         
-        private void Start() => AssignCraftSlot();
-
-        private void AssignCraftSlot()
+        private void Start()
         {
-            for (var i = 0; i < craftSlotParent.childCount; i++) 
-                craftSlots.Add(craftSlotParent.GetChild(i).GetComponent<UICraftSlot>());
+            //AssignCraftSlot();
+            transform.parent.GetChild(0).GetComponent<UICraftList>().SetupCraftList();
+            SetupDefaultCraftWindow();
         }
+
+        /*private void AssignCraftSlot()
+        {
+            for (var i = 0; i < craftSlotParent.childCount; i++)
+                craftSlots.Add(craftSlotParent.GetChild(i).GetComponent<UICraftSlot>());
+        }*/
 
         public void SetupCraftList()
         {
             // Destroy old craftSlotPrefab objects
-            foreach (var craftSlot in craftSlots) 
-                Destroy(craftSlot.gameObject);
-
-            // Clear the craftSlots list
-            craftSlots.Clear();
+            for (var i = 0; i < craftSlotParent.childCount; i++) 
+                Destroy(craftSlotParent.GetChild(i).gameObject);
+            
 
             foreach (var craftEquipment in craftEquipmentList)
             {
@@ -42,10 +46,13 @@ namespace UI
 
                 var craftSlot = newSlot.GetComponent<UICraftSlot>();
                 craftSlot.SetupCraftSlot(craftEquipment);
-
-                // Add the new craftSlot to the craftSlots list
-                craftSlots.Add(craftSlot);
             }
+        }
+
+        private void SetupDefaultCraftWindow()
+        {
+            if (craftEquipmentList[0] != null)
+                GetComponentInParent<UIManager>().craftWindow.SetupCraftWindow(craftEquipmentList[0]);
         }
     }
 }

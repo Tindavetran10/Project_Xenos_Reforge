@@ -33,4 +33,10 @@ MonoBehaviour:
   maxPoiseResistance: 0
   poiseResetTime: 0
   lastPoiseReset: 0
-  craftingMaterials: []
+  craftingMaterials:
+  - data: {fileID: 11400000, guid: e1be2a23fa74b604db7c7626b835a260, type: 2}
+    stackSize: 1
+  - data: {fileID: 11400000, guid: b35c62e65bfb3414995ffca104e1814c, type: 2}
+    stackSize: 1
+  - data: {fileID: 11400000, guid: 7a1a6ad1222c68041bf94556967bfc5a, type: 2}
+    stackSize: 1
