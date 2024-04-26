@@ -1,10 +1,10 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using Controller;
 using Entity;
 using Manager;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace StatSystem
@@ -12,6 +12,7 @@ namespace StatSystem
     public class CharacterStats : MonoBehaviour
     {
         private EntityFX _fx;
+        private Entity.Entity _entity;
 
         #region Stat System
         [Header("Major stats")]
@@ -39,7 +40,7 @@ namespace StatSystem
         [Header("Magic stats")] 
         public Stat fireDamage;
         public Stat iceDamage;
-        [FormerlySerializedAs("lightningDamage")] public Stat lightingDamage;
+        public Stat lightingDamage;
         #endregion
         
         public bool isIgnited;
@@ -62,6 +63,8 @@ namespace StatSystem
         public Action OnHealthChanged;
         public event Action<CharacterStats> OnDeath; 
         
+        private Dictionary<GameObject, CharacterStats> _characterStatsCache = new Dictionary<GameObject, CharacterStats>();
+        
         public bool IsDead { get; private set; }
         public bool IsStunned { get; set; }
         public bool IsAttacked { get; set; }
@@ -78,6 +81,7 @@ namespace StatSystem
             currentPoise = GetMaxPoiseValue();
 
             _fx = GetComponentInParent<EntityFX>();
+            _entity = GetComponentInParent<Entity.Entity>();
         }
 
         protected void Update()
@@ -150,8 +154,14 @@ namespace StatSystem
             
             if (Mathf.Max(fireDamageValue, iceDamageValue, lightningDamageValue) <= 0)
                 return;
+
+            if (!_characterStatsCache.TryGetValue(targetStats.gameObject, out var targetCharacterStats))
+            {
+                targetCharacterStats = targetStats.GetComponent<CharacterStats>();
+                _characterStatsCache[targetStats.gameObject] = targetCharacterStats;
+            }
             
-            AttemptToApplyAliments(targetStats, fireDamageValue, iceDamageValue, lightningDamageValue);
+            AttemptToApplyAliments(targetCharacterStats, fireDamageValue, iceDamageValue, lightningDamageValue);
         }
 
         private static void AttemptToApplyAliments(CharacterStats targetStats, int fireDamage, int iceDamage, int lightningDamage)
@@ -161,7 +171,7 @@ namespace StatSystem
             var canApplyShock = lightningDamage > fireDamage && lightningDamage > iceDamage;
 
             var attempts = 0;
-            while (!canApplyIgnite && !canApplyChill && !canApplyShock && attempts < 5)
+            while (!canApplyIgnite && !canApplyChill && !canApplyShock && attempts < 3)
             {
                 var randValue = Random.value;
                 if (randValue < .3f && fireDamage > 0)
@@ -204,7 +214,7 @@ namespace StatSystem
         {
             var canApplyIgnite = !isIgnited && !isFrozen && !isShocked;
             var canApplyChill = !isIgnited && !isFrozen && !isShocked;
-            var canApplyShock = !isIgnited && !isFrozen && !isShocked;
+            var canApplyShock = !isIgnited && !isFrozen;
             
             if (ignited && canApplyIgnite)
             {
@@ -218,6 +228,9 @@ namespace StatSystem
             {
                 _frozenTimer = ailmentsDuration;
                 isFrozen = true;
+                
+                const float slowPercentage = 0.5f;
+                _entity.SlowEntityBy(slowPercentage, ailmentsDuration);
                 
                 _fx.FrozenFXFor(ailmentsDuration);
             }
@@ -264,15 +277,20 @@ namespace StatSystem
         
         private void HitNearestTargetWithThunderTransit()
         {
-            var colliders = Physics2D.OverlapCircleAll(transform.position, 25);
+            // Maximum number of targets to be hit
+            const int maxTarget = 5;
+            var colliders = new Collider2D[maxTarget];
+            
+            var size = Physics2D.OverlapCircleNonAlloc(transform.position, 15f, colliders);
 
             var closestDistance = Mathf.Infinity;
             Transform closestEnemy = null;
-
-            foreach (var hit in colliders)
+            
+            for (var i = 0; i < size; i++)
             {
-                if (hit.GetComponent<Enemy.EnemyStateMachine.Enemy>() != null 
-                    && Vector2.Distance(transform.position, hit.transform.position) > 1)
+                var hit = colliders[i];
+                if (hit.GetComponent<Enemy.EnemyStateMachine.Enemy>() != null
+                    && Vector2.Distance(transform.position, hit.transform.position) > 0.25f)
                 {
                     var distanceToEnemy = Vector2.Distance(transform.position, hit.transform.position);
 
@@ -282,18 +300,14 @@ namespace StatSystem
                         closestEnemy = hit.transform;
                     }
                 }
-
-                // delete if you don't want a shocked target to be hit by a shock strike
-                if (closestEnemy == null)
-                    closestEnemy = transform;
             }
-
-
+            
             if (closestEnemy != null)
             {
                 var newShockStrike = ObjectPoolManager.SpawnObject(thunderTransitPrefab, transform.position, 
                     Quaternion.identity, ObjectPoolManager.PoolType.ParticleSystem);
-                newShockStrike.GetComponent<ThunderTransitController>().Setup(closestEnemy.GetComponentInChildren<CharacterStats>());
+                newShockStrike.GetComponent<ThunderTransitController>().Setup(_thunderTransitDamage,
+                    closestEnemy.GetComponentInChildren<CharacterStats>());
             }
         }
 
@@ -371,7 +385,6 @@ namespace StatSystem
         }
         #endregion
         
-        // No need to care if we finish the inventory system
         #region Stat Calculations
         private static int CheckTargetArmor(CharacterStats targetStats, int totalDamage)
         {

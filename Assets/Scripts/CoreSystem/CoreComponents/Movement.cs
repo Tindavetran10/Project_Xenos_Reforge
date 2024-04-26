@@ -10,7 +10,7 @@ namespace CoreSystem.CoreComponents
         public int FacingDirection { get; set; }
         public bool CanSetVelocity { get; set; }
     
-        public Vector2 CurrentVelocity { get; private set; }
+        public Vector2 CurrentVelocity { get; set; }
         private Vector2 _workspace;
         
         [SerializeField] private PlayerData playerData;

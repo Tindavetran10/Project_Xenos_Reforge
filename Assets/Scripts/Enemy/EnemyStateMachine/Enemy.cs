@@ -48,9 +48,7 @@ namespace Enemy.EnemyStateMachine
         [HideInInspector] public float lastTimeAttacked;
         public float attackCoolDown;
         #endregion
-        
-        public bool GetFrozen { get; private set; }
-        
+
         protected HitStopController HitStopController;
         private Transform _player;
         private static readonly int EnemyDeathAnim = Animator.StringToHash("die");
@@ -87,6 +85,21 @@ namespace Enemy.EnemyStateMachine
             }
         }
 
+        public override void SlowEntityBy(float slowPercentage, float slowDuration)
+        {
+            Movement.CurrentVelocity *= 1 - slowPercentage;
+            Anim.speed *= 1 - slowPercentage;
+            
+            Invoke(nameof(ReturnDefaultSpeed), slowDuration);
+        }
+        
+        public override void ReturnDefaultSpeed()
+        {
+            base.ReturnDefaultSpeed();
+            Movement.CurrentVelocity = Movement.Rb.velocity;
+        }
+
+        #region Freeze Mechanic
         private void Freeze(bool getFrozen)
         {
             if (getFrozen)
@@ -109,6 +122,7 @@ namespace Enemy.EnemyStateMachine
         }
         
         public void FreezeMovementFor(float duration) => StartCoroutine(FreezeCoroutine(duration));
+        #endregion
         
         #region Animator Function
         public void AttackTrigger()

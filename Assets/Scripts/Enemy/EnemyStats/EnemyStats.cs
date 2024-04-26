@@ -60,11 +60,11 @@ namespace Enemy.EnemyStats
             // From Character Stats: Set the flag IsDeath to true
             base.SetFlagDeath();
             
-            // From the Entity: destroy game object
-            _enemy.Die();
+            // From the Entity: destroy the game object
+            _enemy?.Die();
             
             PlayerManager.GetInstance().currency += energyDropAmount.GetValue();
-            _myDropSystem.GenerateDrop();
+            _myDropSystem?.GenerateDrop();
         }
 
         protected override void StunCloseRange()
