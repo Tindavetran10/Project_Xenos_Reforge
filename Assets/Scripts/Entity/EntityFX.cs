@@ -6,22 +6,17 @@ namespace Entity
     public class EntityFX : MonoBehaviour
     {
         private SpriteRenderer _spriteRenderer;
-
-        private Material _originalMat;
-
+        
         [Header("Flash FX")] 
+        [SerializeField] private float flashDuration;
         [SerializeField] private Material hitMat;
+        private Material _originalMat;
         
         [Header("Aliment FX")]
         [SerializeField] private Color[] frozenColor;
         [SerializeField] private Color[] igniteColor;
         [SerializeField] private Color[] shockColor;
         
-        /*[Header("Ailment particles")]
-        [SerializeField] private ParticleSystem igniteFx;
-        [SerializeField] private ParticleSystem frozenFx;
-        [SerializeField] private ParticleSystem shockFx;*/
-
         private void Start()
         {
             _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
@@ -35,7 +30,7 @@ namespace Entity
             var currentColor = _spriteRenderer.color;
             _spriteRenderer.color = Color.white;
             
-            yield return new WaitForSeconds(.2f);
+            yield return new WaitForSeconds(flashDuration);
             
             _spriteRenderer.color = currentColor;
             _spriteRenderer.material = _originalMat;
@@ -50,6 +45,7 @@ namespace Entity
         
         public void IgniteFXFor(float duration)
         {
+            //igniteFx.Play();
             InvokeRepeating(nameof(IgniteColorFX), 0, .3f);
             Invoke(nameof(CancelColorChange), duration);
         }

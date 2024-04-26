@@ -7,6 +7,7 @@ namespace Controller
     {
         [SerializeField] private CharacterStats targetStats;
         [SerializeField] private float speed;
+        [SerializeField] private int thunderTransitDamage;
 
         private Animator _animator;
         private bool _triggered;
@@ -14,13 +15,15 @@ namespace Controller
 
         private void Start() => _animator = GetComponentInChildren<Animator>();
 
-        public void Setup(CharacterStats targetGetHitStats) => targetStats = targetGetHitStats;
+        public void Setup(int damage, CharacterStats targetGetHitStats)
+        {
+            thunderTransitDamage = damage;
+            targetStats = targetGetHitStats;
+        }
 
         private void Update()
         {
-            if(!targetStats)
-                return;
-            if (_triggered)
+            if(!targetStats || _triggered)
                 return;
             
             transform.position = Vector2.MoveTowards(transform.position, 
@@ -28,14 +31,10 @@ namespace Controller
             
             transform.right = transform.position - targetStats.transform.position;
 
+            // Check if the distance between the player and the target is less than .1f
             if (Vector2.Distance(transform.position, targetStats.transform.position) < .1f)
             {
-                _animator.transform.localPosition = new Vector3(0, .5f);
-                _animator.transform.localRotation = Quaternion.identity;
-
-                transform.localRotation = Quaternion.identity;
-                transform.localScale = new Vector3(3, 3);
-
+                // Invoke the DamageAndSelfDestroy method after .2f seconds
                 Invoke(nameof(DamageAndSelfDestroy), .2f);
                 _triggered = true;
                 _animator.SetTrigger(ThunderTransitHit);
@@ -45,7 +44,7 @@ namespace Controller
         private void DamageAndSelfDestroy()
         {
             targetStats.ApplyShock(true);
-            targetStats.TakeDamage(1);
+            targetStats.TakeDamage(thunderTransitDamage);
             Destroy(gameObject, .4f);
         }
     }

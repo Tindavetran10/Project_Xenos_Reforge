@@ -114,10 +114,13 @@ namespace Player.PlayerStates.SubStates
             var offset = new Vector2(playerPosition.x + hitBoxCenter.x * Movement.FacingDirection,
                 playerPosition.y + hitBoxCenter.y);
             
-            var collider2Ds = Physics2D.OverlapBoxAll(offset, hitBoxSize, 0f, 
-                PlayerData.whatIsEnemy); 
+            const int maxEnemies = 10;
+            var colliders = new Collider2D[maxEnemies];  
+            
+            var size = Physics2D.OverlapBoxNonAlloc(offset, hitBoxSize, 0f, colliders, 
+                PlayerData.whatIsEnemy);
 
-            foreach (var hit in collider2Ds) ProcessHit(hit);
+            for (var i = 0; i < size; i++) ProcessHit(colliders[i]);
         }
 
         private void ProcessHit(Component hit)
