@@ -575,14 +575,14 @@ MonoBehaviour:
   iceDamage:
     baseValue: 0
     modifiers: 
-  lightningDamage:
+  lightingDamage:
     baseValue: 0
     modifiers: 
   isIgnited: 0
   isFrozen: 0
   isShocked: 0
   ailmentsDuration: 4
-  shockStrikePrefab: {fileID: 0}
+  thunderTransitPrefab: {fileID: 856964385494790396, guid: 7ad8fdbd6f82b3e4ca9e0dabcc0df612, type: 3}
   currentHealth: 0
   currentPoise: 0
 --- !u!1 &6532948408387991247

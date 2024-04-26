@@ -167,14 +167,14 @@ MonoBehaviour:
   iceDamage:
     baseValue: 0
     modifiers: 
-  lightningDamage:
+  lightingDamage:
     baseValue: 0
     modifiers: 
   isIgnited: 0
   isFrozen: 0
   isShocked: 0
   ailmentsDuration: 4
-  shockStrikePrefab: {fileID: 0}
+  thunderTransitPrefab: {fileID: 856964385494790396, guid: 7ad8fdbd6f82b3e4ca9e0dabcc0df612, type: 3}
   currentHealth: 0
   currentPoise: 0
   energyDropAmount:
@@ -480,16 +480,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitMat: {fileID: 2100000, guid: 6ce42991d0ed2b346bef88913ab1434e, type: 2}
-  chillColor:
-  - {r: 0.51886785, g: 0.52791864, b: 1, a: 0}
+  frozenColor:
+  - {r: 0.12730896, g: 0.59044653, b: 0.98742133, a: 0}
+  - {r: 0.12549019, g: 0.8967434, b: 0.9882353, a: 0}
   igniteColor:
   - {r: 1, g: 0.5081003, b: 0.040880322, a: 0}
-  - {r: 1, g: 0.9511653, b: 0.24842751, a: 0}
+  - {r: 1, g: 0.70080847, b: 0.24705881, a: 0}
   shockColor:
   - {r: 1, g: 1, b: 0.51886785, a: 0}
-  igniteFx: {fileID: 0}
-  chillFx: {fileID: 0}
-  shockFx: {fileID: 0}
+  - {r: 1, g: 0.9310373, b: 0.05345905, a: 0}
 --- !u!114 &9137680578853926127
 MonoBehaviour:
   m_ObjectHideFlags: 0

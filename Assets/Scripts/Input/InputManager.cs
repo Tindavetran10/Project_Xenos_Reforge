@@ -248,6 +248,8 @@ namespace _Scripts.Player.Input
         }
         public void OnFocusSwordMousePos(InputAction.CallbackContext context)
         {
+            if(_cam == null) return;
+            
             FocusSwordPositionInput = context.ReadValue<Vector3>();
             FocusSwordPositionInput = _cam.ScreenToWorldPoint(FocusSwordPositionInput);
         }
@@ -261,6 +263,8 @@ namespace _Scripts.Player.Input
         // Callback for dash direction input
         public void OnDashDirection(InputAction.CallbackContext context)
         {
+            if (PlayerTransform == null || _cam == null) return;
+            
             RawDashDirectionInput= context.ReadValue<Vector2>();
             RawDashDirectionInput = _cam.ScreenToWorldPoint(RawDashDirectionInput) - PlayerTransform.position;
             DashDirectionInput = Vector2Int.RoundToInt(RawDashDirectionInput.normalized);

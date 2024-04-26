@@ -23,7 +23,6 @@ namespace UI
         {
             SaveManager.Instance.DeleteSaveData();
             StartCoroutine(LoadScreenWithAfterEffect(1.5f));
-            
         }
 
         public void ExitGame()

@@ -33,7 +33,10 @@ namespace InventorySystem_and_Items
         
         [Header("Items Cooldown")]
         private float _lastTimeUsedFlask;
+        private float _lastTimeUsedArmorEffect;
         
+        private float _flaskCooldown;
+        private float _armorEffectCooldown;
         
         private void Awake()
         {
@@ -285,22 +288,31 @@ namespace InventorySystem_and_Items
 
         public bool CanCraft(ItemDataEquipment itemToCraft, List<InventoryItem> requiredMaterials)
         {
+            // List to store materials that need to be removed after crafting
             var materialsToRemove = new List<InventoryItem>();
             
+            // Iterate through each required material for the item to craft
             foreach (var requiredMat in requiredMaterials)
             {
+                // If the material exists in the material dictionary, check if the stack size is sufficient
                 if(_materialDictionary.TryGetValue(requiredMat.data, out var materialItem))
                 {
+                    // If the stack size is insufficient, return false
                     if (materialItem.stackSize < requiredMat.stackSize)
                         return false;
+                    
+                    // Add the material to the list of materials to remove
                     materialsToRemove.Add(materialItem);
                 }
+                // If the material does not exist in the material dictionary, return false
                 else return false;
             }
 
+            // Remove each material from the materialsToRemove list from the inventory
             foreach (var materials in materialsToRemove) 
                 RemoveItem(materials.data);
             
+            // Add the crafted item to the inventory
             AddItem(itemToCraft);
             return true;
         }
@@ -312,9 +324,11 @@ namespace InventorySystem_and_Items
         {
             ItemDataEquipment equippedItem = null;
             
+            // Iterate through the equipment dictionary to find the equipment of the specified type
             foreach (var item 
                      in _equipmentDictionary.Where(
                          item => item.Key.equipmentType == equipmentType))
+                // If the equipment is found, assign it to the equippedItem variable
                 equippedItem = item.Key;
 
             return equippedItem;
@@ -322,21 +336,44 @@ namespace InventorySystem_and_Items
 
         public void UseFlask()
         {
-            ItemDataEquipment currentFlask = GetEquipment(EnumList.EquipmentType.Flask);
+            // Get the current flask equipped
+            var currentFlask = GetEquipment(EnumList.EquipmentType.Flask);
             
+            // If no flask is equipped, log a message and return
             if(currentFlask == null)
             {
                 Debug.Log("No flask equipped");
                 return;
             }
             
-            bool canUseFlask = Time.time > _lastTimeUsedFlask + currentFlask.itemCoolDown;
+            // Check if the flask can be used based on its cooldown
+            var canUseFlask = Time.time > _lastTimeUsedFlask + _flaskCooldown;
             if (canUseFlask)
             {
+                // If the flask can be used, execute the flask's item effect and update the last time used
+                _flaskCooldown = currentFlask.itemCoolDown;
                 currentFlask.ExecuteItemEffect(null);
                 _lastTimeUsedFlask = Time.time;
             }   
             else Debug.Log("Flask is on cooldown");
+        }
+
+        public bool CanUseArmorEffect()
+        {
+            // Get the current armor equipped
+            var currentArmor = GetEquipment(EnumList.EquipmentType.Armor);
+            
+            // If the armor effect can be used base on its cooldown, return true
+            if(Time.time > _lastTimeUsedArmorEffect + _armorEffectCooldown)
+            {
+                // Set the armor effect cooldown and last time used
+                _armorEffectCooldown = currentArmor.itemCoolDown;
+                _lastTimeUsedArmorEffect = Time.time;
+                return true;
+            }
+
+            Debug.Log("Armor effect is on cooldown");
+            return false;
         }
     }
 }

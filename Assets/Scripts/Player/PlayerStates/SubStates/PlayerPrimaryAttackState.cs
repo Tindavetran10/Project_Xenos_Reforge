@@ -114,7 +114,8 @@ namespace Player.PlayerStates.SubStates
             var offset = new Vector2(playerPosition.x + hitBoxCenter.x * Movement.FacingDirection,
                 playerPosition.y + hitBoxCenter.y);
             
-            var collider2Ds = Physics2D.OverlapBoxAll(offset, hitBoxSize, 0f, PlayerData.whatIsEnemy); 
+            var collider2Ds = Physics2D.OverlapBoxAll(offset, hitBoxSize, 0f, 
+                PlayerData.whatIsEnemy); 
 
             foreach (var hit in collider2Ds) ProcessHit(hit);
         }
@@ -137,7 +138,7 @@ namespace Player.PlayerStates.SubStates
             }
         }
 
-        private static void ExecuteWeaponEffect(EnemyStats target)
+        private static void ExecuteWeaponEffect(Component target)
         {
             var weaponData = InventoryManager.instance.GetEquipment(EnumList.EquipmentType.Weapon);
             if (weaponData != null)

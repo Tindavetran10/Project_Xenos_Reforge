@@ -49,9 +49,12 @@ namespace Enemy.EnemyStateMachine
         public float attackCoolDown;
         #endregion
         
+        public bool GetFrozen { get; private set; }
+        
         protected HitStopController HitStopController;
         private Transform _player;
-        
+        private static readonly int EnemyDeathAnim = Animator.StringToHash("die");
+
         protected override void Awake() {
             base.Awake();
             StateMachine = new EnemyStateMachine();
@@ -74,14 +77,39 @@ namespace Enemy.EnemyStateMachine
         
         public void BattleStateFlipControl()
         {
-            // Determine if the player is to the left (-1) or right (1) of the enemy
-            var playerDirectionRelativeToEnemy = _player.position.x > transform.position.x ? 1 : -1;
+            if (Movement.CanSetVelocity)
+            {
+                // Determine if the player is to the left (-1) or right (1) of the enemy
+                var playerDirectionRelativeToEnemy = _player.position.x > transform.position.x ? 1 : -1;
 
-            // If the player is on the opposite side of the enemy's facing direction, flip the enemy
-            if (playerDirectionRelativeToEnemy != Movement.FacingDirection) Movement.Flip();
+                // If the player is on the opposite side of the enemy's facing direction, flip the enemy
+                if (playerDirectionRelativeToEnemy != Movement.FacingDirection) Movement.Flip();
+            }
         }
 
+        private void Freeze(bool getFrozen)
+        {
+            if (getFrozen)
+            {
+                Movement.CanSetVelocity = false;
+                Anim.speed = 0;
+            }
+            else
+            {
+                Movement.CanSetVelocity = true;
+                Anim.speed = 1;
+            }
+        }
 
+        private IEnumerator FreezeCoroutine(float freezeDuration)
+        {
+            Freeze(true);
+            yield return new WaitForSeconds(freezeDuration);
+            Freeze(false);
+        }
+        
+        public void FreezeMovementFor(float duration) => StartCoroutine(FreezeCoroutine(duration));
+        
         #region Animator Function
         public void AttackTrigger()
         {
@@ -158,7 +186,7 @@ namespace Enemy.EnemyStateMachine
         {
             Movement.CanSetVelocity = false;
             
-            //if the rb is static then return
+            //if the rb is static, then return
             if (Rb.bodyType == RigidbodyType2D.Static) yield break;
             CheckKnockBackDirection();
             
@@ -185,7 +213,7 @@ namespace Enemy.EnemyStateMachine
         public override void Die()
         {
             base.Die();
-            Anim.SetBool("die", true);
+            Anim.SetBool(EnemyDeathAnim, true);
             Invoke(nameof(DestroyEnemy), 1f);
         }
         private void DestroyEnemy() => Destroy(gameObject);

@@ -20,5 +20,17 @@ namespace Player.PlayerStats
             
             GetComponentInParent<PlayerItemDrop>()?.GenerateDrop();
         }
+
+        protected override void DecreaseHealthBy(int damageAmount)
+        {
+            base.DecreaseHealthBy(damageAmount);
+            
+            if (IsDead) return;
+            
+            var currentArmor = InventoryManager.instance.GetEquipment(EnumList.EquipmentType.Armor);
+
+            if (currentArmor != null) 
+                currentArmor.ExecuteItemEffect(_player.playerTransform);
+        }
     }
 }
