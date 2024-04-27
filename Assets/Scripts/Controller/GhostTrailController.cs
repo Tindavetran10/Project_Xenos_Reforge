@@ -1,7 +1,7 @@
 using Manager;
 using UnityEngine;
 
-namespace Player.GhostTrail_Effect
+namespace Controller
 {
     public class GhostTrailController : MonoBehaviour
     {
@@ -9,7 +9,7 @@ namespace Player.GhostTrail_Effect
         public float delay;
         private float _delta;
 
-        private PlayerStateMachine.Player _player;
+        private Player.PlayerStateMachine.Player _player;
         private SpriteRenderer _spriteRenderer;
         public float destroyTime;
         public Color color;
@@ -17,7 +17,7 @@ namespace Player.GhostTrail_Effect
         
         private void Start()
         {
-            _player = GetComponent<PlayerStateMachine.Player>();
+            _player = GetComponent<Player.PlayerStateMachine.Player>();
             _spriteRenderer = GetComponent<SpriteRenderer>(); 
         }
 

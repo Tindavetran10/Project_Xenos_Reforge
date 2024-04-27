@@ -1,7 +1,7 @@
-﻿using InventorySystem_and_Items;
+﻿using Controller;
+using InventorySystem_and_Items;
 using Manager;
 using Player.Data;
-using Player.GhostTrail_Effect;
 using Player.PlayerStateMachine;
 
 namespace Player.PlayerStates.SuperStates
@@ -108,6 +108,6 @@ namespace Player.PlayerStates.SuperStates
             Player.inputManager.UseFlaskEvent -= UseFlask;
         }
         
-        private void UseFlask() => InventoryManager.instance.UseFlask();
+        private static void UseFlask() => InventoryManager.instance.UseFlask();
     }
 }
