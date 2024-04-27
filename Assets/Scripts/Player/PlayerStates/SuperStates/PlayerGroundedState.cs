@@ -1,4 +1,5 @@
 ﻿using InventorySystem_and_Items;
+using Manager;
 using Player.Data;
 using Player.GhostTrail_Effect;
 using Player.PlayerStateMachine;
@@ -70,16 +71,15 @@ namespace Player.PlayerStates.SuperStates
             _focusSwordInput = Player.inputManager.FocusSwordInput;
             _counterAttackInput = Player.inputManager.CounterInput;
             
-            if(_focusSwordInput && !IsTouchingCeiling)
+            if(_focusSwordInput && SkillManager.instance.Focus.focusUnlocked && !IsTouchingCeiling)
                 StateMachine.ChangeState(Player.FocusSwordState);
-            else if(_aimSwordInput && /*SkillManager.Instance.Slash.CanUseSkill() &&*/ !IsTouchingCeiling)
+            else if(_aimSwordInput && SkillManager.instance.Slash.slashUnlocked 
+                        && SkillManager.instance.Slash.CanUseSkill() && !IsTouchingCeiling)
                 StateMachine.ChangeState(Player.AimSwordState);
             else if(_counterAttackInput && !IsTouchingCeiling)
                 StateMachine.ChangeState(Player.CounterAttackState);
             else if(_normalAttackInput && !IsTouchingCeiling)
                 StateMachine.ChangeState(Player.PrimaryAttackState);
-            if(_aimSwordInput && /*SkillManager.Instance.Slash.CanUseSkill() &&*/ !IsTouchingCeiling)
-                StateMachine.ChangeState(Player.AimSwordState);
             else if(_counterAttackInput && !IsTouchingCeiling)
                 StateMachine.ChangeState(Player.CounterAttackState);
             else if(_normalAttackInput && !IsTouchingCeiling)
@@ -97,7 +97,8 @@ namespace Player.PlayerStates.SuperStates
                 StateMachine.ChangeState(Player.InAirState);
             }
             // Change to Dash State if there is dashInput and the dash has been cooled down
-            else if (_dashInput && Player.DashState.CheckIfCanDash() && !IsTouchingCeiling)
+            else if (_dashInput && SkillManager.instance.Dash.dashUnlocked 
+                        && Player.DashState.CheckIfCanDash() && !IsTouchingCeiling)
                 StateMachine.ChangeState(Player.DashState);
         }
         

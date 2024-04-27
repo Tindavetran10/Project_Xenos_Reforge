@@ -1,12 +1,18 @@
 using System.Collections.Generic;
 using System.Linq;
+using UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 namespace Player.Skills
 {
     public class FocusSkill : Skill
     {
+	    [Header("Focus")] 
+	    public bool focusUnlocked;
+	    [SerializeField] private UISkillTreeSlot focusUnlockButton;
+	    
 	    private List<SpriteSlicer2DSliceInfo> _slicedSpriteInfo = new();
         private TrailRenderer _trailRenderer;
 
@@ -38,8 +44,9 @@ namespace Player.Skills
         
         protected override void Start ()
         {
-	        _trailRenderer = GetComponentInChildren<TrailRenderer>();
 	        _mainCamera = Camera.main;
+	        _trailRenderer = GetComponentInChildren<TrailRenderer>();
+	        focusUnlockButton.GetComponent<Button>().onClick.AddListener(UnlockFocus);
         }
 
         protected override void Update()
@@ -52,6 +59,14 @@ namespace Player.Skills
 		        _mousePos.z = _mainCamera.nearClipPlane;
 		        mouseWorldPos = _mainCamera.ScreenToWorldPoint(_mousePos);
 	        }
+        }
+
+        protected override void CheckUnlock() => UnlockFocus();
+
+        private void UnlockFocus()
+        {
+	        if(focusUnlockButton.unlocked)
+		        focusUnlocked = true;
         }
         
         public void Slice ()

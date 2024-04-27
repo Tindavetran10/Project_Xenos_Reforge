@@ -50,8 +50,7 @@ namespace UI
                 Debug.Log("Cannot unlock skill");
                 return;
             }
-
-
+            
             if (shouldBeLocked.Any(skillSlot => skillSlot.unlocked))
             {
                 Debug.Log("Cannot unlock skill");
