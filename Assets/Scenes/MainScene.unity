@@ -1299,7 +1299,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: Dash
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4287,7 +4287,7 @@ GameObject:
   - component: {fileID: 204616542}
   - component: {fileID: 204616539}
   m_Layer: 5
-  m_Name: 'UISkillTreeSlot - '
+  m_Name: UISkillTreeSlot - Dash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4310,7 +4310,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -218, y: -27}
+  m_AnchoredPosition: {x: -719, y: 133}
   m_SizeDelta: {x: 95, y: 95}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &204616539
@@ -4356,7 +4356,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 204616540}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 204616542}
+        m_TargetAssemblyTypeName: UI.UISkillTreeSlot, Assembly-CSharp
+        m_MethodName: UnlockSkillSlot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &204616540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4408,9 +4420,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillCost: 0
-  skillName: 
+  skillName: Dash
   skillDescription: 
-  lockedSkillColor: {r: 0, g: 0, b: 0, a: 0}
+  lockedSkillColor: {r: 1, g: 0, b: 0, a: 0}
   unlocked: 0
   shouldBeUnlocked: []
   shouldBeLocked: []
@@ -7911,11 +7923,11 @@ GameObject:
   m_Component:
   - component: {fileID: 554434007}
   - component: {fileID: 554434010}
-  - component: {fileID: 554434011}
   - component: {fileID: 554434009}
   - component: {fileID: 554434008}
+  - component: {fileID: 554434011}
   m_Layer: 5
-  m_Name: 'UISkillTreeSlot - '
+  m_Name: UISkillTreeSlot - Double Dash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7938,7 +7950,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -111, y: -27}
+  m_AnchoredPosition: {x: -561, y: 133}
   m_SizeDelta: {x: 95, y: 95}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &554434008
@@ -7984,7 +7996,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 554434009}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 554434011}
+        m_TargetAssemblyTypeName: UI.UISkillTreeSlot, Assembly-CSharp
+        m_MethodName: UnlockSkillSlot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &554434009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8036,11 +8060,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillCost: 0
-  skillName: 
+  skillName: Double Dash
   skillDescription: 
-  lockedSkillColor: {r: 0, g: 0, b: 0, a: 0}
+  lockedSkillColor: {r: 1, g: 0, b: 0, a: 0}
   unlocked: 0
-  shouldBeUnlocked: []
+  shouldBeUnlocked:
+  - {fileID: 204616542}
   shouldBeLocked: []
 --- !u!1 &566976874
 GameObject:
@@ -17887,7 +17912,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: "Double \nDash"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
