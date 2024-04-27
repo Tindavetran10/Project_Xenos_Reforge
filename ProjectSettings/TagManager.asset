@@ -3,23 +3,19 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Ground
-  - Enemy
-  - Projectile
-  - WorldCamera
+  tags: []
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Ground
+  - 
   - Water
   - UI
-  - Enemy
-  - Player
-  - Background
-  - Item
-  - Postprocessing
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -44,25 +40,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Background
-    uniqueID: 4039478803
-    locked: 0
-  - name: Ground
-    uniqueID: 1673992909
-    locked: 0
-  - name: Checkpoint
-    uniqueID: 3628573669
-    locked: 0
-  - name: Enemy
-    uniqueID: 1364924271
-    locked: 0
-  - name: Player
-    uniqueID: 3462470657
-    locked: 0
-  - name: Item
-    uniqueID: 3630599891
-    locked: 0
-  - name: UI
-    uniqueID: 4029906795
     locked: 0
