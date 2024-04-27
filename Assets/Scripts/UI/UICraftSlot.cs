@@ -4,8 +4,6 @@ namespace UI
 {
     public class UICraftSlot : UIItemSlot
     {
-        //private void OnEnable() => UpdateSlot(item);
-
         public void SetupCraftSlot(ItemDataEquipment itemData)
         {
             if(itemData== null) return;

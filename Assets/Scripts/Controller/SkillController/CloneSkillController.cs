@@ -4,6 +4,7 @@ using Enemy.EnemyStats;
 using Player.Data;
 using StatSystem;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Controller.SkillController
 {
@@ -33,6 +34,9 @@ namespace Controller.SkillController
         private static readonly int AttackCounter = Animator.StringToHash("AttackCounter");
         #endregion
         
+        private const float GetColliderRadius = 25f;
+        private Collider2D[] results = new Collider2D[5];
+        
         [SerializeField] private float colorTransparentSpeed;
         private float _cloneTimer;
         
@@ -40,10 +44,11 @@ namespace Controller.SkillController
         {
             _anim = GetComponent<Animator>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
-            _comboCounter = Random.Range(0,2);
             _stats = GetComponentInChildren<CharacterStats>();
             Core = GetComponentInChildren<Core>();
         }
+
+        private void Start() => _comboCounter = Random.Range(0,2);
 
         private void Update()
         {
@@ -81,29 +86,38 @@ namespace Controller.SkillController
             _offset.Set(playerPosition.x + playerData.hitBox[_comboCounter].center.x * Movement.FacingDirection,
                 playerPosition.y + playerData.hitBox[_comboCounter].center.y);
             
-            var collider2Ds = Physics2D.OverlapBoxAll(_offset, playerData.hitBox[_comboCounter].size, 0f, playerData.whatIsEnemy);
+            var numColliders = Physics2D.OverlapBoxNonAlloc(_offset, playerData.hitBox[_comboCounter].size, 
+                0f, results, playerData.whatIsEnemy);
+            
+            var size = Physics2D.OverlapBoxNonAlloc(_offset, playerData.hitBox[_comboCounter].size, 0f, 
+                results, playerData.whatIsEnemy);
 
-            foreach (var hit in collider2Ds)
+            for (var i = 0; i < numColliders; i++)
             {
-                if (hit.GetComponent<Enemy.EnemyStateMachine.Enemy>() != null)
+                var hit = results[i];
+                if(hit.GetComponent<Enemy.EnemyStateMachine.Enemy>() != null)
                 {
-                    var target = hit.GetComponentInChildren<EnemyStats>();
-                    _stats.DoDamage(target);
+                    var targetStats = hit.GetComponentInChildren<EnemyStats>();
+                    _stats.DoDamage(targetStats);
                 }
             }
         }
 
         private void FaceClosetObject()
         {
+            var numColliders = Physics2D.OverlapCircleNonAlloc(transform.position, GetColliderRadius, results, 
+                playerData.whatIsEnemy);
+            
             // Step 1: Get all colliders within a circular area centered at the current object's position with a radius of 25 units.
-            var collider2Ds = Physics2D.OverlapCircleAll(transform.position, 25f);
+            var collider2Ds = Physics2D.OverlapCircleAll(transform.position, GetColliderRadius);
 
             // Step 2: Initialize variables for tracking the closest enemy and its distance.
             var closetDistance = Mathf.Infinity;
 
             // Step 3: Iterate through all the colliders found in the specified area.
-            foreach (var hit in collider2Ds)
+            for (var i = 0; i < numColliders; i++)
             {
+                var hit = results[i];
                 // Step 4: Check if the collider represents an enemy (by checking if it has a specific component).
                 if (hit.GetComponent<Enemy.EnemyStateMachine.Enemy>() != null)
                 {

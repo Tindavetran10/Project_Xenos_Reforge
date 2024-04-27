@@ -1,8 +1,8 @@
 using _Scripts.Player.Input;
+using Controller;
 using InventorySystem_and_Items;
 using Manager;
 using Player.Data;
-using Player.GhostTrail_Effect;
 using Player.PlayerStates.SubStates;
 using UnityEngine;
 
