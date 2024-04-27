@@ -1,10 +1,10 @@
 using _Scripts.Player.Input;
+using InventorySystem_and_Items;
 using Manager;
 using Player.Data;
 using Player.GhostTrail_Effect;
 using Player.PlayerStates.SubStates;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Player.PlayerStateMachine
 {
@@ -33,14 +33,14 @@ namespace Player.PlayerStateMachine
         public PlayerAimSwordState AimSwordState { get; private set; }
         public PlayerFocusSwordState FocusSwordState { get; private set; }
         
-        [Header("Player Data")]
         [SerializeField] private PlayerData playerData;
         #endregion
 
         #region Components
         //public PlayerInputHandler InputHandler { get; private set; }
         [SerializeField] public InputManager inputManager;
-        public Transform playerTransform;
+        
+        [Space] public Transform playerTransform;
         
         public Transform DashDirectionIndicator { get; private set; }
         #endregion
@@ -83,7 +83,7 @@ namespace Player.PlayerStateMachine
         protected override void Start()
         {
             base.Start();
-            Skill = SkillManager.Instance;
+            Skill = SkillManager.instance;
             
             //playerInputHandler = GetComponent<PlayerInputHandler>();
             
@@ -135,7 +135,7 @@ namespace Player.PlayerStateMachine
 
             center.y += (height - MovementCollider2D.size.y)/2;
             
-            //Change the height of the size of the Collider
+            //Change the height of the Collider
             MovementCollider2D.size = _workspace;
 
             //Change the center point of the Collider

@@ -1,11 +1,13 @@
-﻿using Player.Data;
+﻿using InventorySystem_and_Items;
+using Manager;
+using Player.Data;
 using Player.GhostTrail_Effect;
 using Player.PlayerStateMachine;
 
 namespace Player.PlayerStates.SuperStates
 {
     // This state will represent all States that happen when the player standing on the ground
-    // All of its function gonna be inherited from all of those States 
+    // All of its function going to be inherited from all of those States 
     public class PlayerGroundedState : PlayerState
     {
         protected int XInput;
@@ -38,7 +40,7 @@ namespace Player.PlayerStates.SuperStates
             }
         }
 
-        // Before entering the specific state that happen on the ground
+        // Before entering the specific state that happens on the ground
         // Player will enter this state first
         public override void Enter()
         {
@@ -50,6 +52,8 @@ namespace Player.PlayerStates.SuperStates
             // reset the number of jumps and dashes that he can make
             Player.JumpState.ResetAmountOfJumpsLeft();
             Player.DashState.ResetCanDash();
+            
+            Player.inputManager.UseFlaskEvent += UseFlask;
         }
 
         public override void LogicUpdate()
@@ -67,22 +71,22 @@ namespace Player.PlayerStates.SuperStates
             _focusSwordInput = Player.inputManager.FocusSwordInput;
             _counterAttackInput = Player.inputManager.CounterInput;
             
-            if(_focusSwordInput && !IsTouchingCeiling)
+            if(_focusSwordInput && SkillManager.instance.Focus.focusUnlocked && !IsTouchingCeiling)
                 StateMachine.ChangeState(Player.FocusSwordState);
-            else if(_aimSwordInput && /*SkillManager.Instance.Slash.CanUseSkill() &&*/ !IsTouchingCeiling)
+            else if(_aimSwordInput && SkillManager.instance.Slash.slashUnlocked 
+                        && SkillManager.instance.Slash.CanUseSkill() && !IsTouchingCeiling)
                 StateMachine.ChangeState(Player.AimSwordState);
             else if(_counterAttackInput && !IsTouchingCeiling)
                 StateMachine.ChangeState(Player.CounterAttackState);
             else if(_normalAttackInput && !IsTouchingCeiling)
                 StateMachine.ChangeState(Player.PrimaryAttackState);
-            if(_aimSwordInput && /*SkillManager.Instance.Slash.CanUseSkill() &&*/ !IsTouchingCeiling)
-                StateMachine.ChangeState(Player.AimSwordState);
             else if(_counterAttackInput && !IsTouchingCeiling)
                 StateMachine.ChangeState(Player.CounterAttackState);
             else if(_normalAttackInput && !IsTouchingCeiling)
                 StateMachine.ChangeState(Player.PrimaryAttackState);
             
-            // Change to Jump State if there is a jumpInput, the number of jumps is > 0 and he isn't touch the ceiling 
+            // Change to Jump State if there is a jumpInput, the number of jumps is > 0,
+            // and he isn't touch the ceiling 
             else if(_jumpInput && Player.JumpState.CanJump() && !IsTouchingCeiling)
                 StateMachine.ChangeState(Player.JumpState);
             // Change to InAirState if the player isn't standing on the ground
@@ -93,8 +97,17 @@ namespace Player.PlayerStates.SuperStates
                 StateMachine.ChangeState(Player.InAirState);
             }
             // Change to Dash State if there is dashInput and the dash has been cooled down
-            else if (_dashInput && Player.DashState.CheckIfCanDash() && !IsTouchingCeiling)
+            else if (_dashInput && SkillManager.instance.Dash.dashUnlocked 
+                        && Player.DashState.CheckIfCanDash() && !IsTouchingCeiling)
                 StateMachine.ChangeState(Player.DashState);
         }
+        
+        public override void Exit()
+        {
+            base.Exit();
+            Player.inputManager.UseFlaskEvent -= UseFlask;
+        }
+        
+        private void UseFlask() => InventoryManager.instance.UseFlask();
     }
 }

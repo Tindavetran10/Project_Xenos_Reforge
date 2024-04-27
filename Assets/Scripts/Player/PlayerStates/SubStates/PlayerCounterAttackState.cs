@@ -1,6 +1,6 @@
+using Controller;
 using Player.Data;
 using Player.PlayerStates.SuperStates;
-using Projectile;
 using UnityEngine;
 
 namespace Player.PlayerStates.SubStates

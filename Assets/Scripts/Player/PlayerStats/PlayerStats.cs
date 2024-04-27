@@ -1,3 +1,4 @@
+using InventorySystem_and_Items;
 using StatSystem;
 
 namespace Player.PlayerStats
@@ -12,10 +13,24 @@ namespace Player.PlayerStats
             _player = GetComponentInParent<Player.PlayerStateMachine.Player>();
         }
         
-        protected override void Die()
+        protected override void SetFlagDeath()
         {
-            base.Die();
+            base.SetFlagDeath();
             _player.Die();
+            
+            GetComponentInParent<PlayerItemDrop>()?.GenerateDrop();
+        }
+
+        protected override void DecreaseHealthBy(int damageAmount)
+        {
+            base.DecreaseHealthBy(damageAmount);
+            
+            if (IsDead) return;
+            
+            var currentArmor = InventoryManager.instance.GetEquipment(EnumList.EquipmentType.Armor);
+
+            if (currentArmor != null) 
+                currentArmor.ExecuteItemEffect(_player.playerTransform);
         }
     }
 }

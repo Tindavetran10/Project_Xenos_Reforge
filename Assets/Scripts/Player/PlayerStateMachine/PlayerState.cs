@@ -28,7 +28,7 @@ namespace Player.PlayerStateMachine
           private CollisionSenses _collisionSenses;
           
 
-          // Create a constructor for player so we can access all the function like Update, Exit,... 
+          // Create a constructor for player, so we can access all the function like Update, Exit, ... 
           // in different State class that inherited from PlayerState
           protected PlayerState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName)
           {
@@ -48,7 +48,7 @@ namespace Player.PlayerStateMachine
                // Run the animation with the same name in the animator
                Player.Anim.SetBool(_animBoolName, true);
                
-               // Save the time when the player enter a state 
+               // Save the time when the player enters a state 
                StartTime = Time.time;
                IsAnimationFinished = false;
                IsAnimationCancel = false;
@@ -57,7 +57,8 @@ namespace Player.PlayerStateMachine
      
           public virtual void Exit()
           {
-               // Set the current animation to false so we can change into a new animation                                                                                                                                                                                    
+               // Set the current animation to false,
+               // so we can change into a new animation                                                                                                                                                                                    
                Player.Anim.SetBool(_animBoolName, false);
                IsExitingState = true;
           }

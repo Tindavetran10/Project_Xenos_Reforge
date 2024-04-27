@@ -32,7 +32,7 @@ namespace Manager
         // Method to get the instance
         public static PlayerManager GetInstance() => _instance;
 
-        public bool HaveEnoughSoul(int price)
+        public bool HaveEnoughEnergy(int price)
         {
             if (price > currency)
             {

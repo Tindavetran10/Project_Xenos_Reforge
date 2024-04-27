@@ -11,12 +11,11 @@ namespace _Scripts.Player.Input
     {
         private static InputManager _instance;
 
-        private static PlayerInput _playerInput;
+        private PlayerInput _playerInput;
         public Transform PlayerTransform { get; set;}
         private Camera _cam;
 
         #region Input for Gameplay
-
         private Vector2 RawMovementInput { get; set; }
         private Vector2 RawDashDirectionInput { get; set; }
         public Vector2Int DashDirectionInput { get; private set; }
@@ -56,7 +55,8 @@ namespace _Scripts.Player.Input
         #endregion
 
         #region Events for UI
-        public event UnityAction MenuClickEvent;
+        public event UnityAction UseFlaskEvent = delegate{};
+        public event UnityAction ItemSlotClickEvent = delegate{};
         public event UnityAction OptionsOpenEvent;
         public event UnityAction OptionsCloseEvent;
         public event UnityAction InventoryOpenEvent;
@@ -101,15 +101,17 @@ namespace _Scripts.Player.Input
             NormalAttackInputsStop = new bool[count];
             
             _cam = Camera.main;
+            
+            _playerInput.UI.Click.performed += _ => ItemSlotClickEvent?.Invoke();
         }
 
-        private static void SetGameplay()
+        private void SetGameplay()
         {
             _playerInput.Gameplay.Enable();
             _playerInput.UI.Disable();
         }
 
-        private static void SetUI()
+        private void SetUI()
         {
             _playerInput.Gameplay.Disable();
             _playerInput.UI.Enable();
@@ -171,7 +173,7 @@ namespace _Scripts.Player.Input
         {
             RawMovementInput = context.ReadValue<Vector2>();
             
-            // Get the inputs that change x axis and y axis value from the player  
+            // Get the inputs that change x-axis and y-axis value from the player  
             NormInputX = Mathf.RoundToInt(RawMovementInput.x);
             NormInputY = Mathf.RoundToInt(RawMovementInput.y);
         }
@@ -254,6 +256,8 @@ namespace _Scripts.Player.Input
         }
         public void OnFocusSwordMousePos(InputAction.CallbackContext context)
         {
+            if(_cam == null) return;
+            
             FocusSwordPositionInput = context.ReadValue<Vector3>();
             FocusSwordPositionInput = _cam.ScreenToWorldPoint(FocusSwordPositionInput);
         }
@@ -267,6 +271,8 @@ namespace _Scripts.Player.Input
         // Callback for dash direction input
         public void OnDashDirection(InputAction.CallbackContext context)
         {
+            if (PlayerTransform == null || _cam == null) return;
+            
             RawDashDirectionInput= context.ReadValue<Vector2>();
             if (_cam != null)
                 RawDashDirectionInput = _cam.ScreenToWorldPoint(RawDashDirectionInput) - PlayerTransform.position;
@@ -318,17 +324,17 @@ namespace _Scripts.Player.Input
                 SetUI();
             }
         }
-        public void OnPoint(InputAction.CallbackContext context)
+
+        public void OnUseFlask(InputAction.CallbackContext context)
         {
-            if (context.phase == InputActionPhase.Performed)
-            {
-                MenuClickEvent?.Invoke();
-                SetUI();
-            }
+            if(context.phase == InputActionPhase.Performed)
+                UseFlaskEvent?.Invoke();
         }
+
         #endregion
 
         #region UI Input
+        public void OnPoint(InputAction.CallbackContext context) {}
         public void OnNavigate(InputAction.CallbackContext context) {}
 
         public void OnSubmit(InputAction.CallbackContext context){}
@@ -336,11 +342,7 @@ namespace _Scripts.Player.Input
         public void OnCancel(InputAction.CallbackContext context){}
 
 
-        public void OnClick(InputAction.CallbackContext context)
-        {
-            if (context.phase == InputActionPhase.Performed) 
-                MenuClickEvent?.Invoke();
-        }
+        public void OnClick(InputAction.CallbackContext context) {}
 
         public void OnScrollWheel(InputAction.CallbackContext context){}
 

@@ -2,14 +2,13 @@ using System.Linq;
 using Manager;
 using SaveSystem;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace UI
 {
-    public class UISkillTreeSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, ISaveManager
+    public class UISkillTreeSlot : MonoBehaviour, ISaveManager
     {
-        private MenuManager _menuManager;
+        private UIManager _uiManager;
         private Image _skillImage;
 
         [SerializeField] private int skillCost;
@@ -32,38 +31,40 @@ namespace UI
         private void Start()
         {
             _skillImage = GetComponent<Image>();
-            _menuManager = GetComponentInParent<MenuManager>();
+            _uiManager = GetComponentInParent<UIManager>();
             
             _skillImage.color = lockedSkillColor;
             
             if(unlocked) _skillImage.color =Color.white;
         }
 
-        private void UnlockSkillSlot()
+        public void UnlockSkillSlot()
         {
-            if(PlayerManager.GetInstance().HaveEnoughSoul(skillCost) == false)
+            // Check if the player has enough energy to unlock the skill
+            if(PlayerManager.GetInstance().HaveEnoughEnergy(skillCost) == false)
                 return;
             
-            if (shouldBeUnlocked.Any(t => t.unlocked == false))
+            // Check if the skills that should be unlocked are unlocked
+            if (shouldBeUnlocked.Any(skillSlot => skillSlot.unlocked == false))
             {
                 Debug.Log("Cannot unlock skill");
                 return;
             }
             
-            if (shouldBeLocked.Any(t => t.unlocked == false))
+            if (shouldBeLocked.Any(skillSlot => skillSlot.unlocked))
             {
                 Debug.Log("Cannot unlock skill");
                 return;
             }
             
-            unlocked = true;
-            _skillImage.color = Color.white;
+            unlocked = true; // Set the unlocked field to true
+            _skillImage.color = Color.white; // Set the color of the skill image to white
         }
 
 
         public void LoadData(GameData data)
         {
-            if (data.skillTree.TryGetValue(skillName, out bool value)) 
+            if (data.skillTree.TryGetValue(skillName, out var value)) 
                 unlocked = value;
         }
 
@@ -74,7 +75,7 @@ namespace UI
             else data.skillTree.Add(skillName, unlocked);
         }
         
-        public void OnPointerEnter(PointerEventData eventData) => _menuManager.skillToolTip.ShowToolTip(skillDescription, skillName);
-        public void OnPointerExit(PointerEventData eventData) => _menuManager.skillToolTip.HideToolTip();
+        /*public void OnPointerEnter(PointerEventData eventData) => _uiManager.skillToolTip.ShowToolTip(skillDescription, skillName);
+        public void OnPointerExit(PointerEventData eventData) => _uiManager.skillToolTip.HideToolTip();*/
     }
 }

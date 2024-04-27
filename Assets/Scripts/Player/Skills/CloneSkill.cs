@@ -1,11 +1,11 @@
-using Player.Skills.SkillController;
+using Controller.SkillController;
 using UnityEngine;
 
 namespace Player.Skills
 {
     public class CloneSkill : Skill
     {
-        [Header("Clone Info")]
+        [Header("Clone")]
         [SerializeField] private GameObject clonePrefab;
         
         [SerializeField] private float cloneDuration;

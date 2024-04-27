@@ -1,12 +1,18 @@
 using System.Collections.Generic;
 using System.Linq;
+using UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 namespace Player.Skills
 {
     public class FocusSkill : Skill
     {
+	    [Header("Focus")] 
+	    public bool focusUnlocked;
+	    [SerializeField] private UISkillTreeSlot focusUnlockButton;
+	    
 	    private List<SpriteSlicer2DSliceInfo> _slicedSpriteInfo = new();
         private TrailRenderer _trailRenderer;
 
@@ -14,7 +20,7 @@ namespace Player.Skills
         
         #region Mouse Input
 
-        private Vector3 mousePos;
+        private Vector3 _mousePos;
         [HideInInspector] public Vector3 mouseWorldPos;
         
         private struct MousePosition
@@ -38,8 +44,9 @@ namespace Player.Skills
         
         protected override void Start ()
         {
-	        _trailRenderer = GetComponentInChildren<TrailRenderer>();
 	        _mainCamera = Camera.main;
+	        _trailRenderer = GetComponentInChildren<TrailRenderer>();
+	        focusUnlockButton.GetComponent<Button>().onClick.AddListener(UnlockFocus);
         }
 
         protected override void Update()
@@ -47,14 +54,21 @@ namespace Player.Skills
 	        base.Update();
 	        if (Mouse.current.leftButton.IsPressed())
 	        {
-		        mousePos = Mouse.current.position.ReadValue();
+		        _mousePos = Mouse.current.position.ReadValue();
 	
-		        mousePos.z = _mainCamera.nearClipPlane;
-		        mouseWorldPos = _mainCamera.ScreenToWorldPoint(mousePos);
+		        _mousePos.z = _mainCamera.nearClipPlane;
+		        mouseWorldPos = _mainCamera.ScreenToWorldPoint(_mousePos);
 	        }
         }
 
-        // ReSharper disable Unity.PerformanceAnalysis
+        protected override void CheckUnlock() => UnlockFocus();
+
+        private void UnlockFocus()
+        {
+	        if(focusUnlockButton.unlocked)
+		        focusUnlocked = true;
+        }
+        
         public void Slice ()
         {
 			// Left mouse button - swipe to cut objects

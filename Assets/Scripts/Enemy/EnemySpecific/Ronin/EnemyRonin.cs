@@ -70,11 +70,11 @@ namespace Enemy.EnemySpecific.Ronin
         }
         
 
-        public override void Die()
+        /*public override void Die()
         {
             base.Die();
             StateMachine.ChangeState(DeathState);
-        }
+        }*/
 
         public override void OnDrawGizmos()
         {

@@ -1,4 +1,5 @@
-using Player.Skills.SkillController;
+using Controller.SkillController;
+using Manager;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,7 +23,7 @@ namespace Player.Skills
         protected override void Start()
         {
             base.Start();
-            //slashUnlockButton.GetComponent<Button>().onClick.AddListener(UnlockSlash);
+            slashUnlockButton.GetComponent<Button>().onClick.AddListener(UnlockSlash);
         }
 
         /*protected override void Update()
@@ -39,13 +40,14 @@ namespace Player.Skills
             var slashPosition = Player.transform.position;
             var slashRotation = Quaternion.Euler(0f, 0f, transform.rotation.x * playerDir);
 
-            var newSlash = Instantiate(slashPrefab, slashPosition, slashRotation);
+            var newSlash = ObjectPoolManager.SpawnObject(slashPrefab, slashPosition, slashRotation, 
+                ObjectPoolManager.PoolType.GameObject);
 
             // Flip the object if the player is facing left
             if (playerDir < 0)
             {
                 var newScale = newSlash.transform.localScale;
-                newScale.x *= -1; // Flip the object along the X-axis
+                newScale.x *= -1; // Flip the object along the X-axis to face the opposite direction
                 newSlash.transform.localScale = newScale;
             }
             Destroy(newSlash, destroyDelay);
@@ -89,7 +91,7 @@ namespace Player.Skills
             }*/
         }
 
-        //protected override void CheckUnlock() => UnlockSlash();
+        protected override void CheckUnlock() => UnlockSlash();
 
         private void UnlockSlash()
         {

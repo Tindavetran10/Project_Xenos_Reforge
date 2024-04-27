@@ -7,10 +7,10 @@ namespace CoreSystem.CoreComponents
     public class Movement : CoreComponent
     {
         public Rigidbody2D Rb { get; private set; }
-        public int FacingDirection { get; private set; }
+        public int FacingDirection { get; set; }
         public bool CanSetVelocity { get; set; }
     
-        public Vector2 CurrentVelocity { get; private set; }
+        public Vector2 CurrentVelocity { get; set; }
         private Vector2 _workspace;
         
         [SerializeField] private PlayerData playerData;
@@ -123,8 +123,11 @@ namespace CoreSystem.CoreComponents
 
         public void Flip()
         {
-            FacingDirection *= -1;
-            Rb.transform.Rotate(0.0f, 180.0f, 0.0f);
+            if (CanSetVelocity)
+            {
+                FacingDirection *= -1;
+                Rb.transform.Rotate(0.0f, 180.0f, 0.0f);
+            }
         }
         #endregion
     }

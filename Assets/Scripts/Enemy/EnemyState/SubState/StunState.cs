@@ -50,7 +50,7 @@ namespace Enemy.EnemyState.SubState
         public override void Exit()
         {
             base.Exit();
-            EnemyBase.FX.Invoke("CancelRedBlink", 0f);
+            EnemyBase.FX.Invoke("CancelColorChange", 0f);
             EnemyBase.Stats.IsStunned = false;
         }
     }

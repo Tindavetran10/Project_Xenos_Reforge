@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using Enemy.EnemyStats;
 using HitStop;
+using InventorySystem_and_Items;
 using Player.Data;
 using Player.PlayerStates.SuperStates;
 using UnityEngine;
@@ -113,9 +114,13 @@ namespace Player.PlayerStates.SubStates
             var offset = new Vector2(playerPosition.x + hitBoxCenter.x * Movement.FacingDirection,
                 playerPosition.y + hitBoxCenter.y);
             
-            var collider2Ds = Physics2D.OverlapBoxAll(offset, hitBoxSize, 0f, PlayerData.whatIsEnemy); 
+            const int maxEnemies = 10;
+            var colliders = new Collider2D[maxEnemies];  
+            
+            var size = Physics2D.OverlapBoxNonAlloc(offset, hitBoxSize, 0f, colliders, 
+                PlayerData.whatIsEnemy);
 
-            foreach (var hit in collider2Ds) ProcessHit(hit);
+            for (var i = 0; i < size; i++) ProcessHit(colliders[i]);
         }
 
         private void ProcessHit(Component hit)
@@ -129,8 +134,18 @@ namespace Player.PlayerStates.SubStates
             if(target!=null)
             {
                 Player.Stats.DoDamage(target);
+
+                ExecuteWeaponEffect(target);
+
                 _hitStopController.HitStop(PlayerData.hitStopDuration);
             }
+        }
+
+        private static void ExecuteWeaponEffect(Component target)
+        {
+            var weaponData = InventoryManager.instance.GetEquipment(EnumList.EquipmentType.Weapon);
+            if (weaponData != null)
+                weaponData.ExecuteItemEffect(target.transform);
         }
     }
 }

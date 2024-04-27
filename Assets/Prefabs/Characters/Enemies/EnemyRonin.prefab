@@ -74,6 +74,9 @@ MonoBehaviour:
   evasion:
     baseValue: 0
     modifiers: 
+  magicResistance:
+    baseValue: 0
+    modifiers: 
   maxPoiseResistance:
     baseValue: 0
     modifiers: 
@@ -83,11 +86,27 @@ MonoBehaviour:
   lastPoiseReset:
     baseValue: 0
     modifiers: 
-  currentHealth: 0
-  currentPoise: 0
-  soulDropAmount:
+  fireDamage:
     baseValue: 0
     modifiers: 
+  iceDamage:
+    baseValue: 0
+    modifiers: 
+  lightingDamage:
+    baseValue: 0
+    modifiers: 
+  isIgnited: 0
+  isFrozen: 0
+  isShocked: 0
+  ailmentsDuration: 4
+  thunderTransitPrefab: {fileID: 856964385494790396, guid: 7ad8fdbd6f82b3e4ca9e0dabcc0df612, type: 3}
+  currentHealth: 0
+  currentPoise: 0
+  energyDropAmount:
+    baseValue: 0
+    modifiers: 
+  level: 1
+  percentageModifier: 0.4
 --- !u!1 &4278006547242274560
 GameObject:
   m_ObjectHideFlags: 0
@@ -105,6 +124,7 @@ GameObject:
   - component: {fileID: 3508060986822370213}
   - component: {fileID: 9017884175519967266}
   - component: {fileID: 3641834877471134073}
+  - component: {fileID: 7714412185132133973}
   m_Layer: 6
   m_Name: EnemyRonin
   m_TagString: Enemy
@@ -327,13 +347,12 @@ MonoBehaviour:
   enemyData: {fileID: 11400000, guid: 87c16f2acc53e1f4883de0f1a2fa07af, type: 2}
   projectileSpeed: 0
   enemyProjectile: {fileID: 0}
-  canBeStunned: 0
   counterImage: {fileID: 8501139046309401062}
   knockBackDirection: {x: 1, y: 1}
   knockBackDuration: 0.1
   isAnimationFinished: 0
   lastTimeAttacked: 0
-  attackCoolDown: 2
+  attackCoolDown: 0
   idleStateData: {fileID: 11400000, guid: 86814309784c77248bfaca19aa1c0336, type: 2}
   moveStateData: {fileID: 11400000, guid: 2d21c5f8f05484a4da30ec71099f6f43, type: 2}
   playerDetectedStateData: {fileID: 11400000, guid: 77ad649b8a387bd438de526c8ff3db9e, type: 2}
@@ -367,7 +386,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a38fb38737045dd84a0cded3a6001b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  flashDuration: 0.2
   hitMat: {fileID: 2100000, guid: 6ce42991d0ed2b346bef88913ab1434e, type: 2}
+  frozenColor:
+  - {r: 0.60784316, g: 0.83137256, b: 1, a: 1}
+  - {r: 0.6084906, g: 0.832423, b: 1, a: 1}
+  igniteColor:
+  - {r: 0.990566, g: 0.38781592, b: 0.38781592, a: 1}
+  - {r: 0.9716981, g: 0.6737718, b: 0.6737718, a: 1}
+  shockColor:
+  - {r: 1, g: 0.8901961, b: 0.38431373, a: 1}
+  - {r: 0.94509804, g: 0.8745098, b: 0.54901963, a: 1}
+--- !u!114 &7714412185132133973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4278006547242274560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc5cb2afd30342a284d5ffe82baa3fd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxItemsToDrop: 0
+  itemPool: []
+  dropPrefab: {fileID: 4518001331926125483, guid: c7360d48a9b3d344c9624242d1d13cae, type: 3}
 --- !u!1 &5397513237031634334
 GameObject:
   m_ObjectHideFlags: 0
