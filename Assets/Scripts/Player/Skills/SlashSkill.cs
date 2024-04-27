@@ -23,7 +23,7 @@ namespace Player.Skills
         protected override void Start()
         {
             base.Start();
-            //slashUnlockButton.GetComponent<Button>().onClick.AddListener(UnlockSlash);
+            slashUnlockButton.GetComponent<Button>().onClick.AddListener(UnlockSlash);
         }
 
         /*protected override void Update()
@@ -91,7 +91,7 @@ namespace Player.Skills
             }*/
         }
 
-        //protected override void CheckUnlock() => UnlockSlash();
+        protected override void CheckUnlock() => UnlockSlash();
 
         private void UnlockSlash()
         {

@@ -1,3 +1,4 @@
+using Manager;
 using Player.Data;
 using Player.PlayerStates.SuperStates;
 using UnityEngine;
@@ -115,6 +116,7 @@ namespace Player.PlayerStates.SubStates
             Player.Rb.drag = PlayerData.drag;
             Movement?.SetVelocity(PlayerData.dashVelocity, _dashDirection);
             Player.DashDirectionIndicator.gameObject.SetActive(false);
+            
             Player.Skill.Dash.CreateCloneOnDash();
         }
         
