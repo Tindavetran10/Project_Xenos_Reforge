@@ -38,20 +38,21 @@ namespace UI
             if(unlocked) _skillImage.color =Color.white;
         }
 
-        private void UnlockSkillSlot()
+        public void UnlockSkillSlot()
         {
             // Check if the player has enough energy to unlock the skill
             if(PlayerManager.GetInstance().HaveEnoughEnergy(skillCost) == false)
                 return;
             
             // Check if the skills that should be unlocked are unlocked
-            if (shouldBeUnlocked.Any(t => t.unlocked == false))
+            if (shouldBeUnlocked.Any(skillSlot => skillSlot.unlocked == false))
             {
                 Debug.Log("Cannot unlock skill");
                 return;
             }
-            
-            if (shouldBeLocked.Any(t => t.unlocked == false))
+
+
+            if (shouldBeLocked.Any(skillSlot => skillSlot.unlocked))
             {
                 Debug.Log("Cannot unlock skill");
                 return;
@@ -64,7 +65,7 @@ namespace UI
 
         public void LoadData(GameData data)
         {
-            if (data.skillTree.TryGetValue(skillName, out bool value)) 
+            if (data.skillTree.TryGetValue(skillName, out var value)) 
                 unlocked = value;
         }
 
