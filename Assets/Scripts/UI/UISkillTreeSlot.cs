@@ -2,12 +2,11 @@ using System.Linq;
 using Manager;
 using SaveSystem;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace UI
 {
-    public class UISkillTreeSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, ISaveManager
+    public class UISkillTreeSlot : MonoBehaviour, ISaveManager
     {
         private UIManager _uiManager;
         private Image _skillImage;
@@ -41,9 +40,11 @@ namespace UI
 
         private void UnlockSkillSlot()
         {
-            if(PlayerManager.GetInstance().HaveEnoughSoul(skillCost) == false)
+            // Check if the player has enough energy to unlock the skill
+            if(PlayerManager.GetInstance().HaveEnoughEnergy(skillCost) == false)
                 return;
             
+            // Check if the skills that should be unlocked are unlocked
             if (shouldBeUnlocked.Any(t => t.unlocked == false))
             {
                 Debug.Log("Cannot unlock skill");
@@ -56,8 +57,8 @@ namespace UI
                 return;
             }
             
-            unlocked = true;
-            _skillImage.color = Color.white;
+            unlocked = true; // Set the unlocked field to true
+            _skillImage.color = Color.white; // Set the color of the skill image to white
         }
 
 
@@ -74,7 +75,7 @@ namespace UI
             else data.skillTree.Add(skillName, unlocked);
         }
         
-        public void OnPointerEnter(PointerEventData eventData) => _uiManager.skillToolTip.ShowToolTip(skillDescription, skillName);
-        public void OnPointerExit(PointerEventData eventData) => _uiManager.skillToolTip.HideToolTip();
+        /*public void OnPointerEnter(PointerEventData eventData) => _uiManager.skillToolTip.ShowToolTip(skillDescription, skillName);
+        public void OnPointerExit(PointerEventData eventData) => _uiManager.skillToolTip.HideToolTip();*/
     }
 }
