@@ -1,9 +1,5 @@
 using Manager;
-using Player.Skills;
-using Player.Skills.SkillController;
-using UI;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Player.Skills
 {
