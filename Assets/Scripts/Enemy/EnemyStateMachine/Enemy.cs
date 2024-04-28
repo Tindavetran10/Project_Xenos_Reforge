@@ -27,7 +27,7 @@ namespace Enemy.EnemyStateMachine
         #endregion
 
         #region Counter and Stunned Mechanic
-        private bool CanBeStunned { get; set; }
+        public bool CanBeStunned { get; set; }
         [SerializeField] public GameObject counterImage;
         #endregion
         

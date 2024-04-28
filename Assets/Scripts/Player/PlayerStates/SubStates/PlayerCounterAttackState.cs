@@ -10,6 +10,8 @@ namespace Player.PlayerStates.SubStates
         private bool _counterInputStop;
         private static readonly int CounterAttack = Animator.StringToHash("successfulCounterAttack");
         
+        private readonly Collider2D[] _results = new Collider2D[5];
+        
         public PlayerCounterAttackState(global::Player.PlayerStateMachine.Player player, 
             global::Player.PlayerStateMachine.PlayerStateMachine stateMachine, PlayerData playerData, string animBoolName) 
             : base(player, stateMachine, playerData, animBoolName) {}
@@ -38,20 +40,30 @@ namespace Player.PlayerStates.SubStates
                 Offset.Set(playerPosition.x + PlayerData.hitBox[ComboCounter].center.x * Movement.FacingDirection,
                     playerPosition.y + PlayerData.hitBox[ComboCounter].center.y);
             
-                var collider2Ds = Physics2D.OverlapBoxAll(Offset, PlayerData.hitBox[ComboCounter].size, 0f);
+                var numColliders = Physics2D.OverlapBoxNonAlloc(Offset, PlayerData.hitBox[ComboCounter].size, 0f, _results);
 
-                foreach (var hit in collider2Ds)
+                for(var i = 0; i < numColliders; i++)
                 {
-                    if (hit.GetComponent<ProjectileController>() != null)
+                    var hit = _results[i];
+                    if (hit == null) continue;
+                    
+                    var projectileController = hit.GetComponent<ProjectileController>();
+                    if (projectileController != null)
                     {
-                        hit.GetComponent<ProjectileController>().FlipProjectile();
+                        projectileController.FlipProjectile();
                         SuccessfulCounterAttack();
                     }
                     
-                    if (hit.GetComponent<Enemy.EnemyStateMachine.Enemy>() != null)
+                    var enemy = hit.GetComponent<Enemy.EnemyStateMachine.Enemy>();
+                    if (enemy != null)
                     {
-                        if(hit.GetComponent<Enemy.EnemyStateMachine.Enemy>().TryCloseCounterAttackWindow())
-                            SuccessfulCounterAttack(); 
+                        if(enemy.TryCloseCounterAttackWindow())
+                        {
+                            SuccessfulCounterAttack();
+                            
+                            Player.Skill.Parry.UseSkill();
+                            Player.Skill.Parry.MakeMirageOnParry(hit.transform);
+                        }
                     }
                 }
                 if(_counterInputStop || Time.time >= StartTime + PlayerData.counterAttackDuration) 

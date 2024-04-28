@@ -19,7 +19,7 @@ namespace Entity
 
         protected CapsuleCollider2D MovementCollider2D { get; set; }
 
-        protected Movement Movement => _movement ? _movement : Core.GetCoreComponent(ref _movement);
+        public Movement Movement => _movement ? _movement : Core.GetCoreComponent(ref _movement);
         private Movement _movement;
         #endregion
         

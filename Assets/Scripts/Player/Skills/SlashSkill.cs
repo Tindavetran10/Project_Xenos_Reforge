@@ -15,8 +15,8 @@ namespace Player.Skills
         [SerializeField] private float  destroyDelay = 1f;
         
         [Header("Skill Unlock")] 
-        public bool slashUnlocked;
         [SerializeField] private UISkillTreeSlot slashUnlockButton;
+        public bool SlashUnlocked { get; private set; }
 
         protected override void Start()
         {
@@ -50,7 +50,7 @@ namespace Player.Skills
         private void UnlockSlash()
         {
             if(slashUnlockButton.unlocked)
-                slashUnlocked = true;
+                SlashUnlocked = true;
         }
     }
 }

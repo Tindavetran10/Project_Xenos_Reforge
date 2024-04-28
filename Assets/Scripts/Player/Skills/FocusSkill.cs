@@ -10,8 +10,8 @@ namespace Player.Skills
     public class FocusSkill : Skill
     {
 	    [Header("Focus")] 
-	    public bool focusUnlocked;
 	    [SerializeField] private UISkillTreeSlot focusUnlockButton;
+	    public bool FocusUnlocked { get; private set; }
 	    
 	    private List<SpriteSlicer2DSliceInfo> _slicedSpriteInfo = new();
         private TrailRenderer _trailRenderer;
@@ -66,7 +66,7 @@ namespace Player.Skills
         private void UnlockFocus()
         {
 	        if(focusUnlockButton.unlocked)
-		        focusUnlocked = true;
+		        FocusUnlocked = true;
         }
         
         public void Slice ()

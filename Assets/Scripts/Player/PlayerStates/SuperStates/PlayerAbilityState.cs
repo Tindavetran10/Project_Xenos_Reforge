@@ -1,4 +1,5 @@
-﻿using Player.Data;
+﻿using Controller;
+using Player.Data;
 using Player.PlayerStateMachine;
 using UnityEngine;
 
@@ -14,6 +15,8 @@ namespace Player.PlayerStates.SuperStates
         
         protected bool IsHolding;
         
+        protected GhostTrailController GhostTrailController;
+        
         protected PlayerAbilityState(global::Player.PlayerStateMachine.Player player, global::Player.PlayerStateMachine.PlayerStateMachine stateMachine, 
             PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName){}
 
@@ -25,10 +28,13 @@ namespace Player.PlayerStates.SuperStates
         }
 
         public override void Enter() {
-            if(Player.isActiveAndEnabled == false)
-                return;
+            if(Player.isActiveAndEnabled == false) return;
+            
             base.Enter();
             IsAbilityDone = false;
+            
+            GhostTrailController = Player.GhostTrailController;
+            GhostTrailController.enabled = false;
         }
 
         public override void LogicUpdate() {

@@ -14,6 +14,8 @@ namespace Manager
         public SlashSkill Slash { get; private set; }
         public FocusSkill Focus { get; private set; }
         
+        public ParrySkill Parry { get; private set; }
+        
         private void Awake()
         {
             if (instance != null)
@@ -27,6 +29,7 @@ namespace Manager
             Clone = GetComponent<CloneSkill>();
             Slash = GetComponent<SlashSkill>();
             Focus = GetComponent<FocusSkill>();
+            Parry = GetComponent<ParrySkill>();
         }
     }
 }

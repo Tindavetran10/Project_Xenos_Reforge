@@ -1,4 +1,3 @@
-using Manager;
 using Player.Data;
 using Player.PlayerStates.SuperStates;
 using UnityEngine;
@@ -9,7 +8,7 @@ namespace Player.PlayerStates.SubStates
     {
         private bool CanDash { get; set; }
         
-        private float lastDashTime;
+        private float _lastDashTime;
         
         private bool _dashInputStop;
         private Vector2 _dashDirection;
@@ -43,6 +42,8 @@ namespace Player.PlayerStates.SubStates
             
             // Show the DirectionIndicator 
             Player.DashDirectionIndicator.gameObject.SetActive(true);
+            
+            GhostTrailController.enabled = true;
         }
 
         public override void Exit()
@@ -130,14 +131,14 @@ namespace Player.PlayerStates.SubStates
             {
                 Player.Rb.drag = 0f;
                 IsAbilityDone = true;
-                lastDashTime = Time.time;
+                _lastDashTime = Time.time;
 
                 Player.Stats.MakeInvincible(true);
             }
         }
         
         public bool CheckIfCanDash() {
-            return CanDash && Time.time >= lastDashTime + PlayerData.dashCoolDown;
+            return CanDash && Time.time >= _lastDashTime + PlayerData.dashCoolDown;
         }
 
         public void ResetCanDash() => CanDash = true;

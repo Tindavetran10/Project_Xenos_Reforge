@@ -37,9 +37,8 @@ namespace Controller
             // Create a new ghost trail 
             // Instantiate the ghostTrailPrefab and set the position and rotation to the player
             var playerTransform = transform;
-            var currentGhostTrail = 
-                ObjectPoolManager.SpawnObject(ghostTrailPrefab, playerTransform.position, playerTransform.rotation, 
-                    ObjectPoolManager.PoolType.GameObject);
+            var currentGhostTrail = ObjectPoolManager.SpawnObject(ghostTrailPrefab, playerTransform.position, 
+                playerTransform.rotation, ObjectPoolManager.PoolType.GameObject);
             
             // Set the scale of the ghost trail to the player scale
             currentGhostTrail.transform.localScale = _player.transform.localScale;

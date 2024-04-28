@@ -7,7 +7,7 @@ namespace CoreSystem.CoreComponents
     public class Movement : CoreComponent
     {
         public Rigidbody2D Rb { get; private set; }
-        public int FacingDirection { get; set; }
+        public int FacingDirection { get; private set; }
         public bool CanSetVelocity { get; set; }
     
         public Vector2 CurrentVelocity { get; set; }
