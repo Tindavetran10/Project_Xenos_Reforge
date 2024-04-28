@@ -8,12 +8,12 @@ namespace Player.Skills
     public class DashSkill : Skill
     {
         [Header("Dash")] 
-        public bool dashUnlocked;
         [SerializeField] private UISkillTreeSlot dashUnlockButton;
+        public bool DashUnlocked { get; private set; }
         
         [Header("Clone on dash")] 
-        public bool cloneOnDashUnlocked;
         [SerializeField] private UISkillTreeSlot cloneOnDashUnlockButton;
+        public bool CloneOnDashUnlocked { get; private set; }
        
         
         protected override void Start()
@@ -32,19 +32,19 @@ namespace Player.Skills
         private void UnlockDash()
         {
             if(dashUnlockButton.unlocked)
-                dashUnlocked = true;
+                DashUnlocked = true;
         }
 
         private void UnlockCloneDash()
         {
             if(cloneOnDashUnlockButton.unlocked)
-                cloneOnDashUnlocked = true;
+                CloneOnDashUnlocked = true;
         }
 
         public void CreateCloneOnDash()
         {
-            if(cloneOnDashUnlocked)
-                SkillManager.instance.Clone.CreateClone(Player.transform);
+            if(CloneOnDashUnlocked)
+                SkillManager.instance.Clone.CreateClone(Player.transform, Vector3.zero);
         }
     }
 }

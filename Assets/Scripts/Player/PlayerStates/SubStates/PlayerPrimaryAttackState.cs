@@ -36,6 +36,8 @@ namespace Player.PlayerStates.SubStates
                 ComboCounter = 0;
             
             Player.Anim.SetInteger(Counter, ComboCounter);
+            
+            GhostTrailController.enabled = true;
         }
 
         public override void Exit()

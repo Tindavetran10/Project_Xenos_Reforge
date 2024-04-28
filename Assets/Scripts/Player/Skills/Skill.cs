@@ -31,6 +31,6 @@ namespace Player.Skills
             return false;
         }
 
-        private static void UseSkill() {}
+        public virtual void UseSkill() {}
     }
 }

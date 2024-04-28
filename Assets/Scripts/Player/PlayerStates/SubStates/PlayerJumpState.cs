@@ -19,6 +19,8 @@ namespace Player.PlayerStates.SubStates
             IsAbilityDone = true;
             _amountOfJumpsLeft--;
             Player.InAirState.SetIsJumping();
+            
+            GhostTrailController.enabled = true;
         }
         
         public bool CanJump() => _amountOfJumpsLeft > 0;

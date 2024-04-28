@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 302753774624836902}
   - component: {fileID: 6675473820356203955}
   - component: {fileID: 5885237449956733545}
+  - component: {fileID: 4864917417151685538}
   m_Layer: 0
   m_Name: SkillManager
   m_TagString: Untagged
@@ -94,9 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coolDown: 1
-  dashUnlocked: 0
   dashUnlockButton: {fileID: 0}
-  cloneOnDashUnlocked: 0
   cloneOnDashUnlockButton: {fileID: 0}
 --- !u!114 &302753774624836902
 MonoBehaviour:
@@ -131,7 +130,6 @@ MonoBehaviour:
   launchDir: {x: 15, y: 0}
   slashGravity: 0
   destroyDelay: 1
-  slashUnlocked: 0
   slashUnlockButton: {fileID: 0}
 --- !u!114 &5885237449956733545
 MonoBehaviour:
@@ -146,7 +144,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coolDown: 0
-  focusUnlocked: 0
   focusUnlockButton: {fileID: 0}
   mouseWorldPos: {x: 0, y: 0, z: 0}
   mouseRecordInterval: 0.05
@@ -158,6 +155,24 @@ MonoBehaviour:
   fadeFragments: 1
   slicedSpriteZPosition: -1
   trailZPosition: -9
+--- !u!114 &4864917417151685538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6502687882524347838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96c74ac977a1401eb52251cfa3b83496, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coolDown: 0
+  parryHealUnlocked: 0
+  parryHealUnlockButton: {fileID: 0}
+  restoreHealthPercentage: 0
+  cloneOnParryUnlocked: 0
+  cloneOnParryUnlockButton: {fileID: 0}
 --- !u!1 &8919231764776469774
 GameObject:
   m_ObjectHideFlags: 0

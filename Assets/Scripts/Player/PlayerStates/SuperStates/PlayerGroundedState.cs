@@ -71,9 +71,9 @@ namespace Player.PlayerStates.SuperStates
             _focusSwordInput = Player.inputManager.FocusSwordInput;
             _counterAttackInput = Player.inputManager.CounterInput;
             
-            if(_focusSwordInput && SkillManager.instance.Focus.focusUnlocked && !IsTouchingCeiling)
+            if(_focusSwordInput && SkillManager.instance.Focus.FocusUnlocked && !IsTouchingCeiling)
                 StateMachine.ChangeState(Player.FocusSwordState);
-            else if(_aimSwordInput && SkillManager.instance.Slash.slashUnlocked 
+            else if(_aimSwordInput && SkillManager.instance.Slash.SlashUnlocked 
                         && SkillManager.instance.Slash.CanUseSkill() && !IsTouchingCeiling)
                 StateMachine.ChangeState(Player.AimSwordState);
             else if(_counterAttackInput && !IsTouchingCeiling)
@@ -97,7 +97,7 @@ namespace Player.PlayerStates.SuperStates
                 StateMachine.ChangeState(Player.InAirState);
             }
             // Change to Dash State if there is dashInput and the dash has been cooled down
-            else if (_dashInput && SkillManager.instance.Dash.dashUnlocked 
+            else if (_dashInput && SkillManager.instance.Dash.DashUnlocked 
                         && Player.DashState.CheckIfCanDash() && !IsTouchingCeiling)
                 StateMachine.ChangeState(Player.DashState);
         }

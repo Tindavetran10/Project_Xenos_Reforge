@@ -76,7 +76,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -832496639
-  m_SortingLayer: 3
+  m_SortingLayer: 5
   m_SortingOrder: -1
   m_Sprite: {fileID: -259491904, guid: eaffac403d91cdd4ca37db430bee8fc4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -199,7 +199,34 @@ MonoBehaviour:
   evasion:
     baseValue: 0
     modifiers: 
+  magicResistance:
+    baseValue: 0
+    modifiers: 
+  maxPoiseResistance:
+    baseValue: 0
+    modifiers: 
+  poiseResetTime:
+    baseValue: 0
+    modifiers: 
+  lastPoiseReset:
+    baseValue: 0
+    modifiers: 
+  fireDamage:
+    baseValue: 0
+    modifiers: 
+  iceDamage:
+    baseValue: 0
+    modifiers: 
+  lightingDamage:
+    baseValue: 0
+    modifiers: 
+  isIgnited: 0
+  isFrozen: 0
+  isShocked: 0
+  ailmentsDuration: 4
+  thunderTransitPrefab: {fileID: 0}
   currentHealth: 0
+  currentPoise: 0
 --- !u!1 &5869934331388252227
 GameObject:
   m_ObjectHideFlags: 0

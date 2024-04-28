@@ -1,4 +1,5 @@
-﻿using Manager;
+﻿using Controller;
+using Manager;
 using Player.Data;
 using Player.PlayerStateMachine;
 using UnityEngine;
@@ -29,6 +30,8 @@ namespace Player.PlayerStates.SubStates
         private static readonly int YVelocity = Animator.StringToHash("yVelocity");
         private static readonly int XVelocity = Animator.StringToHash("xVelocity");
         #endregion
+        
+        protected GhostTrailController GhostTrailController;
     
         public PlayerInAirState(global::Player.PlayerStateMachine.Player player, global::Player.PlayerStateMachine.PlayerStateMachine stateMachine, 
             PlayerData playerData, string animBoolName) : base(player, stateMachine, playerData, animBoolName) {}
@@ -54,7 +57,6 @@ namespace Player.PlayerStates.SubStates
             if (!_wallJumpCoyoteTimer && !_isTouchingWall && !_isTouchingWallBack &&
                 (_oldIsTouchingWall || _oldIsTouchingWallBack)) 
                 StartWallJumpCoyoteTimer();
-            
         }
 
         public override void Exit()
@@ -64,6 +66,9 @@ namespace Player.PlayerStates.SubStates
             _oldIsTouchingWallBack = false;
             _isTouchingWall = false;
             _isTouchingWallBack = false;
+            
+            GhostTrailController = Player.GhostTrailController;
+            GhostTrailController.enabled = false;
         }
 
         public override void LogicUpdate() {
@@ -113,7 +118,7 @@ namespace Player.PlayerStates.SubStates
                 StateMachine.ChangeState(Player.WallSlideState);
             
             // Change to Dash State if the dash has been cooled down
-            else if (_dashInput && SkillManager.instance.Dash.dashUnlocked && Player.DashState.CheckIfCanDash())
+            else if (_dashInput && SkillManager.instance.Dash.DashUnlocked && Player.DashState.CheckIfCanDash())
                 StateMachine.ChangeState(Player.DashState);
             else
             {
