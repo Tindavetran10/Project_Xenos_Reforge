@@ -33,6 +33,8 @@ namespace Manager
         // Called after Awake, used for initialization
         private void Start()
         {
+            AudioManager.Instance.Stop("MainMenu");
+            AudioManager.Instance.Play("InGame");
             // Find all Checkpoint objects in the scene
             checkpoints = FindObjectsByType<Checkpoint>(FindObjectsSortMode.InstanceID);
             
@@ -45,11 +47,12 @@ namespace Manager
         public static void RestartScene()
         {
             // Save the game before restarting
-            SaveManager.Instance.SaveGame();
-            
+            //SaveManager.Instance.SaveGame();
+
             // Get the active scene and reload it
-            var scene = SceneManager.GetActiveScene();
-            SceneManager.LoadScene(scene.name);
+            /*var scene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(scene.name);*/
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
         // Load game data from the provided GameData object
