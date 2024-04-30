@@ -4,11 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Boss
   - Ground
   - Enemy
-  - Projectile
-  - WorldCamera
-  - Item
   layers:
   - Default
   - TransparentFX
@@ -16,11 +14,13 @@ TagManager:
   - Ground
   - Water
   - UI
-  - Enemy
+  - Boss
   - Player
   - Background
   - Item
   - Map
+
+
   - 
   - 
   - 
@@ -47,23 +47,11 @@ TagManager:
     uniqueID: 0
     locked: 0
   - name: Background
-    uniqueID: 4039478803
+    uniqueID: 2246957309
     locked: 0
   - name: Ground
-    uniqueID: 1673992909
-    locked: 0
-  - name: Checkpoint
-    uniqueID: 3628573669
-    locked: 0
-  - name: Enemy
-    uniqueID: 1364924271
+    uniqueID: 1924404105
     locked: 0
   - name: Player
-    uniqueID: 3462470657
-    locked: 0
-  - name: Item
-    uniqueID: 3630599891
-    locked: 0
-  - name: UI
-    uniqueID: 4029906795
+    uniqueID: 2795096079
     locked: 0
