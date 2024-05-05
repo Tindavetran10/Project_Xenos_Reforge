@@ -19,7 +19,8 @@ namespace Manager
         #region Tab UI system
         [SerializeField] private GameObject inventoryUI;
         [SerializeField] private GameObject skillTreeUI;
-        [SerializeField] private GameObject mapUI;
+        [SerializeField] private GameObject largeMapUI;
+        [SerializeField] private GameObject miniMapUI;
         [SerializeField] private GameObject craftUI;
         [SerializeField] private GameObject optionsUI;
         [SerializeField] private GameObject inGameUI;
@@ -33,6 +34,7 @@ namespace Manager
             // Show the UI like player's Health or score by default, not the menu
             SwitchTo(inGameUI);
             RegisterEventHandlers();
+            miniMapUI.SetActive(true);
         }
 
         private void RegisterEventHandlers()
@@ -46,8 +48,8 @@ namespace Manager
             inputManager.SkillTreeOpenEvent += () => ToggleUIWithKey(skillTreeUI, true);
             inputManager.SkillTreeCloseEvent += () => ToggleUIWithKey(skillTreeUI, false);
             
-            inputManager.MapOpenEvent += () => ToggleUIWithKey(mapUI, true);
-            inputManager.MapCloseEvent += () => ToggleUIWithKey(mapUI, false);
+            inputManager.MapOpenEvent += () => ToggleUIWithKey(largeMapUI, true);
+            inputManager.MapCloseEvent += () => ToggleUIWithKey(largeMapUI, false);
             
             inputManager.CraftingOpenEvent += () => ToggleUIWithKey(craftUI, true);
             inputManager.CraftingCloseEvent += () => ToggleUIWithKey(craftUI, false);
@@ -59,6 +61,7 @@ namespace Manager
             {
                 uiElement.SetActive(isActive);
                 CheckForInGameUI();
+                miniMapUI.SetActive(!isActive);
                 Time.timeScale = isActive ? 0f : 1f;
             }
         }

@@ -193,7 +193,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackPosition: {fileID: 4408137957903308106}
   playerData: {fileID: 11400000, guid: 1a10f74d2848e0e4cbebbd5868cfd22c, type: 2}
-  inputManager: {fileID: 0}
+  inputManager: {fileID: 11400000, guid: ae5a6636a828cae41b2d83556dac0a7d, type: 2}
   playerTransform: {fileID: 2310988032342799380}
 --- !u!114 &6534914590236456289
 MonoBehaviour:
