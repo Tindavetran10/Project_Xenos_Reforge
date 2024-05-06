@@ -1280,7 +1280,7 @@ MonoBehaviour:
   brightnessSlider: {fileID: 1040951468}
   brightnessTextValue: {fileID: 204819496}
   defaultBrightness: 1
-  brightness: {fileID: 11400000, guid: 4eef9f142180d484288c59215ac59bfd, type: 2}
+  brightness: {fileID: 0}
   layer: {fileID: 678067054}
   qualityDropdown: {fileID: 117269956}
   fullScreenToggle: {fileID: 975037963}
