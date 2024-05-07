@@ -179,6 +179,10 @@ namespace UI
             }
         }*/
 
+        public void NumberOfLevel(int index){
+            SaveManager.Instance.DeleteSaveData();
+            SceneManager.LoadScene(index);
+        }
 
         public void ExitGame()
         {
