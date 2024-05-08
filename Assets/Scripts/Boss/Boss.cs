@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Boss : MonoBehaviour
 {
@@ -9,18 +10,25 @@ public class Boss : MonoBehaviour
     [SerializeField] int bossHP = 100;
 
     [SerializeField] Animator animator;
+    [SerializeField] Slider enemyHealthBar;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        enemyHealthBar.value = bossHP;
         target = GameObject.FindGameObjectWithTag("Player").transform;
-        Physics2D.IgnoreCollider(target.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+        Physics2D.IgnoreCollision(target.GetComponent<Collider2D>(), GetComponent<Collider2D>());
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(target.position.x > transform.position.x)
+        /*if(target != null)
+        {
+            
+        }*/
+        if (target.position.x > transform.position.x)
         {
             transform.localScale = new Vector2(1f, 1f);
         }
@@ -33,6 +41,7 @@ public class Boss : MonoBehaviour
 
     public void TakeDamage(int damageAmount){
         bossHP -= damageAmount;
+        enemyHealthBar.value = bossHP;
         if(bossHP > 0){
             //Get hit
             animator.SetTrigger("Damage");
@@ -40,8 +49,8 @@ public class Boss : MonoBehaviour
         else{
             //Become death
             animator.SetTrigger("Death");
-            GetComponent<CapsuleCollider2D>().enable = false;
-            this.enable = false;
+            GetComponent<CapsuleCollider2D>().enabled = false;
+            this.enabled = false;
         }
     }
 }

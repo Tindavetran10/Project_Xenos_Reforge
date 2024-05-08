@@ -3921,17 +3921,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc3c2acc506ff5b43bfc3aa370ef5737, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volumeTextValue: {fileID: 888509284}
-  volumeSlider: {fileID: 1789149668}
+  volumeTextValue: {fileID: 0}
+  volumeSlider: {fileID: 0}
   defaultVolume: 1
-  brightnessSlider: {fileID: 994478036}
-  brightnessTextValue: {fileID: 146615518}
+  brightnessSlider: {fileID: 0}
+  brightnessTextValue: {fileID: 0}
   defaultBrightness: 1
-  brightness: {fileID: 11400000, guid: ca5968ac9ee2aa642b5d7a4081db7876, type: 2}
-  layer: {fileID: 985429810}
-  qualityDropdown: {fileID: 1281312917}
-  fullScreenToggle: {fileID: 848926730}
-  resolutionDropdown: {fileID: 2056976526}
+  brightness: {fileID: 0}
+  layer: {fileID: 0}
+  qualityDropdown: {fileID: 0}
+  fullScreenToggle: {fileID: 0}
+  resolutionDropdown: {fileID: 0}
 --- !u!1 &596279901
 GameObject:
   m_ObjectHideFlags: 0

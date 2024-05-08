@@ -23,7 +23,7 @@ public class IdleStage : StateMachineBehaviour
         }
         float distance = Vector2.Distance(target.position, animator.transform.position);
 
-        if (distance < 10){
+        if (distance < 5){
             animator.SetBool("isChasing", true);
         }
     }
