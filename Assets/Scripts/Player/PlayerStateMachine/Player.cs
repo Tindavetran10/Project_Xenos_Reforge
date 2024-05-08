@@ -87,7 +87,7 @@ namespace Player.PlayerStateMachine
             
             //playerInputHandler = GetComponent<PlayerInputHandler>();
             
-            if(inputManager != null)
+            if(inputManager != null && gameObject != null)
                 inputManager.PlayerTransform = playerTransform;
             
             

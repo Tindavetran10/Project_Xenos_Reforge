@@ -103,7 +103,7 @@ namespace Manager
 
         public void SwitchOnWinScreen()
         {
-            fadeScreen.FadeOut();
+            //fadeScreen.FadeOut();
             StartCoroutine(WinScreenCoroutine());
         }
 

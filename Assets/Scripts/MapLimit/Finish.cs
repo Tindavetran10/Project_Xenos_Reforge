@@ -8,7 +8,7 @@ namespace MapLimit
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.GetComponent<Player.PlayerStateMachine.Player>() != null) 
-                GameObject.Find("Canvas").GetComponent<UIManager>().SwitchOnWinScreen();
+                GameObject.Find("Finish").GetComponent<UIManager>().SwitchOnWinScreen();
         }
     }
 }

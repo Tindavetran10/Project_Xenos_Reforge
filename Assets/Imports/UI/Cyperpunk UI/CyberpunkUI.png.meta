@@ -93,6 +93,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -457,19 +470,19 @@ TextureImporter:
       name: CyberpunkUI_17
       rect:
         serializedVersion: 2
-        x: 464
-        y: 712
-        width: 32
-        height: 32
+        x: 46
+        y: 687
+        width: 20
+        height: 19
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 7, y: 7, z: 7, w: 7}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a476fa8431663f947aed8fd9fb1e76fe
-      internalID: -1546229555
+      spriteID: 217f576be23e48c47bd6743d298e5952
+      internalID: -513685387
       vertices: []
       indices: 
       edges: []
@@ -478,40 +491,19 @@ TextureImporter:
       name: CyberpunkUI_18
       rect:
         serializedVersion: 2
-        x: 208
-        y: 252
-        width: 240
-        height: 77
+        x: 14
+        y: 687
+        width: 20
+        height: 18
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3c2eb600981cacf4abeaee5eb83dd590
-      internalID: -1023737545
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: CyberpunkUI_19
-      rect:
-        serializedVersion: 2
-        x: 479
-        y: 906
-        width: 48
-        height: 12
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 8, y: 0, z: 2, w: 1}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f1ae17200034a824395fcb38340d1671
-      internalID: -915721001
+      spriteID: ca64fe3943f66dd41bd87bd47a703c3a
+      internalID: 2007866786
       vertices: []
       indices: 
       edges: []
@@ -536,9 +528,8 @@ TextureImporter:
       CyberpunkUI_14: -1905180283
       CyberpunkUI_15: 783719115
       CyberpunkUI_16: 385135645
-      CyberpunkUI_17: -1546229555
-      CyberpunkUI_18: -1023737545
-      CyberpunkUI_19: -915721001
+      CyberpunkUI_17: -1445525677
+      CyberpunkUI_18: -513685387
       CyberpunkUI_2: -663464862
       CyberpunkUI_3: 1750142602
       CyberpunkUI_4: -1512866642
