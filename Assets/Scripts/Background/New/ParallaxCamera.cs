@@ -14,7 +14,7 @@ namespace Background.New
 
         private void Update()
         {
-            if (Mathf.Approximately(transform.position.x, _oldPosition))
+            if (!Mathf.Approximately(transform.position.x, _oldPosition))
             {
                 if (OnCameraTranslate != null)
                 {
