@@ -5,7 +5,7 @@ using UnityEngine;
 public class ChaseStage : StateMachineBehaviour
 {
     Transform target;
-    [SerializeField] float speed = 3;
+    [SerializeField] float speed = 1;
     Transform borderCheck;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
