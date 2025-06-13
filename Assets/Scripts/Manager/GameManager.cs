@@ -45,7 +45,7 @@ namespace Manager
         public static void RestartScene()
         {
             // Save the game before restarting
-            SaveManager.Instance.SaveGame();
+            SaveManager.instance.SaveGame();
             
             // Get the active scene and reload it
             var scene = SceneManager.GetActiveScene();

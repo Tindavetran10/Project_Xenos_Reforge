@@ -226,7 +226,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ghostTrailPrefab: {fileID: 870388849115093075, guid: b38648e265be0ef4eb6dbae0ad1b52b5, type: 3}
   delay: 0.01
-  destroyTime: 0.25
+  destroyTime: 0.1
   color: {r: 0.33421838, g: 0.98742133, b: 0.20183134, a: 1}
   material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!114 &4949995153632721344

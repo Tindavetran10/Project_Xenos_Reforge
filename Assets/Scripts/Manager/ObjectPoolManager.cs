@@ -18,8 +18,6 @@ namespace Manager
             None
         }
 
-        public static PoolType PoolingType;
-
         private void Awake() => SetupEmpties();
 
         private void SetupEmpties()

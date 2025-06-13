@@ -13,7 +13,7 @@ namespace UI
         
         private void Start()
         {
-            if(SaveManager.Instance.HasSaveData() == false)
+            if(SaveManager.instance.HasSaveData() == false)
                 continueButton.SetActive(false);
         }
 
@@ -21,7 +21,7 @@ namespace UI
 
         public void NewGame()
         {
-            SaveManager.Instance.DeleteSaveData();
+            SaveManager.instance.DeleteSaveData();
             StartCoroutine(LoadScreenWithAfterEffect(1.5f));
         }
 
