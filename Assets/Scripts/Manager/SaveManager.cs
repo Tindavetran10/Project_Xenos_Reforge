@@ -8,7 +8,7 @@ namespace Manager
     public class SaveManager : MonoBehaviour
     {
         // Singleton pattern instance
-        public static SaveManager Instance;
+        public static SaveManager instance;
 
         [SerializeField] private string fileName; // Name of the save file
         [SerializeField] private bool encryptData; // Flag to indicate whether data should be encrypted
@@ -29,9 +29,9 @@ namespace Manager
         private void Awake()
         {
             // Ensure only one instance of SaveManager exists
-            if (Instance != null)
-                Destroy(Instance.gameObject);
-            else Instance = this;
+            if (instance != null)
+                Destroy(instance.gameObject);
+            else instance = this;
             
             // Initialize FileDataHandler with file path, name, and encryption flag
             _dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, encryptData);
